@@ -1,0 +1,42 @@
+From: Patrick McConnell <patrick.mcconnell@duke.edu>
+Subject: Re: bioconductor final UML model
+To: Martin Morgan <mtmorgan@fhcrc.org>
+Cc: Salvatore Mungal <salvatore.mungal@duke.edu>, p.agarwal@duke.edu
+Date: Wed, 29 Nov 2006 09:53:45 -0500
+
+
+
+Hi Martin,
+Sorry about the late response.  I have done a review from the Architecture
+side, and it looks good.  Sal has done a cursory review from the VCDE side,
+and he mentioned that everything is looking good.  He plans a more in-depth
+review over the new few days.
+I have copied Pankaj Agarwal to do an Architecture review.   He is a mentor in
+training here at Duke.  Consider the model approved from the Architecture
+side, though he may have some other feedback that can be incorporated at a
+future iteration.
+One point to note is that it will be nice to have a class diagram with your
+analytical interfaces for the silver-compatibility review.  But, for model
+registration this is not necessary.  Also, for your contractual deliverable, I
+don't think this is needed (though Juli can confirm).
+Thanks,
+-Patrick McConnell
+Duke Bioinformatics Shared Resource
+Duke Comprehensive Cancer Center
+patrick.mcconnell@duke.edu
+
+From: Salvatore Mungal <salvatore.mungal@duke.edu>
+Subject: Re: bioconductor final UML model
+To: Martin Morgan <mtmorgan@fhcrc.org>
+Date: Mon, 4 Dec 2006 13:28:56 -0500
+
+
+
+Hello Martin,
+I have not found any glaring errors with your model. You now have your value
+domains all straightened up via Claire Wolfe et. al. which was the biggest
+problem that I had pointed out previously.
+I guess that this means that I officially sign off this model.
+Congrats,
+-Sal
+""
