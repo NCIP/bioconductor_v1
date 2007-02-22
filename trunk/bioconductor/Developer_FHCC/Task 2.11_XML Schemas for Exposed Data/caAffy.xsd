@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	   xmlns:bad="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain.BioAssayData"
+	   xmlns:caaffy="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.caaffy"
+	   xmlns:vd="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.caaffy.valuedomain"
+	   targetNamespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.caaffy">
+
+    <xs:import namespace="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain.BioAssayData"
+	       schemaLocation="BioAssayData.xsd"/>
+
+    <xs:import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.caaffy.valuedomain"
+	       schemaLocation="caAffyValueDomain.xsd"/>
+
+    <xs:element name="ExpressoParameter" type="caaffy:ExpressoParameter"/>
+    <xs:complexType name="ExpressoParameter">
+	<xs:sequence>
+	    <xs:element name="backgroundCorrectMethod" type="vd:BackgroundCorrectMethod"/>
+	    <xs:element name="pmCorrectMethod" type="vd:PmCorrectMethod"/>
+	    <xs:element name="probeSummaryMethod" type="vd:ProbeSummaryMethod"/>
+	    <xs:element name="normalizeMethodParameter" type="caaffy:NormalizeMethodParameter"/>
+	</xs:sequence>
+    </xs:complexType>
+    <xs:element name="NormalizeMethodParameter" type="caaffy:NormalizeMethodParameter"/>
+    <xs:complexType name="NormalizeMethodParameter">
+	<xs:sequence>
+	    <xs:element name="method" type="vd:NormalizeMethod"/>
+	    <xs:element name="probeType" type="vd:ProbeType"/>
+	</xs:sequence>
+    </xs:complexType>
+    <xs:element name="NormalizeInvariantSetParameter" type="caaffy:NormalizeInvariantSetParameter"/>
+    <xs:complexType name="NormalizeInvariantSetParameter">
+	<xs:complexContent>
+	    <xs:extension base="caaffy:NormalizeMethodParameter">
+		<xs:sequence>
+		    <xs:element name="baselineType" type="vd:BaselineType"/>
+		</xs:sequence>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+    <xs:element name="NormalizeQuantilesRobustParameter" type="caaffy:NormalizeQuantilesRobustParameter"/>
+    <xs:complexType name="NormalizeQuantilesRobustParameter">
+	<xs:complexContent>
+	    <xs:extension base="caaffy:NormalizeMethodParameter">
+		<xs:sequence>
+		    <xs:element name="removeExtreme" type="vd:RemoveExtreme"/>
+		</xs:sequence>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+    <xs:element name="QaReport" type="caaffy:QaReport"/>
+    <xs:complexType name="QaReport">
+	<xs:sequence>
+	    <xs:element name="pdfFile" type="xs:string"/>
+	</xs:sequence>
+    </xs:complexType>
+    <xs:element name="MeasuredBioAssays" type="caaffy:MeasuredBioAssays"/>
+    <xs:complexType name="MeasuredBioAssays">
+	<xs:sequence>
+	    <xs:element name="measuredBioAssayDataCollection" type="bad:MeasuredBioAssayData" minOccurs="0" maxOccurs="unbounded"/>
+	</xs:sequence>
+    </xs:complexType>
+    <xs:element name="DerivedBioAssays" type="caaffy:DerivedBioAssays"/>
+    <xs:complexType name="DerivedBioAssays">
+	<xs:sequence>
+	    <xs:element name="derivedBioAssayData" type="bad:DerivedBioAssayData" minOccurs="0" maxOccurs="unbounded"/>
+	</xs:sequence>
+    </xs:complexType>
+</xs:schema>
