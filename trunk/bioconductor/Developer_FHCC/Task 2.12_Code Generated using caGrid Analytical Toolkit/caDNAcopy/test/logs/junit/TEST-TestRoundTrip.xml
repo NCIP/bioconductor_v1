@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="1" hostname="gopher4" name="TestRoundTrip" tests="2" time="0.398" timestamp="2007-01-22T01:01:33">
+  <properties>
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="java.home" value="/usr/java/jdk1.5.0_06/jre" />
+    <property name="test.src.dir" value="test/src" />
+    <property name="env.NNTPSERVER" value="news" />
+    <property name="env.DISPLAY" value="localhost:14.0" />
+    <property name="env.LS_COLORS" value="no=00:fi=00:di=01;34:ln=00;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31:ex=00;32:*.cmd=00;32:*.exe=01;32:*.com=01;32:*.bat=01;32:*.btm=01;32:*.dll=01;32:*.tar=00;31:*.tbz=00;31:*.tgz=00;31:*.rpm=00;31:*.deb=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.zoo=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.tb2=00;31:*.tz2=00;31:*.tbz2=00;31:*.avi=01;35:*.bmp=01;35:*.fli=01;35:*.gif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mng=01;35:*.mov=01;35:*.mpg=01;35:*.pcx=01;35:*.pbm=01;35:*.pgm=01;35:*.png=01;35:*.ppm=01;35:*.tga=01;35:*.tif=01;35:*.xbm=01;35:*.xpm=01;35:*.dl=01;35:*.gl=01;35:*.aiff=00;32:*.au=00;32:*.mid=00;32:*.mp3=00;32:*.ogg=00;32:*.voc=00;32:*.wav=00;32:" />
+    <property name="env.SSH_TTY" value="/dev/pts/8" />
+    <property name="env.GNOME_PATH" value=":/opt/gnome:/usr" />
+    <property name="java.endorsed.dirs" value="/usr/java/jdk1.5.0_06/jre/lib/endorsed" />
+    <property name="env.LOGNAME" value="mtmorgan" />
+    <property name="src.dir" value="src" />
+    <property name="env.TEXINPUTS" value="/home/mtmorgan/arch/x86_64/R-devel/share/texmf:/home/mtmorgan/arch/x86_64/R-devel/share/texmf::/home/mtmorgan/.TeX:/usr/share/doc/.TeX:/usr/doc/.TeX" />
+    <property name="ext.globus.dir" value="/home/mtmorgan/caBIG/ws-core-4.0.3" />
+    <property name="sun.os.patch.level" value="unknown" />
+    <property name="tomcat.common.lib.dir" value="/home/mtmorgan/caBIG/apache-tomcat-5.5.20/common/lib" />
+    <property name="java.vendor.url" value="http://java.sun.com/" />
+    <property name="env.R_DEVEL_CONFIG_ARGS" value="CFLAGS=&quot;-g -O0&quot; CXXFLAGS=&quot;-g -O0&quot; FFLAGS=&quot;-g -O0&quot;" />
+    <property name="env.G_BROKEN_FILENAMES" value="1" />
+    <property name="java.version" value="1.5.0_06" />
+    <property name="env.INFODIR" value="/usr/local/info:/usr/share/info:/usr/info" />
+    <property name="env.HOSTTYPE" value="x86_64" />
+    <property name="env.ARCH_HOME" value="/home/mtmorgan/arch/x86_64" />
+    <property name="java.vendor.url.bug" value="http://java.sun.com/cgi-bin/bugreport.cgi" />
+    <property name="env.SSH_CLIENT" value="::ffff:140.107.170.158 4237 22" />
+    <property name="env.MODULE_VERSION" value="3.1.6" />
+    <property name="javadoc.dir" value="/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/build/javadoc" />
+    <property name="env.LESS_ADVANCED_PREPROCESSOR" value="no" />
+    <property name="introduce.skeleton.namespace.domain" value="http://cadnacopy.cagrid.bioconductor.org/CaDNAcopy" />
+    <property name="test.lib.dir" value="test/lib" />
+    <property name="introduce.ns.excludes" value=" -x gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.service -x gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata -x gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security -x gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common" />
+    <property name="env.PVM_ARCH" value="LINUX64" />
+    <property name="user.name" value="mtmorgan" />
+    <property name="env.LANG" value="en_US" />
+    <property name="env.CVS_RSH" value="ssh" />
+    <property name="env.SJAVA_HOME" value="/home/mtmorgan/arch/x86_64/R-devel/usrlib/SJava" />
+    <property name="tomcat.deploy.lib.dir" value="/home/mtmorgan/caBIG/apache-tomcat-5.5.20/webapps/wsrf/WEB-INF/lib" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="sun.jnu.encoding" value="ISO-8859-1" />
+    <property name="java.runtime.name" value="Java(TM) 2 Runtime Environment, Standard Edition" />
+    <property name="schema.dest" value="/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/build/schema" />
+    <property name="env.MINICOM" value="-c on" />
+    <property name="env.SSH_CONNECTION" value="::ffff:140.107.170.158 4237 ::ffff:140.107.170.154 22" />
+    <property name="lib.dir" value="lib" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="test.jar.name" value="CaDNAcopy-tests.jar" />
+    <property name="user.timezone" value="" />
+    <property name="env.LESSOPEN" value="lessopen.sh %s" />
+    <property name="env.MACHTYPE" value="x86_64-suse-linux" />
+    <property name="path.separator" value=":" />
+    <property name="client.jar.name" value="CaDNAcopy-client.jar" />
+    <property name="env.MODULE_VERSION_STACK" value="3.1.6" />
+    <property name="file.encoding" value="ISO-8859-1" />
+    <property name="env.WINDOWMANAGER" value="/usr/X11R6/bin/kde" />
+    <property name="junit.results.dir" value="test/logs/junit" />
+    <property name="env.HOME" value="/home/mtmorgan" />
+    <property name="env.MANPATH" value="/usr/local/man:/usr/share/man:/usr/X11R6/man:/opt/gnome/share/man" />
+    <property name="env.GROFF_NO_SGR" value="yes" />
+    <property name="ant.file" value="/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/build.xml" />
+    <property name="env.PROFILEREAD" value="true" />
+    <property name="env.HOSTNAME" value="gopher4" />
+    <property name="test.log.dir" value="test/logs" />
+    <property name="service.deployment.path" value="cagrid/CaDNAcopy" />
+    <property name="java.io.tmpdir" value="/tmp" />
+    <property name="user.language" value="en" />
+    <property name="line.separator" value="
+" />
+    <property name="garjars.id" value="garjars" />
+    <property name="java.debug" value="on" />
+    <property name="env.LAMHOME" value="/home/mtmorgan/usr/local/bin" />
+    <property name="ant.file.build-deploy file" value="/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/build-deploy.xml" />
+    <property name="env.HISTSIZE" value="1000" />
+    <property name="introduce.skeleton.service.name" value="CaDNAcopy" />
+    <property name="schema.src" value="/home/mtmorgan/caBIG/ws-core-4.0.3/share/schema" />
+    <property name="java.vm.info" value="mixed mode" />
+    <property name="env.PVM_ROOT" value="/home/mtmorgan/usr/local/bin/pvm3" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="env.R_LIBS" value="/home/mtmorgan/arch/x86_64/R-devel/usrlib" />
+    <property name="env.GNOME2_PATH" value="/usr/local:/opt/gnome:/usr" />
+    <property name="ant.file.run-tools file" value="/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/run-tools.xml" />
+    <property name="common.jar.name" value="CaDNAcopy-common.jar" />
+    <property name="env.JMS_HOME" value="/home/mtmorgan/caBIG/incubator-activemq-4.0.2" />
+    <property name="env.COLORTERM" value="1" />
+    <property name="env.EDITOR" value="emacsclient" />
+    <property name="build.stubs" value="/home/mtmorgan/caBIG/ws-core-4.0.3/share/globus_wsrf_tools/build-stubs.xml" />
+    <property name="env.XNLSPATH" value="/usr/X11R6/lib/X11/nls" />
+    <property name="env.R_S4_Type" value="TRUE" />
+    <property name="introduce.skeleton.timestamp" value="1169422165616" />
+    <property name="stubs.src" value="/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/build/stubs-CaDNAcopy/src" />
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+    <property name="build.dest" value="/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/build/classes" />
+    <property name="test.build.dest" value="/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/build/test/classes" />
+    <property name="ant.version" value="Apache Ant version 1.7.0Beta2 compiled on September 17 2006" />
+    <property name="env.OSTYPE" value="linux" />
+    <property name="env.GTK_PATH64" value="/usr/local/lib64/gtk-2.0:/opt/gnome/lib64/gtk-2.0:/usr/lib64/gtk-2.0" />
+    <property name="env.LOADEDMODULES" value="" />
+    <property name="os.name" value="Linux" />
+    <property name="java.specification.vendor" value="Sun Microsystems Inc." />
+    <property name="stubs.dest" value="/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/build/stubs-CaDNAcopy/classes" />
+    <property name="index.service.url" value="http://cagrid-index.nci.nih.gov:8080/wsrf/services/DefaultIndexService" />
+    <property name="env.TERM" value="xterm" />
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
+    <property name="service.properties.file" value="service.properties" />
+    <property name="gar.name" value="cagrid_CaDNAcopy.gar" />
+    <property name="java.library.path" value="/usr/java/jdk1.5.0_06/jre/lib/amd64/server:/usr/java/jdk1.5.0_06/jre/lib/amd64:/usr/java/jdk1.5.0_06/jre/../lib/amd64:/home/mtmorgan/arch/x86_64/R-devel/lib:/home/mtmorgan/arch/x86_64/R-devel/usrlib/SJava/libs:/usr/lib/jvm/jre/jre/lib/amd64/server" />
+    <property name="env.PATH" value="/home/mtmorgan/arch/x86_64/R-devel/bin:/home/mtmorgan/usr/local/bin:/usr/lib/jvm/jre/bin:/home/mtmorgan/caBIG/apache-ant-1.7.0Beta2/bin:/home/mtmorgan/arch/x86_64/R-devel/bin:/home/mtmorgan/usr/local/bin:/usr/lib/jvm/jre/bin:/home/mtmorgan/caBIG/apache-ant-1.7.0Beta2/bin:/usr/local/bin:/usr/bin:/usr/X11R6/bin:/bin:/usr/games:/opt/gnome/bin:/opt/kde3/bin:/usr/lib/jvm/jre/bin" />
+    <property name="env.LESSCLOSE" value="lessclose.sh %s %s" />
+    <property name="ant.java.version" value="1.5" />
+    <property name="env.INFOPATH" value="/usr/local/info:/usr/share/info:/usr/info:/opt/gnome/share/info" />
+    <property name="env.FROM_HEADER" value="fhcrc.org" />
+    <property name="basedir" value="/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy" />
+    <property name="java.class.version" value="49.0" />
+    <property name="env.SHLVL" value="1" />
+    <property name="env.LD_LIBRARY_PATH" value="/usr/java/jdk1.5.0_06/jre/lib/amd64/server:/usr/java/jdk1.5.0_06/jre/lib/amd64:/usr/java/jdk1.5.0_06/jre/../lib/amd64:/home/mtmorgan/arch/x86_64/R-devel/lib:/home/mtmorgan/arch/x86_64/R-devel/usrlib/SJava/libs:/usr/lib/jvm/jre/jre/lib/amd64/server" />
+    <property name="ant.home" value="/home/mtmorgan/caBIG/apache-ant-1.7.0Beta2" />
+    <property name="introduce.skeleton.services.list" value="CaDNAcopy" />
+    <property name="env.MODULESHOME" value="/usr/share/modules" />
+    <property name="tomcat.wsrf.schema.dir" value="/home/mtmorgan/caBIG/apache-tomcat-5.5.20/webapps/wsrf/share/schema" />
+    <property name="env.MPI_ROOT" value="/home/mtmorgan/usr/local" />
+    <property name="env.GTK_PATH" value="/usr/local/lib/gtk-2.0:/opt/gnome/lib/gtk-2.0:/usr/lib/gtk-2.0" />
+    <property name="env.R_HOME" value="/home/mtmorgan/arch/x86_64/R-devel" />
+    <property name="env.PVM_RSH" value="/usr/bin/ssh" />
+    <property name="service.deployment.prefix" value="cagrid" />
+    <property name="build.packages" value="/home/mtmorgan/caBIG/ws-core-4.0.3/share/globus_wsrf_common/build-packages.xml" />
+    <property name="env.MODULEPATH" value="/usr/share/modules/versions:/usr/share/modules/modulefiles" />
+    <property name="sun.boot.library.path" value="/usr/java/jdk1.5.0_06/jre/lib/amd64" />
+    <property name="build.dir" value="/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/build" />
+    <property name="env.JAVA_BINDIR" value="/usr/lib/jvm/jre/bin" />
+    <property name="env.JNI_LIB" value="/usr/lib/jvm/jre/jre/lib/amd64/server" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Server Compiler" />
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+    <property name="stubs.jar.name" value="CaDNAcopy-stubs.jar" />
+    <property name="env.BASH_ENV" value="/home/mtmorgan/.bashrc" />
+    <property name="env.USER" value="mtmorgan" />
+    <property name="env.HISTFILESIZE" value="10000" />
+    <property name="env.JRE_HOME" value="/usr/lib/jvm/jre" />
+    <property name="env.XKEYSYMDB" value="/usr/X11R6/lib/X11/XKeysymDB" />
+    <property name="ant.project.name" value="Introduce Build File" />
+    <property name="schema.dir" value="schema" />
+    <property name="env.LESSKEY" value="/etc/lesskey.bin" />
+    <property name="GT4.ns.excludes" value="-x http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.xsd -x http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.wsdl -x http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd -x http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl -x http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd -x http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl -x http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ServiceGroup-1.2-draft-01.xsd -x http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ServiceGroup-1.2-draft-01.wsdl -x http://docs.oasis-open.org/wsn/2004/06/wsn-WS-BaseNotification-1.2-draft-01.xsd -x http://docs.oasis-open.org/wsn/2004/06/wsn-WS-BaseNotification-1.2-draft-01.wsdl -x http://schemas.xmlsoap.org/ws/2004/04/trust -x http://schemas.xmlsoap.org/ws/2002/12/policy -x http://schemas.xmlsoap.org/ws/2002/07/utility -x http://schemas.xmlsoap.org/ws/2004/04/sc -x http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd -x http://www.w3.org/2000/09/xmldsig# -x http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd -x http://schemas.xmlsoap.org/ws/2004/09/enumeration" />
+    <property name="introduce.skeleton.destination.dir" value="/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy" />
+    <property name="env.LESS" value="-M -I" />
+    <property name="java.vm.specification.version" value="1.0" />
+    <property name="env.GLOBUS_LOCATION" value="/home/mtmorgan/caBIG/ws-core-4.0.3" />
+    <property name="env.NLSPATH" value="/usr/dt/lib/nls/msg/%L/%N.cat" />
+    <property name="env.LS_OPTIONS" value="-N --color=tty -T 0" />
+    <property name="build.lib.dir" value="/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/build/lib" />
+    <property name="introduce.skeleton.extensions" value="cagrid_metadata" />
+    <property name="sun.cpu.isalist" value="" />
+    <property name="env.JAVA_ROOT" value="/usr/lib/jvm/jre" />
+    <property name="garschema.id" value="garschema" />
+    <property name="java.ext.dirs" value="/usr/java/jdk1.5.0_06/jre/lib/ext" />
+    <property name="os.version" value="2.6.8-24.16-smp" />
+    <property name="env.HOST" value="gopher4" />
+    <property name="user.home" value="/home/mtmorgan" />
+    <property name="java.vm.vendor" value="Sun Microsystems Inc." />
+    <property name="env.GNOMEDIR" value="/opt/gnome" />
+    <property name="mappings.file" value="/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/namespace2package.mappings" />
+    <property name="env.PKG_CONFIG_PATH" value="/usr/local/lib/pkgconfig:/usr/lib64/pkgconfig:/opt/gnome/lib64/pkgconfig" />
+    <property name="garetc.id" value="garetc" />
+    <property name="ant.file.Introduce Build File" value="/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/build.xml" />
+    <property name="env.JAVA_HOME" value="/usr/lib/jvm/jre" />
+    <property name="stubs.dir" value="/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/build/stubs-CaDNAcopy" />
+    <property name="env.INPUTRC" value="/etc/inputrc" />
+    <property name="user.dir" value="/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy" />
+    <property name="env.XFILESEARCHPATH" value="/usr/dt/app-defaults/%L/Dt" />
+    <property name="schema.path" value="CaDNAcopy" />
+    <property name="env.MAIL" value="/var/mail/mtmorgan" />
+    <property name="env.PWD" value="/home/mtmorgan/proj/caBIGR/gold/caDNAcopy" />
+    <property name="test.dir" value="test" />
+    <property name="tomcat.dir" value="/home/mtmorgan/caBIG/apache-tomcat-5.5.20" />
+    <property name="env.PAGER" value="less" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="env.PYTHONSTARTUP" value="/etc/pythonstart" />
+    <property name="java.vm.version" value="1.5.0_06-b05" />
+    <property name="java.class.path" value="/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/build/test/classes:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/test/lib/junit-4.1.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/build/classes:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/build/stubs-CaDNAcopy/classes:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/activemq-core-4.0.2.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/ant-contrib.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/caDNAcopy.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/caGrid-1.0-ServiceSecurityProvider-client.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/caGrid-1.0-ServiceSecurityProvider-common.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/caGrid-1.0-ServiceSecurityProvider-service.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/caGrid-1.0-ServiceSecurityProvider-stubs.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/caGrid-1.0-core.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/caGrid-1.0-metadata-common.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/caGrid-1.0-metadata-data.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/caGrid-1.0-metadata-security.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/caGrid-1.0-metadataUtils.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/castor-0.9.9.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/geronimo-jms_1.1_spec-1.0.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/globus_wsrf_mds_aggregator.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/globus_wsrf_mds_aggregator_stubs.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/globus_wsrf_servicegroup.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/globus_wsrf_servicegroup_stubs.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/mobius_common_client-1.1.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/mobius_factories-1.1.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/mobius_gme_client-1.1.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/mobius_mako_client-1.1.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/mobius_tools-1.1.jar:/mnt/cpb_home/mtmorgan/proj/caBIGR/gold/caDNAcopy/lib/rservices.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/addressing-1.0.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/axis-url.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/axis.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/bootstrap.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/cog-axis.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/cog-jglobus.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/cog-tomcat.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/cog-url.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/commonj.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/commons-beanutils.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/commons-cli-2.0.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/commons-collections-3.0.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/commons-digester.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/commons-discovery.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/commons-logging.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/concurrent.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/cryptix-asn1.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/cryptix.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/cryptix32.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/globus_resolution_service.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/globus_resolution_stubs_java.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/globus_resolution_test.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/globus_transfer_service.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/globus_transfer_stubs_java.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/globus_transfer_test.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/globus_usage_core.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/globus_usage_packets_common.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/globus_wsrf_tools_test.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/jaxrpc.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/jce-jdk13-125.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/jgss.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/junit.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/log4j-1.2.8.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/naming-common.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/naming-factory.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/naming-java.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/naming-resources.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/opensaml.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/puretls.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/resolver.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/saaj.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wsdl4j.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wsrf_common.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wsrf_core.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wsrf_core_registry.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wsrf_core_registry_stubs.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wsrf_core_samples_authzService.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wsrf_core_samples_authzService_stubs.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wsrf_core_samples_counter.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wsrf_core_samples_counter_stubs.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wsrf_core_samples_mgmt.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wsrf_core_samples_mgmt_stubs.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wsrf_core_stubs.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wsrf_provider_jce.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wsrf_test.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wsrf_test_interop.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wsrf_test_interop_stubs.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wsrf_test_unit.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wsrf_test_unit_stubs.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wsrf_tools.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/wss4j.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/xalan.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/xercesImpl.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/xml-apis.jar:/home/mtmorgan/caBIG/ws-core-4.0.3/lib/xmlsec.jar:/mnt/cpb_home/mtmorgan/caBIG/apache-ant-1.7.0Beta2/lib/ant-launcher.jar:/home/mtmorgan/caBIG/apache-ant-1.7.0Beta2/lib/ant.jar:/home/mtmorgan/caBIG/apache-ant-1.7.0Beta2/lib/ant-junit.jar" />
+    <property name="env.XCURSOR_THEME" value="crystalwhite" />
+    <property name="ant.library.dir" value="/home/mtmorgan/caBIG/apache-ant-1.7.0Beta2/lib" />
+    <property name="env.QTDIR" value="/usr/lib/qt3" />
+    <property name="os.arch" value="amd64" />
+    <property name="ant.core.lib" value="/home/mtmorgan/caBIG/apache-ant-1.7.0Beta2/lib/ant.jar" />
+    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc." />
+    <property name="file.separator" value="/" />
+    <property name="java.runtime.version" value="1.5.0_06-b05" />
+    <property name="sun.boot.class.path" value="/usr/java/jdk1.5.0_06/jre/lib/rt.jar:/usr/java/jdk1.5.0_06/jre/lib/i18n.jar:/usr/java/jdk1.5.0_06/jre/lib/sunrsasign.jar:/usr/java/jdk1.5.0_06/jre/lib/jsse.jar:/usr/java/jdk1.5.0_06/jre/lib/jce.jar:/usr/java/jdk1.5.0_06/jre/lib/charsets.jar:/usr/java/jdk1.5.0_06/jre/classes" />
+    <property name="env.ACLOCAL_FLAGS" value="-I /opt/gnome/share/aclocal" />
+    <property name="env.CPU" value="x86_64" />
+    <property name="env.SVN_EDITOR" value="emacsclient" />
+    <property name="user.country" value="US" />
+    <property name="etc.dir" value="etc" />
+    <property name="env.SHELL" value="/bin/bash" />
+    <property name="service.jar.name" value="CaDNAcopy-service.jar" />
+    <property name="env.LOCATE_PATH" value="/var/lib/locatedb:/export/locatedb" />
+    <property name="service.name" value="CaDNAcopy" />
+    <property name="java.vendor" value="Sun Microsystems Inc." />
+    <property name="tomcat.deploy.dir" value="/home/mtmorgan/caBIG/apache-tomcat-5.5.20/webapps/wsrf/WEB-INF" />
+    <property name="service.deployment.dir.name" value="cagrid_CaDNAcopy" />
+    <property name="env.CATALINA_HOME" value="/home/mtmorgan/caBIG/apache-tomcat-5.5.20" />
+    <property name="java.specification.version" value="1.5" />
+    <property name="sun.arch.data.model" value="64" />
+  </properties>
+  <testcase classname="TestRoundTrip" name="testRoundTrip" time="0.0070" />
+  <testcase classname="TestRoundTrip" name="testFails" time="0.011">
+    <failure message="null" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: null
+	at TestRoundTrip.testFails(TestRoundTrip.java:15)
+</failure>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	   xmlns:vd="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.caaffy.valuedomain"
+	   targetNamespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.caaffy.valuedomain">
+    <xs:element name="NormalizeMethod" type="vd:NormalizeMethod"/>
+    <xs:complexType name="NormalizeMethod">
+	<xs:sequence>
+	    <xs:element name="constant" type="xs:string"/>
+	    <xs:element name="contrasts" type="xs:string"/>
+	    <xs:element name="invariantSet" type="xs:string"/>
+	    <xs:element name="loess" type="xs:string"/>
+	    <xs:element name="qSpline" type="xs:string"/>
+	    <xs:element name="quantiles" type="xs:string"/>
+	    <xs:element name="quantilesRobust" type="xs:string"/>
+	</xs:sequence>
+    </xs:complexType>
+    <xs:element name="ProbeType" type="vd:ProbeType"/>
+    <xs:complexType name="ProbeType">
+	<xs:sequence>
+	    <xs:element name="mmOnly" type="xs:string"/>
+	    <xs:element name="pmOnly" type="xs:string"/>
+	    <xs:element name="separate" type="xs:string"/>
+	    <xs:element name="together" type="xs:string"/>
+	</xs:sequence>
+    </xs:complexType>
+    <xs:element name="BackgroundCorrectMethod" type="vd:BackgroundCorrectMethod"/>
+    <xs:complexType name="BackgroundCorrectMethod">
+	<xs:sequence>
+	    <xs:element name="mas" type="xs:string"/>
+	    <xs:element name="none" type="xs:string"/>
+	    <xs:element name="rma" type="xs:string"/>
+	    <xs:element name="rma2" type="xs:string"/>
+	</xs:sequence>
+    </xs:complexType>
+    <xs:element name="PmCorrectMethod" type="vd:PmCorrectMethod"/>
+    <xs:complexType name="PmCorrectMethod">
+	<xs:sequence>
+	    <xs:element name="mas" type="xs:string"/>
+	    <xs:element name="pmOnly" type="xs:string"/>
+	    <xs:element name="subtractMm" type="xs:string"/>
+	</xs:sequence>
+    </xs:complexType>
+    <xs:element name="ProbeSummaryMethod" type="vd:ProbeSummaryMethod"/>
+    <xs:complexType name="ProbeSummaryMethod">
+	<xs:sequence>
+	    <xs:element name="averageDifference" type="xs:string"/>
+	    <xs:element name="liWong" type="xs:string"/>
+	    <xs:element name="mas" type="xs:string"/>
+	    <xs:element name="medianPolish" type="xs:string"/>
+	    <xs:element name="playerOut" type="xs:string"/>
+	</xs:sequence>
+    </xs:complexType>
+    <xs:element name="BaselineType" type="vd:BaselineType"/>
+    <xs:complexType name="BaselineType">
+	<xs:sequence>
+	    <xs:element name="mean" type="xs:string"/>
+	    <xs:element name="median" type="xs:string"/>
+	    <xs:element name="psuedoMean" type="xs:string"/>
+	    <xs:element name="psuedoMedian" type="xs:string"/>
+	</xs:sequence>
+    </xs:complexType>
+    <xs:element name="RemoveExtreme" type="vd:RemoveExtreme"/>
+    <xs:complexType name="RemoveExtreme">
+	<xs:sequence>
+	    <xs:element name="both" type="xs:string"/>
+	    <xs:element name="mean" type="xs:string"/>
+	    <xs:element name="variance" type="xs:string"/>
+	</xs:sequence>
+    </xs:complexType>
+</xs:schema>

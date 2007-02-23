@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="CaAffy" targetNamespace="http://caaffy.cagrid.bioconductor.org/CaAffy/service" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:binding="http://caaffy.cagrid.bioconductor.org/CaAffy/bindings" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:import namespace="http://caaffy.cagrid.bioconductor.org/CaAffy/bindings" location="CaAffy_bindings.wsdl"/>
+  <wsdl:service name="CaAffyService">
+    <wsdl:port name="CaAffyPortTypePort" binding="binding:CaAffyPortTypeSOAPBinding">
+      <soap:address location="http://localhost:8080/wsrf/services/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

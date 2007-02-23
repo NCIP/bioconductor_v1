@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	   xmlns:de="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain.DesignElement"
+	   xmlns:dom="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain"
+	   targetNamespace="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain.DesignElement">
+
+    <xs:import namespace="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain"
+	       schemaLocation="mageom-domain.xsd"/>
+
+    <xs:annotation>
+	<xs:documentation>The classes of this package are the contained classes of the ArrayDesign and describe through the DesignElements what is intended to be at each location of the Array.  The Feature describes an intended location on the Array, the Reporter the Oligo, Clone, PCR Product that is on a Feature and the CompositeSequence which combines Reporters or CompositeSequences into what the child DesignElements are meant to represent biologically, e.g. a Gene, Exon, SpliceVariant, etc.</xs:documentation>
+    </xs:annotation>
+    <xs:element name="DesignElement" type="de:DesignElement"/>
+    <xs:complexType name="DesignElement" abstract="true">
+	<xs:annotation>
+	    <xs:documentation>An element of an array.  This is generally of type feature but can be specified as reporters or compositeSequence for arrays that are abstracted from a physical array.</xs:documentation>
+	</xs:annotation>
+	<xs:complexContent>
+	    <xs:extension base="dom:Identifiable">
+		<xs:sequence/>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+    <xs:element name="Reporter" type="de:Reporter"/>
+    <xs:complexType name="Reporter">
+	<xs:annotation>
+	    <xs:documentation>A Design Element that represents some biological material (clone, oligo, etc.) on an array which will report on some biosequence or biosequences.  The derived data from the measured data of its Features represents the presence or absence of the biosequence or biosequences it is reporting on in the BioAssay.  Reporters are Identifiable and several Features on the same array can be mapped to the same reporter as can Features from a different ArrayDesign.  The granularity of the Reporters independence is dependent on the technology and the intent of the ArrayDesign.  Oligos using mature technologies can in general be assumed to be safely replicated on many features where as with PCR Products there might be the desire for quality assurence to make reporters one to one with features and use the mappings to CompositeSequences for replication purposes.</xs:documentation>
+	</xs:annotation>
+	<xs:complexContent>
+	    <xs:extension base="de:DesignElement">
+		<xs:sequence/>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+</xs:schema>

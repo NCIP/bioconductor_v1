@@ -1,0 +1,19 @@
+<project name="run-tools file" basedir="." default="runClient">
+     <target name="runClient" depends="checkGlobus, defineClasspaths" description="Run the sample Client">
+        <property name="service.url" value="http://gopher4:8081/wsrf/services/cagrid/CaDNAcopy" />
+        <echo message="Connecting to service: ${service.url}" />
+        <java classname="org.bioconductor.cagrid.cadnacopy.client.CaDNAcopyClient" classpathref="run.classpath" fork="no">
+            <jvmarg value="-DGLOBUS_LOCATION=${ext.globus.dir}" />
+            <arg value="-url" />
+            <arg value="${service.url}" />
+        </java>
+    </target>
+
+    <target name="compile-simple-client" depends="checkGlobus, defineClasspaths">
+	<javac srcdir="src/org/bioconductor/cagrid/cadnacopy/client/"
+	       classpathref="test.build.classpath"
+	       destdir="build/classes/"
+	       debug="${java.debug}"
+	       deprecation="${deprecation}" />
+    </target>
+</project>

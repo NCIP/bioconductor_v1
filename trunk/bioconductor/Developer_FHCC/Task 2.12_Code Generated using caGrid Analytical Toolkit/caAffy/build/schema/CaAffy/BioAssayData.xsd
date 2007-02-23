@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	   xmlns:bad="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain.BioAssayData"
+	   xmlns:ba="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain.BioAssay"
+	   xmlns:de="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain.DesignElement"
+	   xmlns:qt="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain.QuantitationType"
+	   xmlns:dom="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain"
+	   targetNamespace="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain.BioAssayData">
+
+    <xs:import namespace="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain.QuantitationType"
+	       schemaLocation="QuantitationType.xsd" />
+
+    <xs:import namespace="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain.BioAssay"
+	       schemaLocation="BioAssay.xsd" />
+
+    <xs:import namespace="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain.DesignElement"
+	       schemaLocation="DesignElement.xsd" />
+    
+    <xs:import namespace="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain"
+	       schemaLocation="mageom-domain.xsd" />
+    
+    <xs:annotation>
+	<xs:documentation>The classes defined here provide data and the information and annotation on the derivation of that data.  Some of the scenarios that might occur are the following.  FeatureExtraction of a single PhysicalBioAssay produces MeasuredBioAssayData that has a single BioAssay on the BioAssayDimension, typically the Features described in the ArrayDesign on the DesignElementDimension, and the Quantitations associated with the application of a  FeatureExtraction protocol on the QuantitationDimension.  An error model transformation might be applied that doesn't change the BioAssayDimension or the DesignElementDimension but likely changes the QuantitationDimension.  A transformation on replicate Reporters or CompositeSequences might be applied on the single BioAssay that would change the DesignElementDimension and the QuantitationDimension both.  Replicate and Control BioAssays might be added to the BioAssayDimension and a transformation could change the BioAssayDimension and the QuantitationDimension but not change the DesignElementDimension to produce a new DerivedBioAssayData.  Or some combination of the above transformations could be performed at once to change all three dimensions.  Because the classes derive from Describable, the Experimenter can provide as much detail at each level of the class hierarchy as desired.</xs:documentation>
+    </xs:annotation>
+
+    <xs:element name="BioDataCube" type="bad:BioDataCube"/>
+    <xs:complexType name="BioDataCube">
+	<xs:annotation>
+	    <xs:documentation>A three-dimensional cube representation of the data.</xs:documentation>
+	</xs:annotation>
+	<xs:complexContent>
+	    <xs:extension base="bad:BioDataValues">
+		<xs:sequence>
+		    <xs:element name="cube" type="xs:string">
+			<xs:annotation>
+			    <xs:documentation>Three dimension array, indexed by the three dimensions to provide the data for the BioAssayData.</xs:documentation>
+			</xs:annotation>
+		    </xs:element>
+		    <xs:element name="order" type="xs:string">
+			<xs:annotation>
+			    <xs:documentation>The order to expect the dimension. The enumeration uses the first letter of the three dimensions to represent the six possible orderings.</xs:documentation>
+			</xs:annotation>
+		    </xs:element>
+		</xs:sequence>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+    <xs:element name="QuantitationTypeDimension" type="bad:QuantitationTypeDimension"/>
+    <xs:complexType name="QuantitationTypeDimension">
+	<xs:annotation>
+	    <xs:documentation>An ordered list of quantitationTypes.</xs:documentation>
+	</xs:annotation>
+	<xs:sequence>
+	    <xs:element name="name" type="xs:string">
+		<xs:annotation>
+		    <xs:documentation>The potentially ambiguous common identifier.</xs:documentation>
+		</xs:annotation>
+	    </xs:element>
+	    <xs:element name="identifier" type="xs:string">
+		<xs:annotation>
+		    <xs:documentation>An identifier is an unambiguous string that is unique within the scope (i.e. a document, a set of related documents, or a repository) of its use.</xs:documentation>
+		</xs:annotation>
+	    </xs:element>
+	    <xs:element name="name" type="xs:string">
+		<xs:annotation>
+		    <xs:documentation>The potentially ambiguous common identifier.</xs:documentation>
+		</xs:annotation>
+	    </xs:element>
+	    <xs:element name="identifier" type="xs:string">
+		<xs:annotation>
+		    <xs:documentation>An identifier is an unambiguous string that is unique within the scope (i.e. a document, a set of related documents, or a repository) of its use.</xs:documentation>
+		</xs:annotation>
+	    </xs:element>
+	    <xs:element name="quantitationTypes" type="qt:QuantitationType" minOccurs="0" maxOccurs="unbounded"/>
+	</xs:sequence>
+    </xs:complexType>
+    <xs:element name="BioDataValues" type="bad:BioDataValues"/>
+    <xs:complexType name="BioDataValues" abstract="true">
+	<xs:annotation>
+	    <xs:documentation>The actual values for the BioAssayCube.</xs:documentation>
+	</xs:annotation>
+	<xs:complexContent>
+	    <xs:extension base="dom:Extendable">
+		<xs:sequence/>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+    <xs:element name="MeasuredBioAssayData" type="bad:MeasuredBioAssayData"/>
+    <xs:complexType name="MeasuredBioAssayData">
+	<xs:annotation>
+	    <xs:documentation>The data associated with the MeasuredBioAssay produced by FeatureExtraction.</xs:documentation>
+	</xs:annotation>
+	<xs:complexContent>
+	    <xs:extension base="bad:BioAssayData">
+		<xs:sequence/>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+    <xs:element name="BioAssayDatum" type="bad:BioAssayDatum"/>
+    <xs:complexType name="BioAssayDatum">
+	<xs:annotation>
+	    <xs:documentation>A single cell of the quantitation, bioAssay, designElement matrix.</xs:documentation>
+	</xs:annotation>
+	<xs:complexContent>
+	    <xs:extension base="dom:Extendable">
+		<xs:sequence>
+		    <xs:element name="value" type="xs:string">
+			<xs:annotation>
+			    <xs:documentation>The datum value.</xs:documentation>
+			</xs:annotation>
+		    </xs:element>
+		    <xs:element name="quantitationType" type="qt:QuantitationType" minOccurs="0"/>
+		    <xs:element name="designElement" type="de:DesignElement" minOccurs="0"/>
+		    <xs:element name="bioAssay" type="ba:BioAssay" minOccurs="0"/>
+		</xs:sequence>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+    <xs:element name="DerivedBioAssayData" type="bad:DerivedBioAssayData"/>
+    <xs:complexType name="DerivedBioAssayData">
+	<xs:annotation>
+	    <xs:documentation>The output of a transformation event.</xs:documentation>
+	</xs:annotation>
+	<xs:complexContent>
+	    <xs:extension base="bad:BioAssayData">
+		<xs:sequence/>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+    <xs:element name="BioAssayData" type="bad:BioAssayData"/>
+    <xs:complexType name="BioAssayData" abstract="true">
+	<xs:annotation>
+	    <xs:documentation>Represents the dataset created when the BioAssays are created.  BioAssayData is the entry point to the values.  Because the actual values are represented by a different object, BioDataValues, which can be memory intensive, the annotation of the transformation can be gotten separate from the data.</xs:documentation>
+	</xs:annotation>
+	<xs:complexContent>
+	    <xs:extension base="dom:Identifiable">
+		<xs:sequence>
+		    <xs:element name="designElementDimension" type="bad:DesignElementDimension" minOccurs="0"/>
+		    <xs:element name="bioAssayDimension" type="bad:BioAssayDimension" minOccurs="0"/>
+		    <xs:element name="bioDataValues" type="bad:BioDataValues" minOccurs="0"/>
+		    <xs:element name="quantitationTypeDimension" type="bad:QuantitationTypeDimension" minOccurs="0"/>
+		</xs:sequence>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+    <xs:element name="BioAssayDimension" type="bad:BioAssayDimension"/>
+    <xs:complexType name="BioAssayDimension">
+	<xs:annotation>
+	    <xs:documentation>An ordered list of bioAssays.</xs:documentation>
+	</xs:annotation>
+	<xs:complexContent>
+	    <xs:extension base="dom:Identifiable">
+		<xs:sequence>
+		    <xs:element name="bioAssays" type="ba:BioAssay" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+    <xs:element name="ReporterDimension" type="bad:ReporterDimension"/>
+    <xs:complexType name="ReporterDimension">
+	<xs:annotation>
+	    <xs:documentation>Specialized DesignElementDimension to hold Reporters.</xs:documentation>
+	</xs:annotation>
+	<xs:complexContent>
+	    <xs:extension base="bad:DesignElementDimension">
+		<xs:sequence>
+		    <xs:element name="reporters" type="de:Reporter" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+    <xs:element name="DesignElementDimension" type="bad:DesignElementDimension"/>
+    <xs:complexType name="DesignElementDimension" abstract="true">
+	<xs:annotation>
+	    <xs:documentation>An ordered list of designElements. It will be realized as one of its three subclasses.</xs:documentation>
+	</xs:annotation>
+	<xs:complexContent>
+	    <xs:extension base="dom:Identifiable">
+		<xs:sequence/>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+</xs:schema>

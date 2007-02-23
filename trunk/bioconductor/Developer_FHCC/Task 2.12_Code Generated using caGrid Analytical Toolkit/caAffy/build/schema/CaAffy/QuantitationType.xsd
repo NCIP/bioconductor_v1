@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	   xmlns:qt="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain.QuantitationType"
+	   xmlns:dom="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain"
+	   targetNamespace="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain.QuantitationType" >
+
+    <xs:import namespace="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain"
+	       schemaLocation="mageom-domain.xsd" />
+
+    <xs:annotation>
+	<xs:documentation>This Package defines the classes for quantitations, such as measured and derived signal, error, and pvalue.  The subclasses of StandardQuantitationType will be the best fit from FeatureExtraction or Transformation Protocol for the values obtained.  Other values can be specified using SpecializedQuantitationType.</xs:documentation>
+    </xs:annotation>
+    <xs:element name="QuantitationType" type="qt:QuantitationType"/>
+    <xs:complexType name="QuantitationType" abstract="true">
+	<xs:annotation>
+	    <xs:documentation>A method for calculating a single datum of the matrix (e.g. raw intensity, background, error).</xs:documentation>
+	</xs:annotation>
+	<xs:complexContent>
+	    <xs:extension base="dom:Identifiable">
+		<xs:sequence>
+		    <xs:element name="isBackground" type="xs:boolean">
+			<xs:annotation>
+			    <xs:documentation>Indicates whether the quantitation has been measured from the background or from the feature itself.</xs:documentation>
+			</xs:annotation>
+		    </xs:element>
+		</xs:sequence>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+</xs:schema>

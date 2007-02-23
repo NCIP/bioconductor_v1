@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	   xmlns:dom="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain"
+	   targetNamespace="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain" >
+    <xs:element name="Describable" type="dom:Describable"/>
+    <xs:complexType name="Describable" abstract="true">
+	<xs:annotation>
+	    <xs:documentation>Abstract class that allows subclasses to inherit the association to Description, for detailed annotations such as Ontology entries and Database references, the association to Audit, for tracking changes, and the association to Security for indicating permissions.</xs:documentation>
+	</xs:annotation>
+	<xs:complexContent>
+	    <xs:extension base="dom:Extendable">
+		<xs:sequence/>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+    <xs:element name="Identifiable" type="dom:Identifiable"/>
+    <xs:complexType name="Identifiable" abstract="true">
+	<xs:annotation>
+	    <xs:documentation>An Identifiable class is one that has an unambiguous reference within the scope.  It also has a potentially ambiguous name.</xs:documentation>
+	</xs:annotation>
+	<xs:complexContent>
+	    <xs:extension base="dom:Describable">
+		<xs:sequence>
+		    <xs:element name="name" type="xs:string">
+			<xs:annotation>
+			    <xs:documentation>The potentially ambiguous common identifier.</xs:documentation>
+			</xs:annotation>
+		    </xs:element>
+		    <xs:element name="identifier" type="xs:string">
+			<xs:annotation>
+			    <xs:documentation>An identifier is an unambiguous string that is unique within the scope (i.e. a document, a set of related documents, or a repository) of its use.</xs:documentation>
+			</xs:annotation>
+		    </xs:element>
+		</xs:sequence>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+    <xs:element name="Extendable" type="dom:Extendable"/>
+    <xs:complexType name="Extendable" abstract="true">
+	<xs:annotation>
+	    <xs:documentation>Abstract class that specifies for subclasses an association to NameValueTypes.  These can be used, for instance, to specify proprietary properties and in-house processing hints.</xs:documentation>
+	</xs:annotation>
+	<xs:sequence/>
+    </xs:complexType>
+</xs:schema>

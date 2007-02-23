@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="CaDNAcopy" targetNamespace="http://cadnacopy.cagrid.bioconductor.org/CaDNAcopy/service" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:binding="http://cadnacopy.cagrid.bioconductor.org/CaDNAcopy/bindings" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:import namespace="http://cadnacopy.cagrid.bioconductor.org/CaDNAcopy/bindings" location="CaDNAcopy_bindings.wsdl"/>
+  <wsdl:service name="CaDNAcopyService">
+    <wsdl:port name="CaDNAcopyPortTypePort" binding="binding:CaDNAcopyPortTypeSOAPBinding">
+      <soap:address location="http://localhost:8080/wsrf/services/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

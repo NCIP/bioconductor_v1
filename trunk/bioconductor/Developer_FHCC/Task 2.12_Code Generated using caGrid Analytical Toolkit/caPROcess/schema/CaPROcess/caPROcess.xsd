@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	   xmlns:caprocess="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.caprocess"
+	   targetNamespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.caprocess">
+    <xs:element name="MzSpectrum" type="caprocess:MzSpectrum"/>
+    <xs:complexType name="MzSpectrum">
+	<xs:sequence>
+	    <xs:element name="intensity" type="xs:double" maxOccurs="unbounded"/>
+	    <xs:element name="mzRatio" type="xs:double" maxOccurs="unbounded"/>
+	    <xs:element name="spectrumName" type="xs:string"/>
+	</xs:sequence>
+    </xs:complexType>
+    <xs:element name="PeakLocation" type="caprocess:PeakLocation"/>
+    <xs:complexType name="PeakLocation">
+	<xs:sequence>
+	    <xs:element name="peakNumberInSpectrum" type="xs:int" maxOccurs="unbounded"/>
+	    <xs:element name="relativeIntensity" type="xs:double" maxOccurs="unbounded"/>
+	    <xs:element name="spectrumId" type="xs:int" maxOccurs="unbounded"/>
+	    <xs:element name="spectrumName" type="xs:string" maxOccurs="unbounded"/>
+	    <xs:element name="substanceMassAtIntensity" type="xs:double" maxOccurs="unbounded"/>
+	</xs:sequence>
+    </xs:complexType>
+    <xs:element name="MzAssays" type="caprocess:MzAssays"/>
+    <xs:complexType name="MzAssays">
+	<xs:sequence>
+	    <xs:element name="mzSpectrumCollection" type="caprocess:MzSpectrum" minOccurs="0" maxOccurs="unbounded"/>
+	</xs:sequence>
+    </xs:complexType>
+    <xs:element name="PROcessParameter" type="caprocess:PROcessParameter"/>
+    <xs:complexType name="PROcessParameter">
+	<xs:sequence>
+	    <xs:element name="peakAreaNeighborhood" type="xs:double"/>
+	    <xs:element name="peakAreaRetention" type="xs:double"/>
+	    <xs:element name="peakSignalToNoiseCutoff" type="xs:double"/>
+	    <xs:element name="peakSmoothingSpan" type="xs:double"/>
+	    <xs:element name="peakVarianceDetectionSpan" type="xs:double"/>
+	    <xs:element name="peakZeroCutoff" type="xs:double"/>
+	    <xs:element name="renormalizationCutoff" type="xs:double"/>
+	</xs:sequence>
+    </xs:complexType>
+</xs:schema>

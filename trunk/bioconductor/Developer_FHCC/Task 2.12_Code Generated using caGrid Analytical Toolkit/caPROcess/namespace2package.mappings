@@ -1,0 +1,11 @@
+http\://caprocess.cagrid.bioconductor.org/CaPROcess=org.bioconductor.cagrid.caprocess.stubs
+http\://caprocess.cagrid.bioconductor.org/CaPROcess/bindings=org.bioconductor.cagrid.caprocess.stubs.bindings
+http\://caprocess.cagrid.bioconductor.org/CaPROcess/service=org.bioconductor.cagrid.caprocess.stubs.service
+http\://security.introduce.cagrid.nci.nih.gov/ServiceSecurity=gov.nih.nci.cagrid.introduce.security.stubs
+
+http\://caprocess.cagrid.bioconductor.org/CaPROcess/types=org.bioconductor.cagrid.caprocess.stubs.types
+gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata=gov.nih.nci.cagrid.metadata
+http\://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.caprocess=org.bioconductor.cagrid.caprocess
+gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security=gov.nih.nci.cagrid.metadata.security
+gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.service=gov.nih.nci.cagrid.metadata.service
+gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common=gov.nih.nci.cagrid.metadata.common

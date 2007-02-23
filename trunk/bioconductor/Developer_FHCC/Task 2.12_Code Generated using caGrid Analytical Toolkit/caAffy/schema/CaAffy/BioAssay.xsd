@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	   xmlns:ba="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain.BioAssay"
+	   xmlns:bad="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain.BioAssayData"
+	   xmlns:dom="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain"
+	   targetNamespace="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain.BioAssay">
+
+    <xs:import namespace="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain.BioAssayData"
+	       schemaLocation="BioAssayData.xsd"/>
+
+    <xs:import namespace="gme://caArray.caBIG/1.1/gov.nih.nci.mageom.domain"
+	       schemaLocation="mageom-domain.xsd" />
+
+    <xs:annotation>
+	<xs:documentation>Provides classes that contain information and annotation on the event of joining an Array with a BioMaterial preparation, the acquisition of images and the extraction of data on a per feature basis from those images.  The derived classes of BioAssay represent the base PhysicalBioAssays which lead to the production of Images, the MeasuredBioAssay which is associated with the set of quantitations produced by FeatureExtraction, and DerivedBioAssay (see BioAssayData package) which groups together BioAssays that have been analyzed together to produce further refinement of the quantitations.      The design of this package and the related BioAssayData package was driven by the following query considerations and the desire to return as little data as necessary to satisfy a query.   Often, the first set of queries for experiments below the Experiment level will want to discover the why of an experiment and this is captured in the BioAssay class through its FactorValue, BioEvent and Description associations.  This separates it from the data but allows an overview of the experiment hierarchy.  The BioAssayData class association to BioDataValues is optional only to allow queries on them to discover the how of the experiment through the association to the transformation and mappings of the three BioAssayData dimensions and the protocols used.  Once a researcher, for instance, has narrowed down the experiments of interest then the actual data, represented by the BioDataValues, can be downloaded.  Because these data can be in the hundreds of megabytes to gigabytes range, it was considered desirable to be able to return information and annotation on the experiment without the data.</xs:documentation>
+    </xs:annotation>
+    <xs:element name="BioAssay" type="ba:BioAssay"/>
+    <xs:complexType name="BioAssay" abstract="true">
+	<xs:annotation>
+	    <xs:documentation>An abstract class which represents both physical and computational groupings of arrays and biomaterials.</xs:documentation>
+	</xs:annotation>
+	<xs:complexContent>
+	    <xs:extension base="dom:Identifiable">
+		<xs:sequence/>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+    <xs:element name="DerivedBioAssay" type="ba:DerivedBioAssay"/>
+    <xs:complexType name="DerivedBioAssay">
+	<xs:annotation>
+	    <xs:documentation>A BioAssay that is created by the Transformation BioEvent from one or more MeasuredBioAssays or DerivedBioAssays.</xs:documentation>
+	</xs:annotation>
+	<xs:complexContent>
+	    <xs:extension base="ba:BioAssay">
+		<xs:sequence>
+		    <xs:element name="derivedBioAssayData" type="bad:DerivedBioAssayData" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+    <xs:element name="PhysicalBioAssay" type="ba:PhysicalBioAssay"/>
+    <xs:complexType name="PhysicalBioAssay">
+	<xs:annotation>
+	    <xs:documentation>A bioAssay created by the bioAssayCreation event (e.g. in gene expression analysis this event is represented by the hybridization event).</xs:documentation>
+	</xs:annotation>
+	<xs:complexContent>
+	    <xs:extension base="ba:BioAssay">
+		<xs:sequence/>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+    <xs:element name="MeasuredBioAssay" type="ba:MeasuredBioAssay"/>
+    <xs:complexType name="MeasuredBioAssay">
+	<xs:annotation>
+	    <xs:documentation>A measured bioAssay is the direct processing of information in a physical bioAssay by the featureExtraction event.  Often uses images which are referenced through the physical bioAssay.</xs:documentation>
+	</xs:annotation>
+	<xs:complexContent>
+	    <xs:extension base="ba:BioAssay">
+		<xs:sequence>
+		    <xs:element name="featureExtraction" type="ba:FeatureExtraction" minOccurs="0"/>
+		</xs:sequence>
+	    </xs:extension>
+	</xs:complexContent>
+    </xs:complexType>
+    <xs:element name="FeatureExtraction" type="ba:FeatureExtraction"/>
+    <xs:complexType name="FeatureExtraction">
+	<xs:annotation>
+	    <xs:documentation>The process by which data is extracted from an image producing a measuredBioAssayData and a measuredBioAssay.</xs:documentation>
+	</xs:annotation>
+	<xs:sequence>
+	    <xs:element name="physicalBioAssaySource" type="ba:PhysicalBioAssay" minOccurs="0"/>
+	</xs:sequence>
+    </xs:complexType>
+</xs:schema>
