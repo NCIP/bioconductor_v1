@@ -1,0 +1,85 @@
+Testsuite: org.bioconductor.packages.rservices.CLevelConverterTest
+Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 1.851 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testEmptyString took 0.011 sec
+Testcase: testNull took 0.006 sec
+Testcase: testDouble took 0.007 sec
+Testcase: testBoolean took 0.007 sec
+Testcase: testString took 0.007 sec
+Testsuite: org.bioconductor.packages.rservices.RClassTest
+Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 1.947 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testClassUnion took 0.104 sec
+Testsuite: org.bioconductor.packages.rservices.RJTypeTest
+Tests run: 23, Failures: 0, Errors: 0, Time elapsed: 2.276 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testNull took 0.014 sec
+Testcase: testRaw took 0.013 sec
+Testcase: testLogical took 0.01 sec
+Testcase: testNumeric took 0.01 sec
+Testcase: testInteger took 0.009 sec
+Testcase: testCharacter took 0.011 sec
+Testcase: testComplex took 0.017 sec
+Testcase: testList took 0.013 sec
+Testcase: testFactor took 0.015 sec
+Testcase: testDataFrame took 0.022 sec
+Testcase: testIntegerArray took 0.024 sec
+Testcase: testNumericArray took 0.019 sec
+Testcase: testCharArray took 0.017 sec
+Testcase: testLogicalArray took 0.02 sec
+Testcase: testRawArray took 0.017 sec
+Testcase: testComplexArray took 0.018 sec
+Testcase: testIntegerMatrix took 0.016 sec
+Testcase: testNumericMatrix took 0.018 sec
+Testcase: testCharMatrix took 0.017 sec
+Testcase: testLogicalMatrix took 0.017 sec
+Testcase: testRawMatrix took 0.017 sec
+Testcase: testComplexMatrix took 0.018 sec
+Testcase: testEnvironment took 0.041 sec
+Testsuite: org.bioconductor.packages.rservices.RObjectsTest
+Tests run: 12, Failures: 0, Errors: 0, Time elapsed: 2.083 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testNull took 0.01 sec
+Testcase: testRRaw took 0.017 sec
+Testcase: testRLogical took 0.017 sec
+Testcase: testRNumeric took 0.013 sec
+Testcase: testRInteger took 0.015 sec
+Testcase: testRChar took 0.019 sec
+Testcase: testRComplex took 0.014 sec
+Testcase: testRList took 0.024 sec
+Testcase: testRArray took 0.029 sec
+Testcase: testRFactor took 0.012 sec
+Testcase: testRDataFrame took 0.025 sec
+Testcase: testREnvironment took 0.025 sec
+Testsuite: org.bioconductor.packages.rservices.SimpleErrorTest
+Tests run: 4, Failures: 0, Errors: 0, Time elapsed: 1.804 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testNull took 0.008 sec
+Testcase: testDouble took 0.005 sec
+Testcase: testBoolean took 0.005 sec
+Testcase: testString took 0.006 sec
+Testsuite: org.bioconductor.packages.rservices.SJavaTypeTest
+Tests run: 4, Failures: 0, Errors: 0, Time elapsed: 1.804 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testNull took 0.008 sec
+Testcase: testDouble took 0.006 sec
+Testcase: testBoolean took 0.006 sec
+Testcase: testString took 0.005 sec

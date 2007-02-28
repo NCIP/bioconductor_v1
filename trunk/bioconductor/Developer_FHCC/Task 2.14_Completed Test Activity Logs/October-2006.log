@@ -1,0 +1,109 @@
+Testsuite: org.bioconductor.packages.rservices.CLevelConverterTest
+Tests run: 9, Failures: 0, Errors: 0, Time elapsed: 1.985 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testEmptyString took 0.01 sec
+Testcase: testNull took 0.005 sec
+Testcase: testDouble took 0.006 sec
+Testcase: testInteger took 0.005 sec
+Testcase: testBoolean took 0.006 sec
+Testcase: testString took 0.007 sec
+Testcase: testEmptyDouble took 0.006 sec
+Testcase: testEmptyInteger took 0.006 sec
+Testcase: testEmptyBoolean took 0.004 sec
+Testsuite: org.bioconductor.packages.rservices.RClassTest
+Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 2.129 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testClassUnion took 0.208 sec
+Testsuite: org.bioconductor.packages.rservices.RJTypeTest
+Tests run: 23, Failures: 0, Errors: 0, Time elapsed: 2.529 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testNull took 0.014 sec
+Testcase: testRaw took 0.013 sec
+Testcase: testLogical took 0.096 sec
+Testcase: testNumeric took 0.01 sec
+Testcase: testInteger took 0.009 sec
+Testcase: testCharacter took 0.012 sec
+Testcase: testComplex took 0.019 sec
+Testcase: testList took 0.018 sec
+Testcase: testFactor took 0.016 sec
+Testcase: testDataFrame took 0.024 sec
+Testcase: testIntegerArray took 0.026 sec
+Testcase: testNumericArray took 0.023 sec
+Testcase: testCharArray took 0.022 sec
+Testcase: testLogicalArray took 0.022 sec
+Testcase: testRawArray took 0.019 sec
+Testcase: testComplexArray took 0.02 sec
+Testcase: testIntegerMatrix took 0.019 sec
+Testcase: testNumericMatrix took 0.02 sec
+Testcase: testCharMatrix took 0.019 sec
+Testcase: testLogicalMatrix took 0.019 sec
+Testcase: testRawMatrix took 0.02 sec
+Testcase: testComplexMatrix took 0.021 sec
+Testcase: testEnvironment took 0.043 sec
+Testsuite: org.bioconductor.packages.rservices.RObjectsTest
+Tests run: 12, Failures: 0, Errors: 0, Time elapsed: 2.241 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testNull took 0.01 sec
+Testcase: testRRaw took 0.018 sec
+Testcase: testRLogical took 0.104 sec
+Testcase: testRNumeric took 0.016 sec
+Testcase: testRInteger took 0.017 sec
+Testcase: testRChar took 0.019 sec
+Testcase: testRComplex took 0.015 sec
+Testcase: testRList took 0.026 sec
+Testcase: testRArray took 0.032 sec
+Testcase: testRFactor took 0.013 sec
+Testcase: testRDataFrame took 0.034 sec
+Testcase: testREnvironment took 0.033 sec
+Testsuite: org.bioconductor.rserviceJms.services.caDNAcopy.caDNAcopyTest
+Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 4.587 sec
+
+Testcase: testcaDNAcopyService took 0.015 sec
+Testcase: TestCaDNAcopy took 4.052 sec
+Testsuite: org.bioconductor.rserviceJms.worker.RWorkerDataTest
+Tests run: 4, Failures: 0, Errors: 0, Time elapsed: 2.545 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testMockServiceService took 0.006 sec
+Testcase: TestRToDerivedDNAcopySegment took 0.018 sec
+Testcase: TestDNAcopyAssaysToR took 0.127 sec
+Testcase: TestDNAcopyParameterToR took 0.018 sec
+Testsuite: org.bioconductor.rserviceJms.services.caPROcess.caPROcessTest
+Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 12.909 sec
+
+Testcase: testcaPROcessService took 0.007 sec
+Testcase: TestCaPROcess took 12.67 sec
+Testsuite: org.bioconductor.rserviceJms.worker.RWorkerDataTest
+Tests run: 3, Failures: 0, Errors: 0, Time elapsed: 2.98 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testMockServiceService took 0.008 sec
+Testcase: TestMzAssaysToR took 0.155 sec
+Testcase: TestPROcessParameterToR took 0.022 sec
+Testsuite: org.bioconductor.rserviceJms.services.caAffy.caAffyTest
+Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.23 sec
+
+Testcase: testcaAffyService took 0.015 sec
+Testsuite: org.bioconductor.rserviceJms.worker.RWorkerDataTest
+Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 10.245 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testMockServiceService took 0.012 sec

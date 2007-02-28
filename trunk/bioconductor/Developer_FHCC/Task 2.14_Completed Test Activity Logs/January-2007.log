@@ -123,3 +123,92 @@ Loading RInterpreter library
 ------------- ---------------- ---------------
 
 Testcase: testMockServiceService took 0.01 sec
+
+Grid service integration tests:
+
+> ant runClient
+Buildfile: build.xml
+
+setGlobus:
+
+checkGlobus:
+     [echo] Globus: /home/nli/rp/bin/gt4.0.0
+
+defineClasspaths:
+
+runClient:
+     [echo] Connecting to service: http://cabig.bioconductor.org/wsrf/services/cagrid/CaDNAcopy
+     [java] JVM args ignored when same JVM is used.
+     [java] Running caDNAcopy grid service client
+
+     [java] Input: 2271 markers x 2 samples
+
+     [java] Invoking caDNAcopy
+
+     [java] Total number of segments: 48
+
+     [java] Coriell.05296
+     [java]  Chromsome   Start     End Markers  Avg. value
+     [java]          1       0  240000     142       0.020
+     [java]          2       0  243800      68       0.004
+     [java]          2  244836  245000       2       0.164
+     [java]          3       0  218000      96       0.002
+     [java]          4       0  184000     180      -0.001
+     [java] ...
+
+     [java] Coriell.13330
+     [java]  Chromsome   Start     End Markers  Avg. value
+     [java]          1       0  240000     142       0.020
+     [java]          2       0  243800      68       0.004
+     [java]          2  244836  245000       2       0.164
+     [java]          3       0  218000      96       0.002
+     [java]          4       0  184000     180      -0.001
+     [java] ...
+
+BUILD SUCCESSFUL
+Total time: 12 seconds
+
+2. CaPROcess:
+
+> ant runClient
+Buildfile: build.xml
+
+setGlobus:
+
+checkGlobus:
+
+defineClasspaths:
+
+runClient:
+     [echo] Connecting to service: http://cabig.bioconductor.org/wsrf/services/cagrid/CaPROcess
+     [java] JVM args ignored when same JVM is used.
+
+     [java] Running caPROcess grid service client
+
+     [java] Input: 2 spectra x 13482 intensities
+
+     [java] Invoking caPROcess
+
+     [java] Total number of peaks: 20
+
+     [java] 122402imac40-s-c-192combined-i11
+     [java] Id  M/Z     Intensity
+     [java] 1   2212.01 12.12
+     [java] 2   2367.95 13.35
+     [java] 3   2743.97 15.45
+     [java] 4   2863.07 30.59
+     [java] 5   3066.80 12.59
+     [java] ...
+
+     [java] 122402imac40-s-c-192combined-i12
+     [java] Id  M/Z     Intensity
+     [java] 1   2662.00 17.07
+     [java] 2   2743.97 21.26
+     [java] 3   2863.07 46.28
+     [java] 4   3243.91 18.34
+     [java] 5   3317.36 12.51
+     [java] ...
+
+
+BUILD SUCCESSFUL
+Total time: 33 seconds
