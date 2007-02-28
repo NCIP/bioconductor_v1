@@ -1,0 +1,12 @@
+================================
+caBIG Equipment Purchase Report
+================================
+
+This budget line supported the following
+
+Date:   01 Feb 2007
+Vendor: Silicon Mechanics Inc.
+Amount: $4,537.00
+Description:
+    Webserver for hosting caBig Bioconductor analytic service.  Dual
+    dual-core Opteron 2212 CPU with 8GB RAM.
