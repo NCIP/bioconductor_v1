@@ -1,0 +1,11 @@
+<project name="userbuild" default="basic-prop" basedir=".">
+  <description>
+    Use this script to build, test, and install RWebServices functionality.
+  </description>
+  <property environment="env"/>
+  <property file="RWebServicesEnv.properties"/>
+  <property file="RWebServicesTuning.properties"/>
+  <import file="${RWebServices.home}/scripts/build.xml" />
+  <import file="${RWebServices.home}/unitTests/build.xml"/>
+  <import file="${RWebServices.home}/scripts/cagrid.xml" />
+</project>
