@@ -6,6 +6,8 @@ This budget line supported the following
 
 Date:   01 Feb 2007
 Vendor: Silicon Mechanics Inc.
+Model: A266
+Serial: SM 27304
 Amount: $4,537.00
 Description:
     Webserver for hosting caBig Bioconductor analytic service.  Dual
