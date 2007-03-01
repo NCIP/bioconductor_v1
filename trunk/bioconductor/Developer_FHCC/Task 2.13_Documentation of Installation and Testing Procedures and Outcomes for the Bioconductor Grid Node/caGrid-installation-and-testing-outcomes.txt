@@ -1,0 +1,158 @@
+Installation issues
+-------------------
+
+- No special installation issues
+
+Deployment issues: caGrid
+-------------------------
+
+- Service deployed to Tomcat on port 80, rather than 8080. This
+  requried reconfiguing Tomcat and our integration client, but no
+  apparent issues with deployed services.
+
+- Multiple services deployed to the same Tomcat container, without
+  issues with class name conflicts experienced by others.
+
+Deployment issues: RWebServices toolchain
+-----------------------------------------
+  
+- activeMQ version mismatches on server and workers required
+  harmoniazation to activeMQ v.4.0.2
+
+- Non-standard port configurations (due to security concerns) required
+  adjustment of service configuration parameters (in the
+  RWebServicesEnv.properties, of each service)
+
+
+Simple Integration Tests
+------------------------
+
+- These are simple integration tests and remote queries of services
+  using a simple integration client -- the services respond to
+  requests for information appropriately, and perform and return
+  calculations as expected.
+
+1. CaDNAcopy:
+
+Service Url: 
+--------------
+http://cabig.bioconductor.org/wsrf/services/cagrid/CaDNAcopy
+
+Service WSDL:
+--------------
+<wsdl:definitions name="CaDNAcopy" targetNamespace="http://cadnacopy.cagrid.bioconductor.org/CaDNAcopy/service">
+	
+    <wsdl:import location="http://cabig.bioconductor.org:80/wsrf/share/schema/CaDNAcopy/CaDNAcopy_bindings.wsdl" namespace="http://cadnacopy.cagrid.bioconductor.org/CaDNAcopy/bindings"/>
+    <wsdl:service name="CaDNAcopyService">
+        <wsdl:port binding="binding:CaDNAcopyPortTypeSOAPBinding" name="CaDNAcopyPortTypePort">
+            <soap:address location="http://cabig.bioconductor.org/wsrf/services/cagrid/CaDNAcopy"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
+
+Test Log:
+--------------
+> ant runClient
+Buildfile: build.xml
+
+setGlobus:
+
+checkGlobus:
+     [echo] Globus: /home/nli/rp/bin/gt4.0.0
+
+defineClasspaths:
+
+runClient:
+     [echo] Connecting to service: http://cabig.bioconductor.org/wsrf/services/cagrid/CaDNAcopy
+     [java] JVM args ignored when same JVM is used.
+     [java] Running caDNAcopy grid service client
+
+     [java] Input: 2271 markers x 2 samples
+
+     [java] Invoking caDNAcopy
+
+     [java] Total number of segments: 48
+
+     [java] Coriell.05296
+     [java]  Chromsome   Start     End Markers  Avg. value
+     [java]          1       0  240000     142       0.020
+     [java]          2       0  243800      68       0.004
+     [java]          2  244836  245000       2       0.164
+     [java]          3       0  218000      96       0.002
+     [java]          4       0  184000     180      -0.001
+     [java] ...
+
+     [java] Coriell.13330
+     [java]  Chromsome   Start     End Markers  Avg. value
+     [java]          1       0  240000     142       0.020
+     [java]          2       0  243800      68       0.004
+     [java]          2  244836  245000       2       0.164
+     [java]          3       0  218000      96       0.002
+     [java]          4       0  184000     180      -0.001
+     [java] ...
+
+BUILD SUCCESSFUL
+Total time: 12 seconds
+
+2. CaPROcess:
+
+Service Url: 
+--------------
+http://cabig.bioconductor.org/wsrf/services/cagrid/CaPROcess
+
+Service WSDL:
+--------------
+<wsdl:definitions name="CaPROcess" targetNamespace="http://caprocess.cagrid.bioconductor.org/CaPROcess/service">
+    <wsdl:import location="http://cabig.bioconductor.org:80/wsrf/share/schema/CaPROcess/CaPROcess_bindings.wsdl" namespace="http://caprocess.cagrid.bioconductor.org/CaPROcess/bindings"/>
+    <wsdl:service name="CaPROcessService">
+        <wsdl:port binding="binding:CaPROcessPortTypeSOAPBinding" name="CaPROcessPortTypePort">
+            <soap:address location="http://cabig.bioconductor.org/wsrf/services/cagrid/CaPROcess"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
+
+Test Log:
+--------------
+> ant runClient
+Buildfile: build.xml
+
+setGlobus:
+
+checkGlobus:
+
+defineClasspaths:
+
+runClient:
+     [echo] Connecting to service: http://cabig.bioconductor.org/wsrf/services/cagrid/CaPROcess
+     [java] JVM args ignored when same JVM is used.
+
+     [java] Running caPROcess grid service client
+
+     [java] Input: 2 spectra x 13482 intensities
+
+     [java] Invoking caPROcess
+
+     [java] Total number of peaks: 20
+
+     [java] 122402imac40-s-c-192combined-i11
+     [java] Id  M/Z     Intensity
+     [java] 1   2212.01 12.12
+     [java] 2   2367.95 13.35
+     [java] 3   2743.97 15.45
+     [java] 4   2863.07 30.59
+     [java] 5   3066.80 12.59
+     [java] ...
+
+     [java] 122402imac40-s-c-192combined-i12
+     [java] Id  M/Z     Intensity
+     [java] 1   2662.00 17.07
+     [java] 2   2743.97 21.26
+     [java] 3   2863.07 46.28
+     [java] 4   3243.91 18.34
+     [java] 5   3317.36 12.51
+     [java] ...
+
+
+BUILD SUCCESSFUL
+Total time: 33 seconds
+
