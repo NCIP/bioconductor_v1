@@ -47,7 +47,7 @@ public class DerivedBioAssays implements java.io.Serializable  {
 	/**
 	* R interface to sets the bioAssays value for this DerivedBioAssays
 	*
-	* @param	bioAssays	
+	* @param rjNumericMatrix	
 	*/
 	public void rsetBioAssays(org.bioconductor.packages.rservices.RJNumericMatrix rjNumericMatrix) {
 		MageMapper mapper = new MageMapper();
