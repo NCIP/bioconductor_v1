@@ -11,22 +11,23 @@ public class caAffy {
 	*	affyQAReport for exposure as a web or caGrid
 	*	service.
 	*
-	* @param measuredBioAssays	An object of class object
-	*	MeasuredBioAssays-class in R package ; this could
-	*	be a list of '.cel' files, a NumericMatrix or
-	*	(not yet implemented) an XML-encoded collection
-	*	of MAGE MeasuredBioAssayData
+	* @param bioAssays	A object DerivedBioAssays-class in R
+	*	package object containing raw expression values.
+	* @param cdfName	A character string identifying the name
+	*	of the cdf environment from which the BioAssay
+	*	expression data are derived from.
 	* @return	This returns an object of object
 	*	QaReport-class in R package ; only the PDF file
 	*	protion of this object is returned in response to
 	*	a grid service request.
 	*/
 	public org.bioconductor.packages.caAffy.QaReport caQAReport(
-			 org.bioconductor.packages.caAffy.MeasuredBioAssayMatrix measuredBioAssays ,
+			 org.bioconductor.packages.caAffy.DerivedBioAssays bioAssays ,
+			 String[] cdfName ,
 			 org.bioconductor.packages.rservices.RServicesConnection connection) throws Exception {
 		Object ans = connection.call("caQAReport", 
-				new Object[]{measuredBioAssays},
-				"caAffy", "0.1.4");
+				new Object[]{bioAssays, cdfName},
+				"caAffy", "0.1.6");
 		org.bioconductor.packages.caAffy.QaReport res = (org.bioconductor.packages.caAffy.QaReport)ans;
 		return res;
 	}
@@ -46,23 +47,27 @@ public class caAffy {
 	*	RWebServices packages, and will usually be
 	*	invoked from within Java.
 	*
-	* @param measuredBioAssays	A object MeasuredBioAssays-class in R
+	* @param bioAssays	A object DerivedBioAssays-class in R
 	*	package object containing raw expression values.
+	* @param cdfName	A character string identifying the name
+	*	of the cdf environment from which the BioAssay
+	*	expression data are derived from.
 	* @param expressoParameter	A object ExpressoParameter-class in R
 	*	package object containing parameter values
 	*	influencing function evaluation.
-	* @return	object DerivedBioAssayMatrix-class in R
+	* @return	object DerivedBioAssays-class in R
 	*	package object representing the transformed
 	*	expression values.
 	*/
-	public org.bioconductor.packages.caAffy.DerivedBioAssayMatrix caExpresso(
-			 org.bioconductor.packages.caAffy.MeasuredBioAssayMatrix measuredBioAssays ,
+	public org.bioconductor.packages.caAffy.DerivedBioAssays caExpresso(
+			 org.bioconductor.packages.caAffy.DerivedBioAssays bioAssays ,
+			 String[] cdfName ,
 			 org.bioconductor.packages.caAffy.ExpressoParameter expressoParameter ,
 			 org.bioconductor.packages.rservices.RServicesConnection connection) throws Exception {
 		Object ans = connection.call("caExpresso", 
-				new Object[]{measuredBioAssays, expressoParameter},
-				"caAffy", "0.1.4");
-		org.bioconductor.packages.caAffy.DerivedBioAssayMatrix res = (org.bioconductor.packages.caAffy.DerivedBioAssayMatrix)ans;
+				new Object[]{bioAssays, cdfName, expressoParameter},
+				"caAffy", "0.1.6");
+		org.bioconductor.packages.caAffy.DerivedBioAssays res = (org.bioconductor.packages.caAffy.DerivedBioAssays)ans;
 		return res;
 	}
 }

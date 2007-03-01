@@ -1,93 +1,5 @@
 
 #####################
-# Matcher and Converter for R Object QualityControlStatistics.
-#####################
-
-#  Function Matches R Object QualityControlStatistics.
-match_caAffy.QualityControlStatistics_ToJava <- function(x, ...){
-	inherits(x, "QualityControlStatistics")
-}
-
-# Function Converts R Object QualityControlStatistics
-# to Java Class org.bioconductor.packages.caAffy.QualityControlStatistics.
-cvt_caAffy.QualityControlStatistics_ToJava <- function(x, ...){
-	thisClass <- .JNew("org.bioconductor.packages.caAffy.QualityControlStatistics", .convert=FALSE)
-	input_scale.factors <- cvtNumericToJava2( x@scale.factors )
-	.Java(thisClass, "setScalerfactors", input_scale.factors, .convert=FALSE)
-	input_target <- cvtNumericToJava2( x@target )
-	.Java(thisClass, "setTarget", input_target, .convert=FALSE)
-	input_percent.present <- cvtNumericToJava2( x@percent.present )
-	.Java(thisClass, "setPercentrpresent", input_percent.present, .convert=FALSE)
-	input_average.background <- cvtNumericToJava2( x@average.background )
-	.Java(thisClass, "setAveragerbackground", input_average.background, .convert=FALSE)
-	input_minimum.background <- cvtNumericToJava2( x@minimum.background )
-	.Java(thisClass, "setMinimumrbackground", input_minimum.background, .convert=FALSE)
-	input_maximum.background <- cvtNumericToJava2( x@maximum.background )
-	.Java(thisClass, "setMaximumrbackground", input_maximum.background, .convert=FALSE)
-	input_spikes <- cvtNumericMatrixToJava2( x@spikes )
-	.Java(thisClass, "setSpikes", input_spikes, .convert=FALSE)
-	input_qc.probes <- cvtNumericMatrixToJava2( x@qc.probes )
-	.Java(thisClass, "setQcrprobes", input_qc.probes, .convert=FALSE)
-	input_bioBCalls <- cvtCharacterToJava2( x@bioBCalls )
-	.Java(thisClass, "setBioBCalls", input_bioBCalls, .convert=FALSE)
-	thisClass
-}
-
-# Register matcher and converter
-setJavaFunctionConverter( 
-	cvt_caAffy.QualityControlStatistics_ToJava,
-	match_caAffy.QualityControlStatistics_ToJava,
-	description="R QualityControlStatistics to Java org.bioconductor.packages.caAffy.QualityControlStatistics",
-	fromJava=F, position=1)
-
-#####################
-# Matcher and Converter for R Object ProbeLevelLinearModel.
-#####################
-
-#  Function Matches R Object ProbeLevelLinearModel.
-match_caAffy.ProbeLevelLinearModel_ToJava <- function(x, ...){
-	inherits(x, "ProbeLevelLinearModel")
-}
-
-# Function Converts R Object ProbeLevelLinearModel
-# to Java Class org.bioconductor.packages.caAffy.ProbeLevelLinearModel.
-cvt_caAffy.ProbeLevelLinearModel_ToJava <- function(x, ...){
-	thisClass <- .JNew("org.bioconductor.packages.caAffy.ProbeLevelLinearModel", .convert=FALSE)
-	input_const.coefs <- cvtNumericMatrixToJava2( x@const.coefs )
-	.Java(thisClass, "setConstrcoefs", input_const.coefs, .convert=FALSE)
-	input_se.const.coefs <- cvtNumericMatrixToJava2( x@se.const.coefs )
-	.Java(thisClass, "setSerconstrcoefs", input_se.const.coefs, .convert=FALSE)
-	input_cdfName <- cvtCharacterToJava2( x@cdfName )
-	.Java(thisClass, "setCdfName", input_cdfName, .convert=FALSE)
-	input_nrow <- cvtNumericToJava2( x@nrow )
-	.Java(thisClass, "setNrow", input_nrow, .convert=FALSE)
-	input_ncol <- cvtNumericToJava2( x@ncol )
-	.Java(thisClass, "setNcol", input_ncol, .convert=FALSE)
-	input_weights <- cvtListToJava2( x@weights )
-	.Java(thisClass, "setWeights", input_weights, .convert=FALSE)
-	input_residuals <- cvtListToJava2( x@residuals )
-	.Java(thisClass, "setResiduals", input_residuals, .convert=FALSE)
-	input_residualSE <- cvtNumericMatrixToJava2( x@residualSE )
-	.Java(thisClass, "setResidualSE", input_residualSE, .convert=FALSE)
-	input_normVec <- cvtNumericMatrixToJava2( x@normVec )
-	.Java(thisClass, "setNormVec", input_normVec, .convert=FALSE)
-	input_varcov <- cvtListToJava2( x@varcov )
-	.Java(thisClass, "setVarcov", input_varcov, .convert=FALSE)
-	input_experimentData <- cvt_Biobase.MIAME_ToJava( x@experimentData )
-	.Java(thisClass, "setExperimentData", input_experimentData, .convert=FALSE)
-	input_annotation <- cvtCharacterToJava2( x@annotation )
-	.Java(thisClass, "setAnnotation", input_annotation, .convert=FALSE)
-	thisClass
-}
-
-# Register matcher and converter
-setJavaFunctionConverter( 
-	cvt_caAffy.ProbeLevelLinearModel_ToJava,
-	match_caAffy.ProbeLevelLinearModel_ToJava,
-	description="R ProbeLevelLinearModel to Java org.bioconductor.packages.caAffy.ProbeLevelLinearModel",
-	fromJava=F, position=1)
-
-#####################
 # Matcher and Converter for R Object QaReport.
 #####################
 
@@ -100,12 +12,6 @@ match_caAffy.QaReport_ToJava <- function(x, ...){
 # to Java Class org.bioconductor.packages.caAffy.QaReport.
 cvt_caAffy.QaReport_ToJava <- function(x, ...){
 	thisClass <- .JNew("org.bioconductor.packages.caAffy.QaReport", .convert=FALSE)
-	input_qualityControlStatistics <- cvt_caAffy.QualityControlStatistics_ToJava( x@qualityControlStatistics )
-	.Java(thisClass, "setQualityControlStatistics", input_qualityControlStatistics, .convert=FALSE)
-	input_probeLevelLinearModel <- cvt_caAffy.ProbeLevelLinearModel_ToJava( x@probeLevelLinearModel )
-	.Java(thisClass, "setProbeLevelLinearModel", input_probeLevelLinearModel, .convert=FALSE)
-	input_madsMatrix <- cvtNumericMatrixToJava2( x@madsMatrix )
-	.Java(thisClass, "setMadsMatrix", input_madsMatrix, .convert=FALSE)
 	input_pdfFile <- cvtRawToJava2( x@pdfFile )
 	.Java(thisClass, "setPdfFile", input_pdfFile, .convert=FALSE)
 	thisClass
@@ -119,54 +25,54 @@ setJavaFunctionConverter(
 	fromJava=F, position=1)
 
 #####################
-# Matcher and Converter for Java Class org.bioconductor.packages.caAffy.MeasuredBioAssayMatrix.
+# Matcher and Converter for Java Class org.bioconductor.packages.caAffy.DerivedBioAssays.
 #####################
 
-#  Function Matches Java Class org.bioconductor.packages.caAffy.MeasuredBioAssayMatrix.
-match_caAffy.MeasuredBioAssayMatrix_FromJava <- function(x, thisClassName){
-	thisClassName == "org.bioconductor.packages.caAffy.MeasuredBioAssayMatrix"
+#  Function Matches Java Class org.bioconductor.packages.caAffy.DerivedBioAssays.
+match_caAffy.DerivedBioAssays_FromJava <- function(x, thisClassName){
+	thisClassName == "org.bioconductor.packages.caAffy.DerivedBioAssays"
 }
 
-# Function Converts Java Class org.bioconductor.packages.caAffy.MeasuredBioAssayMatrix
-# to R Object MeasuredBioAssayMatrix.
-cvt_caAffy.MeasuredBioAssayMatrix_FromJava <- function(x, thisClassName){
-	ans <- new("MeasuredBioAssayMatrix")
-	input_bioAssayData <- .Java(x, "getBioAssayData", .convert=FALSE)
-	if (!is.null(input_bioAssayData))
-		ans@bioAssayData <- cvtNumericMatrixFromJava2(input_bioAssayData, NULL)
+# Function Converts Java Class org.bioconductor.packages.caAffy.DerivedBioAssays
+# to R Object DerivedBioAssays.
+cvt_caAffy.DerivedBioAssays_FromJava <- function(x, thisClassName){
+	ans <- new("DerivedBioAssays")
+	input_bioAssays <- .Java(x, "rgetBioAssays", .convert=FALSE)
+	if (!is.null(input_bioAssays))
+		ans@bioAssays <- cvtNumericMatrixFromJava2(input_bioAssays, NULL)
 	ans
 }
 
 # Register matcher and converter
 setJavaFunctionConverter( 
-	cvt_caAffy.MeasuredBioAssayMatrix_FromJava,
-	match_caAffy.MeasuredBioAssayMatrix_FromJava,
-	description="Java org.bioconductor.packages.caAffy.MeasuredBioAssayMatrix to R MeasuredBioAssayMatrix",
+	cvt_caAffy.DerivedBioAssays_FromJava,
+	match_caAffy.DerivedBioAssays_FromJava,
+	description="Java org.bioconductor.packages.caAffy.DerivedBioAssays to R DerivedBioAssays",
 	fromJava=T, position=1)
 
 #####################
-# Matcher and Converter for R Object DerivedBioAssayMatrix.
+# Matcher and Converter for R Object DerivedBioAssays.
 #####################
 
-#  Function Matches R Object DerivedBioAssayMatrix.
-match_caAffy.DerivedBioAssayMatrix_ToJava <- function(x, ...){
-	inherits(x, "DerivedBioAssayMatrix")
+#  Function Matches R Object DerivedBioAssays.
+match_caAffy.DerivedBioAssays_ToJava <- function(x, ...){
+	inherits(x, "DerivedBioAssays")
 }
 
-# Function Converts R Object DerivedBioAssayMatrix
-# to Java Class org.bioconductor.packages.caAffy.DerivedBioAssayMatrix.
-cvt_caAffy.DerivedBioAssayMatrix_ToJava <- function(x, ...){
-	thisClass <- .JNew("org.bioconductor.packages.caAffy.DerivedBioAssayMatrix", .convert=FALSE)
-	input_bioAssayData <- cvtNumericMatrixToJava2( x@bioAssayData )
-	.Java(thisClass, "setBioAssayData", input_bioAssayData, .convert=FALSE)
+# Function Converts R Object DerivedBioAssays
+# to Java Class org.bioconductor.packages.caAffy.DerivedBioAssays.
+cvt_caAffy.DerivedBioAssays_ToJava <- function(x, ...){
+	thisClass <- .JNew("org.bioconductor.packages.caAffy.DerivedBioAssays", .convert=FALSE)
+	input_bioAssays <- cvtNumericMatrixToJava2( x@bioAssays )
+	.Java(thisClass, "rsetBioAssays", input_bioAssays, .convert=FALSE)
 	thisClass
 }
 
 # Register matcher and converter
 setJavaFunctionConverter( 
-	cvt_caAffy.DerivedBioAssayMatrix_ToJava,
-	match_caAffy.DerivedBioAssayMatrix_ToJava,
-	description="R DerivedBioAssayMatrix to Java org.bioconductor.packages.caAffy.DerivedBioAssayMatrix",
+	cvt_caAffy.DerivedBioAssays_ToJava,
+	match_caAffy.DerivedBioAssays_ToJava,
+	description="R DerivedBioAssays to Java org.bioconductor.packages.caAffy.DerivedBioAssays",
 	fromJava=F, position=1)
 
 #####################

@@ -22,23 +22,23 @@ public class caAffySoapBindingImpl implements org.bioconductor.rserviceJms.servi
 		queueName = prop.getProperty("jms.queue", "BIOC");
 		mycaAffy= new org.bioconductor.packages.caAffy.caAffy();
 	}
-	public org.bioconductor.packages.caAffy.QaReport caQAReport(org.bioconductor.packages.caAffy.MeasuredBioAssayMatrix measuredBioAssays) throws java.rmi.RemoteException {
+	public org.bioconductor.packages.caAffy.QaReport caQAReport(org.bioconductor.packages.caAffy.DerivedBioAssays bioAssays, String[] cdfName) throws java.rmi.RemoteException {
 		org.bioconductor.packages.caAffy.QaReport ans=null;
 		try {
 			Connection jmsConnection = connectionFactory.createConnection();
 			RServicesConnection connection = new RServicesConnection( jmsConnection, queueName, timeout );
-			 ans= mycaAffy.caQAReport( measuredBioAssays, connection );
+			 ans= mycaAffy.caQAReport( bioAssays, cdfName, connection );
 		} catch (Exception rex) {
 			throw new java.rmi.RemoteException(rex.getMessage());
 		}
 		return ans;
 	}
-	public org.bioconductor.packages.caAffy.DerivedBioAssayMatrix caExpresso(org.bioconductor.packages.caAffy.MeasuredBioAssayMatrix measuredBioAssays, org.bioconductor.packages.caAffy.ExpressoParameter expressoParameter) throws java.rmi.RemoteException {
-		org.bioconductor.packages.caAffy.DerivedBioAssayMatrix ans=null;
+	public org.bioconductor.packages.caAffy.DerivedBioAssays caExpresso(org.bioconductor.packages.caAffy.DerivedBioAssays bioAssays, String[] cdfName, org.bioconductor.packages.caAffy.ExpressoParameter expressoParameter) throws java.rmi.RemoteException {
+		org.bioconductor.packages.caAffy.DerivedBioAssays ans=null;
 		try {
 			Connection jmsConnection = connectionFactory.createConnection();
 			RServicesConnection connection = new RServicesConnection( jmsConnection, queueName, timeout );
-			 ans= mycaAffy.caExpresso( measuredBioAssays, expressoParameter, connection );
+			 ans= mycaAffy.caExpresso( bioAssays, cdfName, expressoParameter, connection );
 		} catch (Exception rex) {
 			throw new java.rmi.RemoteException(rex.getMessage());
 		}

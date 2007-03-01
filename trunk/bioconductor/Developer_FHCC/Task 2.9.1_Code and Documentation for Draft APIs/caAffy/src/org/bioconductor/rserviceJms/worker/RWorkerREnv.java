@@ -11,7 +11,7 @@ public class RWorkerREnv extends RServicesEnv {
 		
 		e.voidEval("library('caAffy')");
 		importCvt("caAffy");
-		e.voidEval("checkPkgVersion('caAffy', '0.1.4')");
+		e.voidEval("checkPkgVersion('caAffy', '0.1.6')");
 
 	}
 }
