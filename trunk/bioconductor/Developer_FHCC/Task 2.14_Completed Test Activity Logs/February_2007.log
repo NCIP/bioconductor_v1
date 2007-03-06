@@ -1,0 +1,264 @@
+Outstanding issues
+------------------
+
+* Installation identifies incorrect R user library when user
+  re-configures library path after installation.
+
+* Rare segmentation fault during R/Java data mapping causes R worker
+  failure
+
+
+Testsuite: org.bioconductor.packages.rservices.CLevelConverterTest
+Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 1.807 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testEmptyString took 0.01 sec
+Testcase: testNull took 0.006 sec
+Testcase: testDouble took 0.007 sec
+Testcase: testBoolean took 0.008 sec
+Testcase: testString took 0.006 sec
+Testsuite: org.bioconductor.packages.rservices.RClassTest
+Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 1.951 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testClassUnion took 0.104 sec
+Testsuite: org.bioconductor.packages.rservices.RJTypeTest
+Tests run: 23, Failures: 0, Errors: 0, Time elapsed: 2.319 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testNull took 0.014 sec
+Testcase: testRaw took 0.013 sec
+Testcase: testLogical took 0.01 sec
+Testcase: testNumeric took 0.01 sec
+Testcase: testInteger took 0.009 sec
+Testcase: testCharacter took 0.012 sec
+Testcase: testComplex took 0.019 sec
+Testcase: testList took 0.016 sec
+Testcase: testFactor took 0.015 sec
+Testcase: testDataFrame took 0.026 sec
+Testcase: testIntegerArray took 0.022 sec
+Testcase: testNumericArray took 0.021 sec
+Testcase: testCharArray took 0.017 sec
+Testcase: testLogicalArray took 0.019 sec
+Testcase: testRawArray took 0.016 sec
+Testcase: testComplexArray took 0.018 sec
+Testcase: testIntegerMatrix took 0.016 sec
+Testcase: testNumericMatrix took 0.017 sec
+Testcase: testCharMatrix took 0.017 sec
+Testcase: testLogicalMatrix took 0.017 sec
+Testcase: testRawMatrix took 0.017 sec
+Testcase: testComplexMatrix took 0.019 sec
+Testcase: testEnvironment took 0.041 sec
+Testsuite: org.bioconductor.packages.rservices.RObjectsTest
+Tests run: 12, Failures: 0, Errors: 0, Time elapsed: 2.112 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testNull took 0.01 sec
+Testcase: testRRaw took 0.016 sec
+Testcase: testRLogical took 0.017 sec
+Testcase: testRNumeric took 0.019 sec
+Testcase: testRInteger took 0.014 sec
+Testcase: testRChar took 0.019 sec
+Testcase: testRComplex took 0.014 sec
+Testcase: testRList took 0.024 sec
+Testcase: testRArray took 0.03 sec
+Testcase: testRFactor took 0.012 sec
+Testcase: testRDataFrame took 0.031 sec
+Testcase: testREnvironment took 0.025 sec
+Testsuite: org.bioconductor.packages.rservices.SJavaTypeTest
+Tests run: 4, Failures: 0, Errors: 0, Time elapsed: 1.81 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testNull took 0.008 sec
+Testcase: testDouble took 0.005 sec
+Testcase: testBoolean took 0.006 sec
+Testcase: testString took 0.008 sec
+Testsuite: org.bioconductor.packages.rservices.SimpleErrorTest
+Tests run: 4, Failures: 0, Errors: 0, Time elapsed: 1.813 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testNull took 0.008 sec
+Testcase: testDouble took 0.005 sec
+Testcase: testBoolean took 0.006 sec
+Testcase: testString took 0.008 sec
+Testsuite: org.bioconductor.rserviceJms.services.caDNAcopy.caDNAcopyTest
+Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 4.093 sec
+
+Testcase: testcaDNAcopyService took 0.011 sec
+Testcase: TestCaDNAcopy took 3.869 sec
+Testsuite: org.bioconductor.rserviceJms.worker.RWorkerDataTest
+Tests run: 4, Failures: 0, Errors: 0, Time elapsed: 2.311 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testMockServiceService took 0.005 sec
+Testcase: TestRToDerivedDNAcopySegment took 0.015 sec
+Testcase: TestDNAcopyAssaysToR took 0.081 sec
+Testcase: TestDNAcopyParameterToR took 0.016 sec
+Testsuite: org.bioconductor.rserviceJms.services.caPROcess.caPROcessTest
+Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 12.607 sec
+
+Testcase: testcaPROcessService took 0.01 sec
+Testcase: TestCaPROcess took 12.361 sec
+Testsuite: org.bioconductor.rserviceJms.worker.RWorkerDataTest
+Tests run: 3, Failures: 0, Errors: 0, Time elapsed: 2.656 sec
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testMockServiceService took 0.007 sec
+Testcase: TestMzAssaysToR took 0.116 sec
+Testcase: TestPROcessParameterToR took 0.02 sec
+Testsuite: org.bioconductor.rserviceJms.services.caAffy.caAffyTest
+Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.164 sec
+
+Testsuite: org.bioconductor.rserviceJms.services.caAffy.caAffyTest
+Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 37.65 sec
+------------- Standard Output ---------------
+Parsed 10000 lines.
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+invoking method
+method invoked
+------------- ---------------- ---------------
+
+Testcase: testcaAffyService took 0.005 sec
+Testcase: TestCaExpresso took 37.429 sec
+Testsuite: org.bioconductor.rserviceJms.worker.MageMapperTest
+Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 2.232 sec
+------------- Standard Output ---------------
+Parsed 10000 lines.
+Parsed 10000 lines.
+Parsed 10000 lines.
+Parsed 10000 lines.
+Parsed 10000 lines.
+------------- ---------------- ---------------
+
+Testcase: testGetDim took 0.994 sec
+Testcase: testGetDimnames took 0.11 sec
+Testcase: testGetExpressionMatrix took 0.248 sec
+Testcase: testToRJNumericMatrix took 0.138 sec
+Testcase: testToBioAssay took 0.721 sec
+Testsuite: org.bioconductor.rserviceJms.worker.MageParserTest
+Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 1.08 sec
+------------- Standard Output ---------------
+Parsed 10000 lines.
+------------- ---------------- ---------------
+
+Testcase: testGetCubeFromString took 1.066 sec
+Testsuite: org.bioconductor.rserviceJms.worker.RWorkerDataTest
+Tests run: 4, Failures: 0, Errors: 0, Time elapsed: 9.479 sec
+------------- Standard Output ---------------
+Parsed 10000 lines.
+Parsed 10000 lines.
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+Loading RInterpreter library
+------------- ---------------- ---------------
+
+Testcase: testMockServiceService took 0.008 sec
+Testcase: TestRToDerivedBioAssays took 1.303 sec
+Testcase: TestDerivedBioAssaysToR took 0.575 sec
+Testcase: TestExpressoParameterToR took 0.02 sec
+
+Grid service integration tests:
+
+> ant runClient
+Buildfile: build.xml
+
+setGlobus:
+
+checkGlobus:
+     [echo] Globus: /home/nli/rp/bin/gt4.0.0
+
+defineClasspaths:
+
+runClient:
+     [echo] Connecting to service: http://cabig.bioconductor.org/wsrf/services/cagrid/CaDNAcopy
+     [java] JVM args ignored when same JVM is used.
+     [java] Running caDNAcopy grid service client
+
+     [java] Input: 2271 markers x 2 samples
+
+     [java] Invoking caDNAcopy
+
+     [java] Total number of segments: 48
+
+     [java] Coriell.05296
+     [java]  Chromsome   Start     End Markers  Avg. value
+     [java]          1       0  240000     142       0.020
+     [java]          2       0  243800      68       0.004
+     [java]          2  244836  245000       2       0.164
+     [java]          3       0  218000      96       0.002
+     [java]          4       0  184000     180      -0.001
+     [java] ...
+
+     [java] Coriell.13330
+     [java]  Chromsome   Start     End Markers  Avg. value
+     [java]          1       0  240000     142       0.020
+     [java]          2       0  243800      68       0.004
+     [java]          2  244836  245000       2       0.164
+     [java]          3       0  218000      96       0.002
+     [java]          4       0  184000     180      -0.001
+     [java] ...
+
+BUILD SUCCESSFUL
+Total time: 12 seconds
+
+2. CaPROcess:
+
+> ant runClient
+Buildfile: build.xml
+
+setGlobus:
+
+checkGlobus:
+
+defineClasspaths:
+
+runClient:
+     [echo] Connecting to service: http://cabig.bioconductor.org/wsrf/services/cagrid/CaPROcess
+     [java] JVM args ignored when same JVM is used.
+
+     [java] Running caPROcess grid service client
+
+     [java] Input: 2 spectra x 13482 intensities
+
+     [java] Invoking caPROcess
+
+     [java] Total number of peaks: 20
+
+     [java] 122402imac40-s-c-192combined-i11
+     [java] Id  M/Z     Intensity
+     [java] 1   2212.01 12.12
+     [java] 2   2367.95 13.35
+     [java] 3   2743.97 15.45
+     [java] 4   2863.07 30.59
+     [java] 5   3066.80 12.59
+     [java] ...
+
+     [java] 122402imac40-s-c-192combined-i12
+     [java] Id  M/Z     Intensity
+     [java] 1   2662.00 17.07
+     [java] 2   2743.97 21.26
+     [java] 3   2863.07 46.28
+     [java] 4   3243.91 18.34
+     [java] 5   3317.36 12.51
+     [java] ...
+
+
+BUILD SUCCESSFUL
+Total time: 33 seconds
