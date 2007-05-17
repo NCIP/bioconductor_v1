@@ -1,0 +1,2 @@
+
+This directory includes the testing codes and data sets for three ca-Bioconductor packages: caAffy, caDNAcopy and caPROcess. The testing code and data were organized in three sub-directories. In each sub-directory for the ca-Bioconductor package, there are Java testing code, R testing code, raw data (or Rdata), Java Binary data ( files named as *.Data) and README file. Please read the README file for more details.
