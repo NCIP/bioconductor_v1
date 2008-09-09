@@ -1,0 +1,13 @@
+Package: caPROcess
+Type: Package
+Title: Expose 'PROcess' functionality as web service
+Version: 0.3.3
+Date: 2006-08-14
+Author: Martin Morgan <mtmorgan@fhcrc.org>
+Maintainer: Biocore Team <biocpkgs@lists.fhcrc.org>
+Description: This packages wraps core functionality of the PROcess
+	package into a single R workflow, and provides TypeInfo for
+	the argument and return types. This facilitates use of the
+	package in RWebServices.
+Depends: TypeInfo, PROcess (>= 1.9.2), methods, R (>= 2.4.0)
+License: caBIG
