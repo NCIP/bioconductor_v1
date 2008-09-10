@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	   xmlns:cadnacopy="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cadnacopy"
+	   targetNamespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cadnacopy">
+    <xs:element name="DNAcopyParameter" type="cadnacopy:DNAcopyParameter"/>
+    <xs:complexType name="DNAcopyParameter">
+	<xs:sequence>
+	    <xs:element name="changePointSignificanceLevel" type="xs:double"/>
+	    <xs:element name="earlyStoppingCriterion" type="xs:double"/>
+	    <xs:element name="permutationReplicates" type="xs:int"/>
+	    <xs:element name="randomNumberSeed" type="xs:int"/>
+	</xs:sequence>
+    </xs:complexType>
+    <xs:element name="ExpressionData" type="cadnacopy:ExpressionData"/>
+    <xs:complexType name="ExpressionData">
+	<xs:sequence>
+	    <xs:element name="logRatioValues" type="xs:double" minOccurs="0" maxOccurs="unbounded"/>
+	    <xs:element name="sampleId" type="xs:string"/>
+	</xs:sequence>
+    </xs:complexType>
+    <xs:element name="DNAcopyAssays" type="cadnacopy:DNAcopyAssays"/>
+    <xs:complexType name="DNAcopyAssays">
+	<xs:sequence>
+	    <xs:element name="chromsomeId" type="xs:int" minOccurs="0" maxOccurs="unbounded"/>
+	    <xs:element name="mapLocation" type="xs:long" minOccurs="0" maxOccurs="unbounded"/>
+	    <xs:element name="expressionDataCollection" type="cadnacopy:ExpressionData" minOccurs="0" maxOccurs="unbounded"/>
+	</xs:sequence>
+    </xs:complexType>
+    <xs:element name="DerivedDNAcopySegment" type="cadnacopy:DerivedDNAcopySegment"/>
+    <xs:complexType name="DerivedDNAcopySegment">
+	<xs:sequence>
+	    <xs:element name="averageSegmentValue" type="xs:double" minOccurs="0" maxOccurs="unbounded"/>
+	    <xs:element name="chromosomeIndex" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+	    <xs:element name="endMapPosition" type="xs:long" minOccurs="0" maxOccurs="unbounded"/>
+	    <xs:element name="markersPerSegment" type="xs:int" minOccurs="0" maxOccurs="unbounded"/>
+	    <xs:element name="sampleId" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+	    <xs:element name="startMapPosition" type="xs:long" minOccurs="0" maxOccurs="unbounded"/>
+	</xs:sequence>
+    </xs:complexType>
+</xs:schema>
