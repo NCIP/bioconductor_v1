@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<project name="Introduce Common Files" default="help" basedir=".">
+
+	<!--<property name="common.dir" value="${basedir}/Common" /> -->
+	
+	<target name="checkCommon">
+		<fail message="Failed to copy jar files from Common directory: No Common directory exist at ${basedir}/Common">
+			<condition>
+				<not>
+					<available file="${basedir}/Common"/>
+				</not>
+			</condition>
+		</fail>
+		
+		<!-- To this point, Common directory is there, set property for it -->
+		<property name="common.dir" value="${basedir}/Common" />
+	</target>
+	
+	<target name="updateCaDNAcopyLibs" depends="checkCommon" description="Copy common jar files to approriate places under CaDNAcopy project directory">
+		<property  name="lib.dir" value="${basedir}/caDNAcopy/caGrid/CaDNAcopy/lib" />
+		<property name="tools.dir" value="${basedir}/caDNAcopy/caGrid/CaDNAcopy/tools" />
+		<antcall target="copyfiles" />
+	</target>
+	
+	<target name="updateCaPROcessLibs" depends="checkCommon" description="Copy common jar files to approriate places under CaPROcess project directory">
+		<property name="lib.dir" value="${basedir}/caPROcess/caGrid/CaPROcess/lib" />
+		<property name="tools.dir" value="${basedir}/caPROcess/caGrid/CaPROcess/tools" />
+		<antcall target="copyfiles" />
+	</target>
+	
+	<target name="copyfiles">
+		<copy  todir="${lib.dir}" overwrite="yes">
+			<fileset dir="${common.dir}/lib">
+				<filename name="*.jar" casesensitive="yes"/>
+			</fileset>
+		</copy>
+
+		<copy  todir="${tools.dir}/lib" overwrite="on">
+			<fileset dir="${common.dir}/tools/lib">
+				<filename name="*.jar" casesensitive="yes"/>
+			</fileset>
+		</copy>
+	</target>
+		
+	<target name="help" description="Prints usage information.">
+		<echo message="===========================================================================" />
+		<echo message="|  USAGE:                                                                  " />
+		<echo message="|    Type 'ant -h' for general help with Ant                               " />
+		<echo message="|    Type 'ant -p' for a description of this service's build targets.      " />
+		<echo message="============================================================================" />
+	</target>
+	
+</project>

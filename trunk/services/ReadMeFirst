@@ -1,0 +1,18 @@
+*** ATTENTION: Please be aware that Introduce 1.2 was used to create and modify services.***
+
+Path constructor should be similar to this:
+.../bioconductor/trunk/services/
+                          |                
+          caDNAcopy   caPROcess   Common  build.xml                           
+              |           |          |
+       caGrid     R
+         |
+       CaDNAcopy
+	   
+1) Common directory which contains lib files needed SHOULD BE DOWNLOADED FIRST before doing anything else to a service.
+2) Get the build.xml
+   Note: Run ant -p (or help) to view options available
+3) Download available services (like CaDNAcopy, CaPROcess...)
+4) Run ant 'option flag' to copy libs from Common to services.
+   For example: ant updateCaDNAcopyLibs will copy lib files to approricate places under CaDNAcopy
+5) Then, good to go....
