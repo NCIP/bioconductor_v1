@@ -15,7 +15,7 @@ public class CaPROcessImpl extends CaPROcessImplBase {
 		super();
 	}
 	
-  public org.bioconductor.cagrid.caprocess.PeakLocation getPeakLocation(org.bioconductor.cagrid.caprocess.MzAssays mzAssays,org.bioconductor.cagrid.caprocess.PROcessParameter processParameter) throws RemoteException {
+  public org.bioconductor.cagrid.caprocess.PeakLocation getPeakLocation(org.bioconductor.cagrid.caprocess.MzAssays mzAssays,org.bioconductor.cagrid.caprocess.PROcessParameter pROcessParameter) throws RemoteException {
 	  org.bioconductor.rserviceJms.services.caPROcess.caPROcess caService = null;
 	  System.out.println("Creating a caPROcess service"); // logs/catalina.out
 		try {
@@ -39,13 +39,13 @@ public class CaPROcessImpl extends CaPROcessImplBase {
 		new org.bioconductor.packages.caPROcess.MzAssays(rwsObject, new org.bioconductor.packages.caPROcess.MzSpectrum());
 
 	    org.bioconductor.packages.caPROcess.PROcessParameter rwsParameter =
-		new org.bioconductor.packages.caPROcess.PROcessParameter(new double[] {processParameter.getRenormalizationCutoff()},
-									 new double[] {processParameter.getPeakSignalToNoiseCutoff()},
-									 new double[] {processParameter.getPeakVarianceDetectionSpan()},
-									 new double[] {processParameter.getPeakSmoothingSpan()},
-									 new double[] {processParameter.getPeakZeroCutoff()},
-									 new double[] {processParameter.getPeakAreaNeighborhood()},
-									 new double[] {processParameter.getPeakAreaRetention()});
+		new org.bioconductor.packages.caPROcess.PROcessParameter(new double[] {pROcessParameter.getRenormalizationCutoff()},
+									 new double[] {pROcessParameter.getPeakSignalToNoiseCutoff()},
+									 new double[] {pROcessParameter.getPeakVarianceDetectionSpan()},
+									 new double[] {pROcessParameter.getPeakSmoothingSpan()},
+									 new double[] {pROcessParameter.getPeakZeroCutoff()},
+									 new double[] {pROcessParameter.getPeakAreaNeighborhood()},
+									 new double[] {pROcessParameter.getPeakAreaRetention()});
 	    
 	    //  invoke service
 	    org.bioconductor.packages.caPROcess.PeakLocation rwsPeakLocation = null;
