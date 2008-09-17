@@ -43,7 +43,7 @@
   </ns2:Service>
  </ns1:serviceDescription>
  <ns1:hostingResearchCenter>
-  <ns10:ResearchCenter displayName="" shortName="" xmlns:ns10="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common">
+  <ns10:ResearchCenter displayName="Fred Hutchinson Cancer Research Center" shortName="FHCRC" xmlns:ns10="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common">
    <ns10:Address country="US" locality="Seattle" postalCode="98109" stateProvince="WA" street1="1100 Fairview Ave N" street2=""/>
    <ns10:ResearchCenterDescription description="" homepageURL="www.fhcrc.org" imageURL="" rssNewsURL=""/>
    <ns10:pointOfContactCollection/>
