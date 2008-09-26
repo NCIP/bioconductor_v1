@@ -7,9 +7,15 @@ testCaDNAcopyData <- function() {
 
 testDNAcopyParameter <- function() {
     obj <- new("DNAcopyParameter")
+    checkTrue(validObject(obj))
     checkTrue(slot(obj, "changePointSignificanceLevel")==0.01)
     checkTrue(slot(obj, "permutationReplicates")==1000)
     checkTrue(slot(obj, "earlyStoppingCriterion")==0.05)
+}
+
+testDNAcopyParameter_out_of_bounds <- function() {
+    checkException(new("DNAcopyParameter", earlyStoppingCriterion=-0.1))
+    checkException(new("DNAcopyParameter", earlyStoppingCriterion=1.1))
 }
 
 testCaDNAcopy <- function() {
@@ -17,7 +23,7 @@ testCaDNAcopy <- function() {
     data(dnacopyAssays)
     dnacopyParameter <- new("DNAcopyParameter")
     res <- caDNAcopy(dnacopyAssays, dnacopyParameter)
-    checkTrue(length(slot(res, "sampleId"))==75)
+    checkTrue(length(slot(res, "sampleId"))==79)
     checkTrue(all.equal(head(slot(res, "markersPerSegment")), c(132, 64, 86, 143, 9, 13)))
     checkTrue(all.equal(tail(slot(res, "markersPerSegment")), c(8, 7, 13, 7, 9, 54)))
     checkTrue(all.equal(head(slot(res, "startMapPosition")), c(468, 0, 0, 0, 172856, 179200)))

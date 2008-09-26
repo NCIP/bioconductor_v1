@@ -40,6 +40,17 @@ setClass("DNAcopyParameter",
            permutationReplicates=as.integer(1000),
            earlyStoppingCriterion=0.05))
 
+setValidity("DNAcopyParameter", function(object) {
+    msg <- NULL
+    if (length(slot(object, "earlyStoppingCriterion")) != 1 ||
+        slot(object, "earlyStoppingCriterion") < 0 ||
+        slot(object, "earlyStoppingCriterion") >= 1.0) {
+        err <- sprintf("'%s' out of bounds, must be %s",
+                       "earlyStoppingCriterion", "length(1), >=0, <1")
+        msg <- c(msg, err)
+    }                             
+    if (is.null(msg)) TRUE else msg
+})
 
 setClass("DerivedDNAcopySegment",
          representation=representation(
