@@ -43,25 +43,32 @@ setClass("DNAcopyParameter",
            earlyStoppingCriterion=0.05))
 
 setValidity("DNAcopyParameter", function(object) {
+    .num2str <- function(num) {
+        if (length(num)==0)
+          paste(class(num), "(0)", sep="")
+        else
+          paste(as.character(num), collapse=" ")
+    }
     msg <- NULL
     slt <- slot(object, "earlyStoppingCriterion")
     if (length(slt) != 1 || slt < 0 || slt >= 1.0) {
-        err <- sprintf("'%s' out of bounds, must be %s",
-                       "earlyStoppingCriterion", "length(1), >=0, <1")
+        err <- sprintf("'%s' out of bounds,\nmust be %s\nwas %s",
+                       "earlyStoppingCriterion",
+                       "length(1), >=0, <1", .num2str(slt))
         msg <- c(msg, err)
     }
     slt <- slot(object, "changePointSignificanceLevel")
     if (length(slt) != 1 || slt < 0 || slt > 1) {
-        err <- sprintf("'%s' out of bounds, must be %s",
+        err <- sprintf("'%s' out of bounds\nmust be %s\nwas %s",
                        "changePointSignificanceLevel",
-                       "length(1), >= 0, <=1")
+                       "length(1), >= 0, <=1", .num2str(slt))
         msg <- c(msg, err)
     }
     slt <- slot(object, "permutationReplicates")
     if (length(slt) != 1 || slt < 0) {
-        err <- sprintf("'%s' out of bounds, must be %s",
+        err <- sprintf("'%s' out of bounds\nmust be %s\nwas %s",
                        "permutationReplicates",
-                       "length(1), >= 0")
+                       "length(1), >= 0", .num2str(slt))
         msg <- c(msg, err)
     }
     if (is.null(msg)) TRUE else msg

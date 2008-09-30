@@ -1,7 +1,7 @@
 Package: caDNAcopy
 Type: Package
 Title: Expose 'DNAcopy' functionality as web service
-Version: 0.3.3
+Version: 0.3.4
 Date: 2006-08-14
 Author: Martin Morgan <mtmorgan@fhcrc.org>
 Maintainer: Biocore Team <biocpkgs@lists.fhcrc.org>
