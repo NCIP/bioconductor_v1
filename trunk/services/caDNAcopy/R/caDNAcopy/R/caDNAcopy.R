@@ -15,11 +15,13 @@ setClass("DNAcopyAssays",
 
 setAs("DNAcopyAssays", "matrix",
       function(from) {
-          m <- matrix(slot(from, "logratioValues"), ncol=ncol(slot(from, "logratioValues")))
+          ncol <- ncol(slot(from, "logratioValues"))
+          m <- matrix(slot(from, "logratioValues"), ncol=ncol)
           tryCatch(colnames(m) <- slot(from, "sampleNames"),
                    error=function(err) {
                        message(ncol(m), " logratioValues, ",
-                               length(slot(from, "sampleNames")), " sampleNames\n",
+                               length(slot(from, "sampleNames")),
+                               " sampleNames\n",
                                conditionMessage(err))
                    })
           m
@@ -42,13 +44,26 @@ setClass("DNAcopyParameter",
 
 setValidity("DNAcopyParameter", function(object) {
     msg <- NULL
-    if (length(slot(object, "earlyStoppingCriterion")) != 1 ||
-        slot(object, "earlyStoppingCriterion") < 0 ||
-        slot(object, "earlyStoppingCriterion") >= 1.0) {
+    slt <- slot(object, "earlyStoppingCriterion")
+    if (length(slt) != 1 || slt < 0 || slt >= 1.0) {
         err <- sprintf("'%s' out of bounds, must be %s",
                        "earlyStoppingCriterion", "length(1), >=0, <1")
         msg <- c(msg, err)
-    }                             
+    }
+    slt <- slot(object, "changePointSignificanceLevel")
+    if (length(slt) != 1 || slt < 0 || slt > 1) {
+        err <- sprintf("'%s' out of bounds, must be %s",
+                       "changePointSignificanceLevel",
+                       "length(1), >= 0, <=1")
+        msg <- c(msg, err)
+    }
+    slt <- slot(object, "permutationReplicates")
+    if (length(slt) != 1 || slt < 0) {
+        err <- sprintf("'%s' out of bounds, must be %s",
+                       "permutationReplicates",
+                       "length(1), >= 0")
+        msg <- c(msg, err)
+    }
     if (is.null(msg)) TRUE else msg
 })
 
@@ -69,9 +84,12 @@ setClass("DerivedDNAcopySegment",
          })
 
 caDNAcopy <- function(dnacopyAssays, dnacopyParameter) {
+    logratioValues <- slot(dnacopyAssays, "logratioValues")
+    if (all(dim(logratioValues) == c(0,0)))
+      return(new("DerivedDNAcopySegment"))
     seed <- slot(dnacopyParameter, "randomNumberSeed")
-    if (length(seed)>0) set.seed(seed)
-	cat("seed:", seed, "\n")
+    if (length(seed)>0)
+      set.seed(seed)
     cna <- CNA(as(dnacopyAssays, "matrix"),
                slot(dnacopyAssays, "chromosomeId"),
                slot(dnacopyAssays, "mapLocation"),

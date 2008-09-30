@@ -16,6 +16,17 @@ testDNAcopyParameter <- function() {
 testDNAcopyParameter_out_of_bounds <- function() {
     checkException(new("DNAcopyParameter", earlyStoppingCriterion=-0.1))
     checkException(new("DNAcopyParameter", earlyStoppingCriterion=1.1))
+
+    checkException(new("DNAcopyParameter", changePointSignificanceLevel=-0.1))
+    checkException(new("DNAcopyParameter", changePointSignificanceLevel=1.1))
+
+    checkException(new("DNAcopyParameter", permutationReplicates=-1))
+}
+
+testDNAcopy_default_objects <- function() {
+    set.seed(0)
+    checkTrue(validObject(caDNAcopy(new("DNAcopyAssays"),
+                                    new("DNAcopyParameter"))))
 }
 
 testCaDNAcopy <- function() {

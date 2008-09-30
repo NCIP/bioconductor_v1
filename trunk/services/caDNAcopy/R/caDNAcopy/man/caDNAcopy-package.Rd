@@ -25,4 +25,3 @@ Maintainer: Biocore Team <biocpkgs@lists.fhcrc.org>
 }
 \keyword{ package }
 \seealso{\code{\link[DNAcopy]{DNAcopy}}}
-\examples{}

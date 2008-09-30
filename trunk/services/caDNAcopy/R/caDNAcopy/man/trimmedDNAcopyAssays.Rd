@@ -7,7 +7,6 @@
   but with NA values replaced by zero.
 }
 \usage{data(trimmedDNAcopyAssays)}
-\details{}
 \seealso{\code{\link[DNAcopy]{coriell}}, \code{\link{dnacopyAssays}}}
 \examples{
 data(trimmedDNAcopyAssays)

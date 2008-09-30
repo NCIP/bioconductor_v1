@@ -18,7 +18,6 @@ Formal class 'DNAcopyAssays' [package "caDNAcopy"] with 3 slots
   ..@ chromosomeId: int [1:2271] 1 1 1 1 1 1 1 1 1 1 ...
   ..@ mapLocation : int [1:2271] 0 468 2241 4504 5440 7000 9046 10000 12618 13000 ...
 }
-\details{}
 \seealso{\code{\link[DNAcopy]{coriell}}}
 \examples{
 data(dnacopyAssays)
