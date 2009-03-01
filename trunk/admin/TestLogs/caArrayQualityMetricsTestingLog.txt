@@ -1,0 +1,252 @@
+caArrayQualityMetrics Testing
+
+Below is a summary of what I've done to test the caArrayQualityMetrics service.  Each test is in the format of:
+
+<Test Title>
+Test: <Test Description>
+Result: <Test Result>
+<STATUS: PASS\FAIL>
+
+There are multiple rounds of testing in this file, each separated by a header with the test date and caArrayQualityMetrics version number.
+
+
+
+#################################################
+# Test Date: 2/24/2009
+# Version: caArrayQualityMetrics_0.0.8
+#################################################
+
+
+*File IO*
+
+File names that do not exist
+		<2009.02.24 NO LONGER RELEVANT - FILE CHOOSER ELIMINATES THIS POSSIBILITY>
+
+Files with wrong type being uploaded
+	Load CEL files with GPR as type
+	Test: Load three human CEL files with GPR as file type (CEL files were given a gpr extension)
+	Result:
+	Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException; nested exception is: 
+	java.lang.Exception: CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException
+	PASS 
+
+	Load GPR files with CEL as type
+	Test: Load three yeast GPR files with CEL file as type
+	Result:
+	Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException; nested exception is: 
+	java.lang.Exception: CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException
+	PASS 
+
+	Load CEL files with empty (or bogus) file type
+	Test: Load three human CEL files with "" as file type
+	<Cannot use an emtpy file type with file chooser, so a bogus extension of "xyz" was added to the files)
+	Result:
+	Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException; nested exception is: 
+	java.lang.Exception: CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException
+	PASS 
+
+	Load GPR files with empty (or bogus) file type
+	Test: Load three yeast GPR files with "" as file type
+	Result:
+	Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException; nested exception is: 
+	java.lang.Exception: CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException
+	PASS 
+	
+	
+Mix of file types loaded
+	Test: Load a single yeast GPR and human CEL file together
+	Result:
+	Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException; nested exception is: 
+	java.lang.Exception: CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException
+	PASS 
+	
+	Test: Upload two CEL files of different types, HGU133A and MG430_2.0
+	Result:
+	Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException; nested exception is: 
+	java.lang.Exception: CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException
+	PASS 
+
+
+Load a truncated file
+	Test: Upload truncated gpr along with complete gpr file
+	Result:
+	QM report was returned, no error message.  Of note, the gpr files were from two different array types (YeO full, YeA truncated).	
+	FAIL 
+
+
+Single file upload
+	Test: Upload single HGU133A CEL file
+	Result:
+	Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException; nested exception is: 
+	java.lang.Exception: CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException
+	FAIL 	
+
+	Test: Upload a single gpr file
+	Result:
+	Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException; nested exception is: 
+	java.lang.Exception: CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException
+	FAIL 	
+
+*NEW: Attempt to load Agilent data, with file type identified by txt extension
+	Test: Load 2 Agilent Feature Extraction Results files
+	Result:
+	Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException; nested exception is: 
+	java.lang.Exception: CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException
+	It appears that this file type isn't recognized.	
+	FAIL 
+
+	
+*Report Content*
+	Test: Load three yeast GPR files
+	Result:
+	Report is missing components.  This is likely due to the data being converted to an ExpressionSet.  If the data was a NChannelSet,
+	there would be additonal desired plots in the report, such as:
+		* Spatial distribution of local background intensites
+		* Spatial distribution of features intensites
+	Full path to files is given in the Array Name column rather than just array file names (as is done for CEL file results).  Example:
+	/tmp/RtmpfvCBwd/file1a757af7/YeOv3.0_1_t24_vs_4_t24_5779
+	FAIL 
+	
+	Test: Load three human CEL files
+	Result:
+	Affy specific plots are now present, though 'Spatial distribution of feature intensites' plots are missing
+	FAIL 	
+	
+
+
+
+#################################################
+# Test Dates: 1/21/2009 & 1/28/2009
+# Version: caArrayQualityMetrics_
+#################################################
+
+*File IO*
+
+File names that do not exist 
+	Test: Add the number '1' to the beginning of three yeast GPR file names
+	Result: 
+	Exception at testStatefulCaDNAcopy: /home/ryan/Desktop/AffyTestData/1YeAv3.1_D1_vs_WT1_1482.gpr (No such file or directory)
+	PASS (2009.01.21)
+
+	
+Files with wrong type being uploaded
+	Load CEL files with GPR as type
+	Test: Load three human CEL files with GPR as file type (CEL files were given a gpr extension)
+	Result:
+	Done uploading files for caArrayQualityMetrics...Calling evaluate method now
+	Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException; nested exception is: 
+	java.lang.Exception: CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException
+	PASS (2009.01.21)
+
+	Load GPR files with CEL as type
+	Test: Load three yeast GPR files with CEL file as type
+	Result:
+	Done uploading files for caArrayQualityMetrics...Calling evaluate method now
+	Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException; nested exception is: 
+	java.lang.Exception: CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException
+	PASS (2009.01.21)
+	
+	Load CEL files with empty (or bogus) file type
+	Test: Load three human CEL files with "" as file type
+	Result:
+	Done uploading files for caArrayQualityMetrics...Calling evaluate method now
+	Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException; nested exception is: 
+	java.lang.Exception: CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException
+	PASS (2009.01.21)
+	
+	Load GPR files with empty (or bogus) file type
+	Test: Load three yeast GPR files with "" as file type
+	Result:
+	Done uploading files for caArrayQualityMetrics...Calling evaluate method now
+	Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException; nested exception is: 
+	java.lang.Exception: CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException
+	PASS (2009.01.21)
+	
+Mix of file types loaded
+	Test: Load a single yeast GPR and human CEL file together
+	Result:
+	Done uploading files for caArrayQualityMetrics...Calling evaluate method now
+	Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException; nested exception is: 
+	java.lang.Exception: CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException
+	PASS (2009.01.21)
+		
+	Test: Upload two CEL files of different types, HGU133A and MG430_2.0
+	Result (this has already been reported):
+	Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Query time out; nested exception is:
+	java.lang.Exception: CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Query time out
+	FAIL - 'crashed the system' (2009.01.28)	
+ 
+ 
+Load a truncated file
+	Test: Upload truncated gpr along with complete gpr file
+	Result:
+	QM report was returned, no error message.  Of note, the gpr files were from two different array types (YeO full, YeA truncated).
+	FAIL (2009.01.28)
+
+
+Single file upload	
+	Test: Upload single HGU133A CEL file
+	Result:
+	Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException; nested exception is:
+	java.lang.Exception: CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException
+	FAIL (2009.01.28)
+	
+	Test: Upload a single gpr file
+	Result:
+	Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException; nested exception is:
+	java.lang.Exception: CaArrayQualityMetricsContextResource::callArrayQualityServices cause exception. Detail: java.lang.Exception: Compute caArrayQualityMetrics cause exception: Failed to build body from bytes. Reason: java.io.IOException: org.omegahat.R.Java.RException
+	FAIL (2009.01.28)	
+ 	
+		
+*Report Content*
+
+	Test: Load three yeast GPR files
+	Result:
+	Report is missing components.  This is likely due to the data being converted to an ExpressionSet.  If the data was a NChannelSet,
+	there would be additonal desired plots in the report, such as:
+		* Spatial distribution of local background intensites
+		* Spatial distribution of features intensites
+	Full path to files is given in the Array Name column rather than just array file names (as is done for CEL file results).  Example:
+	/tmp/RtmpZkuS0L/file43c71708/YeOv3.0_3_t24_vs_6_t24_5783
+	FAIL (2009.01.28)
+	
+	Test: Load three human CEL files
+	Result (this has already been reported):
+	Report is missing components.  This is likely due to the data being converted to an ExpressionSet.  If the data was an AffyBatch,
+	there would be additonal desired plots in the report, such as:
+		* Spatial distribution of feature intensites
+		* RNA degradation plot
+		* RLE
+		* NUSE
+		* Affymetrix QC stats
+		* PM MM plot
+	FAIL (2009.01.21)
+
+	
+	*Pre-Java 1.6 Issue Comment* (2009.01.28)
+	
+	Though this won't matter if the service is accessible via HutchBASE: regarding the web client, it wouldn't run on David's Mac.  He did some troubleshooting on this and it looks like the app won't run on 1.5.
+	Here's the stack trace:
+	
+	
+	Caused by: java.lang.NoClassDefFoundError: javax/xml/soap/SOAPHeaderElement
+    at java.lang.ClassLoader.defineClass1(Native Method)
+    at java.lang.ClassLoader.defineClass(ClassLoader.java:620)
+    at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:124)
+    at java.net.URLClassLoader.defineClass(URLClassLoader.java:260)
+    at java.net.URLClassLoader.access$100(URLClassLoader.java:56)
+    at java.net.URLClassLoader$1.run(URLClassLoader.java:195)
+    at java.security.AccessController.doPrivileged(Native Method)
+    at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+    at sun.applet.AppletClassLoader.findClass(AppletClassLoader.java:147)
+    at java.lang.ClassLoader.loadClass(ClassLoader.java:306)
+    at sun.applet.AppletClassLoader.loadClass(AppletClassLoader.java:119)
+    at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+    at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:319)
+    at org.globus.axis.util.Util.registerTransport(Util.java:36)
+    at org.globus.axis.util.Util.<clinit>(Util.java:27)
+    at gov.nih.nci.cagrid.introduce.security.client.ServiceSecurityClient.<clinit>(ServiceSecurityClient.java:44)
+    at org.fhcrc.genomics.fileUpload.FileUploadApplet$1.actionPerformed(FileUploadApplet.java:26)
+    ... 23 more 
+
+
