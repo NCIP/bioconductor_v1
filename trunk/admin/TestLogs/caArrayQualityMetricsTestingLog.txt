@@ -4,10 +4,225 @@ Below is a summary of what I've done to test the caArrayQualityMetrics service. 
 
 <Test Title>
 Test: <Test Description>
-Result: <Test Result>
+Result: <Test Result - including files used as reported from the Java Console>
 <STATUS: PASS\FAIL>
 
 There are multiple rounds of testing in this file, each separated by a header with the test date and caArrayQualityMetrics version number.
+
+
+#Files used in testing, organized by array platform:
+
+
+*Affymetrix Human (Affymetrix GeneChip Human Genome U133 Array Set HG-U133A)
+http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL96
+
+http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM3921
+http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM3923
+http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM3925
+
+
+*Affymetrix Mouse (Affymetrix GeneChip Mouse Genome 430 2.0 Array)
+http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL1261
+
+http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM24056
+
+
+*GPR
+FHCRC Yeast Amplicon v1.1
+http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL1914
+
+http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM81064
+http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM81065
+http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM81066
+
+
+*AGILENT (Agilent-012391 Whole Human Genome Oligo Microarray G4112A (Feature Number version))
+http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GPL1708
+
+http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM129007
+http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM129008
+
+
+
+#################################################
+# Test Dates: 3/09/2009 & 3/10/2009
+# Version: caArrayQualityMetrics_0.0.9
+#
+#RpackageSessionInfo: splines
+#tools
+#stats
+#graphics
+#grDevices
+#utils
+#datasets
+#methods
+#base
+#caPROcess_0.3.3
+#PROcess_1.19.1
+#Icens_1.15.1
+#survival_2.34-1
+#caGeneFilter_0.1.4
+#caDNAcopy_0.3.4
+#DNAcopy_1.17.2
+#caArrayQualityMetrics_0.0.9
+#affyPLM_1.19.7
+#preprocessCore_1.5.3
+#gcrma_2.15.5
+#Biostrings_2.11.35
+#IRanges_1.1.43
+#affy_1.21.7
+#latticeExtra_0.5-4
+#RColorBrewer_1.0-2
+#lattice_0.17-20
+#Biobase_2.3.10
+#RWebServices_1.7.11
+#TypeInfo_1.9.1
+#SJava_0.70.12
+#
+#################################################
+
+
+*File IO*
+
+File names that do not exist
+		<2009.02.24 NO LONGER RELEVANT - FILE CHOOSER ELIMINATES THIS POSSIBILITY>
+
+Files with wrong type being uploaded
+	Load CEL files with GPR as type
+	Test: Load three human CEL files with GPR as file type (CEL files were given a gpr extension)
+	Result:
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3921.CEL.gpr
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3921.CEL.gpr completed.
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3923.CEL.gpr
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3923.CEL.gpr completed.
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3925.CEL.gpr
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3925.CEL.gpr completed.
+Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callRServiceCaArrayQualityServices got exception. Detail: java.util.concurrent.ExecutionException: java.rmi.RemoteException: File is not in Axon Text File (ATF) format
+	PASS
+
+
+	Load GPR files with CEL as type
+	Test: Load three yeast GPR files with CEL file as type
+	Result:
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81064.gpr.CEL
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81064.gpr.CEL completed.
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81065.gpr.CEL
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81065.gpr.CEL completed.
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81066.gpr.CEL
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81066.gpr.CEL completed.
+Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callRServiceCaArrayQualityServices got exception. Detail: java.util.concurrent.ExecutionException: java.rmi.RemoteException: Is /tmp/RtmpZi9Ji7/file643c9869/GSM81064.gpr.CEL really a CEL file? tried reading as text, gzipped text, binary, gzipped binary, command console and gzipped command console formats
+
+	PASS
+
+	Load CEL files with empty (or bogus) file type
+	Test: Load three human CEL files with "" as file type
+	<Cannot use an empty file type with file chooser, so a bogus extension of "xyz" was added to the files>
+	Result:
+	uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3921.CEL.xyz
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3921.CEL.xyz completed.
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3923.CEL.xyz
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3923.CEL.xyz completed.
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3925.CEL.xyz
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3925.CEL.xyz completed.
+Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callRServiceCaArrayQualityServices got exception. Detail: java.util.concurrent.ExecutionException: java.rmi.RemoteException: 'types(inputFileReferences)' is an unknown type
+	PASS
+	 
+
+	Load GPR files with empty (or bogus) file type
+	Test: Load three yeast GPR files with "" as file type
+	<Cannot use an empty file type with file chooser, so a bogus extension of "xyz" was added to the files>
+	Result:
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81064.gpr.xyz
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81064.gpr.xyz completed.
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81065.gpr.xyz
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81065.gpr.xyz completed.
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81066.gpr.xyz
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81066.gpr.xyz completed.
+Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callRServiceCaArrayQualityServices got exception. Detail: java.util.concurrent.ExecutionException: java.rmi.RemoteException: 'types(inputFileReferences)' is an unknown type
+	PASS 
+	
+	
+Mix of file types loaded
+	Test: Load a single yeast GPR and human CEL file together
+	Result:
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3921.CEL
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3921.CEL completed.
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81064.gpr
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81064.gpr completed.
+Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callRServiceCaArrayQualityServices got exception. Detail: java.util.concurrent.ExecutionException: java.rmi.RemoteException: Is /tmp/Rtmpm6XuGR/file66334873/GSM81064.gpr really a CEL file? tried reading as text, gzipped text, binary, gzipped binary, command console and gzipped command console formats..
+
+	PASS
+	
+	Test: Upload two CEL files of different types, HGU133A and MG430_2.0
+	Result:
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM24056.CEL
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM24056.CEL completed.
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3921.CEL
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3921.CEL completed.
+Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callRServiceCaArrayQualityServices got exception. Detail: java.util.concurrent.ExecutionException: java.rmi.RemoteException: Cel file /tmp/Rtmpm6XuGR/file61934ebc/GSM3921.CEL does not seem to have the correct dimensions
+
+	PASS
+
+
+Load a truncated file
+	Test: Upload truncated gpr along with complete gpr file
+	Result:
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81064.gpr
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81064.gpr completed.
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81066_truncated.gpr
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81066_trucated.gpr completed.
+Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callRServiceCaArrayQualityServices got exception. Detail: java.util.concurrent.ExecutionException: java.rmi.RemoteException: number of items to replace is not a multiple of replacement length
+	PASS
+
+
+Single file upload
+	Test: Upload single HGU133A CEL file
+	Result:
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3921.CEL
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3921.CEL completed.
+Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callRServiceCaArrayQualityServices got exception. Detail: java.util.concurrent.ExecutionException: java.rmi.RemoteException: For proper operation of the arrayQualityMetrics package,
+              'urls(inputFileReferences)' must have length > 1
+	PASS
+	
+
+	Test: Upload a single gpr file
+	Result:
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81064.gpr
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81064.gpr completed.
+Exception at testStatefulCaDNAcopy: java.rmi.RemoteException: Exception from evaluate(): CaArrayQualityMetricsContextResource::callRServiceCaArrayQualityServices got exception. Detail: java.util.concurrent.ExecutionException: java.rmi.RemoteException: For proper operation of the arrayQualityMetrics package,
+              'urls(inputFileReferences)' must have length > 1
+	PASS
+ 	
+
+Attempt to load Agilent data
+	Test: Load 2 Agilent Feature Extraction Results files
+	Result:
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM129007_AGL_1_D3.txt
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM129007_AGL_1_D3.txt completed.
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM129008_AGL_1_D4.txt
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM129008_AGL_1_D4.txt completed.
+	PASS
+
+	
+*Report Content*
+	Test: Load three yeast GPR files
+	Result:
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81064.gpr
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81064.gpr completed.
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81065.gpr
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81065.gpr completed.
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81066.gpr
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM81066.gpr completed.
+	PASS (though acceptable, it has been noted that spatial intensity plots are missing)
+
+	
+	Test: Load three human CEL files
+	Result:
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM24056.CEL
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM24056.CEL completed.
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3921.CEL
+uploading file: C:\Documents and Settings\rbasom\Desktop\2009.03.09.testFiles\GSM3921.CEL completed.
+	PASS (though acceptable, it has been noted that spatial intensity plots are missing)
 
 
 
