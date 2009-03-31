@@ -1,0 +1,169 @@
+caGeneFilterTesting Testing Log
+
+Below is a summary of what I've done to test the caGeneFilter service.  Each test is in the format of:
+
+<Test Title>
+Test: <Test Description>
+Result: <Test Result>
+<STATUS: PASS\FAIL>
+
+
+
+#################################################
+# Test Date: 3/26/2009
+# Version: caGeneFiler 0.1.6 
+# NOTE: This is a preliminary set of results.  Not all scenarios were tested.
+#################################################
+
+
+KOverAFilter
+Test: KOverAFilter
+	Parameter(s): minimumElementNumber: 2; minimumValue: 3.0
+	Input File(s): caGeneFilterTestFile_mini.txt
+Result:  Two appropriate rows from input file removed
+	Result File: KOverA_minElement_2-minVal_3.0-caGeneFilterTestFile_mini.txt
+STATUS: PASS
+
+
+VarianceFilter
+Test: VarianceFilter
+	Parameter(s): minimumVariance: 0.4
+	Input File(s): caGeneFilterTestFile_mini.txt
+Result:
+     [java] Exception at client main: java.rmi.RemoteException: which  is larger than the number of rows
+     [java] AxisFault
+     [java]  faultCode: {http://schemas.xmlsoap.org/soap/envelope/}Server.userException
+     [java]  faultSubcode: 
+     [java]  faultString: java.rmi.RemoteException: which  is larger than the number of rows
+     [java]  faultActor: 
+     [java]  faultNode: 
+     [java]  faultDetail: 
+     [java] 	{http://xml.apache.org/axis/}stackTrace:java.rmi.RemoteException: which  is larger than the number of rows
+     [java] 	at org.bioconductor.packages.caGeneFilter.service.CaGeneFilterServiceImpl.filter(CaGeneFilterServiceImpl.java:231)
+     [java] 	at org.bioconductor.packages.caGeneFilter.service.globus.CaGeneFilterServiceProviderImpl.filter(CaGeneFilterServiceProviderImpl.java:37)
+     [java] 	at sun.reflect.GeneratedMethodAccessor345.invoke(Unknown Source)
+     [java] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+     [java] 	at java.lang.reflect.Method.invoke(Method.java:585)
+     [java] 	at org.apache.axis.providers.java.RPCProvider.invokeMethod(RPCProvider.java:384)
+     [java] 	at org.globus.axis.providers.RPCProvider.invokeMethodSub(RPCProvider.java:107)
+     [java] 	at org.globus.axis.providers.RPCProvider.invokeMethod(RPCProvider.java:90)
+     [java] 	at org.apache.axis.providers.java.RPCProvider.processMessage(RPCProvider.java:281)
+     [java] 	at org.apache.axis.providers.java.JavaProvider.invoke(JavaProvider.java:319)
+     [java] 	at org.apache.axis.strategies.InvocationStrategy.visit(InvocationStrategy.java:32)
+     [java] 	at org.apache.axis.SimpleChain.doVisiting(SimpleChain.java:118)
+     [java] 	at org.apache.axis.SimpleChain.invoke(SimpleChain.java:83)
+     [java] 	at org.apache.axis.handlers.soap.SOAPService.invoke(SOAPService.java:450)
+     [java] 	at org.apache.axis.server.AxisServer.invoke(AxisServer.java:285)
+     [java] 	at org.apache.axis.transport.http.AxisServlet.doPost(AxisServlet.java:697)
+     [java] 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:709)
+     [java] 	at org.apache.axis.transport.http.AxisServletBase.service(AxisServletBase.java:327)
+     [java] 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:802)
+     [java] 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:237)
+     [java] 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:157)
+     [java] 	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:214)
+     [java] 	at org.apache.catalina.core.StandardValveContext.invokeNext(StandardValveContext.java:104)
+     [java] 	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:520)
+     [java] 	at org.apache.catalina.core.StandardContextValve.invokeInternal(StandardContextValve.java:198)
+     [java] 	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:152)
+     [java] 	at org.apache.catalina.core.StandardValveContext.invokeNext(StandardValveContext.java:104)
+     [java] 	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:520)
+     [java] 	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:137)
+     [java] 	at org.apache.catalina.core.StandardValveContext.invokeNext(StandardValveContext.java:104)
+     [java] 	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:118)
+     [java] 	at org.apache.catalina.core.StandardValveContext.invokeNext(StandardValveContext.java:102)
+     [java] 	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:520)
+     [java] 	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+     [java] 	at org.apache.catalina.core.StandardValveContext.invokeNext(StandardValveContext.java:104)
+     [java] 	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:520)
+     [java] 	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:929)
+     [java] 	at org.apache.coyote.tomcat5.CoyoteAdapter.service(CoyoteAdapter.java:160)
+     [java] 	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:799)
+     [java] 	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.processConnection(Http11Protocol.java:705)
+     [java] 	at org.apache.tomcat.util.net.TcpWorkerThread.runIt(PoolTcpEndpoint.java:577)
+     [java] 	at org.apache.tomcat.util.threads.ThreadPool$ControlRunnable.run(ThreadPool.java:683)
+     [java] 	at java.lang.Thread.run(Thread.java:595)
+     [java] 
+     [java] 	{http://xml.apache.org/axis/}hostname:mamushi
+     [java] 
+     [java] java.rmi.RemoteException: which  is larger than the number of rows
+     [java] 	at org.apache.axis.message.SOAPFaultBuilder.createFault(SOAPFaultBuilder.java:221)
+     [java] 	at org.apache.axis.message.SOAPFaultBuilder.endElement(SOAPFaultBuilder.java:128)
+     [java] 	at org.apache.axis.encoding.DeserializationContext.endElement(DeserializationContext.java:1087)
+     [java] 	at org.apache.xerces.parsers.AbstractSAXParser.endElement(Unknown Source)
+     [java] 	at org.apache.xerces.impl.XMLNSDocumentScannerImpl.scanEndElement(Unknown Source)
+     [java] 	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+     [java] 	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+     [java] 	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+     [java] 	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+     [java] 	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+     [java] 	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+     [java] 	at javax.xml.parsers.SAXParser.parse(SAXParser.java:375)
+     [java] 	at org.apache.axis.encoding.DeserializationContext.parse(DeserializationContext.java:227)
+     [java] 	at org.apache.axis.SOAPPart.getAsSOAPEnvelope(SOAPPart.java:645)
+     [java] 	at org.apache.axis.Message.getSOAPEnvelope(Message.java:424)
+     [java] 	at org.apache.axis.message.addressing.handler.AddressingHandler.processClientResponse(AddressingHandler.java:305)
+     [java] 	at org.apache.axis.message.addressing.handler.AddressingHandler.invoke(AddressingHandler.java:110)
+     [java] 	at org.apache.axis.strategies.InvocationStrategy.visit(InvocationStrategy.java:32)
+     [java] 	at org.apache.axis.SimpleChain.doVisiting(SimpleChain.java:118)
+     [java] 	at org.apache.axis.SimpleChain.invoke(SimpleChain.java:83)
+     [java] 	at org.apache.axis.client.AxisClient.invoke(AxisClient.java:190)
+     [java] 	at org.apache.axis.client.Call.invokeEngine(Call.java:2727)
+     [java] 	at org.apache.axis.client.Call.invoke(Call.java:2710)
+     [java] 	at org.apache.axis.client.Call.invoke(Call.java:2386)
+     [java] 	at org.apache.axis.client.Call.invoke(Call.java:2309)
+     [java] 	at org.apache.axis.client.Call.invoke(Call.java:1766)
+     [java] 	at org.bioconductor.packages.caGeneFilter.stubs.bindings.CaGeneFilterServicePortTypeSOAPBindingStub.filter(CaGeneFilterServicePortTypeSOAPBindingStub.java:2388)
+     [java] 	at org.bioconductor.packages.caGeneFilter.client.CaGeneFilterServiceClient.filter(CaGeneFilterServiceClient.java:208)
+     [java] 	at MyClient.testVarianceFilter(MyClient.java:164)
+     [java] 	at MyClient.main(MyClient.java:616)
+
+STATUS: FAIL
+
+
+
+MissingValueFilter
+Test: MissingValueFilter
+	Parameter(s): maximumNumberMissingValues: 0; missingValue: Double.NEGATIVE_INFINITY
+	Input File(s): caGeneFilterTestFile_mini.txt
+Result: Appropriate single row removed from input file
+	Result File: MissingValue_maxNumMissinVal_0-missingVal_-Infinity-caGeneFilterTestFile_mini.txt
+STATUS: PASS
+
+
+MinimumThresholdRecode
+Test: MinimumThresholdRecode
+	Parameter(s): minimumThresholdValue: 1.0; recodeValue: 100.0
+	Input File(s): caGeneFilterTestFile_mini.txt
+Result: All values (with the exception of -Infinity) are converted to 1.0 - the minimumThresholdValue.  I'd expect only
+	values < 1.0 would have been converted to the recodeValue of 100.0.
+	Result File: GeneRecode_min-Threshold_1.0-recodeVal_100.0-caGeneFilterTestFile_mini.txt
+STATUS: FAIL
+
+
+MaximumThresholdRecode
+Test: MaximumThresholdRecode
+	Parameter(s): maximumThresholdValue: 1.0; recodeValue: 100.0
+	Input File(s): caGeneFilterTestFile_mini.txt
+Result: All values (with the exception of -Infinity) are converted to 1.0 - the maximumThresholdValue.  I'd expect only
+	values > 1.0 would have been converted to the recodeValue of 100.0. 
+	Result File: GeneRecode_max-Threshold_1.0-recodeVal_100.0-caGeneFilterTestFile_mini.txt
+STATUS: FAIL
+
+
+SpotQualityRecode - GPR
+Test: SpotQualityRecode
+	Input File(s): YeAv3.1_D3_vs_WT3_1486_mini.gpr
+			     YeAv3.1_D2_vs_WT2_1484_mini.gpr
+Result:
+	Return values for each channel are scrambled.  Also, median background subtracted intensity columns are
+	preffered over Mean foreground intensity:
+
+	Green: F635 Mean
+	Red: F532 Mean
+
+	They should be:
+	Green: F532 Median - B532 
+	Red: F635 Median - B635
+
+	Result File: SpotQualityRecode_GPR.txt
+STATUS: FAIL
