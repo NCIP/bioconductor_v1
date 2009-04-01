@@ -10,8 +10,266 @@ Result: <Test Result>
 
 
 #################################################
+# Test Date: 3/31/2009
+# Version: caGeneFilter_0.1.7
+#
+# RpackageSessionInfo: splines
+# tools
+# stats
+# graphics
+# grDevices
+# utils
+# datasets
+# methods
+# base
+# caPROcess_0.3.3
+# PROcess_1.19.1
+# Icens_1.15.1
+# survival_2.34-1
+# caGeneFilter_0.1.7
+# caDNAcopy_0.3.4
+# DNAcopy_1.17.2
+# caArrayQualityMetrics_0.0.10
+# affyPLM_1.19.7
+# preprocessCore_1.5.3
+# gcrma_2.15.5
+# Biostrings_2.11.41
+# IRanges_1.1.50
+# affy_1.21.9
+# latticeExtra_0.5-4
+# RColorBrewer_1.0-2
+# lattice_0.17-20
+# Biobase_2.3.10
+# RWebServices_1.7.15
+# TypeInfo_1.9.1
+# SJava_0.70.12
+#
+#################################################
+
+
+KOverAFilter
+Test: KOverAFilter
+	Parameter(s): minimumElementNumber: 2; minimumValue: 3.0
+	Input File(s): caGeneFilterTestFile_mini_v2.txt
+Result:  Two appropriate rows from input file removed
+	Result File: KOverA_minElement_2-minVal_3.0-caGeneFilterTestFile_mini_v2.txt
+STATUS: PASS
+
+
+VarianceFilter
+Test: VarianceFilter
+	Parameter(s): minimumVariance: 10.0
+	Input File(s): caGeneFilterTestFile_mini.txt
+Result: Exception makes sense, attempt with an input file with > 3 columns (see below).
+        [java] Exception at client main: java.rmi.RemoteException: Cannot calculate IQR order statistic on a data object with 3 or fewer columns
+STATUS: PASS
+
+
+Test: VarianceFilter with a file which contains the minimum number of columns (4). 
+	Parameter(s): minimumVariance: 10.0
+	Input File(s): caGeneFilterTestFile_mini_v2.txt
+Result: 
+     [java] Exception at client main: java.rmi.RemoteException: Cutoff Quantile has to be between 0 and 1.
+
+STATUS: FAIL? -PERHAPS 'minimumVariance' isn't what I'm thinking it is? 
+
+
+
+
+MissingValueFilter
+Test: MissingValueFilter
+	Parameter(s): maximumNumberMissingValues: 0; missingValue: Double.NEGATIVE_INFINITY
+	Input File(s): caGeneFilterTestFile_mini_v2.txt
+Result: Appropriate single row removed from input file
+	Result File: MissingValue_maxNumMissinVal_0-missingVal_-Infinity-caGeneFilterTestFile_mini_v2.txt
+STATUS: PASS
+
+
+MinimumThresholdRecode
+Test: MinimumThresholdRecode
+	Parameter(s): minimumThresholdValue: 1.0; recodeValue: 100.0
+	Input File(s): caGeneFilterTestFile_mini_v2.txt
+Result: Values < 1.0 have been converted to the recodeValue of 100.0.
+	Result File: GeneRecode_min-Threshold_1.0-recodeVal_100.0-caGeneFilterTestFile_mini_v2.txt
+STATUS: PASS
+
+
+MaximumThresholdRecode
+Test: MaximumThresholdRecode
+	Parameter(s): maximumThresholdValue: 1.0; recodeValue: 100.0
+	Input File(s): caGeneFilterTestFile_mini_v2.txt
+Result: Values > 1.0 have been converted to the recodeValue of 100.0. 
+	Result File: GeneRecode_max-Threshold_1.0-recodeVal_100.0-caGeneFilterTestFile_mini_v2.txt
+STATUS: PASS
+
+
+SpotQualityRecode - GPR
+Test: SpotQualityRecode
+	Input File(s): YeAv3.1_D3_vs_WT3_1486_mini.gpr
+			    YeAv3.1_D2_vs_WT2_1484_mini.gpr
+Result:
+	Return values for each channel are scrambled.  
+
+	Green: F635 Mean
+	Red: F532 Mean
+
+	Also, median background subtracted intensity columns are preffered over Mean foreground intensity columns.  They should be:
+	
+	Green: F532 Median - B532 
+	Red: F635 Median - B635
+
+	Result File: SpotQualityRecode_GPR.txt
+STATUS: FAIL
+
+
+SpotQualityRecode -  AGILENT
+Test: SpotQualityRecode
+	Input File(s): GSM129007_AGL_1_D3_mini.txt
+ 
+Result: Reporter names don't appear to be being read properly by the web service (try with a different file as input - see below): 
+     [java] REturn: /home/ryan/Desktop/AffyTestData/GSM129007_AGL_1_D3_mini.txt
+     [java] REturn: GSM129007_AGL_1_D3_mini
+     [java] Uploading file: GSM129007_AGL_1_D3_mini
+     [java] Creating input stream for: /home/ryan/Desktop/AffyTestData/GSM129007_AGL_1_D3_mini.txt
+     [java] uploading file: GSM129007_AGL_1_D3_mini completed.
+     [java] Got return result... with: 
+     [java] This is the length of returnedTwoCollection.green: 1
+     [java] This is the length of greenResults 0: 10
+     [java] java.lang.NullPointerException
+     [java] This is the length of redResults 0: 10
+     [java] 	at MyClient.testSpotQualityRecodeAgilent(MyClient.java:535)
+     [java] These are reporter names: 
+     [java] 	at MyClient.main(MyClient.java:796)
+     [java] Exception at client main: null
+
+STATUS: FAIL
+
+
+
+Test: SpotQualityRecode with a different file as input
+	Input File(s): US45102975_Feb07_1_1.txt 
+Result: Reporter names don't appear to be being read properly by the web service:
+
+     [java] Test CaGeneFilter service...
+     [java] Connecting to service: http://cabig.bioconductor.org:8080/wsrf/services/cagrid/CaGeneFilterService
+     [java] REturn: 1
+     [java] REturn: /home/ryan/Desktop/AffyTestData/US45102975_Feb07_1_1.txt
+     [java] REturn: US45102975_Feb07_1_1
+     [java] Uploading file: US45102975_Feb07_1_1
+     [java] Creating input stream for: /home/ryan/Desktop/AffyTestData/US45102975_Feb07_1_1.txt
+     [java] uploading file: US45102975_Feb07_1_1 completed.
+     [java] Got return result... with: 
+     [java] This is the length of returnedTwoCollection.green: 1
+     [java] This is the length of greenResults 0: 45190
+     [java] This is the length of redResults 0: 45190
+     [java] These are reporter names: 
+     [java] Exception at client main: null
+     [java] java.lang.NullPointerException
+     [java] 	at MyClient.testSpotQualityRecodeAgilent(MyClient.java:517)
+     [java] 	at MyClient.main(MyClient.java:775)
+STATUS: FAIL
+
+
+
+
+EntrezFilter
+Test: EntrezFilter
+	Input File(s): affyHGU133A_annotationFilterTestFile_mini.txt
+Result: Single row removed where probe doesn't have an Entrez ID
+	Result File: Entrez_hgu133a-affyHGU133A_annotationFilterTestFile_mini.txt
+STATUS: PASS
+
+
+GOFilter
+Test: GOFilter
+	Parameter(s): Biol: false
+			       Cell: false
+			       Mol: false
+	Input File(s): affyHGU133A_annotationFilterTestFile_mini.txt
+Result: Single row removed where GO terms aren't present for any of the types.
+	Result File: GO_hgu133a-biol_false-cell_false-mol_false-affyHGU133A_annotationFilterTestFile_mini.txt
+STATUS: PASS
+
+
+Test: GOFilter
+	Parameter(s): Biol: true
+			       Cell: true
+			       Mol: true
+	Input File(s): affyHGU133A_annotationFilterTestFile_mini.txt		       
+Result: Single row retained where probe has GO term(s) for: Biol, Cell, and Mol
+	Result File: GO_hgu133a-biol_true-cell_true-mol_true-affyHGU133A_annotationFilterTestFile_mini.txt
+STATUS: PASS
+
+
+
+Test: GOFilter
+	Parameter(s): Biol: true
+			       Cell: false
+			       Mol: false
+	Input File(s): affyHGU133A_annotationFilterTestFile_mini.txt
+Result: Probes that had GO term(s) for Biol were retained.
+	Result File: GO_hgu133a-biol_false-cell_false-mol_false-affyHGU133A_annotationFilterTestFile_mini.txt
+STATUS: PASS
+
+
+Test: GOFilter
+	Parameter(s): Biol: true
+			       Cell: true
+			       Mol: false
+	Input File(s): affyHGU133A_annotationFilterTestFile_mini.txt
+Result: Probes that had GO term(s) for Biol and Cell were retained.
+	Result File: GO_hgu133a-biol_true-cell_false-mol_false-affyHGU133A_annotationFilterTestFile_mini.txt
+STATUS: PASS
+
+
+Test: GOFilter
+	Parameter(s): Biol: true
+			       Cell: false
+			       Mol: true
+	Input File(s): affyHGU133A_annotationFilterTestFile_mini.txt
+Result: Probes that had GO term(s) for Biol and Mol were retained.
+	Result File: GO_hgu133a-biol_true-cell_false-mol_true-affyHGU133A_annotationFilterTestFile_mini.txt
+STATUS: PASS
+
+
+Test: GOFilter
+	Parameter(s): Biol: false
+			       Cell: true
+			       Mol: true
+	Input File(s): affyHGU133A_annotationFilterTestFile_mini.txt
+Result: Probes that had GO term(s) for Cell and Mol were retained.
+	Result File: GO_hgu133a-biol_false-cell_true-mol_true-affyHGU133A_annotationFilterTestFile_mini.txt
+STATUS: PASS
+
+
+Test: GOFilter
+	Parameter(s): Biol: false
+			       Cell: false
+			       Mol: true
+	Input File(s): affyHGU133A_annotationFilterTestFile_mini.txt
+Result: Probes that had GO term(s) for Mol were retained.
+	Result File: GO_hgu133a-biol_false-cell_false-mol_true-affyHGU133A_annotationFilterTestFile_mini.txt
+STATUS: PASS
+
+
+Test: GOFilter
+	Parameter(s): Biol: false
+			       Cell: true
+			       Mol: false
+	Input File(s): affyHGU133A_annotationFilterTestFile_mini.txt
+Result: Probes that had GO term(s) for Cell were retained.
+	Result File: GO_hgu133a-biol_false-cell_true-mol_false-affyHGU133A_annotationFilterTestFile_mini.txt
+STATUS: PASS
+
+
+
+
+
+
+
+#################################################
 # Test Date: 3/26/2009
-# Version: caGeneFiler 0.1.6 
+# Version: caGeneFilter_0.1.6 
 # NOTE: This is a preliminary set of results.  Not all scenarios were tested.
 #################################################
 
@@ -167,3 +425,4 @@ Result:
 
 	Result File: SpotQualityRecode_GPR.txt
 STATUS: FAIL
+
