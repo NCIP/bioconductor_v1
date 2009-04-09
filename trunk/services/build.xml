@@ -15,18 +15,24 @@
 		<!-- To this point, Common directory is there, set property for it -->
 		<property name="common.dir" value="${basedir}/Common" />
 	</target>
+
+	<target name="checkProjProperty">
+		<fail message="Failed to locate: cagrid project directory.  Usage example: ant copyLibs -DcagriProj=caDNAcopy/cagrid/CaDNAcopy">
+			<condition>
+				<not>
+					<available file="${basedir}/${cagridProj}"/>
+				</not>
+			</condition>
+		</fail>
+	</target>
 	
-	<target name="updateCaDNAcopyLibs" depends="checkCommon" description="Copy common jar files to approriate places under CaDNAcopy project directory">
-		<property  name="lib.dir" value="${basedir}/caDNAcopy/caGrid/CaDNAcopy/lib" />
-		<property name="tools.dir" value="${basedir}/caDNAcopy/caGrid/CaDNAcopy/tools" />
+	<target name="copyLibs" depends="checkCommon,checkProjProperty" if="cagridProj"   
+                                description="Copy common jar files to lib dir under specified cagrid project">
+		<property  name="lib.dir" value="${basedir}/${cagridProj}/lib" />
+		<property name="tools.dir" value="${basedir}/${cagridProj}/tools" />
 		<antcall target="copyfiles" />
 	</target>
 	
-	<target name="updateCaPROcessLibs" depends="checkCommon" description="Copy common jar files to approriate places under CaPROcess project directory">
-		<property name="lib.dir" value="${basedir}/caPROcess/caGrid/CaPROcess/lib" />
-		<property name="tools.dir" value="${basedir}/caPROcess/caGrid/CaPROcess/tools" />
-		<antcall target="copyfiles" />
-	</target>
 	
 	<target name="copyfiles">
 		<copy  todir="${lib.dir}" overwrite="yes">
