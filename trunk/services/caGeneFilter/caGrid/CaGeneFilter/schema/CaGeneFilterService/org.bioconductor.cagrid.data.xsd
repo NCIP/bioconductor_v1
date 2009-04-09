@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"
+		   xmlns:statefulservices="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"
+		   xmlns:gov.nih.nci.caarray.domain.data="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.data"
+		   targetNamespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data">
+		   
+	<xs:import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.data"
+	           schemaLocation="./gov.nih.nci.caarray.domain.data.xsd"/>
+	<xs:import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices" 
+	           schemaLocation="../StatefulServices/org.bioconductor.cagrid.statefulservices.xsd"/>
+			   
+	<xs:element name="AbstractExpressionDataCollection" type="AbstractExpressionDataCollection"/>
+	<xs:complexType name="AbstractExpressionDataCollection" abstract="true">
+		<xs:sequence>
+			<xs:element name="reporterNames" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="ExpressionData" type="ExpressionData"/>
+	<xs:complexType name="ExpressionData">
+		<xs:sequence>
+			<xs:element name="reporterValues" type="gov.nih.nci.caarray.domain.data:DoubleColumn"/>
+			<xs:element name="sampleName" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="SingleChannelExpressionDataCollection" type="SingleChannelExpressionDataCollection"/>
+	<xs:complexType name="SingleChannelExpressionDataCollection">
+		<xs:complexContent>
+			<xs:extension base="AbstractExpressionDataCollection">
+				<xs:sequence>
+					<xs:element name="expressionDataCollection" type="ExpressionData" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="TwoChannelExpressionDataCollection" type="TwoChannelExpressionDataCollection"/>
+	<xs:complexType name="TwoChannelExpressionDataCollection">
+		<xs:complexContent>
+			<xs:extension base="AbstractExpressionDataCollection">
+				<xs:sequence>
+					<xs:element name="redExpressionDataCollection" type="ExpressionData" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="greenExpressionDataCollection" type="ExpressionData" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ManufacturerFileReferences" type="ManufacturerFileReferences"/>
+	<xs:complexType name="ManufacturerFileReferences">
+		<xs:complexContent>
+			<xs:extension base="statefulservices:CaGridFileReferences">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

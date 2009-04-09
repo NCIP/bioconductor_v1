@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		   xmlns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter" 
+		   targetNamespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter">
+		   
+	<xs:element name="Filter" type="Filter"/>
+	<xs:complexType name="Filter" abstract="true">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:element name="AnnotationFilter" type="AnnotationFilter"/>
+	<xs:complexType name="AnnotationFilter">
+		<xs:complexContent>
+			<xs:extension base="Filter">
+				<xs:sequence>
+					<xs:element name="annotation" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="KOverAFilter" type="KOverAFilter"/>
+	<xs:complexType name="KOverAFilter">
+		<xs:complexContent>
+			<xs:extension base="Filter">
+				<xs:sequence>
+					<xs:element name="minimumElementNumber" type="xs:int"/>
+					<xs:element name="minimumValue" type="xs:double"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="VarianceFilter" type="VarianceFilter"/>
+	<xs:complexType name="VarianceFilter">
+		<xs:complexContent>
+			<xs:extension base="Filter">
+				<xs:sequence>
+					<xs:element name="minimumVariance" type="xs:double"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="GeneOntologyFilter" type="GeneOntologyFilter"/>
+	<xs:complexType name="GeneOntologyFilter">
+		<xs:complexContent>
+			<xs:extension base="AnnotationFilter">
+				<xs:sequence>
+					<xs:element name="isBiologicalProcess" type="xs:boolean"/>
+					<xs:element name="isCellularCompartment" type="xs:boolean"/>
+					<xs:element name="isMolecularFunction" type="xs:boolean"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="EntrezFilter" type="EntrezFilter"/>
+	<xs:complexType name="EntrezFilter">
+		<xs:complexContent>
+			<xs:extension base="AnnotationFilter">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="MissingValueFilter" type="MissingValueFilter"/>
+	<xs:complexType name="MissingValueFilter">
+		<xs:complexContent>
+			<xs:extension base="Filter">
+				<xs:sequence>
+					<xs:element name="maximumNumberMissingValues" type="xs:int"/>
+					<xs:element name="missingValue" type="xs:double"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Recode" type="Recode"/>
+	<xs:complexType name="Recode" abstract="true">
+		<xs:sequence>
+			<xs:element name="recodeValue" type="xs:double"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="MinimumThresholdRecode" type="MinimumThresholdRecode"/>
+	<xs:complexType name="MinimumThresholdRecode">
+		<xs:complexContent>
+			<xs:extension base="Recode">
+				<xs:sequence>
+					<xs:element name="minimumThreshold" type="xs:double"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="MaximumThresholdRecode" type="MaximumThresholdRecode"/>
+	<xs:complexType name="MaximumThresholdRecode">
+		<xs:complexContent>
+			<xs:extension base="Recode">
+				<xs:sequence>
+					<xs:element name="maximumThreshold" type="xs:double"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="SpotQualityRecode" type="SpotQualityRecode"/>
+	<xs:complexType name="SpotQualityRecode">
+		<xs:complexContent>
+			<xs:extension base="Recode">
+				<xs:sequence>
+					<xs:element name="columnIdentifier" type="xs:string"/>
+					<xs:element name="columnMinimumThresholdValue" type="xs:double"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

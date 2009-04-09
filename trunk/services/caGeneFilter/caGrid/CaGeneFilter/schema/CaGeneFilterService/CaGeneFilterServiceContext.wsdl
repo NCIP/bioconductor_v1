@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/Context" xmlns:wsrp="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd" xmlns:wsrlw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl" xmlns:wsdlpp="http://www.globus.org/namespaces/2004/10/WSDLPreprocessor" xmlns:gtwsdl1="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ServiceGroup-1.2-draft-01.wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/03/addressing" xmlns:wsntw="http://docs.oasis-open.org/wsn/2004/06/wsn-WS-BaseNotification-1.2-draft-01.wsdl" xmlns:wsrbfw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.wsdl" xmlns:wsrpw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" xmlns:wns1="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl" xmlns:wns0="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity" xmlns:ns0="gme://caArray.caBIG/2.1/edu.georgetown.pir" xmlns:ns22="http://transfer.cagrid.org/Transfer" xmlns:ns1="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices" xmlns:ns5="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.hybridization" xmlns:ns4="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.data" xmlns:ns8="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices" xmlns:ns17="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter" xmlns:ns6="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data" xmlns:ns10="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.project" xmlns:ns16="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.protocol" xmlns:ns21="http://transfer.cagrid.org/TransferService/Context/types" xmlns:ns9="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.sample" xmlns:ns18="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/types" xmlns:ns14="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain" xmlns:ns20="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata" xmlns:ns23="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/Context/types" xmlns:ns19="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security" xmlns:ns2="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.array" xmlns:ns12="gme://caArray.caBIG/2.1/gov.nih.nci.cabio.domain" xmlns:ns13="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.contact" xmlns:ns11="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.file" xmlns:ns3="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.publication" xmlns:ns7="http://schemas.xmlsoap.org/ws/2004/03/addressing" xmlns:ns15="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.vocabulary" xmlns:ns24="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd" name="CaGeneFilterServiceContext" targetNamespace="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/Context">
+  <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" location="../wsrf/properties/WS-ResourceProperties.wsdl" />
+  <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.wsdl" location="../wsrf/faults/WS-BaseFaults.wsdl" />
+  <import namespace="http://docs.oasis-open.org/wsn/2004/06/wsn-WS-BaseNotification-1.2-draft-01.wsdl" location="../wsrf/notification/WS-BaseN.wsdl" />
+  <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl" location="./../wsrf/lifetime/WS-ResourceLifetime.wsdl" />
+  <import namespace="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity" location="./ServiceSecurity.wsdl" />
+  <!--============================================================
+
+                      T Y P E S
+                      
+  ============================================================-->
+  <types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsrbf="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.xsd" targetNamespace="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/Context" elementFormDefault="qualified" attributeFormDefault="unqualified">
+      <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.xsd" schemaLocation="../wsrf/faults/WS-BaseFaults.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/edu.georgetown.pir" schemaLocation="./edu.georgetown.pir.xsd" />
+      <import namespace="http://transfer.cagrid.org/Transfer" schemaLocation="./caGrid_Transfer.xsd" />
+      <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices" schemaLocation="./../StatefulServices/org.bioconductor.cagrid.statefulservices.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.hybridization" schemaLocation="./gov.nih.nci.caarray.domain.hybridization.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.data" schemaLocation="./gov.nih.nci.caarray.domain.data.xsd" />
+      <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices" schemaLocation="./../RServices/org.bioconductor.cagrid.rservices.xsd" />
+      <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter" schemaLocation="./org.bioconductor.cagrid.cagenefilter.xsd" />
+      <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data" schemaLocation="./org.bioconductor.cagrid.data.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.project" schemaLocation="./gov.nih.nci.caarray.domain.project.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.protocol" schemaLocation="./gov.nih.nci.caarray.domain.protocol.xsd" />
+      <import namespace="http://transfer.cagrid.org/TransferService/Context/types" schemaLocation="./TransferServiceContextTypes.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.sample" schemaLocation="./gov.nih.nci.caarray.domain.sample.xsd" />
+      <import namespace="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/types" schemaLocation="./CaGeneFilterServiceTypes.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain" schemaLocation="./gov.nih.nci.caarray.domain.xsd" />
+      <import namespace="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata" schemaLocation="./xsd/cagrid/types/caGridMetadata.xsd" />
+      <import namespace="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/Context/types" schemaLocation="./CaGeneFilterServiceContextTypes.xsd" />
+      <import namespace="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security" schemaLocation="./xsd/cagrid/types/security/security.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.array" schemaLocation="./gov.nih.nci.caarray.domain.array.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.cabio.domain" schemaLocation="./gov.nih.nci.cabio.domain.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.contact" schemaLocation="./gov.nih.nci.caarray.domain.contact.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.file" schemaLocation="./gov.nih.nci.caarray.domain.file.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.publication" schemaLocation="./gov.nih.nci.caarray.domain.publication.xsd" />
+      <import namespace="http://schemas.xmlsoap.org/ws/2004/03/addressing" schemaLocation="./../ws/addressing/WS-Addressing.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.vocabulary" schemaLocation="./gov.nih.nci.caarray.domain.vocabulary.xsd" />
+      <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd" schemaLocation="../wsrf/lifetime/WS-ResourceLifetime.xsd" />
+      <element name="CaGeneFilterServiceContextResourceProperties">
+        <complexType>
+          <sequence>
+            <element ref="ns24:CurrentTime" />
+            <element ref="ns24:TerminationTime" />
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <!--  place service messages here -->
+  <!--============================================================
+
+                       P O R T T Y P E
+                      
+  ============================================================-->
+  <portType name="CaGeneFilterServiceContextPortType" wsrp:ResourceProperties="tns:CaGeneFilterServiceContextResourceProperties">
+    <operation name="getServiceSecurityMetadata">
+      <input message="wns0:GetServiceSecurityMetadataRequest" wsa:Action="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity/GetServiceSecurityMetadataRequest" />
+      <output message="wns0:GetServiceSecurityMetadataResponse" wsa:Action="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity/GetServiceSecurityMetadataResponse" />
+    </operation>
+    <wsdl:operation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="Destroy">
+      <wsdl:input message="wsrlw:DestroyRequest" wsa:Action="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime/Destroy" />
+      <wsdl:output message="wsrlw:DestroyResponse" wsa:Action="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime/DestroyResponse" />
+      <wsdl:fault message="wsrlw:ResourceNotDestroyedFault" name="ResourceNotDestroyedFault" />
+      <wsdl:fault message="wsrlw:ResourceUnknownFault" name="ResourceUnknownFault" />
+    </wsdl:operation>
+    <wsdl:operation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="SetTerminationTime">
+      <wsdl:input message="wsrlw:SetTerminationTimeRequest" wsa:Action="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime/SetTerminationTime" />
+      <wsdl:output message="wsrlw:SetTerminationTimeResponse" wsa:Action="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime/SetTerminationTimeResponse" />
+      <wsdl:fault message="wsrlw:UnableToSetTerminationTimeFault" name="UnableToSetTerminationTimeFault" />
+      <wsdl:fault message="wsrlw:ResourceUnknownFault" name="ResourceUnknownFault" />
+      <wsdl:fault message="wsrlw:TerminationTimeChangeRejectedFault" name="TerminationTimeChangeRejectedFault" />
+    </wsdl:operation>
+  </portType>
+</definitions>
+
