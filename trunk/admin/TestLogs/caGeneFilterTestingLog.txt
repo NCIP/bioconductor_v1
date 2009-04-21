@@ -8,6 +8,454 @@ Result: <Test Result>
 <STATUS: PASS\FAIL>
 
 
+#################################################
+# Test Date: 4/21/2009
+# Version: caGeneFilter_0.1.9
+#
+# RpackageSessionInfo: splines
+# tools
+# stats
+# graphics
+# grDevices
+# utils
+# datasets
+# methods
+# base
+# hgu133a.db_2.2.11
+# RSQLite_0.7-1
+# DBI_0.2-4
+# AnnotationDbi_1.5.23
+# caPROcess_0.3.3
+# PROcess_1.19.1
+# Icens_1.15.2
+# survival_2.35-4
+# caGeneFilter_0.1.9
+# caFlowQ_0.4
+# flowQ_1.3.5
+# parody_1.1.2
+# bioDist_1.15.3
+# KernSmooth_2.22-22
+# mvoutlier_1.4
+# flowViz_1.7.11
+# outliers_0.13-2
+# flowCore_1.9.22
+# rrcov_0.5-01
+# pcaPP_1.6
+# mvtnorm_0.9-5
+# robustbase_0.4-5
+# caDNAcopy_0.3.4
+# DNAcopy_1.17.4
+# caArrayQualityMetrics_0.0.10
+# affyPLM_1.19.7
+# preprocessCore_1.5.3
+# gcrma_2.15.5
+# Biostrings_2.11.51
+# IRanges_1.1.60
+# affy_1.21.9
+# latticeExtra_0.5-4
+# RColorBrewer_1.0-2
+# lattice_0.17-22
+# Biobase_2.3.11
+# RWebServices_1.7.18
+# TypeInfo_1.9.1
+# SJava_0.70.14
+#
+#################################################
+
+
+
+KOverAFilter
+Test: KOverAFilter
+	Parameter(s): minimumElementNumber: 2; minimumValue: 3.0
+	Input File(s): caGeneFilterTestFile_mini_v2.txt
+Result:  Two appropriate rows from input file removed
+	Result File: KOverA_minElement_2-minVal_3.0-caGeneFilterTestFile_mini_v2.txt
+STATUS: PASS
+
+
+VarianceFilter
+Test: VarianceFilter
+	Parameter(s): minimumVariance: 10.0
+	Input File(s): caGeneFilterTestFile_mini.txt
+Result:
+     [java] Exception at client main: java.rmi.RemoteException
+     [java] AxisFault
+     [java]  faultCode: {http://schemas.xmlsoap.org/soap/envelope/}Server.userException
+     [java]  faultSubcode: 
+     [java]  faultString: java.rmi.RemoteException
+     [java]  faultActor: 
+     [java]  faultNode: 
+     [java]  faultDetail: 
+     [java] 	{http://xml.apache.org/axis/}stackTrace:java.rmi.RemoteException
+     [java] 	at org.bioconductor.packages.caGeneFilter.service.CaGeneFilterServiceImpl.filter(CaGeneFilterServiceImpl.java:169)
+     [java] 	at org.bioconductor.packages.caGeneFilter.service.globus.CaGeneFilterServiceProviderImpl.filter(CaGeneFilterServiceProviderImpl.java:43)
+     [java] 	at sun.reflect.GeneratedMethodAccessor267.invoke(Unknown Source)
+     [java] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+     [java] 	at java.lang.reflect.Method.invoke(Method.java:585)
+     [java] 	at org.apache.axis.providers.java.RPCProvider.invokeMethod(RPCProvider.java:384)
+     [java] 	at org.globus.axis.providers.RPCProvider.invokeMethodSub(RPCProvider.java:107)
+     [java] 	at org.globus.axis.providers.RPCProvider.invokeMethod(RPCProvider.java:90)
+     [java] 	at org.apache.axis.providers.java.RPCProvider.processMessage(RPCProvider.java:281)
+     [java] 	at org.apache.axis.providers.java.JavaProvider.invoke(JavaProvider.java:319)
+     [java] 	at org.apache.axis.strategies.InvocationStrategy.visit(InvocationStrategy.java:32)
+     [java] 	at org.apache.axis.SimpleChain.doVisiting(SimpleChain.java:118)
+     [java] 	at org.apache.axis.SimpleChain.invoke(SimpleChain.java:83)
+     [java] 	at org.apache.axis.handlers.soap.SOAPService.invoke(SOAPService.java:450)
+     [java] 	at org.apache.axis.server.AxisServer.invoke(AxisServer.java:285)
+     [java] 	at org.apache.axis.transport.http.AxisServlet.doPost(AxisServlet.java:697)
+     [java] 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:709)
+     [java] 	at org.apache.axis.transport.http.AxisServletBase.service(AxisServletBase.java:327)
+     [java] 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:802)
+     [java] 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:237)
+     [java] 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:157)
+     [java] 	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:214)
+     [java] 	at org.apache.catalina.core.StandardValveContext.invokeNext(StandardValveContext.java:104)
+     [java] 	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:520)
+     [java] 	at org.apache.catalina.core.StandardContextValve.invokeInternal(StandardContextValve.java:198)
+     [java] 	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:152)
+     [java] 	at org.apache.catalina.core.StandardValveContext.invokeNext(StandardValveContext.java:104)
+     [java] 	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:520)
+     [java] 	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:137)
+     [java] 	at org.apache.catalina.core.StandardValveContext.invokeNext(StandardValveContext.java:104)
+     [java] 	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:118)
+     [java] 	at org.apache.catalina.core.StandardValveContext.invokeNext(StandardValveContext.java:102)
+     [java] 	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:520)
+     [java] 	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+     [java] 	at org.apache.catalina.core.StandardValveContext.invokeNext(StandardValveContext.java:104)
+     [java] 	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:520)
+     [java] 	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:929)
+     [java] 	at org.apache.coyote.tomcat5.CoyoteAdapter.service(CoyoteAdapter.java:160)
+     [java] 	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:799)
+     [java] 	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.processConnection(Http11Protocol.java:705)
+     [java] 	at org.apache.tomcat.util.net.TcpWorkerThread.runIt(PoolTcpEndpoint.java:577)
+     [java] 	at org.apache.tomcat.util.threads.ThreadPool$ControlRunnable.run(ThreadPool.java:683)
+     [java] 	at java.lang.Thread.run(Thread.java:595)
+     [java] 
+     [java] 	{http://xml.apache.org/axis/}hostname:mamushi
+     [java] 
+     [java] java.rmi.RemoteException
+     [java] 	at org.apache.axis.message.SOAPFaultBuilder.createFault(SOAPFaultBuilder.java:221)
+     [java] 	at org.apache.axis.message.SOAPFaultBuilder.endElement(SOAPFaultBuilder.java:128)
+     [java] 	at org.apache.axis.encoding.DeserializationContext.endElement(DeserializationContext.java:1087)
+     [java] 	at org.apache.xerces.parsers.AbstractSAXParser.endElement(Unknown Source)
+     [java] 	at org.apache.xerces.impl.XMLNSDocumentScannerImpl.scanEndElement(Unknown Source)
+     [java] 	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+     [java] 	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+     [java] 	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+     [java] 	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+     [java] 	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+     [java] 	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+     [java] 	at javax.xml.parsers.SAXParser.parse(SAXParser.java:375)
+     [java] 	at org.apache.axis.encoding.DeserializationContext.parse(DeserializationContext.java:227)
+     [java] 	at org.apache.axis.SOAPPart.getAsSOAPEnvelope(SOAPPart.java:645)
+     [java] 	at org.apache.axis.Message.getSOAPEnvelope(Message.java:424)
+     [java] 	at org.apache.axis.message.addressing.handler.AddressingHandler.processClientResponse(AddressingHandler.java:305)
+     [java] 	at org.apache.axis.message.addressing.handler.AddressingHandler.invoke(AddressingHandler.java:110)
+     [java] 	at org.apache.axis.strategies.InvocationStrategy.visit(InvocationStrategy.java:32)
+     [java] 	at org.apache.axis.SimpleChain.doVisiting(SimpleChain.java:118)
+     [java] 	at org.apache.axis.SimpleChain.invoke(SimpleChain.java:83)
+     [java] 	at org.apache.axis.client.AxisClient.invoke(AxisClient.java:190)
+     [java] 	at org.apache.axis.client.Call.invokeEngine(Call.java:2727)
+     [java] 	at org.apache.axis.client.Call.invoke(Call.java:2710)
+     [java] 	at org.apache.axis.client.Call.invoke(Call.java:2386)
+     [java] 	at org.apache.axis.client.Call.invoke(Call.java:2309)
+     [java] 	at org.apache.axis.client.Call.invoke(Call.java:1766)
+     [java] 	at org.bioconductor.packages.caGeneFilter.stubs.bindings.CaGeneFilterServicePortTypeSOAPBindingStub.filter(CaGeneFilterServicePortTypeSOAPBindingStub.java:2412)
+     [java] 	at org.bioconductor.packages.caGeneFilter.client.CaGeneFilterServiceClient.filter(CaGeneFilterServiceClient.java:232)
+     [java] 	at MyClient.testVarianceFilter(Unknown Source)
+     [java] 	at MyClient.main(Unknown Source)
+STATUS: FAIL
+
+
+Test: VarianceFilter with a file which contains the minimum number of columns (4). 
+	Parameter(s): minimumVariance: 10.0
+	Input File(s): caGeneFilterTestFile_mini_v2.txt
+Result: 
+[java] Connecting to service: http://cabig.bioconductor.org:8080/wsrf/services/cagrid/CaGeneFilterService
+     [java] File is: /home/ryan/IdeaProjects/caBIGClient/GeneFilter/caGeneFilterTesting/inputFiles/caGeneFilterTestFile_mini_v2.txt
+     [java] invokeService called
+     [java] Number of columns is: 5
+     [java] Number of samples: 4
+     [java] Sample names: CMHI.1
+     [java] Sample names: CMHI.2
+     [java] Sample names: CMHI.3
+     [java] Sample names: CMHI.4
+     [java] This is the length of doubleColumns: 4
+     [java] Done creating SingleChannelExpressionDataCollection
+     [java] Exception at client main: java.rmi.RemoteException
+     [java] AxisFault
+     [java]  faultCode: {http://schemas.xmlsoap.org/soap/envelope/}Server.userException
+     [java]  faultSubcode: 
+     [java]  faultString: java.rmi.RemoteException
+     [java]  faultActor: 
+     [java]  faultNode: 
+     [java]  faultDetail: 
+     [java] 	{http://xml.apache.org/axis/}stackTrace:java.rmi.RemoteException
+     [java] 	at org.bioconductor.packages.caGeneFilter.service.CaGeneFilterServiceImpl.filter(CaGeneFilterServiceImpl.java:169)
+     [java] 	at org.bioconductor.packages.caGeneFilter.service.globus.CaGeneFilterServiceProviderImpl.filter(CaGeneFilterServiceProviderImpl.java:43)
+     [java] 	at sun.reflect.GeneratedMethodAccessor267.invoke(Unknown Source)
+     [java] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+     [java] 	at java.lang.reflect.Method.invoke(Method.java:585)
+     [java] 	at org.apache.axis.providers.java.RPCProvider.invokeMethod(RPCProvider.java:384)
+     [java] 	at org.globus.axis.providers.RPCProvider.invokeMethodSub(RPCProvider.java:107)
+     [java] 	at org.globus.axis.providers.RPCProvider.invokeMethod(RPCProvider.java:90)
+     [java] 	at org.apache.axis.providers.java.RPCProvider.processMessage(RPCProvider.java:281)
+     [java] 	at org.apache.axis.providers.java.JavaProvider.invoke(JavaProvider.java:319)
+     [java] 	at org.apache.axis.strategies.InvocationStrategy.visit(InvocationStrategy.java:32)
+     [java] 	at org.apache.axis.SimpleChain.doVisiting(SimpleChain.java:118)
+     [java] 	at org.apache.axis.SimpleChain.invoke(SimpleChain.java:83)
+     [java] 	at org.apache.axis.handlers.soap.SOAPService.invoke(SOAPService.java:450)
+     [java] 	at org.apache.axis.server.AxisServer.invoke(AxisServer.java:285)
+     [java] 	at org.apache.axis.transport.http.AxisServlet.doPost(AxisServlet.java:697)
+     [java] 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:709)
+     [java] 	at org.apache.axis.transport.http.AxisServletBase.service(AxisServletBase.java:327)
+     [java] 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:802)
+     [java] 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:237)
+     [java] 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:157)
+     [java] 	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:214)
+     [java] 	at org.apache.catalina.core.StandardValveContext.invokeNext(StandardValveContext.java:104)
+     [java] 	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:520)
+     [java] 	at org.apache.catalina.core.StandardContextValve.invokeInternal(StandardContextValve.java:198)
+     [java] 	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:152)
+     [java] 	at org.apache.catalina.core.StandardValveContext.invokeNext(StandardValveContext.java:104)
+     [java] 	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:520)
+     [java] 	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:137)
+     [java] 	at org.apache.catalina.core.StandardValveContext.invokeNext(StandardValveContext.java:104)
+     [java] 	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:118)
+     [java] 	at org.apache.catalina.core.StandardValveContext.invokeNext(StandardValveContext.java:102)
+     [java] 	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:520)
+     [java] 	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109)
+     [java] 	at org.apache.catalina.core.StandardValveContext.invokeNext(StandardValveContext.java:104)
+     [java] 	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:520)
+     [java] 	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:929)
+     [java] 	at org.apache.coyote.tomcat5.CoyoteAdapter.service(CoyoteAdapter.java:160)
+     [java] 	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:799)
+     [java] 	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.processConnection(Http11Protocol.java:705)
+     [java] 	at org.apache.tomcat.util.net.TcpWorkerThread.runIt(PoolTcpEndpoint.java:577)
+     [java] 	at org.apache.tomcat.util.threads.ThreadPool$ControlRunnable.run(ThreadPool.java:683)
+     [java] 	at java.lang.Thread.run(Thread.java:595)
+     [java] 
+     [java] 	{http://xml.apache.org/axis/}hostname:mamushi
+     [java] 
+     [java] java.rmi.RemoteException
+     [java] 	at org.apache.axis.message.SOAPFaultBuilder.createFault(SOAPFaultBuilder.java:221)
+     [java] 	at org.apache.axis.message.SOAPFaultBuilder.endElement(SOAPFaultBuilder.java:128)
+     [java] 	at org.apache.axis.encoding.DeserializationContext.endElement(DeserializationContext.java:1087)
+     [java] 	at org.apache.xerces.parsers.AbstractSAXParser.endElement(Unknown Source)
+     [java] 	at org.apache.xerces.impl.XMLNSDocumentScannerImpl.scanEndElement(Unknown Source)
+     [java] 	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+     [java] 	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+     [java] 	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+     [java] 	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+     [java] 	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+     [java] 	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+     [java] 	at javax.xml.parsers.SAXParser.parse(SAXParser.java:375)
+     [java] 	at org.apache.axis.encoding.DeserializationContext.parse(DeserializationContext.java:227)
+     [java] 	at org.apache.axis.SOAPPart.getAsSOAPEnvelope(SOAPPart.java:645)
+     [java] 	at org.apache.axis.Message.getSOAPEnvelope(Message.java:424)
+     [java] 	at org.apache.axis.message.addressing.handler.AddressingHandler.processClientResponse(AddressingHandler.java:305)
+     [java] 	at org.apache.axis.message.addressing.handler.AddressingHandler.invoke(AddressingHandler.java:110)
+     [java] 	at org.apache.axis.strategies.InvocationStrategy.visit(InvocationStrategy.java:32)
+     [java] 	at org.apache.axis.SimpleChain.doVisiting(SimpleChain.java:118)
+     [java] 	at org.apache.axis.SimpleChain.invoke(SimpleChain.java:83)
+     [java] 	at org.apache.axis.client.AxisClient.invoke(AxisClient.java:190)
+     [java] 	at org.apache.axis.client.Call.invokeEngine(Call.java:2727)
+     [java] 	at org.apache.axis.client.Call.invoke(Call.java:2710)
+     [java] 	at org.apache.axis.client.Call.invoke(Call.java:2386)
+     [java] 	at org.apache.axis.client.Call.invoke(Call.java:2309)
+     [java] 	at org.apache.axis.client.Call.invoke(Call.java:1766)
+     [java] 	at org.bioconductor.packages.caGeneFilter.stubs.bindings.CaGeneFilterServicePortTypeSOAPBindingStub.filter(CaGeneFilterServicePortTypeSOAPBindingStub.java:2412)
+     [java] 	at org.bioconductor.packages.caGeneFilter.client.CaGeneFilterServiceClient.filter(CaGeneFilterServiceClient.java:232)
+     [java] 	at MyClient.testVarianceFilter(Unknown Source)
+     [java] 	at MyClient.main(Unknown Source)
+STATUS: FAIL
+
+
+
+
+MissingValueFilter
+Test: MissingValueFilter
+	Parameter(s): maximumNumberMissingValues: 0; missingValue: Double.NEGATIVE_INFINITY
+	Input File(s): caGeneFilterTestFile_mini_v2.txt
+Result: Appropriate single row removed from input file
+	Result File: MissingValue_maxNumMissinVal_0-missingVal_-Infinity-caGeneFilterTestFile_mini_v2.txt
+STATUS: PASS
+
+
+MinimumThresholdRecode
+Test: MinimumThresholdRecode
+	Parameter(s): minimumThresholdValue: 1.0; recodeValue: 100.0
+	Input File(s): caGeneFilterTestFile_mini_v2.txt
+Result: Values < 1.0 have been converted to the recodeValue of 100.0.
+	Result File: GeneRecode_min-Threshold_1.0-recodeVal_100.0-caGeneFilterTestFile_mini_v2.txt
+STATUS: PASS
+
+
+MaximumThresholdRecode
+Test: MaximumThresholdRecode
+	Parameter(s): maximumThresholdValue: 1.0; recodeValue: 100.0
+	Input File(s): caGeneFilterTestFile_mini_v2.txt
+Result: Values > 1.0 have been converted to the recodeValue of 100.0. 
+	Result File: GeneRecode_max-Threshold_1.0-recodeVal_100.0-caGeneFilterTestFile_mini_v2.txt
+STATUS: PASS
+
+
+SpotQualityRecode - GPR
+Test: SpotQualityRecode
+	Input File(s): YeAv3.1_D3_vs_WT3_1486_mini.gpr
+			    YeAv3.1_D2_vs_WT2_1484_mini.gpr
+Result:
+	Median foreground intensities are returned (from columns F635 Median, and F532 Median), though these values should be background
+	substracted (i.e. the results of: F635 Median - B635 Median & F532 Median - B532 Median).
+	Result File: SpotQualityRecode_GPR.txt
+STATUS: FAIL
+
+
+SpotQualityRecode -  AGILENT
+Test: SpotQualityRecode
+	Input File(s): GSM129007_AGL_1_D3_mini.txt
+ 
+Result: Reporter names don't appear to be being read properly by the web service (try with a different file as input - see below): 
+     [java] Connecting to service: http://cabig.bioconductor.org:8080/wsrf/services/cagrid/CaGeneFilterService
+     [java] REturn: 1
+     [java] REturn: /home/ryan/Desktop/AffyTestData/GSM129007_AGL_1_D3_mini.txt
+     [java] REturn: GSM129007_AGL_1_D3_mini
+     [java] Uploading file: GSM129007_AGL_1_D3_mini
+     [java] Creating input stream for: /home/ryan/Desktop/AffyTestData/GSM129007_AGL_1_D3_mini.txt
+     [java] uploading file: GSM129007_AGL_1_D3_mini completed.
+     [java] Got return result... with: 
+     [java] This is the length of returnedTwoCollection.green: 1
+     [java] This is the length of greenResults 0: 10
+     [java] java.lang.NullPointerException
+     [java] This is the length of redResults 0: 10
+     [java] 	at MyClient.testSpotQualityRecodeAgilent(Unknown Source)
+     [java] These are reporter names: 
+     [java] 	at MyClient.main(Unknown Source)
+     [java] Exception at client main: null
+STATUS: FAIL
+
+
+
+Test: SpotQualityRecode with a different file as input
+	Input File(s): US45102975_Feb07_1_1.txt 
+Result: Reporter names don't appear to be being read properly by the web service:
+     [java] Connecting to service: http://cabig.bioconductor.org:8080/wsrf/services/cagrid/CaGeneFilterService
+     [java] REturn: 1
+     [java] REturn: /home/ryan/Desktop/AffyTestData/US45102975_Feb07_1_1.txt
+     [java] REturn: US45102975_Feb07_1_1
+     [java] Uploading file: US45102975_Feb07_1_1
+     [java] Creating input stream for: /home/ryan/Desktop/AffyTestData/US45102975_Feb07_1_1.txt
+     [java] uploading file: US45102975_Feb07_1_1 completed.
+     [java] Got return result... with: 
+     [java] This is the length of returnedTwoCollection.green: 1
+     [java] This is the length of greenResults 0: 45190
+     [java] This is the length of redResults 0: 45190
+     [java] These are reporter names: 
+     [java] Exception at client main: null
+     [java] java.lang.NullPointerException
+     [java] 	at MyClient.testSpotQualityRecodeAgilent(Unknown Source)
+     [java] 	at MyClient.main(Unknown Source)
+STATUS: FAIL
+
+
+
+
+EntrezFilter
+Test: EntrezFilter
+	Input File(s): affyHGU133A_annotationFilterTestFile_mini.txt
+Result: Single row removed where probe doesn't have an Entrez ID
+	Result File: Entrez_hgu133a-affyHGU133A_annotationFilterTestFile_mini.txt
+STATUS: PASS
+
+
+GOFilter
+Test: GOFilter
+	Parameter(s): Biol: false
+			       Cell: false
+			       Mol: false
+	Input File(s): affyHGU133A_annotationFilterTestFile_mini.txt
+Result: Single row removed where GO terms aren't present for any of the types.
+	Result File: GO_hgu133a-biol_false-cell_false-mol_false-affyHGU133A_annotationFilterTestFile_mini.txt
+STATUS: PASS
+
+
+Test: GOFilter
+	Parameter(s): Biol: true
+			       Cell: true
+			       Mol: true
+	Input File(s): affyHGU133A_annotationFilterTestFile_mini.txt		       
+Result: Single row retained where probe has GO term(s) for: Biol, Cell, and Mol
+	Result File: GO_hgu133a-biol_true-cell_true-mol_true-affyHGU133A_annotationFilterTestFile_mini.txt
+STATUS: PASS
+
+
+
+Test: GOFilter
+	Parameter(s): Biol: true
+			       Cell: false
+			       Mol: false
+	Input File(s): affyHGU133A_annotationFilterTestFile_mini.txt
+Result: Probes that had GO term(s) for Biol were retained.
+	Result File: GO_hgu133a-biol_false-cell_false-mol_false-affyHGU133A_annotationFilterTestFile_mini.txt
+STATUS: PASS
+
+
+Test: GOFilter
+	Parameter(s): Biol: true
+			       Cell: true
+			       Mol: false
+	Input File(s): affyHGU133A_annotationFilterTestFile_mini.txt
+Result: Probes that had GO term(s) for Biol and Cell were retained.
+	Result File: GO_hgu133a-biol_true-cell_false-mol_false-affyHGU133A_annotationFilterTestFile_mini.txt
+STATUS: PASS
+
+
+Test: GOFilter
+	Parameter(s): Biol: true
+			       Cell: false
+			       Mol: true
+	Input File(s): affyHGU133A_annotationFilterTestFile_mini.txt
+Result: Probes that had GO term(s) for Biol and Mol were retained.
+	Result File: GO_hgu133a-biol_true-cell_false-mol_true-affyHGU133A_annotationFilterTestFile_mini.txt
+STATUS: PASS
+
+
+Test: GOFilter
+	Parameter(s): Biol: false
+			       Cell: true
+			       Mol: true
+	Input File(s): affyHGU133A_annotationFilterTestFile_mini.txt
+Result: Probes that had GO term(s) for Cell and Mol were retained.
+	Result File: GO_hgu133a-biol_false-cell_true-mol_true-affyHGU133A_annotationFilterTestFile_mini.txt
+STATUS: PASS
+
+
+Test: GOFilter
+	Parameter(s): Biol: false
+			       Cell: false
+			       Mol: true
+	Input File(s): affyHGU133A_annotationFilterTestFile_mini.txt
+Result: Probes that had GO term(s) for Mol were retained.
+	Result File: GO_hgu133a-biol_false-cell_false-mol_true-affyHGU133A_annotationFilterTestFile_mini.txt
+STATUS: PASS
+
+
+Test: GOFilter
+	Parameter(s): Biol: false
+			       Cell: true
+			       Mol: false
+	Input File(s): affyHGU133A_annotationFilterTestFile_mini.txt
+Result: Probes that had GO term(s) for Cell were retained.
+	Result File: GO_hgu133a-biol_false-cell_true-mol_false-affyHGU133A_annotationFilterTestFile_mini.txt
+STATUS: PASS
+
+
+
+
+
+
+
+
 
 #################################################
 # Test Date: 3/31/2009
@@ -260,6 +708,26 @@ Test: GOFilter
 Result: Probes that had GO term(s) for Cell were retained.
 	Result File: GO_hgu133a-biol_false-cell_true-mol_false-affyHGU133A_annotationFilterTestFile_mini.txt
 STATUS: PASS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
