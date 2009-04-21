@@ -45,13 +45,6 @@ public class CaGeneFilterServiceImpl extends CaGeneFilterServiceImplBase {
 		  
 		  return caGeneFilterResrc;
 	  }
-	  catch(org.globus.wsrf.NoSuchResourceException ew) {
-		System.out.println("CaGeneFilterServiceImpl::lookupCaGeneFilterResource failed to find a resource");
-		// clean the HashMap:
-		m_resrcKeyHomeNameMap.remove(strResrcKey);
-		m_resourceKeyMap.remove(strResrcKey);
-		throw new Exception("CaGeneFilterServiceImpl::lookupCaGeneFilterResource: " + ew.getMessage());
-	  }
 	  catch(Exception ew) {
 		  throw ew;
 	  }
@@ -189,10 +182,6 @@ public class CaGeneFilterServiceImpl extends CaGeneFilterServiceImplBase {
 		  m_resourceKeyMap.put(strResrcKeyValue, resourceKey);
 		  m_resrcKeyHomeNameMap.put(strResrcKeyValue, caGeneFilter_homename);
 		  
-		  // Call HelperService to store this resource info also:
-		  org.bioconductor.packages.helper.common.ResourceStorage resrcStorage = org.bioconductor.packages.helper.common.ResourceStorage.getResourceStorageInstance();
-		  System.out.println("CaGeneFilter calling HelperService to store resource: " + strResrcKeyValue);
-		  resrcStorage.storeResourceInfo(strResrcKeyValue, resourceKey, caGeneFilter_homename);
 		  
 		  return new org.bioconductor.cagrid.statefulservices.SessionEndpoint(strResrcKeyValue);
 	  }
@@ -245,11 +234,13 @@ public class CaGeneFilterServiceImpl extends CaGeneFilterServiceImplBase {
 			  throw new RemoteException("CaGeneFilterImpl::lookupContextResource() returning null");
 		  }
 		  
+		  System.out.println("CaGeneFilterImpl::fileRecode calls fileRecode in CaGeneFilterServiceContextResource...");
 		  
 		  return caGeneFilterResrc.fileRecode(spotQualityRecode, m_caGeneFilter);
 	  }
 	  catch(Exception ew) {
-		  throw new RemoteException("Exception from evaluate(): " + ew.getMessage());
+		  ew.printStackTrace();
+		  throw new RemoteException("Exception from CaGeneFilterImpl::fileRecode(): " + ew.getMessage());
 	  }
   }
 
