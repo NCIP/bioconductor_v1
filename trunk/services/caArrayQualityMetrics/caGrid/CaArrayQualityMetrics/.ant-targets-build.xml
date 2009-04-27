@@ -1,0 +1,14 @@
+all
+clean
+compile
+createDeploymentGar
+deployGlobus
+deployJBoss
+deployTomcat
+help
+javadoc
+runClient
+test
+undeployGlobus
+undeployJBoss
+undeployTomcat
