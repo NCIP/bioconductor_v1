@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.calinearmodel"
+		   xmlns:gov.nih.nci.caarray.domain.project="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.project"
+		   targetNamespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.calinearmodel">
+		   
+	<xs:import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.project" 
+	           schemaLocation="../NIH_NCI_Types/gov.nih.nci.caarray.domain.project.xsd" />
+		   
+	<xs:element name="Model" type="Model"/>
+	<xs:complexType name="Model">
+		<xs:sequence>
+			<xs:element name="numberOfTopReporters" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="TTest" type="TTest"/>
+	<xs:complexType name="TTest">
+		<xs:complexContent>
+			<xs:extension base="OneChannelModel">
+				<xs:sequence>
+					<xs:element name="tTestAnnotation" type="TTestAnnotation" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="OneChannelModel" type="OneChannelModel"/>
+	<xs:complexType name="OneChannelModel">
+		<xs:complexContent>
+			<xs:extension base="Model">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="TwoChannelModel" type="TwoChannelModel"/>
+	<xs:complexType name="TwoChannelModel">
+		<xs:complexContent>
+			<xs:extension base="Model">
+				<xs:sequence>
+					<xs:element name="referenceChannelIdentifier" type="xs:string" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="OneFactorANOVA" type="OneFactorANOVA"/>
+	<xs:complexType name="OneFactorANOVA">
+		<xs:complexContent>
+			<xs:extension base="OneChannelModel">
+				<xs:sequence>
+					<xs:element name="oneFactorANOVAAnnotation" type="OneFactorANOVAAnnotation" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="DyeSwapTTest" type="DyeSwapTTest"/>
+	<xs:complexType name="DyeSwapTTest">
+		<xs:complexContent>
+			<xs:extension base="TwoChannelModel">
+				<xs:sequence>
+					<xs:element name="referenceLevel" type="gov.nih.nci.caarray.domain.project:FactorValue" />
+					<xs:element name="dyeSwapTTestAnnotation" type="DyeSwapTTestAnnotation" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="CommonReferenceANOVA" type="CommonReferenceANOVA"/>
+	<xs:complexType name="CommonReferenceANOVA">
+		<xs:complexContent>
+			<xs:extension base="TwoChannelModel">
+				<xs:sequence>
+					<xs:element name="referenceLevel" type="gov.nih.nci.caarray.domain.project:FactorValue"/>
+					<xs:element name="commonReferenceANOVAAnnotation" type="CommonReferenceANOVAAnnotation" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="PairedTTest" type="PairedTTest"/>
+	<xs:complexType name="PairedTTest">
+		<xs:complexContent>
+			<xs:extension base="OneChannelModel">
+				<xs:sequence>
+					<xs:element name="pairedTTestAnnotation" type="PairedTTestAnnotation" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="TwoFactorANOVA" type="TwoFactorANOVA"/>
+	<xs:complexType name="TwoFactorANOVA">
+		<xs:complexContent>
+			<xs:extension base="OneChannelModel">
+				<xs:sequence>
+					<xs:element name="twoFactorANOVAAnnotation" type="TwoFactorANOVAAnnotation" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="TTestAnnotation" type="TTestAnnotation"/>
+	<xs:complexType name="TTestAnnotation">
+		<xs:complexContent>
+			<xs:extension base="OneChannelSampleAnnotation">
+				<xs:sequence>
+					<xs:element name="factorLevel" type="gov.nih.nci.caarray.domain.project:FactorValue"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="PairedTTestAnnotation" type="PairedTTestAnnotation"/>
+	<xs:complexType name="PairedTTestAnnotation">
+		<xs:complexContent>
+			<xs:extension base="OneChannelSampleAnnotation">
+				<xs:sequence>
+					<xs:element name="factorLevel" type="gov.nih.nci.caarray.domain.project:FactorValue"/>
+					<xs:element name="pairIdentifier" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="SampleAnnotation" type="SampleAnnotation"/>
+	<xs:complexType name="SampleAnnotation">
+		<xs:sequence>
+			<xs:element name="sampleIdentifier" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="OneFactorANOVAAnnotation" type="OneFactorANOVAAnnotation"/>
+	<xs:complexType name="OneFactorANOVAAnnotation">
+		<xs:complexContent>
+			<xs:extension base="OneChannelSampleAnnotation">
+				<xs:sequence>
+					<xs:element name="factorLevel" type="gov.nih.nci.caarray.domain.project:FactorValue"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="TwoFactorANOVAAnnotation" type="TwoFactorANOVAAnnotation"/>
+	<xs:complexType name="TwoFactorANOVAAnnotation">
+		<xs:complexContent>
+			<xs:extension base="OneChannelSampleAnnotation">
+				<xs:sequence>
+					<xs:element name="factorOneLevel" type="gov.nih.nci.caarray.domain.project:FactorValue"/>
+					<xs:element name="factorTwoLevel" type="gov.nih.nci.caarray.domain.project:FactorValue"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="DyeSwapTTestAnnotation" type="DyeSwapTTestAnnotation"/>
+	<xs:complexType name="DyeSwapTTestAnnotation">
+		<xs:complexContent>
+			<xs:extension base="TwoChannelSampleAnnotation">
+				<xs:sequence>
+					<xs:element name="factorLevel" type="gov.nih.nci.caarray.domain.project:FactorValue"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="CommonReferenceANOVAAnnotation" type="CommonReferenceANOVAAnnotation"/>
+	<xs:complexType name="CommonReferenceANOVAAnnotation">
+		<xs:complexContent>
+			<xs:extension base="TwoChannelSampleAnnotation">
+				<xs:sequence>
+					<xs:element name="factorLevel" type="gov.nih.nci.caarray.domain.project:FactorValue"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="OneChannelSampleAnnotation" type="OneChannelSampleAnnotation"/>
+	<xs:complexType name="OneChannelSampleAnnotation">
+		<xs:complexContent>
+			<xs:extension base="SampleAnnotation">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="TwoChannelSampleAnnotation" type="TwoChannelSampleAnnotation"/>
+	<xs:complexType name="TwoChannelSampleAnnotation">
+		<xs:complexContent>
+			<xs:extension base="SampleAnnotation">
+				<xs:sequence>
+					<xs:element name="channelIdentifier" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

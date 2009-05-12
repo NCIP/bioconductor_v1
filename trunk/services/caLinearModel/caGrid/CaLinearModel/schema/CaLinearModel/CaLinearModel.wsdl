@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://caLinearModel.packages.bioconductor.org/CaLinearModel" xmlns:wsrp="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd" xmlns:wsrlw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl" xmlns:wsdlpp="http://www.globus.org/namespaces/2004/10/WSDLPreprocessor" xmlns:gtwsdl1="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ServiceGroup-1.2-draft-01.wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/03/addressing" xmlns:wsntw="http://docs.oasis-open.org/wsn/2004/06/wsn-WS-BaseNotification-1.2-draft-01.wsdl" xmlns:wsrbfw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.wsdl" xmlns:wsrpw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" xmlns:wns0="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" xmlns:wns1="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity" xmlns:ns13="gme://caArray.caBIG/2.1/edu.georgetown.pir" xmlns:ns18="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata" xmlns:ns6="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.hybridization" xmlns:ns1="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.data" xmlns:ns3="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.calinearmodel" xmlns:ns17="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security" xmlns:ns16="http://caLinearModel.packages.bioconductor.org/CaLinearModel/types" xmlns:ns14="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data" xmlns:ns9="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.array" xmlns:ns4="gme://caArray.caBIG/2.1/gov.nih.nci.cabio.domain" xmlns:ns10="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.project" xmlns:ns2="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.contact" xmlns:ns11="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.protocol" xmlns:ns8="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.file" xmlns:ns5="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.sample" xmlns:ns0="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.publication" xmlns:ns15="http://schemas.xmlsoap.org/ws/2004/03/addressing" xmlns:ns7="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.vocabulary" xmlns:ns12="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain" name="CaLinearModel" targetNamespace="http://caLinearModel.packages.bioconductor.org/CaLinearModel">
+  <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" location="../wsrf/properties/WS-ResourceProperties.wsdl" />
+  <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.wsdl" location="../wsrf/faults/WS-BaseFaults.wsdl" />
+  <import namespace="http://docs.oasis-open.org/wsn/2004/06/wsn-WS-BaseNotification-1.2-draft-01.wsdl" location="../wsrf/notification/WS-BaseN.wsdl" />
+  <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" location="./../wsrf/properties/WS-ResourceProperties.wsdl" />
+  <import namespace="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity" location="./ServiceSecurity.wsdl" />
+  <!--============================================================
+
+                      T Y P E S
+                      
+  ============================================================-->
+  <types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsrbf="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.xsd" targetNamespace="http://caLinearModel.packages.bioconductor.org/CaLinearModel" elementFormDefault="qualified" attributeFormDefault="unqualified">
+      <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.xsd" schemaLocation="../wsrf/faults/WS-BaseFaults.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/edu.georgetown.pir" schemaLocation="./../NIH_NCI_Types/edu.georgetown.pir.xsd" />
+      <import namespace="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata" schemaLocation="./xsd/cagrid/types/caGridMetadata.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.hybridization" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.hybridization.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.data" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.data.xsd" />
+      <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.calinearmodel" schemaLocation="./org.bioconductor.cagrid.calinearmodel.xsd" />
+      <import namespace="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security" schemaLocation="./xsd/cagrid/types/security/security.xsd" />
+      <import namespace="http://caLinearModel.packages.bioconductor.org/CaLinearModel/types" schemaLocation="./CaLinearModelTypes.xsd" />
+      <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data" schemaLocation="./org.bioconductor.cagrid.data.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.array" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.array.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.cabio.domain" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.cabio.domain.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.project" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.project.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.contact" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.contact.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.protocol" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.protocol.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.file" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.file.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.sample" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.sample.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.publication" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.publication.xsd" />
+      <import namespace="http://schemas.xmlsoap.org/ws/2004/03/addressing" schemaLocation="./../ws/addressing/WS-Addressing.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.vocabulary" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.vocabulary.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.xsd" />
+      <element name="FitRequest">
+        <complexType>
+          <sequence>
+            <element name="singleChannelExpressionDataCollection">
+              <complexType>
+                <sequence>
+                  <element ref="ns14:SingleChannelExpressionDataCollection" minOccurs="1" maxOccurs="1" />
+                </sequence>
+              </complexType>
+            </element>
+            <element name="oneChannelModel">
+              <complexType>
+                <sequence>
+                  <element ref="ns3:OneChannelModel" minOccurs="1" maxOccurs="1" />
+                </sequence>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="FitResponse">
+        <complexType>
+          <sequence>
+            <element ref="ns14:TopTableCollection" minOccurs="1" maxOccurs="1" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="TwoChannelFitRequest">
+        <complexType>
+          <sequence>
+            <element name="twoChannelExpressionDataCollection">
+              <complexType>
+                <sequence>
+                  <element ref="ns14:TwoChannelExpressionDataCollection" minOccurs="1" maxOccurs="1" />
+                </sequence>
+              </complexType>
+            </element>
+            <element name="twoChannelModel">
+              <complexType>
+                <sequence>
+                  <element ref="ns3:TwoChannelModel" minOccurs="1" maxOccurs="1" />
+                </sequence>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="TwoChannelFitResponse">
+        <complexType>
+          <sequence>
+            <element ref="ns14:TopTableCollection" minOccurs="1" maxOccurs="1" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CaLinearModelResourceProperties">
+        <complexType>
+          <sequence>
+            <element ref="ns18:ServiceMetadata" />
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <!--  place service messages here -->
+  <message name="FitRequest">
+    <part name="parameters" element="tns:FitRequest" />
+  </message>
+  <message name="FitResponse">
+    <part name="parameters" element="tns:FitResponse" />
+  </message>
+  <message name="TwoChannelFitRequest">
+    <part name="parameters" element="tns:TwoChannelFitRequest" />
+  </message>
+  <message name="TwoChannelFitResponse">
+    <part name="parameters" element="tns:TwoChannelFitResponse" />
+  </message>
+  <!--============================================================
+
+                       P O R T T Y P E
+                      
+  ============================================================-->
+  <portType name="CaLinearModelPortType" wsrp:ResourceProperties="tns:CaLinearModelResourceProperties">
+    <operation name="fit">
+      <input message="tns:FitRequest" wsa:Action="http://caLinearModel.packages.bioconductor.org/CaLinearModel/FitRequest" />
+      <output message="tns:FitResponse" wsa:Action="http://caLinearModel.packages.bioconductor.org/CaLinearModel/FitResponse" />
+    </operation>
+    <operation name="twoChannelFit">
+      <input message="tns:TwoChannelFitRequest" wsa:Action="http://caLinearModel.packages.bioconductor.org/CaLinearModel/TwoChannelFitRequest" />
+      <output message="tns:TwoChannelFitResponse" wsa:Action="http://caLinearModel.packages.bioconductor.org/CaLinearModel/TwoChannelFitResponse" />
+    </operation>
+    <wsdl:operation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="GetMultipleResourceProperties">
+      <wsdl:input name="GetMultipleResourcePropertiesRequest" message="wsrpw:GetMultipleResourcePropertiesRequest" wsa:Action="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties/GetMultipleResourceProperties" />
+      <wsdl:output name="GetMultipleResourcePropertiesResponse" message="wsrpw:GetMultipleResourcePropertiesResponse" wsa:Action="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties/GetMultipleResourcePropertiesResponse" />
+      <wsdl:fault name="ResourceUnknownFault" message="wsrpw:ResourceUnknownFault" />
+      <wsdl:fault name="InvalidResourcePropertyQNameFault" message="wsrpw:InvalidResourcePropertyQNameFault" />
+    </wsdl:operation>
+    <wsdl:operation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="GetResourceProperty">
+      <wsdl:input name="GetResourcePropertyRequest" message="wsrpw:GetResourcePropertyRequest" wsa:Action="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties/GetResourceProperty" />
+      <wsdl:output name="GetResourcePropertyResponse" message="wsrpw:GetResourcePropertyResponse" wsa:Action="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties/GetResourcePropertyResponse" />
+      <wsdl:fault name="ResourceUnknownFault" message="wsrpw:ResourceUnknownFault" />
+      <wsdl:fault name="InvalidResourcePropertyQNameFault" message="wsrpw:InvalidResourcePropertyQNameFault" />
+    </wsdl:operation>
+    <wsdl:operation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="QueryResourceProperties">
+      <wsdl:input name="QueryResourcePropertiesRequest" message="wsrpw:QueryResourcePropertiesRequest" wsa:Action="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties/QueryResourceProperties" />
+      <wsdl:output name="QueryResourcePropertiesResponse" message="wsrpw:QueryResourcePropertiesResponse" wsa:Action="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties/QueryResourcePropertiesResponse" />
+      <wsdl:fault name="ResourceUnknownFault" message="wsrpw:ResourceUnknownFault" />
+      <wsdl:fault name="InvalidResourcePropertyQNameFault" message="wsrpw:InvalidResourcePropertyQNameFault" />
+      <wsdl:fault name="UnknownQueryExpressionDialectFault" message="wsrpw:UnknownQueryExpressionDialectFault" />
+      <wsdl:fault name="InvalidQueryExpressionFault" message="wsrpw:InvalidQueryExpressionFault" />
+      <wsdl:fault name="QueryEvaluationErrorFault" message="wsrpw:QueryEvaluationErrorFault" />
+    </wsdl:operation>
+    <operation name="getServiceSecurityMetadata">
+      <input message="wns1:GetServiceSecurityMetadataRequest" wsa:Action="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity/GetServiceSecurityMetadataRequest" />
+      <output message="wns1:GetServiceSecurityMetadataResponse" wsa:Action="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity/GetServiceSecurityMetadataResponse" />
+    </operation>
+  </portType>
+</definitions>
+

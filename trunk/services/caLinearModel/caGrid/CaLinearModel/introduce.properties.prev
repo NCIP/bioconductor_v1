@@ -1,0 +1,11 @@
+#Introduce Properties
+#Thu May 07 16:14:51 PDT 2009
+introduce.skeleton.services.list=CaLinearModel
+introduce.skeleton.extensions=cagrid_metadata
+introduce.skeleton.timestamp=1241653112324
+introduce.skeleton.service.name=CaLinearModel
+introduce.skeleton.resource.options=main,singleton,identifiable,resourcePropertyManagement
+introduce.skeleton.destination.dir=/mnt/cpb_home/mtra2/CaGridProj/CaLinearModel
+introduce.skeleton.namespace.domain=http\://caLinearModel.packages.bioconductor.org/CaLinearModel
+introduce.ns.excludes=\ -x gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.service -x gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata -x gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security -x gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common
+introduce.soap.binding.excludes=\ 
