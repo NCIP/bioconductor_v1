@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndiConfig xmlns="http://wsrf.globus.org/jndi/config">
+  <service name="SERVICE-INSTANCE-PREFIX/CaGeneSetAnalysisContext">
+    <resource name="configuration" type="org.bioconductor.packages.caGeneSetAnalysis.context.service.globus.resource.CaGeneSetAnalysisContextResourceConfiguration">
+      <resourceParams>
+        <parameter>
+          <name>factory</name>
+          <value>org.globus.wsrf.jndi.BeanFactory</value>
+        </parameter>
+        <parameter>
+          <name>performRegistration</name>
+          <!-- Set this to false to skip ServiceGroup registration -->
+          <value>PERFORM_REGISTRATION</value>
+        </parameter>
+        <parameter>
+          <name>registrationTemplateFile</name>
+          <!-- Set this to the relative path (from the container root, e.g GLOBUS_LOCATION for globus container) of the registration parameters template file (ignored if performRegistration is false) -->
+          <value>ETC-PATH/CaGeneSetAnalysisContext_registration.xml</value>
+        </parameter>
+      </resourceParams>
+    </resource>
+    <resource name="home" type="org.bioconductor.packages.caGeneSetAnalysis.context.service.globus.resource.CaGeneSetAnalysisContextResourceHome">
+      <resourceParams>
+        <parameter>
+          <name>factory</name>
+          <value>org.globus.wsrf.jndi.BeanFactory</value>
+        </parameter>
+        <parameter>
+          <name>resourceClass</name>
+          <value>org.bioconductor.packages.caGeneSetAnalysis.context.service.globus.resource.CaGeneSetAnalysisContextResource</value>
+        </parameter>
+        <parameter>
+          <name>resourceKeyName</name>
+          <value>{http://caGeneSetAnalysis.packages.bioconductor.org/CaGeneSetAnalysis/Context}CaGeneSetAnalysisContextResultsKey</value>
+        </parameter>
+        <parameter>
+          <name>resourceKeyType</name>
+          <value>java.lang.String</value>
+        </parameter>
+      </resourceParams>
+    </resource>
+    <resourceLink name="serviceconfiguration" target="java:comp/env/services/SERVICE-INSTANCE-PREFIX/CaGeneSetAnalysis/serviceconfiguration" />
+    <resourceLink name="caGeneSetAnalysisHome" target="java:comp/env/services/SERVICE-INSTANCE-PREFIX/CaGeneSetAnalysis/home" />
+  </service>
+  <service name="SERVICE-INSTANCE-PREFIX/CaGeneSetAnalysis">
+    <resource name="configuration" type="org.bioconductor.packages.caGeneSetAnalysis.service.globus.resource.CaGeneSetAnalysisResourceConfiguration">
+      <resourceParams>
+        <parameter>
+          <name>factory</name>
+          <value>org.globus.wsrf.jndi.BeanFactory</value>
+        </parameter>
+        <parameter>
+          <name>performRegistration</name>
+          <!-- Set this to false to skip ServiceGroup registration -->
+          <value>PERFORM_REGISTRATION</value>
+        </parameter>
+        <parameter>
+          <name>registrationTemplateFile</name>
+          <!-- Set this to the relative path (from the container root, e.g GLOBUS_LOCATION for globus container) of the registration parameters template file (ignored if performRegistration is false) -->
+          <value>ETC-PATH/CaGeneSetAnalysis_registration.xml</value>
+        </parameter>
+        <parameter>
+          <name>serviceMetadataFile</name>
+          <!-- Set this to the relative path (from the container root, e.g GLOBUS_LOCATION for globus container) of the serviceMetadata extract -->
+          <value>ETC-PATH/serviceMetadata.xml</value>
+        </parameter>
+      </resourceParams>
+    </resource>
+    <resource name="serviceconfiguration" type="org.bioconductor.packages.caGeneSetAnalysis.service.CaGeneSetAnalysisConfiguration">
+      <resourceParams>
+        <parameter>
+          <name>factory</name>
+          <value>org.globus.wsrf.jndi.BeanFactory</value>
+        </parameter>
+        <parameter>
+          <name>etcDirectoryPath</name>
+          <value>ETC-PATH</value>
+        </parameter>
+      </resourceParams>
+    </resource>
+    <resource name="home" type="org.bioconductor.packages.caGeneSetAnalysis.service.globus.resource.CaGeneSetAnalysisResourceHome">
+      <resourceParams>
+        <parameter>
+          <name>factory</name>
+          <value>org.globus.wsrf.jndi.BeanFactory</value>
+        </parameter>
+      </resourceParams>
+    </resource>
+    <resourceLink name="caGeneSetAnalysisContextHome" target="java:comp/env/services/SERVICE-INSTANCE-PREFIX/CaGeneSetAnalysisContext/home" />
+  </service>
+</jndiConfig>
+

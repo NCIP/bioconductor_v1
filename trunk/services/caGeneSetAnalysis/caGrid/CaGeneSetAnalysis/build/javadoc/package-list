@@ -1,0 +1,10 @@
+org.bioconductor.packages.caGeneSetAnalysis.client
+org.bioconductor.packages.caGeneSetAnalysis.common
+org.bioconductor.packages.caGeneSetAnalysis.context.client
+org.bioconductor.packages.caGeneSetAnalysis.context.common
+org.bioconductor.packages.caGeneSetAnalysis.context.service
+org.bioconductor.packages.caGeneSetAnalysis.context.service.globus
+org.bioconductor.packages.caGeneSetAnalysis.context.service.globus.resource
+org.bioconductor.packages.caGeneSetAnalysis.service
+org.bioconductor.packages.caGeneSetAnalysis.service.globus
+org.bioconductor.packages.caGeneSetAnalysis.service.globus.resource

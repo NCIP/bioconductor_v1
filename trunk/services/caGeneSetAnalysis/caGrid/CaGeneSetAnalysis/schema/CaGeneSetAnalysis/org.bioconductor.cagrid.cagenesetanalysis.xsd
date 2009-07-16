@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" 
+		   targetNamespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis">
+		   
+	<xs:element name="GeneSetParameters" type="GeneSetParameters"/>
+	<xs:complexType name="GeneSetParameters">
+		<xs:sequence>
+			<xs:element name="annotation" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ContinuousParameters" type="ContinuousParameters"/>
+	<xs:complexType name="ContinuousParameters">
+		<xs:complexContent>
+			<xs:extension base="GeneSetParameters">
+				<xs:sequence>
+					<xs:element name="minimumGenesPerGeneSet" type="xs:int"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DiscreteParameters" type="DiscreteParameters"/>
+	<xs:complexType name="DiscreteParameters">
+		<xs:complexContent>
+			<xs:extension base="GeneSetParameters">
+				<xs:sequence>
+					<xs:element name="discretePValue" type="xs:double"/>
+					<xs:element name="testDirection" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="GeneSetCollection" type="GeneSetCollection"/>
+	<xs:complexType name="GeneSetCollection">
+		<xs:sequence>
+			<xs:element name="description" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ContinuousGeneSet" type="ContinuousGeneSet"/>
+	<xs:complexType name="ContinuousGeneSet">
+		<xs:complexContent>
+			<xs:extension base="GeneSetCollection">
+				<xs:sequence>
+					<xs:element name="continuousGeneSetEntry" type="ContinuousGeneSetEntry" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DiscreteGeneSet" type="DiscreteGeneSet"/>
+	<xs:complexType name="DiscreteGeneSet">
+		<xs:complexContent>
+			<xs:extension base="GeneSetCollection">
+				<xs:sequence>
+					<xs:element name="categoricalGeneSetEntry" type="DiscreteGeneSetEntry" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ContinuousGeneSetEntry" type="ContinuousGeneSetEntry"/>
+	<xs:complexType name="ContinuousGeneSetEntry">
+		<xs:sequence>
+			<xs:element name="geneSetId" type="xs:string"/>
+			<xs:element name="geneSetSize" type="xs:int"/>
+			<xs:element name="pValue" type="xs:double"/>
+			<xs:element name="tAdjusted" type="xs:double"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DiscreteGeneSetEntry" type="DiscreteGeneSetEntry"/>
+	<xs:complexType name="DiscreteGeneSetEntry">
+		<xs:sequence>
+			<xs:element name="expectedCount" type="xs:int"/>
+			<xs:element name="geneSetId" type="xs:string"/>
+			<xs:element name="geneSetSize" type="xs:int"/>
+			<xs:element name="pValue" type="xs:double"/>
+			<xs:element name="selectedCount" type="xs:int"/>
+			<xs:element name="categoricalGeneSet" type="DiscreteGeneSet"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GeneOntologyDiscreteParameters" type="GeneOntologyDiscreteParameters"/>
+	<xs:complexType name="GeneOntologyDiscreteParameters">
+		<xs:complexContent>
+			<xs:extension base="DiscreteParameters">
+				<xs:sequence>
+					<xs:element name="ontology" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="KEGGDiscreteParameters" type="KEGGDiscreteParameters"/>
+	<xs:complexType name="KEGGDiscreteParameters">
+		<xs:complexContent>
+			<xs:extension base="DiscreteParameters">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="PfamDiscreteParameters" type="PfamDiscreteParameters"/>
+	<xs:complexType name="PfamDiscreteParameters">
+		<xs:complexContent>
+			<xs:extension base="DiscreteParameters">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="GeneOntologyContinuousParameters" type="GeneOntologyContinuousParameters"/>
+	<xs:complexType name="GeneOntologyContinuousParameters">
+		<xs:complexContent>
+			<xs:extension base="ContinuousParameters">
+				<xs:sequence>
+					<xs:element name="ontology" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="KEGGContinuousParameters" type="KEGGContinuousParameters"/>
+	<xs:complexType name="KEGGContinuousParameters">
+		<xs:complexContent>
+			<xs:extension base="ContinuousParameters">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="PfamContinuousParameters" type="PfamContinuousParameters"/>
+	<xs:complexType name="PfamContinuousParameters">
+		<xs:complexContent>
+			<xs:extension base="ContinuousParameters">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,79 @@
+
+    # Generates .rda files to be serialized to Java and used by
+    # the Java functional tests for analyzeAsContinuous.
+
+    library("ALL")
+    library("genefilter")
+    library("DBI")
+    library("GSEABase")
+    library("caCommonClasses")
+    library("caGeneSetAnalysis")
+
+    data("ALL")
+
+    # Select B-cell samples with the "NEG" or "BCR/ABL" molecular types.
+
+    bcell = grep("^B", as.character(ALL$BT))
+    moltyp = which( match(as.character(ALL$mol.biol), c("NEG", "BCR/ABL"), nomatch=0) > 0 )
+    ALL_bcrneg = ALL[,intersect(bcell, moltyp)]
+    ALL_bcrneg$mol.biol = factor(ALL_bcrneg$mol.biol)
+
+    # Select only those reporters that show sufficient variability
+    # across samples.
+
+    ALLfilt_bcrneg = nsFilter(ALL_bcrneg, var.cutoff=0.5)$eset
+
+    # Execute a t-test.
+    rtt = rowttests(ALLfilt_bcrneg, "mol.biol")
+    rttStat = rtt$statistic
+
+    # Create a TopTable for input to analyzeAsContinuous.
+
+    contrastSpecification = "not relevant here"
+
+    reporterName = as.character(row.names(rtt))
+    tCoefficient = as.numeric(rtt$statistic)
+
+    len = length(row.names(rtt))
+    logFoldChange  = numeric(len)
+    pValue         = numeric(len)
+    adjustedPValue = numeric(len)
+    logOddsScore   = numeric(len)
+
+    topTableForContinuousAnalysis = new("TopTable",
+                                        contrastSpecification=contrastSpecification,
+                                        reporterName=reporterName,
+                                        logFoldChange=logFoldChange,
+                                        tCoefficient=tCoefficient,
+                                        pValue=pValue,
+                                        adjustedPValue=adjustedPValue,
+                                        logOddsScore=logOddsScore)
+
+    # Define a GeneOntologyContinuousParameters object.
+
+    geneOntologyContinuousParameters = new("GeneOntologyContinuousParameters",
+                                            ontology="BP",
+                                            annotation="hgu95av2",
+                                            minimumGenesPerGeneSet=10L
+                                          )
+
+    # Define a KEGGContinuousParameters object.
+
+    keggContinuousParameters = new("KEGGContinuousParameters",
+                                    annotation="hgu95av2",
+                                    minimumGenesPerGeneSet=10L
+                                  )
+
+    # Define a PFAMContinuousParameters object.
+
+    pfamContinuousParameters = new("PFAMContinuousParameters",
+                                    annotation="hgu95av2",
+                                    minimumGenesPerGeneSet=10L
+                                  )
+
+    #
+
+    save(topTableForContinuousAnalysis,    file="TopTableForContinuousAnalysis.rda")
+    save(geneOntologyContinuousParameters, file="GeneOntologyContinuousParameters.rda")
+    save(keggContinuousParameters,         file="KEGGContinuousParameters.rda")
+    save(pfamContinuousParameters,         file="PFAMContinuousParameters.rda")

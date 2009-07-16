@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"
+		   xmlns:gov.nih.nci.caarray.domain.data="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.data"
+		   targetNamespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data">
+		   
+	<xs:import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.data"
+	           schemaLocation="../NIH_NCI_Types/gov.nih.nci.caarray.domain.data.xsd"/>
+
+	<xs:element name="AbstractExpressionDataCollection" type="AbstractExpressionDataCollection"/>
+	<xs:complexType name="AbstractExpressionDataCollection" abstract="true">
+		<xs:sequence>
+			<xs:element name="reporterNames" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="ExpressionData" type="ExpressionData"/>
+	<xs:complexType name="ExpressionData">
+		<xs:sequence>
+			<xs:element name="reporterValues" type="gov.nih.nci.caarray.domain.data:DoubleColumn"/>
+			<xs:element name="sampleName" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="SingleChannelExpressionDataCollection" type="SingleChannelExpressionDataCollection"/>
+	<xs:complexType name="SingleChannelExpressionDataCollection">
+		<xs:complexContent>
+			<xs:extension base="AbstractExpressionDataCollection">
+				<xs:sequence>
+					<xs:element name="expressionDataCollection" type="ExpressionData" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="TwoChannelExpressionDataCollection" type="TwoChannelExpressionDataCollection"/>
+	<xs:complexType name="TwoChannelExpressionDataCollection">
+		<xs:complexContent>
+			<xs:extension base="AbstractExpressionDataCollection">
+				<xs:sequence>
+					<xs:element name="redExpressionDataCollection" type="ExpressionData" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="greenExpressionDataCollection" type="ExpressionData" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="PhenotypeData" type="PhenotypeData"/>
+	<xs:complexType name="PhenotypeData">
+		<xs:sequence>
+			<xs:element name="phenotypeData" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	
+	<xs:element name="PhenotypeDataCollection" type="PhenotypeDataCollection" />
+	<xs:complexType name="PhenotypeDataCollection">
+		<xs:sequence>
+			<xs:element name="phonetypeDataCollection" type="PhenotypeData" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="TopTableCollection" type="TopTableCollection"/>
+	<xs:complexType name="TopTableCollection">
+		<xs:sequence>
+			<xs:element name="modelSpecification" type="xs:string"/>
+			<xs:element name="topTable" type="TopTable" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="TopTable" type="TopTable"/>
+	<xs:complexType name="TopTable">
+		<xs:sequence>
+			<xs:element name="contrastSpecification" type="xs:string"/>
+			<xs:element name="topTableEntry" type="TopTableEntry" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="TopTableEntry" type="TopTableEntry"/>
+	<xs:complexType name="TopTableEntry">
+		<xs:sequence>
+			<xs:element name="adjustedPValue" type="xs:double"/>
+			<xs:element name="logFoldChange" type="xs:double"/>
+			<xs:element name="logOddsScore" type="xs:double"/>
+			<xs:element name="pValue" type="xs:double"/>
+			<xs:element name="reporterName" type="xs:string"/>
+			<xs:element name="tCoefficient" type="xs:double"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>
