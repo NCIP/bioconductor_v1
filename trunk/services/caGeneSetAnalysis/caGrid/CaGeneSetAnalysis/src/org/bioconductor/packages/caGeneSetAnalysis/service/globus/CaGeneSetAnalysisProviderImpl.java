@@ -26,9 +26,27 @@ public class CaGeneSetAnalysisProviderImpl{
 	}
 	
 
+    public org.bioconductor.packages.caGeneSetAnalysis.stubs.InvokeAnalyzeResponse invokeAnalyze(org.bioconductor.packages.caGeneSetAnalysis.stubs.InvokeAnalyzeRequest params) throws RemoteException {
+    org.bioconductor.packages.caGeneSetAnalysis.stubs.InvokeAnalyzeResponse boxedResult = new org.bioconductor.packages.caGeneSetAnalysis.stubs.InvokeAnalyzeResponse();
+    impl.invokeAnalyze(params.getSessionEndpoint().getSessionEndpoint(),params.getGeneSetParameters().getGeneSetParameters());
+    return boxedResult;
+  }
+
     public org.bioconductor.packages.caGeneSetAnalysis.stubs.AnalyzeResponse analyze(org.bioconductor.packages.caGeneSetAnalysis.stubs.AnalyzeRequest params) throws RemoteException {
     org.bioconductor.packages.caGeneSetAnalysis.stubs.AnalyzeResponse boxedResult = new org.bioconductor.packages.caGeneSetAnalysis.stubs.AnalyzeResponse();
     boxedResult.setGeneSetCollection(impl.analyze(params.getTopTable().getTopTable(),params.getGeneSetParameters().getGeneSetParameters()));
+    return boxedResult;
+  }
+
+    public org.bioconductor.packages.caGeneSetAnalysis.stubs.GetRpackageSessionInfoResponse getRpackageSessionInfo(org.bioconductor.packages.caGeneSetAnalysis.stubs.GetRpackageSessionInfoRequest params) throws RemoteException {
+    org.bioconductor.packages.caGeneSetAnalysis.stubs.GetRpackageSessionInfoResponse boxedResult = new org.bioconductor.packages.caGeneSetAnalysis.stubs.GetRpackageSessionInfoResponse();
+    boxedResult.setResponse(impl.getRpackageSessionInfo());
+    return boxedResult;
+  }
+
+    public org.bioconductor.packages.caGeneSetAnalysis.stubs.CreateCaGeneSetAnalysisSessionResponse createCaGeneSetAnalysisSession(org.bioconductor.packages.caGeneSetAnalysis.stubs.CreateCaGeneSetAnalysisSessionRequest params) throws RemoteException {
+    org.bioconductor.packages.caGeneSetAnalysis.stubs.CreateCaGeneSetAnalysisSessionResponse boxedResult = new org.bioconductor.packages.caGeneSetAnalysis.stubs.CreateCaGeneSetAnalysisSessionResponse();
+    boxedResult.setSessionEndpoint(impl.createCaGeneSetAnalysisSession());
     return boxedResult;
   }
 

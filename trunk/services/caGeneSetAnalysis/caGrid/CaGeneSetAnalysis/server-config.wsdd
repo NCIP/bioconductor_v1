@@ -23,7 +23,6 @@
     <parameter name="securityMetadata" value="ETC-PATH/CaGeneSetAnalysis-security-metadata.xml" />
   </service>
   <typeMapping name="AggregatorContent" qname="aggr:AggregatorContent" type="java:org.globus.mds.aggregator.types.AggregatorContent" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
-  
   <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:GeneSetParameters" type="java:org.bioconductor.cagrid.cagenesetanalysis.GeneSetParameters" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
   <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:DiscreteParameters" type="java:org.bioconductor.cagrid.cagenesetanalysis.DiscreteParameters" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
   <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:GeneOntologyDiscreteParameters" type="java:org.bioconductor.cagrid.cagenesetanalysis.GeneOntologyDiscreteParameters" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
@@ -38,6 +37,5 @@
   <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:ContinuousGeneSet" type="java:org.bioconductor.cagrid.cagenesetanalysis.ContinuousGeneSet" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
   <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:DiscreteGeneSetEntry" type="java:org.bioconductor.cagrid.cagenesetanalysis.DiscreteGeneSetEntry" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
   <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:ContinuousGeneSetEntry" type="java:org.bioconductor.cagrid.cagenesetanalysis.ContinuousGeneSetEntry" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
-  
 </deployment>
 

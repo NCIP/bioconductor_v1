@@ -64,7 +64,9 @@ public class CaGeneSetAnalysisClient extends CaGeneSetAnalysisClientBase impleme
 			  CaGeneSetAnalysisClient client = new CaGeneSetAnalysisClient(args[1]);
 			  // place client calls here if you want to use this main as a
 			  // test....
-			  String geneSetParamFile = "/home/mtra2/CaGridProj/CaGeneSetAnalysis/Data/GeneOntologyContinuousParameters.rda_java.Data";		  
+			  System.out.println("R packages Session Info: " + client.getRpackageSessionInfo());
+			  
+			  String geneSetParamFile = "/home/mtra2/CaGridProj/CaGeneSetAnalysis/Data/GeneOntologyDiscreteParameters.rda_java.Data";		  
 			  org.bioconductor.cagrid.cagenesetanalysis.GeneSetParameters cagridGeneSetParams = CaGeneSetAnalysisTestHelper.deserializeToCaGridGeneSetParam(geneSetParamFile);
 			  System.out.println("Parameter Type: " + cagridGeneSetParams.getClass().getName());
 			  
@@ -74,7 +76,7 @@ public class CaGeneSetAnalysisClient extends CaGeneSetAnalysisClientBase impleme
 //			  System.out.println("testDirection: " + ((org.bioconductor.cagrid.cagenesetanalysis.DiscreteParameters)cagridGeneSetParams).getTestDirection());
 //			  System.out.println("Ontology: " + ((org.bioconductor.cagrid.cagenesetanalysis.GeneOntologyDiscreteParameters)cagridGeneSetParams).getOntology());
 			  
-			  String topTableFilePath = "/home/mtra2/CaGridProj/CaGeneSetAnalysis/Data/TopTableForContinuousAnalysis.rda_java.Data";			  
+			  String topTableFilePath = "/home/mtra2/CaGridProj/CaGeneSetAnalysis/Data/TopTableForDiscreteAnalysis.rda_java.Data";			  
 			  org.bioconductor.cagrid.data.TopTable cagridTopTable = CaGeneSetAnalysisTestHelper.deserializeToCaGridTopTable(topTableFilePath);
 /*
 			  int entryLength = cagridTopTable.getTopTableEntry().length;
@@ -100,7 +102,13 @@ public class CaGeneSetAnalysisClient extends CaGeneSetAnalysisClientBase impleme
 				  client.printGeneSetCollectionResult(geneSetColl);
 			  }
 			  
-			  
+			  org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEP = client.createCaGeneSetAnalysisSession();
+			  org.bioconductor.packages.helper.common.HelperService helperService = new org.bioconductor.packages.helper.common.HelperService();
+			  helperService.uploadDataObject(args[1], sessionEP, cagridTopTable);
+			  client.invokeAnalyze(sessionEP, cagridGeneSetParams);
+			  Object result = helperService.getResultObject(args[1], sessionEP);
+			  geneSetColl = (org.bioconductor.cagrid.cagenesetanalysis.GeneSetCollection)result;
+			  client.printGeneSetCollectionResult(geneSetColl);
 			  
 			} else {
 				usage();
@@ -147,6 +155,20 @@ public class CaGeneSetAnalysisClient extends CaGeneSetAnalysisClientBase impleme
 		}
 	}
 
+  public void invokeAnalyze(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint,org.bioconductor.cagrid.cagenesetanalysis.GeneSetParameters geneSetParameters) throws RemoteException {
+    synchronized(portTypeMutex){
+      configureStubSecurity((Stub)portType,"invokeAnalyze");
+    org.bioconductor.packages.caGeneSetAnalysis.stubs.InvokeAnalyzeRequest params = new org.bioconductor.packages.caGeneSetAnalysis.stubs.InvokeAnalyzeRequest();
+    org.bioconductor.packages.caGeneSetAnalysis.stubs.InvokeAnalyzeRequestSessionEndpoint sessionEndpointContainer = new org.bioconductor.packages.caGeneSetAnalysis.stubs.InvokeAnalyzeRequestSessionEndpoint();
+    sessionEndpointContainer.setSessionEndpoint(sessionEndpoint);
+    params.setSessionEndpoint(sessionEndpointContainer);
+    org.bioconductor.packages.caGeneSetAnalysis.stubs.InvokeAnalyzeRequestGeneSetParameters geneSetParametersContainer = new org.bioconductor.packages.caGeneSetAnalysis.stubs.InvokeAnalyzeRequestGeneSetParameters();
+    geneSetParametersContainer.setGeneSetParameters(geneSetParameters);
+    params.setGeneSetParameters(geneSetParametersContainer);
+    org.bioconductor.packages.caGeneSetAnalysis.stubs.InvokeAnalyzeResponse boxedResult = portType.invokeAnalyze(params);
+    }
+  }
+
   public org.oasis.wsrf.properties.GetMultipleResourcePropertiesResponse getMultipleResourceProperties(org.oasis.wsrf.properties.GetMultipleResourceProperties_Element params) throws RemoteException {
     synchronized(portTypeMutex){
       configureStubSecurity((Stub)portType,"getMultipleResourceProperties");
@@ -180,6 +202,24 @@ public class CaGeneSetAnalysisClient extends CaGeneSetAnalysisClientBase impleme
     params.setGeneSetParameters(geneSetParametersContainer);
     org.bioconductor.packages.caGeneSetAnalysis.stubs.AnalyzeResponse boxedResult = portType.analyze(params);
     return boxedResult.getGeneSetCollection();
+    }
+  }
+
+  public java.lang.String getRpackageSessionInfo() throws RemoteException {
+    synchronized(portTypeMutex){
+      configureStubSecurity((Stub)portType,"getRpackageSessionInfo");
+    org.bioconductor.packages.caGeneSetAnalysis.stubs.GetRpackageSessionInfoRequest params = new org.bioconductor.packages.caGeneSetAnalysis.stubs.GetRpackageSessionInfoRequest();
+    org.bioconductor.packages.caGeneSetAnalysis.stubs.GetRpackageSessionInfoResponse boxedResult = portType.getRpackageSessionInfo(params);
+    return boxedResult.getResponse();
+    }
+  }
+
+  public org.bioconductor.cagrid.statefulservices.SessionEndpoint createCaGeneSetAnalysisSession() throws RemoteException {
+    synchronized(portTypeMutex){
+      configureStubSecurity((Stub)portType,"createCaGeneSetAnalysisSession");
+    org.bioconductor.packages.caGeneSetAnalysis.stubs.CreateCaGeneSetAnalysisSessionRequest params = new org.bioconductor.packages.caGeneSetAnalysis.stubs.CreateCaGeneSetAnalysisSessionRequest();
+    org.bioconductor.packages.caGeneSetAnalysis.stubs.CreateCaGeneSetAnalysisSessionResponse boxedResult = portType.createCaGeneSetAnalysisSession(params);
+    return boxedResult.getSessionEndpoint();
     }
   }
 

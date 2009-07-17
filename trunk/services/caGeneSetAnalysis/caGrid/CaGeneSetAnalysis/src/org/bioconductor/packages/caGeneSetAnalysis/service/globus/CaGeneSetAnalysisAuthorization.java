@@ -82,6 +82,21 @@ public class CaGeneSetAnalysisAuthorization implements PDP {
 		
 		
 	}
+					
+	public static void authorizeGetRpackageSessionInfo() throws RemoteException {
+		
+		
+	}
+					
+	public static void authorizeCreateCaGeneSetAnalysisSession() throws RemoteException {
+		
+		
+	}
+					
+	public static void authorizeInvokeAnalyze() throws RemoteException {
+		
+		
+	}
 	
 	
 	public boolean isPermitted(Subject peerSubject, MessageContext context, QName operation)
@@ -125,6 +140,30 @@ public class CaGeneSetAnalysisAuthorization implements PDP {
 		} else if(operation.getLocalPart().equals("analyze")){
 			try{
 				authorizeAnalyze();
+				return true;
+			} catch (Exception e){
+				e.printStackTrace();
+				return false;
+			}
+		} else if(operation.getLocalPart().equals("getRpackageSessionInfo")){
+			try{
+				authorizeGetRpackageSessionInfo();
+				return true;
+			} catch (Exception e){
+				e.printStackTrace();
+				return false;
+			}
+		} else if(operation.getLocalPart().equals("createCaGeneSetAnalysisSession")){
+			try{
+				authorizeCreateCaGeneSetAnalysisSession();
+				return true;
+			} catch (Exception e){
+				e.printStackTrace();
+				return false;
+			}
+		} else if(operation.getLocalPart().equals("invokeAnalyze")){
+			try{
+				authorizeInvokeAnalyze();
 				return true;
 			} catch (Exception e){
 				e.printStackTrace();
