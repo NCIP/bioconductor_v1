@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.camachinelearning"
+		   xmlns:org.bioconductor.cagrid.data="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"
+		   xmlns:gov.nih.nci.caarray.domain.project="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.project"
+		   targetNamespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.camachinelearning">
+		   
+	<xs:import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data" 
+			schemaLocation="../Data/org.bioconductor.cagrid.data.xsd"/>
+	<xs:import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.project" 
+	           schemaLocation="../NIH_NCI_Types/gov.nih.nci.caarray.domain.project.xsd" />
+			
+	<xs:element name="SupervisedMachineLearningSampleAnnotation" type="SupervisedMachineLearningSampleAnnotation"/>
+	<xs:complexType name="SupervisedMachineLearningSampleAnnotation">
+		<xs:complexContent>
+			<xs:extension base="org.bioconductor.cagrid.data:SampleAnnotation">
+				<xs:sequence>
+					<xs:element name="isTrainingSample" type="xs:boolean"/>
+					<xs:element name="observedClassification" type="gov.nih.nci.caarray.domain.project:FactorValue"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="MachineLearningResultCollection" type="MachineLearningResultCollection"/>
+	<xs:complexType name="MachineLearningResultCollection">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:element name="SupervisedMachineLearningParameters" type="SupervisedMachineLearningParameters"/>
+	<xs:complexType name="SupervisedMachineLearningParameters">
+		<xs:complexContent>
+			<xs:extension base="MachineLearningParameters">
+				<xs:sequence>
+					<xs:element name="supervisedMachineLearningAnnotation" type="SupervisedMachineLearningSampleAnnotation" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="UnsupervisedMachineLearningParameters" type="UnsupervisedMachineLearningParameters"/>
+	<xs:complexType name="UnsupervisedMachineLearningParameters">
+		<xs:complexContent>
+			<xs:extension base="MachineLearningParameters">
+				<xs:sequence>
+					<xs:element name="numberOfClusters" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>The number of groups to partition samples into</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="UnsupervisedMachineLearningResultCollection" type="UnsupervisedMachineLearningResultCollection"/>
+	<xs:complexType name="UnsupervisedMachineLearningResultCollection">
+		<xs:complexContent>
+			<xs:extension base="MachineLearningResultCollection">
+				<xs:sequence>
+					<xs:element name="unsupervisedMachineLearningResult" type="UnsupervisedMachineLearningResult" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="KNearestNeighborMachineLearningParameters" type="KNearestNeighborMachineLearningParameters"/>
+	<xs:complexType name="KNearestNeighborMachineLearningParameters">
+		<xs:complexContent>
+			<xs:extension base="SupervisedMachineLearningParameters">
+				<xs:sequence>
+					<xs:element name="minimumVote" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>The initial number of clusters to be used</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="numberOfNeighbors" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>The number of nearest reporters to be used when determining cluster affinity</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="HierarchicalClusteringMachineLearningParameters" type="HierarchicalClusteringMachineLearningParameters"/>
+	<xs:complexType name="HierarchicalClusteringMachineLearningParameters">
+		<xs:complexContent>
+			<xs:extension base="UnsupervisedMachineLearningParameters">
+				<xs:sequence>
+					<xs:element name="algorithm" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>The name of the method to be used to perform hierarchical clustering</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="distanceMetric" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>The name of the measure to be used to describe distance between reporter values</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="MachineLearningParameters" type="MachineLearningParameters"/>
+	<xs:complexType name="MachineLearningParameters">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:element name="SupportVectorMachineMachineLearningParameters" type="SupportVectorMachineMachineLearningParameters"/>
+	<xs:complexType name="SupportVectorMachineMachineLearningParameters">
+		<xs:complexContent>
+			<xs:extension base="SupervisedMachineLearningParameters">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="SupervisedMachineLearningResultCollection" type="SupervisedMachineLearningResultCollection"/>
+	<xs:complexType name="SupervisedMachineLearningResultCollection">
+		<xs:complexContent>
+			<xs:extension base="MachineLearningResultCollection">
+				<xs:sequence>
+					<xs:element name="supervisedMachineLearningResult" type="SupervisedMachineLearningResult" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="KMeansMachineLearningParameters" type="KMeansMachineLearningParameters"/>
+	<xs:complexType name="KMeansMachineLearningParameters">
+		<xs:complexContent>
+			<xs:extension base="UnsupervisedMachineLearningParameters">
+				<xs:sequence>
+					<xs:element name="algorithm" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>The name of the algorithm to be used to perform k-means unsupervised learning</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="LinearDiscriminantAnalysisMachineLearningParameters" type="LinearDiscriminantAnalysisMachineLearningParameters"/>
+	<xs:complexType name="LinearDiscriminantAnalysisMachineLearningParameters">
+		<xs:complexContent>
+			<xs:extension base="SupervisedMachineLearningParameters">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DiagonalLinearDiscriminantAnalysisMachineLearningParameters" type="DiagonalLinearDiscriminantAnalysisMachineLearningParameters"/>
+	<xs:complexType name="DiagonalLinearDiscriminantAnalysisMachineLearningParameters">
+		<xs:complexContent>
+			<xs:extension base="SupervisedMachineLearningParameters">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="QuadraticDscriminantAnalysisMachineLearningParameters" type="QuadraticDscriminantAnalysisMachineLearningParameters"/>
+	<xs:complexType name="QuadraticDscriminantAnalysisMachineLearningParameters">
+		<xs:complexContent>
+			<xs:extension base="SupervisedMachineLearningParameters">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="NaiveBayesMachineLearningParameters" type="NaiveBayesMachineLearningParameters"/>
+	<xs:complexType name="NaiveBayesMachineLearningParameters">
+		<xs:complexContent>
+			<xs:extension base="SupervisedMachineLearningParameters">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="SupervisedMachineLearningResult" type="SupervisedMachineLearningResult"/>
+	<xs:complexType name="SupervisedMachineLearningResult">
+		<xs:complexContent>
+			<xs:extension base="SupervisedMachineLearningSampleAnnotation">
+				<xs:sequence>
+					<xs:element name="predictedClassification" type="gov.nih.nci.caarray.domain.project:FactorValue"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="UnsupervisedMachineLearningResult" type="UnsupervisedMachineLearningResult"/>
+	<xs:complexType name="UnsupervisedMachineLearningResult">
+		<xs:complexContent>
+			<xs:extension base="org.bioconductor.cagrid.data:SampleAnnotation">
+				<xs:sequence>
+					<xs:element name="neighboringPartition" type="xs:string"/>
+					<xs:element name="predictedPartition" type="xs:string"/>
+					<xs:element name="silhouetteWidth" type="xs:double"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

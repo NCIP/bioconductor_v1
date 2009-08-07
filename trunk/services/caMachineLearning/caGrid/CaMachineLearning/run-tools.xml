@@ -1,0 +1,13 @@
+<project name="run-tools file" basedir="." default="runClient">
+     <target name="runClient" depends="checkGlobus, defineClasspaths" description="Run the sample Client">
+<!--        <property name="service.url" value="http://localhost:8080/wsrf/services/cagrid/CaMachineLearning" /> -->
+	<property name="service.url" value="http://cabig.bioconductor.org:8080/wsrf/services/cagrid/CaMachineLearning" /> 
+        <property name="runclasspath" refid="run.classpath"/>
+        <echo message="Connecting to service: ${service.url}" />
+        <java failonerror="true" classname="org.bioconductor.packages.caMachineLearning.client.CaMachineLearningClient" classpathref="run.classpath" fork="yes">
+            <jvmarg value="-DGLOBUS_LOCATION=${ext.globus.dir}" />
+            <arg value="-url" />
+            <arg value="${service.url}" />
+        </java>
+    </target>
+</project>
