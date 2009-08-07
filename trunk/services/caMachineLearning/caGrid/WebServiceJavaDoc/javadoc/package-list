@@ -1,5 +1,10 @@
 org.bioconductor.packages.caMachineLearning.client
 org.bioconductor.packages.caMachineLearning.common
+org.bioconductor.packages.caMachineLearning.context.client
+org.bioconductor.packages.caMachineLearning.context.common
+org.bioconductor.packages.caMachineLearning.context.service
+org.bioconductor.packages.caMachineLearning.context.service.globus
+org.bioconductor.packages.caMachineLearning.context.service.globus.resource
 org.bioconductor.packages.caMachineLearning.service
 org.bioconductor.packages.caMachineLearning.service.globus
 org.bioconductor.packages.caMachineLearning.service.globus.resource
