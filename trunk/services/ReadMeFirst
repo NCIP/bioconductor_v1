@@ -1,5 +1,10 @@
 *** ATTENTION: Please be aware that Introduce 1.2 was used to create and modify services.***
 
+** 
+  To avoid multiple duplications of jar files in services lib directory, those jar files are moved into Common/lib directory
+**
+
+
 if checking out from svn, directory path structure should be similar to this:
 
 .../bioconductor/trunk/services/
@@ -13,3 +18,5 @@ if checking out from svn, directory path structure should be similar to this:
 ** Common directory which contains jars needed by services and SHOULD BE COPIED to service project lib directory FIRST before doing anything else to a service.  To do so:
        - Grab build.xml
        - run: ant copyLibs -DcagridProj=path_to_project as shown above (for example: ant copyLibs -DcagridProj=caDNAcopy/caGrid/CaDNAcopy)
+Or: 
+       - Simply copy all jar files under Common/lib to a service lib directory
