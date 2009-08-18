@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:statefulservices="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"
+		   xmlns:rservices="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices"
+		   xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/03/addressing"
+		   targetNamespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices" >
+	
+	<xs:import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices"
+	           schemaLocation="../RServices/org.bioconductor.cagrid.rservices.xsd"/>
+	<xs:import namespace="http://schemas.xmlsoap.org/ws/2004/03/addressing" 
+	           schemaLocation="../ws/addressing/WS-Addressing.xsd"/>
+	
+			   
+	<xs:element name="SessionEndpoint" type="statefulservices:SessionEndpoint"/>
+	<xs:complexType name="SessionEndpoint">
+		<xs:sequence>
+			<xs:element name="identifier" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Status" type="statefulservices:Status"/>
+	<xs:complexType name="Status">
+		<xs:sequence>
+			<xs:element name="description" type="xs:string"/>
+		</xs:sequence>
+		
+		<xs:attribute name="State">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+				<xs:enumeration value="SESSION_INITIATED" />
+				<xs:enumeration value="FILE_UPLOAD_AVAILABLE" />
+				<xs:enumeration value="FILE_UPLOAD_COMPLETE" />	
+				<xs:enumeration value="OPERATION_IN_PROGRESS" />	
+				<xs:enumeration value="RESULT_AVAILABLE" />	
+				<xs:enumeration value="FILE_DOWNLOAD_COMPLETE" />	
+				<xs:enumeration value="FILE_DOWNLOAD_AVAILABLE" />	
+				<xs:enumeration value="FILE_TRANSFER_IN_PROCESS" />	
+				<xs:enumeration value="FILE_TRANSFER_COMPLETE" />
+				<xs:enumeration value="OBJECT_TRANSFER_IN_PROCESS" />
+				<xs:enumeration value="OBJECT_TRANSFER_COMPLETE" />
+				<xs:enumeration value="IDLE" />	
+				<xs:enumeration value="ERROR" />	
+			  </xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>		
+	</xs:complexType>
+	
+	<xs:element name="ErrorStatus" type="statefulservices:ErrorStatus"/>
+	<xs:complexType name="ErrorStatus">
+		<xs:complexContent>
+			<xs:extension base="statefulservices:Status">
+				<xs:sequence>
+					<xs:element name="errorDescription" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="CaGridFileReferences" type="statefulservices:CaGridFileReferences"/>
+	<xs:complexType name="CaGridFileReferences">
+		<xs:sequence>
+			<xs:element name="cagridFileReferenceCollection" type="statefulservices:CaGridFileReference" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="CaGridFileReference" type="statefulservices:CaGridFileReference"/>
+	<xs:complexType name="CaGridFileReference">
+		<xs:complexContent>
+			<xs:extension base="rservices:FileReference">
+				<xs:sequence>
+					<xs:element name="endpointReference" type="wsa:EndpointReferenceType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="CaGridObjectReference" type="statefulservices:CaGridObjectReference"/>
+	<xs:complexType name="CaGridObjectReference">
+		<xs:sequence>
+			<xs:element name="endpointReference" type="wsa:EndpointReferenceType" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
