@@ -1,6 +1,6 @@
 caGeneSetAnalysis Testing Log
 
-Below is a summary of what I've done to test the caGeneFilter service.  Each test is in the format of:
+Below is a summary of what I've done to test the caGeneSetAnalysis service.  Each test is in the format of:
 
 <Test Title>
 Test: <Test Description>
