@@ -12,8 +12,6 @@ import java.rmi.RemoteException;
  */
 public interface CaGeneFilterServiceI {
 
-  public java.lang.String getRpackageSessionInfo() throws RemoteException ;
-
   public org.oasis.wsrf.properties.GetMultipleResourcePropertiesResponse getMultipleResourceProperties(org.oasis.wsrf.properties.GetMultipleResourceProperties_Element params) throws RemoteException ;
 
   public org.oasis.wsrf.properties.GetResourcePropertyResponse getResourceProperty(javax.xml.namespace.QName params) throws RemoteException ;
@@ -24,11 +22,17 @@ public interface CaGeneFilterServiceI {
 
   public org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection filter(org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection singleChannelExpressionDataCollection,org.bioconductor.cagrid.cagenefilter.Filter filter) throws RemoteException ;
 
-  public org.bioconductor.cagrid.statefulservices.SessionEndpoint createFileRecodeSession() throws RemoteException ;
+  public void invokeSpotQualityRecode(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier,org.bioconductor.cagrid.cagenefilter.SpotQualityRecode spotQualityRecode) throws RemoteException ;
 
-  public org.bioconductor.cagrid.data.ManufacturerFileReferences getUploadManufacturerFileReferences(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint,org.bioconductor.cagrid.rservices.FileReferences fileReferences) throws RemoteException ;
+  public java.lang.String getRpackageSessionInfo() throws RemoteException ;
 
-  public org.bioconductor.cagrid.data.TwoChannelExpressionDataCollection fileRecode(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint,org.bioconductor.cagrid.cagenefilter.SpotQualityRecode spotQualityRecode) throws RemoteException ;
+  public void invokeFilter(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier,org.bioconductor.cagrid.cagenefilter.Filter filter) throws RemoteException ;
+
+  public void invokeRecode(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier,org.bioconductor.cagrid.cagenefilter.Recode recode) throws RemoteException ;
+
+  public org.bioconductor.cagrid.statefulservices.SessionIdentifier createCaGeneFilterSession() throws RemoteException ;
+
+  public org.bioconductor.cagrid.statefulservices.Status getStatus(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException ;
 
 }
 

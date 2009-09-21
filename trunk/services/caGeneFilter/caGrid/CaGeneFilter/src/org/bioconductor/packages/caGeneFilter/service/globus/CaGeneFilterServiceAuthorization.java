@@ -88,22 +88,32 @@ public class CaGeneFilterServiceAuthorization implements PDP {
 		
 	}
 					
-	public static void authorizeCreateFileRecodeSession() throws RemoteException {
-		
-		
-	}
-					
-	public static void authorizeGetUploadManufacturerFileReferences() throws RemoteException {
-		
-		
-	}
-					
-	public static void authorizeFileRecode() throws RemoteException {
+	public static void authorizeInvokeSpotQualityRecode() throws RemoteException {
 		
 		
 	}
 					
 	public static void authorizeGetRpackageSessionInfo() throws RemoteException {
+		
+		
+	}
+					
+	public static void authorizeInvokeFilter() throws RemoteException {
+		
+		
+	}
+					
+	public static void authorizeInvokeRecode() throws RemoteException {
+		
+		
+	}
+					
+	public static void authorizeCreateCaGeneFilterSession() throws RemoteException {
+		
+		
+	}
+					
+	public static void authorizeGetStatus() throws RemoteException {
 		
 		
 	}
@@ -163,25 +173,9 @@ public class CaGeneFilterServiceAuthorization implements PDP {
 				e.printStackTrace();
 				return false;
 			}
-		} else if(operation.getLocalPart().equals("createFileRecodeSession")){
+		} else if(operation.getLocalPart().equals("invokeSpotQualityRecode")){
 			try{
-				authorizeCreateFileRecodeSession();
-				return true;
-			} catch (Exception e){
-				e.printStackTrace();
-				return false;
-			}
-		} else if(operation.getLocalPart().equals("getUploadManufacturerFileReferences")){
-			try{
-				authorizeGetUploadManufacturerFileReferences();
-				return true;
-			} catch (Exception e){
-				e.printStackTrace();
-				return false;
-			}
-		} else if(operation.getLocalPart().equals("fileRecode")){
-			try{
-				authorizeFileRecode();
+				authorizeInvokeSpotQualityRecode();
 				return true;
 			} catch (Exception e){
 				e.printStackTrace();
@@ -190,6 +184,38 @@ public class CaGeneFilterServiceAuthorization implements PDP {
 		} else if(operation.getLocalPart().equals("getRpackageSessionInfo")){
 			try{
 				authorizeGetRpackageSessionInfo();
+				return true;
+			} catch (Exception e){
+				e.printStackTrace();
+				return false;
+			}
+		} else if(operation.getLocalPart().equals("invokeFilter")){
+			try{
+				authorizeInvokeFilter();
+				return true;
+			} catch (Exception e){
+				e.printStackTrace();
+				return false;
+			}
+		} else if(operation.getLocalPart().equals("invokeRecode")){
+			try{
+				authorizeInvokeRecode();
+				return true;
+			} catch (Exception e){
+				e.printStackTrace();
+				return false;
+			}
+		} else if(operation.getLocalPart().equals("createCaGeneFilterSession")){
+			try{
+				authorizeCreateCaGeneFilterSession();
+				return true;
+			} catch (Exception e){
+				e.printStackTrace();
+				return false;
+			}
+		} else if(operation.getLocalPart().equals("getStatus")){
+			try{
+				authorizeGetStatus();
 				return true;
 			} catch (Exception e){
 				e.printStackTrace();

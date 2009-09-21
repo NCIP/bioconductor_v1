@@ -1,8 +1,8 @@
 #Introduce Properties
-#Fri Mar 27 10:21:12 PDT 2009
+#Mon Sep 21 14:02:34 PDT 2009
 introduce.skeleton.services.list=CaGeneFilterService,CaGeneFilterServiceContext
 introduce.skeleton.extensions=cagrid_metadata,caGrid_Transfer
-introduce.skeleton.timestamp=1238173019233
+introduce.skeleton.timestamp=1251831712662
 introduce.skeleton.service.name=CaGeneFilterService
 introduce.skeleton.resource.options=main,singleton,identifiable,resourcePropertyManagement
 introduce.skeleton.destination.dir=/mnt/cpb_home/mtra2/CaGridProj/CaGeneFilter

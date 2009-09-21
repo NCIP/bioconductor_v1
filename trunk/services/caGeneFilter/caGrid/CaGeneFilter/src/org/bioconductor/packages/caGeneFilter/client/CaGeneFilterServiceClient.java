@@ -65,7 +65,10 @@ public class CaGeneFilterServiceClient extends CaGeneFilterServiceClientBase imp
 			  CaGeneFilterServiceClient client = new CaGeneFilterServiceClient(args[1]);
 			  // place client calls here if you want to use this main as a
 			  // test....
-
+			  
+			  org.bioconductor.cagrid.statefulservices.SessionIdentifier session = client.createCaGeneFilterSession();
+			  System.out.println("session service url: " + session.getServiceUrl());
+			  
 			  java.io.FileInputStream fInStream = null;
 			  java.io.ObjectInputStream objInStream = null;
 
@@ -94,49 +97,164 @@ public class CaGeneFilterServiceClient extends CaGeneFilterServiceClientBase imp
 					
 			    	org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection expressionData = 
 			    		                       CaGeneFilterHelper.convertToSingleChannelExpressionDataCollection(rjNumericMatrix);
-			    	
+*/
+				  	
+//				    String testFilePath = "/home/mtra2/TestData/annotationFilterTestFile_mini-1.txt";
+				  	String testFilePath = "/home/mtra2/TestData/affyHGU133A_annotationFilterTestFile_mini_4columns.txt";
+				  
+				  	java.io.File largeTestFile = new java.io.File(testFilePath);
+				  	org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection largeExpData = CaGeneFilterHelper.readTxt(largeTestFile);
+				  	
+				  	
+				  	org.bioconductor.packages.helper.common.HelperService helperService = new org.bioconductor.packages.helper.common.HelperService();				  	
+				  	helperService.uploadDataObject(session, largeExpData);
+/*				  	
 			    	// Testing KOverFilter Initialize the filter.
 			        double minimumValue = 200.0d;
 			        int minimumElementNumber = 5;
 			        org.bioconductor.cagrid.cagenefilter.Filter filter = new org.bioconductor.cagrid.cagenefilter.KOverAFilter(minimumElementNumber, minimumValue);
-			        org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection returnCollection = client.filter(expressionData, filter);
-			        if(returnCollection != null) {
+//			        org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection returnCollection = client.filter(largeExpData, filter);
+			        // calling invokeFilter instead of filter to do filtering.  This invokeFilter returns nothing since expecting result is also large
+			        // due to large input object
+			        client.invokeFilter(session, filter);
+			        // using HelperService to get result
+			        Object returnedObj = helperService.getResultObject(args[1], session);
+			        org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection returnSingleChannelExpData = 
+			        	(org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection)returnedObj;
+			        if(returnSingleChannelExpData != null) {
 			        	System.out.println("Got return result... with: ");
-			        	System.out.println("reporter name size: " + returnCollection.getReporterNames().length);
-			        	System.out.println("sample size: " + returnCollection.getExpressionDataCollection().length);
-			        	System.out.println("A sample of sample value at index 1: ");
-			        	double[] values = returnCollection.getExpressionDataCollection(1).getReporterValues().getValues();
+			        	System.out.println("reporter name size: " + returnSingleChannelExpData.getReporterNames().length);
+			        	System.out.println("sample size: " + returnSingleChannelExpData.getExpressionDataCollection().length);
+			        	System.out.println("A sample of sample value at index 0: ");
+			        	double[] values = returnSingleChannelExpData.getExpressionDataCollection(0).getReporterValues().getValues();
 			        	for(double value : values ) {
 			        		System.out.print(value + " ");
-			        	}
+			        	}	
 			        	
+			        	System.out.println("samle name at index 1: " + returnSingleChannelExpData.getExpressionDataCollection(0).getSampleName());
 			        }
+*/
+/*			        
+			        // Testing with Variance filter
+			        System.out.println("Testing with Variance filter:");
+			        double minimumVariance = 100.0d;
+					filter = new org.bioconductor.cagrid.cagenefilter.VarianceFilter(minimumVariance);
+					client.invokeFilter(session, filter);
+			        // using HelperService to get result
+			        returnedObj = helperService.getResultObject(args[1], session);
+			        returnSingleChannelExpData = (org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection)returnedObj;
+			        if(returnSingleChannelExpData != null) {
+			        	System.out.println("Got return result... with: ");
+			        	System.out.println("reporter name size: " + returnSingleChannelExpData.getReporterNames().length);
+			        	System.out.println("sample size: " + returnSingleChannelExpData.getExpressionDataCollection().length);
+			        	System.out.println("A sample of sample value at index 1: ");
+			        	double[] values = returnSingleChannelExpData.getExpressionDataCollection(1).getReporterValues().getValues();
+			        	for(double value : values ) {
+			        		System.out.print(value + " ");
+			        	}			        	
+			        }
+			        
+			        
+			        // Different file test for GO and Entrez
+			        testFilePath = "/home/mtra2/TestData/affyData.txt";
+				  	largeTestFile = new java.io.File(testFilePath);
+				  	largeExpData = CaGeneFilterHelper.readTxt(largeTestFile);
+				  	helperService.uploadDataObject(args[1], session, largeExpData);
+			        
+			        // Testing with GOFilter
+			        System.out.println("Testing with GOFilter...");
+			        String annotation = "hgu95av2";
+			        boolean GOBP = true;
+			        boolean GOCC = true;
+			        boolean GOMF = true;
+					filter = new org.bioconductor.cagrid.cagenefilter.GeneOntologyFilter(GOBP, GOCC, GOMF);
+					((org.bioconductor.cagrid.cagenefilter.AnnotationFilter)filter).setAnnotation(annotation);
+					client.invokeFilter(session, filter);
+			        // using HelperService to get result
+			        returnedObj = helperService.getResultObject(args[1], session);
+			        returnSingleChannelExpData = (org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection)returnedObj;
+			        if(returnSingleChannelExpData != null) {
+			        	System.out.println("Got return result... with: ");
+			        	System.out.println("reporter name size: " + returnSingleChannelExpData.getReporterNames().length);
+			        	System.out.println("sample size: " + returnSingleChannelExpData.getExpressionDataCollection().length);
+			        	System.out.println("A sample of sample value at index 1: ");
+			        	double[] values = returnSingleChannelExpData.getExpressionDataCollection(1).getReporterValues().getValues();
+			        	for(double value : values ) {
+			        		System.out.print(value + " ");
+			        	}	
+			        }
+*/
+
+/*
+			        // Testing with EntrezFilter
+			        // Initialize the filter.
+			        System.out.println("Testing EntrezFilter");
+			        String entresAnnotation = "hgu133a";
+
+			        org.bioconductor.cagrid.cagenefilter.Filter filter = new org.bioconductor.cagrid.cagenefilter.EntrezFilter();
+					((org.bioconductor.cagrid.cagenefilter.AnnotationFilter)filter).setAnnotation(entresAnnotation);
+					client.invokeFilter(session, filter);
+			        // using HelperService to get result
+					Object returnedObj = helperService.getResultObject(session);
+					org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection returnSingleChannelExpData = 
+												(org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection)returnedObj;
+			        if(returnSingleChannelExpData != null) {
+			        	System.out.println("Got return result... with: ");
+			        	System.out.println("reporter name size: " + returnSingleChannelExpData.getReporterNames().length);
+			        	System.out.println("sample size: " + returnSingleChannelExpData.getExpressionDataCollection().length);
+			        	System.out.println("A sample of sample value at index 1: ");
+			        	double[] values = returnSingleChannelExpData.getExpressionDataCollection(1).getReporterValues().getValues();
+			        	for(double value : values ) {
+			        		System.out.print(value + " ");
+			        	}	
+			        }
+
+*/			       
+/*			        
+			        // same SingleChannelExpressionDataCollection, try with the recode:
+			        // Initialize the recode.
+			        System.out.println("Testing Recode:");
+			        double minimumThreshold            = -8000.0d;
+			        double minimumThresholdRecodeValue = -8000.0d;
+
+					org.bioconductor.cagrid.cagenefilter.Recode recode =
+			                new org.bioconductor.cagrid.cagenefilter.MinimumThresholdRecode(minimumThreshold);
+					recode.setRecodeValue(minimumThresholdRecodeValue);
+					client.invokeRecode(session, recode);
+					// using HelperService to get result
+			        returnedObj = helperService.getResultObject(args[1], session);
+			        returnSingleChannelExpData = 
+			        	(org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection)returnedObj;
+			        if(returnSingleChannelExpData != null) {
+			        	System.out.println("Got return result... with: ");
+			        	System.out.println("reporter name size: " + returnSingleChannelExpData.getReporterNames().length);
+			        	System.out.println("sample size: " + returnSingleChannelExpData.getExpressionDataCollection().length);
+			        	System.out.println("A sample of sample value at index 1: ");
+//			        	double[] values = returnSingleChannelExpData.getExpressionDataCollection(1).getReporterValues().getValues();
+//			        	for(double value : values ) {
+//			        		System.out.print(value + " ");
+//			        	}
+			        }
+					
 */			        
 			        
 			        // Now testing with file transfer:
-/*				  
-			        String strBaseDir = "/home/mtra2/TestData/";
+				  
+			        String strBaseDir = "/home/mtra2/TestData/GPR/";
 			        
 					int size = 1;
 					String[] strFileLocArr = new String[size];
-					strFileLocArr[0] = strBaseDir + "CaArrayQualityMetrics/GPR/YeOv3.0_1_t24_vs_4_t24_5779.gpr";
+					strFileLocArr[0] = strBaseDir + "YeAv3.1_D2_vs_WT2_1484_mini.gpr";
 					
 					org.bioconductor.cagrid.rservices.FileReference[] fileRefArr =
 						               new org.bioconductor.cagrid.rservices.FileReference[size];
 					
-					fileRefArr[0] = new org.bioconductor.cagrid.rservices.FileReference("YeOv3.0_1_t24_vs_4_t24_5779", "GPR", strFileLocArr[0]);
+					fileRefArr[0] = new org.bioconductor.cagrid.rservices.FileReference("YeAv3.1_D2_vs_WT2_1484_mini", "GPR", strFileLocArr[0]);
 					
-					org.bioconductor.cagrid.rservices.FileReferences fileReferences =
-						                   new org.bioconductor.cagrid.rservices.FileReferences(fileRefArr);
-					
-					org.bioconductor.cagrid.statefulservices.SessionEndpoint caGeneFilterSessionEP = client.createFileRecodeSession();
-					org.bioconductor.cagrid.data.ManufacturerFileReferences manFileRefs = 
-						                              client.getUploadManufacturerFileReferences(caGeneFilterSessionEP, fileReferences);
-					
-					System.out.println("REturn: " + manFileRefs.getCagridFileReferenceCollection().length);
-					System.out.println("REturn: " + manFileRefs.getCagridFileReferenceCollection()[0].getUrl());
-					System.out.println("REturn: " + manFileRefs.getCagridFileReferenceCollection()[0].getLocalName());
-					CaGeneFilterHelper.uploadFiles(manFileRefs);
+					org.bioconductor.cagrid.rservices.FileReferenceCollection fileRefCollection =
+						                   new org.bioconductor.cagrid.rservices.FileReferenceCollection(fileRefArr);
+																				
+					helperService.uploadFileReferenceCollection(session, fileRefCollection);
 					
 					String colIdentifier = "Flags";
 			        double colMinThresholdValue = -25.0d;
@@ -144,18 +262,22 @@ public class CaGeneFilterServiceClient extends CaGeneFilterServiceClientBase imp
 			        org.bioconductor.cagrid.cagenefilter.SpotQualityRecode spotQRecode = 
 			        	         new org.bioconductor.cagrid.cagenefilter.SpotQualityRecode(colIdentifier, colMinThresholdValue);
 			        spotQRecode.setRecodeValue(recodeValue);
+			        client.invokeSpotQualityRecode(session, spotQRecode);
 			        org.bioconductor.cagrid.data.TwoChannelExpressionDataCollection returnedTwoCollection = 
-			        	                                        client.fileRecode(caGeneFilterSessionEP, spotQRecode);
+			        	(org.bioconductor.cagrid.data.TwoChannelExpressionDataCollection)helperService.getResultObject(session);
 					if(returnedTwoCollection != null) {
 						System.out.println("Got return result... with: ");
 						System.out.println("reporter name size: " + returnedTwoCollection.getReporterNames().length);
 					}
-*/
+
 				  
+				  
+/*				  
 				  SessionEndpoint sessionEP = client.createFileRecodeSession();
 				  System.out.println("Successfully creating sessionEP.  Identifier: " + sessionEP.getIdentifier());
 				  String strContext = org.bioconductor.packages.caGeneFilter.common.CaGeneFilterHelper.testLookupContext(args[1], sessionEP);
 				  System.out.println("Returned: " + strContext);
+*/
 			    }
 			    catch(Exception ew) {
 			    	System.out.println("Exception at client main: " + ew.getMessage());
@@ -180,15 +302,8 @@ public class CaGeneFilterServiceClient extends CaGeneFilterServiceClientBase imp
 			System.exit(1);
 		}
 	}
-
-  public java.lang.String getRpackageSessionInfo() throws RemoteException {
-    synchronized(portTypeMutex){
-      configureStubSecurity((Stub)portType,"getRpackageSessionInfo");
-    org.bioconductor.packages.caGeneFilter.stubs.GetRpackageSessionInfoRequest params = new org.bioconductor.packages.caGeneFilter.stubs.GetRpackageSessionInfoRequest();
-    org.bioconductor.packages.caGeneFilter.stubs.GetRpackageSessionInfoResponse boxedResult = portType.getRpackageSessionInfo(params);
-    return boxedResult.getResponse();
-    }
-  }
+	
+	
 
   public org.oasis.wsrf.properties.GetMultipleResourcePropertiesResponse getMultipleResourceProperties(org.oasis.wsrf.properties.GetMultipleResourceProperties_Element params) throws RemoteException {
     synchronized(portTypeMutex){
@@ -241,42 +356,75 @@ public class CaGeneFilterServiceClient extends CaGeneFilterServiceClientBase imp
     }
   }
 
-  public org.bioconductor.cagrid.statefulservices.SessionEndpoint createFileRecodeSession() throws RemoteException {
+  public void invokeSpotQualityRecode(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier,org.bioconductor.cagrid.cagenefilter.SpotQualityRecode spotQualityRecode) throws RemoteException {
     synchronized(portTypeMutex){
-      configureStubSecurity((Stub)portType,"createFileRecodeSession");
-    org.bioconductor.packages.caGeneFilter.stubs.CreateFileRecodeSessionRequest params = new org.bioconductor.packages.caGeneFilter.stubs.CreateFileRecodeSessionRequest();
-    org.bioconductor.packages.caGeneFilter.stubs.CreateFileRecodeSessionResponse boxedResult = portType.createFileRecodeSession(params);
-    return boxedResult.getSessionEndpoint();
-    }
-  }
-
-  public org.bioconductor.cagrid.data.ManufacturerFileReferences getUploadManufacturerFileReferences(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint,org.bioconductor.cagrid.rservices.FileReferences fileReferences) throws RemoteException {
-    synchronized(portTypeMutex){
-      configureStubSecurity((Stub)portType,"getUploadManufacturerFileReferences");
-    org.bioconductor.packages.caGeneFilter.stubs.GetUploadManufacturerFileReferencesRequest params = new org.bioconductor.packages.caGeneFilter.stubs.GetUploadManufacturerFileReferencesRequest();
-    org.bioconductor.packages.caGeneFilter.stubs.GetUploadManufacturerFileReferencesRequestSessionEndpoint sessionEndpointContainer = new org.bioconductor.packages.caGeneFilter.stubs.GetUploadManufacturerFileReferencesRequestSessionEndpoint();
-    sessionEndpointContainer.setSessionEndpoint(sessionEndpoint);
-    params.setSessionEndpoint(sessionEndpointContainer);
-    org.bioconductor.packages.caGeneFilter.stubs.GetUploadManufacturerFileReferencesRequestFileReferences fileReferencesContainer = new org.bioconductor.packages.caGeneFilter.stubs.GetUploadManufacturerFileReferencesRequestFileReferences();
-    fileReferencesContainer.setFileReferences(fileReferences);
-    params.setFileReferences(fileReferencesContainer);
-    org.bioconductor.packages.caGeneFilter.stubs.GetUploadManufacturerFileReferencesResponse boxedResult = portType.getUploadManufacturerFileReferences(params);
-    return boxedResult.getManufacturerFileReferences();
-    }
-  }
-
-  public org.bioconductor.cagrid.data.TwoChannelExpressionDataCollection fileRecode(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint,org.bioconductor.cagrid.cagenefilter.SpotQualityRecode spotQualityRecode) throws RemoteException {
-    synchronized(portTypeMutex){
-      configureStubSecurity((Stub)portType,"fileRecode");
-    org.bioconductor.packages.caGeneFilter.stubs.FileRecodeRequest params = new org.bioconductor.packages.caGeneFilter.stubs.FileRecodeRequest();
-    org.bioconductor.packages.caGeneFilter.stubs.FileRecodeRequestSessionEndpoint sessionEndpointContainer = new org.bioconductor.packages.caGeneFilter.stubs.FileRecodeRequestSessionEndpoint();
-    sessionEndpointContainer.setSessionEndpoint(sessionEndpoint);
-    params.setSessionEndpoint(sessionEndpointContainer);
-    org.bioconductor.packages.caGeneFilter.stubs.FileRecodeRequestSpotQualityRecode spotQualityRecodeContainer = new org.bioconductor.packages.caGeneFilter.stubs.FileRecodeRequestSpotQualityRecode();
+      configureStubSecurity((Stub)portType,"invokeSpotQualityRecode");
+    org.bioconductor.packages.caGeneFilter.stubs.InvokeSpotQualityRecodeRequest params = new org.bioconductor.packages.caGeneFilter.stubs.InvokeSpotQualityRecodeRequest();
+    org.bioconductor.packages.caGeneFilter.stubs.InvokeSpotQualityRecodeRequestSessionIdentifier sessionIdentifierContainer = new org.bioconductor.packages.caGeneFilter.stubs.InvokeSpotQualityRecodeRequestSessionIdentifier();
+    sessionIdentifierContainer.setSessionIdentifier(sessionIdentifier);
+    params.setSessionIdentifier(sessionIdentifierContainer);
+    org.bioconductor.packages.caGeneFilter.stubs.InvokeSpotQualityRecodeRequestSpotQualityRecode spotQualityRecodeContainer = new org.bioconductor.packages.caGeneFilter.stubs.InvokeSpotQualityRecodeRequestSpotQualityRecode();
     spotQualityRecodeContainer.setSpotQualityRecode(spotQualityRecode);
     params.setSpotQualityRecode(spotQualityRecodeContainer);
-    org.bioconductor.packages.caGeneFilter.stubs.FileRecodeResponse boxedResult = portType.fileRecode(params);
-    return boxedResult.getTwoChannelExpressionDataCollection();
+    org.bioconductor.packages.caGeneFilter.stubs.InvokeSpotQualityRecodeResponse boxedResult = portType.invokeSpotQualityRecode(params);
+    }
+  }
+
+  public java.lang.String getRpackageSessionInfo() throws RemoteException {
+    synchronized(portTypeMutex){
+      configureStubSecurity((Stub)portType,"getRpackageSessionInfo");
+    org.bioconductor.packages.caGeneFilter.stubs.GetRpackageSessionInfoRequest params = new org.bioconductor.packages.caGeneFilter.stubs.GetRpackageSessionInfoRequest();
+    org.bioconductor.packages.caGeneFilter.stubs.GetRpackageSessionInfoResponse boxedResult = portType.getRpackageSessionInfo(params);
+    return boxedResult.getResponse();
+    }
+  }
+
+  public void invokeFilter(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier,org.bioconductor.cagrid.cagenefilter.Filter filter) throws RemoteException {
+    synchronized(portTypeMutex){
+      configureStubSecurity((Stub)portType,"invokeFilter");
+    org.bioconductor.packages.caGeneFilter.stubs.InvokeFilterRequest params = new org.bioconductor.packages.caGeneFilter.stubs.InvokeFilterRequest();
+    org.bioconductor.packages.caGeneFilter.stubs.InvokeFilterRequestSessionIdentifier sessionIdentifierContainer = new org.bioconductor.packages.caGeneFilter.stubs.InvokeFilterRequestSessionIdentifier();
+    sessionIdentifierContainer.setSessionIdentifier(sessionIdentifier);
+    params.setSessionIdentifier(sessionIdentifierContainer);
+    org.bioconductor.packages.caGeneFilter.stubs.InvokeFilterRequestFilter filterContainer = new org.bioconductor.packages.caGeneFilter.stubs.InvokeFilterRequestFilter();
+    filterContainer.setFilter(filter);
+    params.setFilter(filterContainer);
+    org.bioconductor.packages.caGeneFilter.stubs.InvokeFilterResponse boxedResult = portType.invokeFilter(params);
+    }
+  }
+
+  public void invokeRecode(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier,org.bioconductor.cagrid.cagenefilter.Recode recode) throws RemoteException {
+    synchronized(portTypeMutex){
+      configureStubSecurity((Stub)portType,"invokeRecode");
+    org.bioconductor.packages.caGeneFilter.stubs.InvokeRecodeRequest params = new org.bioconductor.packages.caGeneFilter.stubs.InvokeRecodeRequest();
+    org.bioconductor.packages.caGeneFilter.stubs.InvokeRecodeRequestSessionIdentifier sessionIdentifierContainer = new org.bioconductor.packages.caGeneFilter.stubs.InvokeRecodeRequestSessionIdentifier();
+    sessionIdentifierContainer.setSessionIdentifier(sessionIdentifier);
+    params.setSessionIdentifier(sessionIdentifierContainer);
+    org.bioconductor.packages.caGeneFilter.stubs.InvokeRecodeRequestRecode recodeContainer = new org.bioconductor.packages.caGeneFilter.stubs.InvokeRecodeRequestRecode();
+    recodeContainer.setRecode(recode);
+    params.setRecode(recodeContainer);
+    org.bioconductor.packages.caGeneFilter.stubs.InvokeRecodeResponse boxedResult = portType.invokeRecode(params);
+    }
+  }
+
+  public org.bioconductor.cagrid.statefulservices.SessionIdentifier createCaGeneFilterSession() throws RemoteException {
+    synchronized(portTypeMutex){
+      configureStubSecurity((Stub)portType,"createCaGeneFilterSession");
+    org.bioconductor.packages.caGeneFilter.stubs.CreateCaGeneFilterSessionRequest params = new org.bioconductor.packages.caGeneFilter.stubs.CreateCaGeneFilterSessionRequest();
+    org.bioconductor.packages.caGeneFilter.stubs.CreateCaGeneFilterSessionResponse boxedResult = portType.createCaGeneFilterSession(params);
+    return boxedResult.getSessionIdentifier();
+    }
+  }
+
+  public org.bioconductor.cagrid.statefulservices.Status getStatus(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException {
+    synchronized(portTypeMutex){
+      configureStubSecurity((Stub)portType,"getStatus");
+    org.bioconductor.packages.caGeneFilter.stubs.GetStatusRequest params = new org.bioconductor.packages.caGeneFilter.stubs.GetStatusRequest();
+    org.bioconductor.packages.caGeneFilter.stubs.GetStatusRequestSessionIdentifier sessionIdentifierContainer = new org.bioconductor.packages.caGeneFilter.stubs.GetStatusRequestSessionIdentifier();
+    sessionIdentifierContainer.setSessionIdentifier(sessionIdentifier);
+    params.setSessionIdentifier(sessionIdentifierContainer);
+    org.bioconductor.packages.caGeneFilter.stubs.GetStatusResponse boxedResult = portType.getStatus(params);
+    return boxedResult.getStatus();
     }
   }
 

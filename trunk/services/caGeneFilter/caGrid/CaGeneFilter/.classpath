@@ -90,5 +90,8 @@
 	<classpathentry kind="lib" path="lib/caGeneFilter.jar"/>
 	<classpathentry kind="lib" path="lib/rservices.jar"/>
 	<classpathentry kind="src" path="/HelperServiceProject"/>
+	<classpathentry kind="lib" path="/mnt/cpb_home/mtra2/CaGridProj/CaGeneFilter/lib/HelperService-client.jar"/>
+	<classpathentry kind="lib" path="/mnt/cpb_home/mtra2/CaGridProj/CaGeneFilter/lib/HelperService-common.jar"/>
+	<classpathentry kind="lib" path="/mnt/cpb_home/mtra2/CaGridProj/CaGeneFilter/lib/HelperService-stubs.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

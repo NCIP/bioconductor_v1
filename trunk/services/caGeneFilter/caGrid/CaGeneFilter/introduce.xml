@@ -1,37 +1,74 @@
 <ns1:ServiceDescription introduceVersion="1.2" xmlns:ns1="gme://gov.nih.nci.cagrid/1/Introduce">
  <ns2:Namespaces xsi:type="ns2:NamespacesType" xmlns:ns2="gme://gov.nih.nci.cagrid.introduce/1/Namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <ns2:Namespace location="./edu.georgetown.pir.xsd" namespace="gme://caArray.caBIG/2.1/edu.georgetown.pir" packageName="edu.georgetown.pir" xsi:type="ns2:NamespaceType">
-   <ns2:SchemaElement type="AdditionalOrganismName" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="Organism" xsi:type="ns2:SchemaElementType"/>
+  <ns2:Namespace location="./../RServices/org.bioconductor.cagrid.rservices.xsd" namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices" packageName="org.bioconductor.cagrid.rservices" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="FileReference" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="FileReferenceCollection" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Parameters" xsi:type="ns2:SchemaElementType"/>
   </ns2:Namespace>
-  <ns2:Namespace location="./../StatefulServices/org.bioconductor.cagrid.statefulservices.xsd" namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices" packageName="org.bioconductor.cagrid.statefulservices" xsi:type="ns2:NamespaceType">
+  <ns2:Namespace location="./org.bioconductor.cagrid.cagenefilter.xsd" namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter" packageName="org.bioconductor.cagrid.cagenefilter" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="AnnotationFilter" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="EntrezFilter" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Filter" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="GeneOntologyFilter" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="KOverAFilter" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ManufacturerFileReferenceCollection" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="MaximumThresholdRecode" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="MinimumThresholdRecode" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="MissingValueFilter" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Recode" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="SpotQualityRecode" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="VarianceFilter" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace location="./../ws/addressing/WS-Addressing.xsd" namespace="http://schemas.xmlsoap.org/ws/2004/03/addressing" packageName="addressing" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="Action" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="EndpointReference" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="FaultTo" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="From" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="MessageID" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="RelatesTo" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ReplyAfter" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ReplyTo" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="To" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace location="./org.bioconductor.cagrid.statefulservices.xsd" namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices" packageName="org.bioconductor.cagrid.statefulservices" xsi:type="ns2:NamespaceType">
    <ns2:SchemaElement type="CaGridFileReference" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="CaGridFileReferences" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="ErrorStatus" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="SessionEndpoint" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="CaGridFileReferenceCollection" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="CaGridObjectReference" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="SessionIdentifier" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="Status" xsi:type="ns2:SchemaElementType"/>
   </ns2:Namespace>
-  <ns2:Namespace location="./gov.nih.nci.caarray.domain.array.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.array" packageName="gov.nih.nci.caarray.domain.array" xsi:type="ns2:NamespaceType">
-   <ns2:SchemaElement type="AbstractDesignElement" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="AbstractProbe" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="AbstractProbeAnnotation" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="Array" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="ArrayDesign" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="ArrayDesignDetails" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="ArrayGroup" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="ExonProbeAnnotation" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="ExpressionProbeAnnotation" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="Feature" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="Gene" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="LogicalProbe" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="PhysicalProbe" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="ProbeGroup" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="SNPProbeAnnotation" xsi:type="ns2:SchemaElementType"/>
+  <ns2:Namespace location="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.vocabulary.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.vocabulary" packageName="gov.nih.nci.caarray.domain.vocabulary" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="Category" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Term" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="TermSource" xsi:type="ns2:SchemaElementType"/>
   </ns2:Namespace>
-  <ns2:Namespace location="./gov.nih.nci.caarray.domain.publication.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.publication" packageName="gov.nih.nci.caarray.domain.publication" xsi:type="ns2:NamespaceType">
-   <ns2:SchemaElement type="Publication" xsi:type="ns2:SchemaElementType"/>
+  <ns2:Namespace location="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.sample.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.sample" packageName="gov.nih.nci.caarray.domain.sample" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="AbstractBioMaterial" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="AbstractCharacteristic" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Extract" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="LabeledExtract" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="MeasurementCharacteristic" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Sample" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Source" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="TermBasedCharacteristic" xsi:type="ns2:SchemaElementType"/>
   </ns2:Namespace>
-  <ns2:Namespace location="./gov.nih.nci.caarray.domain.data.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.data" packageName="gov.nih.nci.caarray.domain.data" xsi:type="ns2:NamespaceType">
+  <ns2:Namespace location="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.project.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.project" packageName="gov.nih.nci.caarray.domain.project" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="Experiment" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ExperimentContact" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Factor" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="FactorValue" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Project" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace location="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.file.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.file" packageName="gov.nih.nci.caarray.domain.file" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="CaArrayFile" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace location="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.protocol.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.protocol" packageName="gov.nih.nci.caarray.domain.protocol" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="Parameter" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ParameterValue" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Protocol" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ProtocolApplication" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace location="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.data.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.data" packageName="gov.nih.nci.caarray.domain.data" xsi:type="ns2:NamespaceType">
    <ns2:SchemaElement type="AbstractArrayData" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="AbstractDataColumn" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="ArrayDataType" xsi:type="ns2:SchemaElementType"/>
@@ -51,92 +88,61 @@
    <ns2:SchemaElement type="ShortColumn" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="StringColumn" xsi:type="ns2:SchemaElementType"/>
   </ns2:Namespace>
-  <ns2:Namespace location="./gov.nih.nci.caarray.domain.hybridization.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.hybridization" packageName="gov.nih.nci.caarray.domain.hybridization" xsi:type="ns2:NamespaceType">
-   <ns2:SchemaElement type="Hybridization" xsi:type="ns2:SchemaElementType"/>
-  </ns2:Namespace>
-  <ns2:Namespace location="./org.bioconductor.cagrid.data.xsd" namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data" packageName="org.bioconductor.cagrid.data" xsi:type="ns2:NamespaceType">
-   <ns2:SchemaElement type="AbstractExpressionDataCollection" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="ExpressionData" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="ManufacturerFileReferences" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="SingleChannelExpressionDataCollection" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="TwoChannelExpressionDataCollection" xsi:type="ns2:SchemaElementType"/>
-  </ns2:Namespace>
-  <ns2:Namespace location="./../ws/addressing/WS-Addressing.xsd" namespace="http://schemas.xmlsoap.org/ws/2004/03/addressing" packageName="addressing" xsi:type="ns2:NamespaceType">
-   <ns2:SchemaElement type="Action" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="EndpointReference" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="FaultTo" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="From" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="MessageID" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="RelatesTo" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="ReplyAfter" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="ReplyTo" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="To" xsi:type="ns2:SchemaElementType"/>
-  </ns2:Namespace>
-  <ns2:Namespace location="./../RServices/org.bioconductor.cagrid.rservices.xsd" namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices" packageName="org.bioconductor.cagrid.rservices" xsi:type="ns2:NamespaceType">
-   <ns2:SchemaElement type="FileReference" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="FileReferences" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="Parameters" xsi:type="ns2:SchemaElementType"/>
-  </ns2:Namespace>
-  <ns2:Namespace location="./gov.nih.nci.caarray.domain.sample.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.sample" packageName="gov.nih.nci.caarray.domain.sample" xsi:type="ns2:NamespaceType">
-   <ns2:SchemaElement type="AbstractBioMaterial" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="AbstractCharacteristic" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="Extract" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="LabeledExtract" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="MeasurementCharacteristic" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="Sample" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="Source" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="TermBasedCharacteristic" xsi:type="ns2:SchemaElementType"/>
-  </ns2:Namespace>
-  <ns2:Namespace location="./gov.nih.nci.caarray.domain.project.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.project" packageName="gov.nih.nci.caarray.domain.project" xsi:type="ns2:NamespaceType">
-   <ns2:SchemaElement type="Experiment" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="ExperimentContact" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="Factor" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="FactorValue" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="Project" xsi:type="ns2:SchemaElementType"/>
-  </ns2:Namespace>
-  <ns2:Namespace location="./gov.nih.nci.caarray.domain.file.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.file" packageName="gov.nih.nci.caarray.domain.file" xsi:type="ns2:NamespaceType">
-   <ns2:SchemaElement type="CaArrayFile" xsi:type="ns2:SchemaElementType"/>
-  </ns2:Namespace>
-  <ns2:Namespace location="./gov.nih.nci.cabio.domain.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.cabio.domain" packageName="gov.nih.nci.cabio.domain" xsi:type="ns2:NamespaceType">
+  <ns2:Namespace location="./../NIH_NCI_Types/gov.nih.nci.cabio.domain.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.cabio.domain" packageName="gov.nih.nci.cabio.domain" xsi:type="ns2:NamespaceType">
    <ns2:SchemaElement type="ArrayReporter" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="ExonArrayReporter" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="ExpressionArrayReporter" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="SNPArrayReporter" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="TranscriptArrayReporter" xsi:type="ns2:SchemaElementType"/>
   </ns2:Namespace>
-  <ns2:Namespace location="./gov.nih.nci.caarray.domain.contact.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.contact" packageName="gov.nih.nci.caarray.domain.contact" xsi:type="ns2:NamespaceType">
+  <ns2:Namespace location="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.hybridization.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.hybridization" packageName="gov.nih.nci.caarray.domain.hybridization" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="Hybridization" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace location="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.contact.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.contact" packageName="gov.nih.nci.caarray.domain.contact" xsi:type="ns2:NamespaceType">
    <ns2:SchemaElement type="AbstractContact" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="Address" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="Organization" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="Person" xsi:type="ns2:SchemaElementType"/>
   </ns2:Namespace>
-  <ns2:Namespace location="./gov.nih.nci.caarray.domain.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain" packageName="gov.nih.nci.caarray.domain" xsi:type="ns2:NamespaceType">
+  <ns2:Namespace location="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.array.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.array" packageName="gov.nih.nci.caarray.domain.array" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="AbstractDesignElement" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="AbstractProbe" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="AbstractProbeAnnotation" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Array" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ArrayDesign" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ArrayDesignDetails" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ArrayGroup" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ExonProbeAnnotation" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ExpressionProbeAnnotation" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Feature" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Gene" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="LogicalProbe" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PhysicalProbe" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ProbeGroup" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="SNPProbeAnnotation" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace location="./../NIH_NCI_Types/edu.georgetown.pir.xsd" namespace="gme://caArray.caBIG/2.1/edu.georgetown.pir" packageName="edu.georgetown.pir" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="AdditionalOrganismName" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Organism" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace location="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.publication.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.publication" packageName="gov.nih.nci.caarray.domain.publication" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="Publication" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace location="./org.bioconductor.cagrid.data.xsd" namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data" packageName="org.bioconductor.cagrid.data" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="AbstractExpressionDataCollection" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="ExpressionData" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PhenotypeData" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="PhenotypeDataCollection" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="SampleAnnotation" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="SingleChannelExpressionDataCollection" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="TopTable" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="TopTableCollection" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="TopTableEntry" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="TwoChannelExpressionDataCollection" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace location="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain" packageName="gov.nih.nci.caarray.domain" xsi:type="ns2:NamespaceType">
    <ns2:SchemaElement type="AbstractCaArrayEntity" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="AbstractCaArrayObject" xsi:type="ns2:SchemaElementType"/>
-  </ns2:Namespace>
-  <ns2:Namespace location="./gov.nih.nci.caarray.domain.vocabulary.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.vocabulary" packageName="gov.nih.nci.caarray.domain.vocabulary" xsi:type="ns2:NamespaceType">
-   <ns2:SchemaElement type="Category" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="Term" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="TermSource" xsi:type="ns2:SchemaElementType"/>
-  </ns2:Namespace>
-  <ns2:Namespace location="./gov.nih.nci.caarray.domain.protocol.xsd" namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.protocol" packageName="gov.nih.nci.caarray.domain.protocol" xsi:type="ns2:NamespaceType">
-   <ns2:SchemaElement type="Parameter" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="ParameterValue" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="Protocol" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="ProtocolApplication" xsi:type="ns2:SchemaElementType"/>
-  </ns2:Namespace>
-  <ns2:Namespace location="./org.bioconductor.cagrid.cagenefilter.xsd" namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter" packageName="org.bioconductor.cagrid.cagenefilter" xsi:type="ns2:NamespaceType">
-   <ns2:SchemaElement type="AnnotationFilter" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="EntrezFilter" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="Filter" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="GeneOntologyFilter" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="KOverAFilter" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="MaximumThresholdRecode" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="MinimumThresholdRecode" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="MissingValueFilter" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="Recode" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="SpotQualityRecode" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="VarianceFilter" xsi:type="ns2:SchemaElementType"/>
   </ns2:Namespace>
   <ns2:Namespace namespace="http://www.w3.org/2001/XMLSchema" xsi:type="ns2:NamespaceType">
    <ns2:SchemaElement type="anySimpleType" xsi:type="ns2:SchemaElementType"/>
@@ -265,25 +271,12 @@
      <ns4:Output qName="ns15:SingleChannelExpressionDataCollection" description="" isArray="false" xmlns:ns15="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"/>
      <ns4:Exceptions/>
     </ns4:Method>
-    <ns4:Method description="" isImported="false" isProvided="false" name="createFileRecodeSession" xsi:type="ns4:MethodType">
-     <ns4:Inputs/>
-     <ns4:Output qName="ns16:SessionEndpoint" description="" isArray="false" xmlns:ns16="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
-     <ns4:Exceptions/>
-    </ns4:Method>
-    <ns4:Method description="" isImported="false" isProvided="false" name="getUploadManufacturerFileReferences" xsi:type="ns4:MethodType">
+    <ns4:Method description="" isImported="false" isProvided="false" name="invokeSpotQualityRecode" xsi:type="ns4:MethodType">
      <ns4:Inputs>
-      <ns4:Input qName="ns17:SessionEndpoint" description="" isArray="false" name="sessionEndpoint" xmlns:ns17="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
-      <ns4:Input qName="ns18:FileReferences" description="" isArray="false" name="fileReferences" xmlns:ns18="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices"/>
+      <ns4:Input qName="ns16:SessionIdentifier" description="" isArray="false" name="sessionIdentifier" xmlns:ns16="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
+      <ns4:Input qName="ns17:SpotQualityRecode" description="" isArray="false" name="spotQualityRecode" xmlns:ns17="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter"/>
      </ns4:Inputs>
-     <ns4:Output qName="ns19:ManufacturerFileReferences" description="" isArray="false" xmlns:ns19="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"/>
-     <ns4:Exceptions/>
-    </ns4:Method>
-    <ns4:Method description="" isImported="false" isProvided="false" name="fileRecode" xsi:type="ns4:MethodType">
-     <ns4:Inputs>
-      <ns4:Input qName="ns20:SessionEndpoint" description="" isArray="false" name="sessionEndpoint" xmlns:ns20="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
-      <ns4:Input qName="ns21:SpotQualityRecode" description="" isArray="false" name="spotQualityRecode" xmlns:ns21="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter"/>
-     </ns4:Inputs>
-     <ns4:Output qName="ns22:TwoChannelExpressionDataCollection" description="" isArray="false" xmlns:ns22="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"/>
+     <ns4:Output qName="void" description="" isArray="false"/>
      <ns4:Exceptions/>
     </ns4:Method>
     <ns4:Method description="" isImported="false" isProvided="false" name="getRpackageSessionInfo" xsi:type="ns4:MethodType">
@@ -291,10 +284,38 @@
      <ns4:Output qName="xsd:string" description="" isArray="false" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
      <ns4:Exceptions/>
     </ns4:Method>
+    <ns4:Method description="" isImported="false" isProvided="false" name="invokeFilter" xsi:type="ns4:MethodType">
+     <ns4:Inputs>
+      <ns4:Input qName="ns18:SessionIdentifier" description="" isArray="false" name="sessionIdentifier" xmlns:ns18="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
+      <ns4:Input qName="ns19:Filter" description="" isArray="false" name="filter" xmlns:ns19="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter"/>
+     </ns4:Inputs>
+     <ns4:Output qName="void" description="" isArray="false"/>
+     <ns4:Exceptions/>
+    </ns4:Method>
+    <ns4:Method description="" isImported="false" isProvided="false" name="invokeRecode" xsi:type="ns4:MethodType">
+     <ns4:Inputs>
+      <ns4:Input qName="ns20:SessionIdentifier" description="" isArray="false" name="sessionIdentifier" xmlns:ns20="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
+      <ns4:Input qName="ns21:Recode" description="" isArray="false" name="recode" xmlns:ns21="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter"/>
+     </ns4:Inputs>
+     <ns4:Output qName="void" description="" isArray="false"/>
+     <ns4:Exceptions/>
+    </ns4:Method>
+    <ns4:Method description="" isImported="false" isProvided="false" name="createCaGeneFilterSession" xsi:type="ns4:MethodType">
+     <ns4:Inputs/>
+     <ns4:Output qName="ns22:SessionIdentifier" description="" isArray="false" xmlns:ns22="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
+     <ns4:Exceptions/>
+    </ns4:Method>
+    <ns4:Method description="" isImported="false" isProvided="false" name="getStatus" xsi:type="ns4:MethodType">
+     <ns4:Inputs>
+      <ns4:Input qName="ns23:SessionIdentifier" description="" isArray="false" name="sessionIdentifier" xmlns:ns23="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
+     </ns4:Inputs>
+     <ns4:Output qName="ns24:Status" description="" isArray="false" xmlns:ns24="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
+     <ns4:Exceptions/>
+    </ns4:Method>
    </ns4:Methods>
-   <ns23:ResourcePropertiesList xsi:type="ns23:ResourcePropertiesListType" xmlns:ns23="gme://gov.nih.nci.cagrid.introduce/1/Resources">
-    <ns23:ResourceProperty qName="ns24:ServiceMetadata" fileLocation="serviceMetadata.xml" populateFromFile="true" register="true" xsi:type="ns23:ResourcePropertyType" xmlns:ns24="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata"/>
-   </ns23:ResourcePropertiesList>
+   <ns25:ResourcePropertiesList xsi:type="ns25:ResourcePropertiesListType" xmlns:ns25="gme://gov.nih.nci.cagrid.introduce/1/Resources">
+    <ns25:ResourceProperty qName="ns26:ServiceMetadata" fileLocation="serviceMetadata.xml" populateFromFile="true" register="true" xsi:type="ns25:ResourcePropertyType" xmlns:ns26="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata"/>
+   </ns25:ResourcePropertiesList>
    <ns3:ResourceFrameworkOptions xsi:type="ns3:ResourceFrameworkOptions">
     <ns3:Main xsi:type="ns3:Main"/>
     <ns3:Singleton xsi:type="ns3:Singleton"/>
@@ -303,33 +324,33 @@
    </ns3:ResourceFrameworkOptions>
   </ns3:Service>
   <ns3:Service name="CaGeneFilterServiceContext" namespace="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/Context" packageName="org.bioconductor.packages.caGeneFilter.context" xsi:type="ns3:ServiceType">
-   <ns25:Methods xsi:type="ns25:MethodsType" xmlns:ns25="gme://gov.nih.nci.cagrid.introduce/1/Methods">
-    <ns25:Method isImported="true" isProvided="true" name="getServiceSecurityMetadata" xsi:type="ns25:MethodType">
-     <ns25:Output qName="ns26:ServiceSecurityMetadata" isArray="false" isClientHandle="false" xmlns:ns26="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security"/>
-     <ns27:MethodSecurity xsi:type="ns27:MethodSecurity" xmlns:ns27="gme://gov.nih.nci.cagrid.introduce/1/Security">
-      <ns27:SecuritySetting xsi:type="ns27:SecuritySetting">None</ns27:SecuritySetting>
-      <ns27:MethodAuthorization xsi:type="ns27:MethodAuthorization">
-       <ns27:NoAuthorization xsi:type="ns27:NoAuthorization"/>
-      </ns27:MethodAuthorization>
-     </ns27:MethodSecurity>
-     <ns25:ImportInformation namespace="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity" packageName="gov.nih.nci.cagrid.introduce.security.stubs" portTypeName="ServiceSecurityPortType" wsdlFile="ServiceSecurity.wsdl"/>
-     <ns25:ProviderInformation providerClass="gov.nih.nci.cagrid.introduce.security.service.globus.ServiceSecurityProviderImpl"/>
-    </ns25:Method>
-    <ns25:Method isImported="true" isProvided="true" name="Destroy" xsi:type="ns25:MethodType">
-     <ns25:Output qName="void" isArray="false"/>
-     <ns25:ImportInformation fromIntroduce="false" inputMessage="ns28:DestroyRequest" namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl" outputMessage="ns28:DestroyResponse" packageName="org.oasis.wsrf.lifetime" portTypeName="ImmediateResourceTermination" wsdlFile="../wsrf/lifetime/WS-ResourceLifetime.wsdl" xmlns:ns28="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl"/>
-     <ns25:ProviderInformation providerClass="DestroyProvider"/>
-    </ns25:Method>
-    <ns25:Method isImported="true" isProvided="true" name="SetTerminationTime" xsi:type="ns25:MethodType">
-     <ns25:Output qName="void" isArray="false"/>
-     <ns25:ImportInformation fromIntroduce="false" inputMessage="ns29:SetTerminationTimeRequest" namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl" outputMessage="ns29:SetTerminationTimeResponse" packageName="org.oasis.wsrf.lifetime" portTypeName="ScheduledResourceTermination" wsdlFile="../wsrf/lifetime/WS-ResourceLifetime.wsdl" xmlns:ns29="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl"/>
-     <ns25:ProviderInformation providerClass="SetTerminationTimeProvider"/>
-    </ns25:Method>
-   </ns25:Methods>
-   <ns30:ResourcePropertiesList xsi:type="ns30:ResourcePropertiesListType" xmlns:ns30="gme://gov.nih.nci.cagrid.introduce/1/Resources">
-    <ns30:ResourceProperty qName="ns31:CurrentTime" populateFromFile="false" register="false" xsi:type="ns30:ResourcePropertyType" xmlns:ns31="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd"/>
-    <ns30:ResourceProperty qName="ns32:TerminationTime" populateFromFile="false" register="false" xsi:type="ns30:ResourcePropertyType" xmlns:ns32="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd"/>
-   </ns30:ResourcePropertiesList>
+   <ns27:Methods xsi:type="ns27:MethodsType" xmlns:ns27="gme://gov.nih.nci.cagrid.introduce/1/Methods">
+    <ns27:Method isImported="true" isProvided="true" name="getServiceSecurityMetadata" xsi:type="ns27:MethodType">
+     <ns27:Output qName="ns28:ServiceSecurityMetadata" isArray="false" isClientHandle="false" xmlns:ns28="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security"/>
+     <ns29:MethodSecurity xsi:type="ns29:MethodSecurity" xmlns:ns29="gme://gov.nih.nci.cagrid.introduce/1/Security">
+      <ns29:SecuritySetting xsi:type="ns29:SecuritySetting">None</ns29:SecuritySetting>
+      <ns29:MethodAuthorization xsi:type="ns29:MethodAuthorization">
+       <ns29:NoAuthorization xsi:type="ns29:NoAuthorization"/>
+      </ns29:MethodAuthorization>
+     </ns29:MethodSecurity>
+     <ns27:ImportInformation namespace="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity" packageName="gov.nih.nci.cagrid.introduce.security.stubs" portTypeName="ServiceSecurityPortType" wsdlFile="ServiceSecurity.wsdl"/>
+     <ns27:ProviderInformation providerClass="gov.nih.nci.cagrid.introduce.security.service.globus.ServiceSecurityProviderImpl"/>
+    </ns27:Method>
+    <ns27:Method isImported="true" isProvided="true" name="Destroy" xsi:type="ns27:MethodType">
+     <ns27:Output qName="void" isArray="false"/>
+     <ns27:ImportInformation fromIntroduce="false" inputMessage="ns30:DestroyRequest" namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl" outputMessage="ns30:DestroyResponse" packageName="org.oasis.wsrf.lifetime" portTypeName="ImmediateResourceTermination" wsdlFile="../wsrf/lifetime/WS-ResourceLifetime.wsdl" xmlns:ns30="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl"/>
+     <ns27:ProviderInformation providerClass="DestroyProvider"/>
+    </ns27:Method>
+    <ns27:Method isImported="true" isProvided="true" name="SetTerminationTime" xsi:type="ns27:MethodType">
+     <ns27:Output qName="void" isArray="false"/>
+     <ns27:ImportInformation fromIntroduce="false" inputMessage="ns31:SetTerminationTimeRequest" namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl" outputMessage="ns31:SetTerminationTimeResponse" packageName="org.oasis.wsrf.lifetime" portTypeName="ScheduledResourceTermination" wsdlFile="../wsrf/lifetime/WS-ResourceLifetime.wsdl" xmlns:ns31="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl"/>
+     <ns27:ProviderInformation providerClass="SetTerminationTimeProvider"/>
+    </ns27:Method>
+   </ns27:Methods>
+   <ns32:ResourcePropertiesList xsi:type="ns32:ResourcePropertiesListType" xmlns:ns32="gme://gov.nih.nci.cagrid.introduce/1/Resources">
+    <ns32:ResourceProperty qName="ns33:CurrentTime" populateFromFile="false" register="false" xsi:type="ns32:ResourcePropertyType" xmlns:ns33="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd"/>
+    <ns32:ResourceProperty qName="ns34:TerminationTime" populateFromFile="false" register="false" xsi:type="ns32:ResourcePropertyType" xmlns:ns34="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd"/>
+   </ns32:ResourcePropertiesList>
    <ns3:description xsi:type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"></ns3:description>
    <ns3:ResourceFrameworkOptions xsi:type="ns3:ResourceFrameworkOptions">
     <ns3:Lifetime xsi:type="ns3:Lifetime"/>
@@ -337,8 +358,8 @@
    </ns3:ResourceFrameworkOptions>
   </ns3:Service>
  </ns3:Services>
- <ns33:Extensions xsi:type="ns33:ExtensionsType" xmlns:ns33="gme://gov.nih.nci.cagrid.introduce/1/Extension" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <ns33:Extension name="cagrid_metadata" version="1.2" xsi:type="ns33:ExtensionType"/>
-  <ns33:Extension name="caGrid_Transfer" version="1.2" xsi:type="ns33:ExtensionType"/>
- </ns33:Extensions>
+ <ns35:Extensions xsi:type="ns35:ExtensionsType" xmlns:ns35="gme://gov.nih.nci.cagrid.introduce/1/Extension" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ns35:Extension name="cagrid_metadata" version="1.2" xsi:type="ns35:ExtensionType"/>
+  <ns35:Extension name="caGrid_Transfer" version="1.2" xsi:type="ns35:ExtensionType"/>
+ </ns35:Extensions>
 </ns1:ServiceDescription>

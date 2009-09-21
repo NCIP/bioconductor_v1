@@ -1,57 +1,107 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 		   xmlns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter" 
+		   xmlns:org.bioconductor.cagrid.rservices="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices"
 		   targetNamespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter">
 		   
+	<xs:import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices"
+	        schemaLocation="../RServices/org.bioconductor.cagrid.rservices.xsd"/>
+			
 	<xs:element name="Filter" type="Filter"/>
 	<xs:complexType name="Filter" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A predicate passed to a filter routine</xs:documentation>
+		</xs:annotation>
 		<xs:sequence/>
 	</xs:complexType>
 	<xs:element name="AnnotationFilter" type="AnnotationFilter"/>
 	<xs:complexType name="AnnotationFilter">
+		<xs:annotation>
+			<xs:documentation>A filter predicate returning true when the element can be refered to an annotation</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="Filter">
 				<xs:sequence>
-					<xs:element name="annotation" type="xs:string"/>
+					<xs:element name="annotation" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>A string naming the Bioconductor annotation package appropriate for operation of the filter</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:element name="KOverAFilter" type="KOverAFilter"/>
 	<xs:complexType name="KOverAFilter">
+		<xs:annotation>
+			<xs:documentation>A filter predicate returning true when at least K values are greater than A</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="Filter">
 				<xs:sequence>
-					<xs:element name="minimumElementNumber" type="xs:int"/>
-					<xs:element name="minimumValue" type="xs:double"/>
+					<xs:element name="minimumElementNumber" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>The minimum value 'A' above which an expression value must be</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="minimumValue" type="xs:double">
+						<xs:annotation>
+							<xs:documentation>The minimum number of samples 'K' required to have a minimum expression value</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:element name="VarianceFilter" type="VarianceFilter"/>
 	<xs:complexType name="VarianceFilter">
+		<xs:annotation>
+			<xs:documentation>A filter predicate returning true when values have more than a minimum variance</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="Filter">
 				<xs:sequence>
-					<xs:element name="minimumVariance" type="xs:double"/>
+					<xs:element name="minimumVariance" type="xs:double">
+						<xs:annotation>
+							<xs:documentation>The minimum between-sample variance required</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:element name="GeneOntologyFilter" type="GeneOntologyFilter"/>
 	<xs:complexType name="GeneOntologyFilter">
+		<xs:annotation>
+			<xs:documentation>A filter predicate returning true when the element can be annotated to particular Gene Ontology classifications</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="AnnotationFilter">
 				<xs:sequence>
-					<xs:element name="isBiologicalProcess" type="xs:boolean"/>
-					<xs:element name="isCellularCompartment" type="xs:boolean"/>
-					<xs:element name="isMolecularFunction" type="xs:boolean"/>
+					<xs:element name="isBiologicalProcess" type="xs:boolean">
+						<xs:annotation>
+							<xs:documentation>A value indicating whether reporter names must have a Gene Ontology Biological Process annotation</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="isCellularCompartment" type="xs:boolean">
+						<xs:annotation>
+							<xs:documentation>A value indicating whether reporter names must have a Gene Ontology Cellular Compartment annotation</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="isMolecularFunction" type="xs:boolean">
+						<xs:annotation>
+							<xs:documentation>A value indicating whether reporter names must have a Gene Ontology Molecular Function annotation</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:element name="EntrezFilter" type="EntrezFilter"/>
 	<xs:complexType name="EntrezFilter">
+		<xs:annotation>
+			<xs:documentation>A filter predicate returning true when the element can be annotated with ENTREZ identifiers</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="AnnotationFilter">
 				<xs:sequence/>
@@ -60,49 +110,104 @@
 	</xs:complexType>
 	<xs:element name="MissingValueFilter" type="MissingValueFilter"/>
 	<xs:complexType name="MissingValueFilter">
+		<xs:annotation>
+			<xs:documentation>A filter predicate returning true when more than  a minimum number of elements have non-missing values</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="Filter">
 				<xs:sequence>
-					<xs:element name="maximumNumberMissingValues" type="xs:int"/>
-					<xs:element name="missingValue" type="xs:double"/>
+					<xs:element name="maximumNumberMissingValues" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>The expression value used to represent missing data</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="missingValue" type="xs:double">
+						<xs:annotation>
+							<xs:documentation>The minimum number of sample expression values that must not have missing values</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:element name="Recode" type="Recode"/>
 	<xs:complexType name="Recode" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A predicate passed to a recode routine</xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="recodeValue" type="xs:double"/>
+			<xs:element name="recodeValue" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>The replacement value used during recoding</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="MinimumThresholdRecode" type="MinimumThresholdRecode"/>
 	<xs:complexType name="MinimumThresholdRecode">
+		<xs:annotation>
+			<xs:documentation>A recode predicate to replace values below a minimum value with a new value</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="Recode">
 				<xs:sequence>
-					<xs:element name="minimumThreshold" type="xs:double"/>
+					<xs:element name="minimumThreshold" type="xs:double">
+						<xs:annotation>
+							<xs:documentation>The minimum value below which expression values are recoded</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:element name="MaximumThresholdRecode" type="MaximumThresholdRecode"/>
 	<xs:complexType name="MaximumThresholdRecode">
+		<xs:annotation>
+			<xs:documentation>A recode predicate to replace values above a maximum value with a new value</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="Recode">
 				<xs:sequence>
-					<xs:element name="maximumThreshold" type="xs:double"/>
+					<xs:element name="maximumThreshold" type="xs:double">
+						<xs:annotation>
+							<xs:documentation>The maximum value above which expression values are recoded</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:element name="SpotQualityRecode" type="SpotQualityRecode"/>
 	<xs:complexType name="SpotQualityRecode">
+		<xs:annotation>
+			<xs:documentation>A recode predicate replacing values when a related value exceeds a minimum value</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="Recode">
 				<xs:sequence>
-					<xs:element name="columnIdentifier" type="xs:string"/>
-					<xs:element name="columnMinimumThresholdValue" type="xs:double"/>
+					<xs:element name="columnIdentifier" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>The column name of a manufacturer file containing information to be used determine the recode status of expression values</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="columnMinimumThresholdValue" type="xs:double">
+						<xs:annotation>
+							<xs:documentation>The minimum value of the entries in columnIdentifier below which expression values are recoded</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="ManufacturerFileReferenceCollection" type="ManufacturerFileReferenceCollection"/>
+	<xs:complexType name="ManufacturerFileReferenceCollection">
+		<xs:annotation>
+			<xs:documentation>A collection of references to microarray manufacturer data files</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="org.bioconductor.cagrid.rservices:FileReferenceCollection">
+				<xs:sequence/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>

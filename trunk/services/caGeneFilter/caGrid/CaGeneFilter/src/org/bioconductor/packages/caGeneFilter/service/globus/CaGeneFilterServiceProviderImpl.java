@@ -26,12 +26,6 @@ public class CaGeneFilterServiceProviderImpl{
 	}
 	
 
-    public org.bioconductor.packages.caGeneFilter.stubs.GetRpackageSessionInfoResponse getRpackageSessionInfo(org.bioconductor.packages.caGeneFilter.stubs.GetRpackageSessionInfoRequest params) throws RemoteException {
-    org.bioconductor.packages.caGeneFilter.stubs.GetRpackageSessionInfoResponse boxedResult = new org.bioconductor.packages.caGeneFilter.stubs.GetRpackageSessionInfoResponse();
-    boxedResult.setResponse(impl.getRpackageSessionInfo());
-    return boxedResult;
-  }
-
     public org.bioconductor.packages.caGeneFilter.stubs.RecodeResponse recode(org.bioconductor.packages.caGeneFilter.stubs.RecodeRequest params) throws RemoteException {
     org.bioconductor.packages.caGeneFilter.stubs.RecodeResponse boxedResult = new org.bioconductor.packages.caGeneFilter.stubs.RecodeResponse();
     boxedResult.setSingleChannelExpressionDataCollection(impl.recode(params.getDataCollection().getSingleChannelExpressionDataCollection(),params.getRecode().getRecode()));
@@ -44,21 +38,39 @@ public class CaGeneFilterServiceProviderImpl{
     return boxedResult;
   }
 
-    public org.bioconductor.packages.caGeneFilter.stubs.CreateFileRecodeSessionResponse createFileRecodeSession(org.bioconductor.packages.caGeneFilter.stubs.CreateFileRecodeSessionRequest params) throws RemoteException {
-    org.bioconductor.packages.caGeneFilter.stubs.CreateFileRecodeSessionResponse boxedResult = new org.bioconductor.packages.caGeneFilter.stubs.CreateFileRecodeSessionResponse();
-    boxedResult.setSessionEndpoint(impl.createFileRecodeSession());
+    public org.bioconductor.packages.caGeneFilter.stubs.InvokeSpotQualityRecodeResponse invokeSpotQualityRecode(org.bioconductor.packages.caGeneFilter.stubs.InvokeSpotQualityRecodeRequest params) throws RemoteException {
+    org.bioconductor.packages.caGeneFilter.stubs.InvokeSpotQualityRecodeResponse boxedResult = new org.bioconductor.packages.caGeneFilter.stubs.InvokeSpotQualityRecodeResponse();
+    impl.invokeSpotQualityRecode(params.getSessionIdentifier().getSessionIdentifier(),params.getSpotQualityRecode().getSpotQualityRecode());
     return boxedResult;
   }
 
-    public org.bioconductor.packages.caGeneFilter.stubs.GetUploadManufacturerFileReferencesResponse getUploadManufacturerFileReferences(org.bioconductor.packages.caGeneFilter.stubs.GetUploadManufacturerFileReferencesRequest params) throws RemoteException {
-    org.bioconductor.packages.caGeneFilter.stubs.GetUploadManufacturerFileReferencesResponse boxedResult = new org.bioconductor.packages.caGeneFilter.stubs.GetUploadManufacturerFileReferencesResponse();
-    boxedResult.setManufacturerFileReferences(impl.getUploadManufacturerFileReferences(params.getSessionEndpoint().getSessionEndpoint(),params.getFileReferences().getFileReferences()));
+    public org.bioconductor.packages.caGeneFilter.stubs.GetRpackageSessionInfoResponse getRpackageSessionInfo(org.bioconductor.packages.caGeneFilter.stubs.GetRpackageSessionInfoRequest params) throws RemoteException {
+    org.bioconductor.packages.caGeneFilter.stubs.GetRpackageSessionInfoResponse boxedResult = new org.bioconductor.packages.caGeneFilter.stubs.GetRpackageSessionInfoResponse();
+    boxedResult.setResponse(impl.getRpackageSessionInfo());
     return boxedResult;
   }
 
-    public org.bioconductor.packages.caGeneFilter.stubs.FileRecodeResponse fileRecode(org.bioconductor.packages.caGeneFilter.stubs.FileRecodeRequest params) throws RemoteException {
-    org.bioconductor.packages.caGeneFilter.stubs.FileRecodeResponse boxedResult = new org.bioconductor.packages.caGeneFilter.stubs.FileRecodeResponse();
-    boxedResult.setTwoChannelExpressionDataCollection(impl.fileRecode(params.getSessionEndpoint().getSessionEndpoint(),params.getSpotQualityRecode().getSpotQualityRecode()));
+    public org.bioconductor.packages.caGeneFilter.stubs.InvokeFilterResponse invokeFilter(org.bioconductor.packages.caGeneFilter.stubs.InvokeFilterRequest params) throws RemoteException {
+    org.bioconductor.packages.caGeneFilter.stubs.InvokeFilterResponse boxedResult = new org.bioconductor.packages.caGeneFilter.stubs.InvokeFilterResponse();
+    impl.invokeFilter(params.getSessionIdentifier().getSessionIdentifier(),params.getFilter().getFilter());
+    return boxedResult;
+  }
+
+    public org.bioconductor.packages.caGeneFilter.stubs.InvokeRecodeResponse invokeRecode(org.bioconductor.packages.caGeneFilter.stubs.InvokeRecodeRequest params) throws RemoteException {
+    org.bioconductor.packages.caGeneFilter.stubs.InvokeRecodeResponse boxedResult = new org.bioconductor.packages.caGeneFilter.stubs.InvokeRecodeResponse();
+    impl.invokeRecode(params.getSessionIdentifier().getSessionIdentifier(),params.getRecode().getRecode());
+    return boxedResult;
+  }
+
+    public org.bioconductor.packages.caGeneFilter.stubs.CreateCaGeneFilterSessionResponse createCaGeneFilterSession(org.bioconductor.packages.caGeneFilter.stubs.CreateCaGeneFilterSessionRequest params) throws RemoteException {
+    org.bioconductor.packages.caGeneFilter.stubs.CreateCaGeneFilterSessionResponse boxedResult = new org.bioconductor.packages.caGeneFilter.stubs.CreateCaGeneFilterSessionResponse();
+    boxedResult.setSessionIdentifier(impl.createCaGeneFilterSession());
+    return boxedResult;
+  }
+
+    public org.bioconductor.packages.caGeneFilter.stubs.GetStatusResponse getStatus(org.bioconductor.packages.caGeneFilter.stubs.GetStatusRequest params) throws RemoteException {
+    org.bioconductor.packages.caGeneFilter.stubs.GetStatusResponse boxedResult = new org.bioconductor.packages.caGeneFilter.stubs.GetStatusResponse();
+    boxedResult.setStatus(impl.getStatus(params.getSessionIdentifier().getSessionIdentifier()));
     return boxedResult;
   }
 

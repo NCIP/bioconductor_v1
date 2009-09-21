@@ -6,7 +6,6 @@ import org.bioconductor.packages.caGeneFilter.context.service.globus.resource.Ca
 import org.bioconductor.packages.caGeneFilter.context.service.globus.resource.CaGeneFilterServiceContextResource;
 import org.bioconductor.packages.caGeneFilter.common.CaGeneFilterHelper;
 
-
 /** 
  * TODO:I am the service side implementation class.  IMPLEMENT AND DOCUMENT ME
  * 
@@ -44,6 +43,13 @@ public class CaGeneFilterServiceImpl extends CaGeneFilterServiceImplBase {
 		  CaGeneFilterServiceContextResource caGeneFilterResrc = (CaGeneFilterServiceContextResource)caGeneFilterCxtResrcHome.find(resourceKey);
 		  
 		  return caGeneFilterResrc;
+	  }
+	  catch(org.globus.wsrf.NoSuchResourceException ew) {
+		System.out.println("CaGeneFilterServiceImpl::lookupCaGeneFilterResource failed to find a resource");
+		// clean the HashMap:
+		m_resrcKeyHomeNameMap.remove(strResrcKey);
+		m_resourceKeyMap.remove(strResrcKey);
+		throw new Exception("CaGeneFilterServiceImpl::lookupCaGeneFilterResource: " + ew.getMessage());
 	  }
 	  catch(Exception ew) {
 		  throw ew;
@@ -92,6 +98,54 @@ public class CaGeneFilterServiceImpl extends CaGeneFilterServiceImplBase {
 		ref.setEndpointReference(epr);
 
 		return ref;
+  }
+  
+  public org.bioconductor.cagrid.statefulservices.SessionIdentifier createCaGeneFilterSession() throws RemoteException {    
+	  try {
+		  org.apache.axis.MessageContext msgCxt = org.apache.axis.MessageContext.getCurrentContext();
+		  String servicePath = msgCxt.getTargetService();
+		  String caGeneFilter_homename = org.globus.wsrf.Constants.JNDI_SERVICES_BASE_NAME + servicePath + "/" + "caGeneFilterServiceContextHome";
+		  javax.naming.Context initialContext = new javax.naming.InitialContext();
+		  CaGeneFilterServiceContextResourceHome caGeneFilter_cxtRsrcHome = (CaGeneFilterServiceContextResourceHome)initialContext.lookup(caGeneFilter_homename);
+		  org.globus.wsrf.ResourceKey resourceKey = caGeneFilter_cxtRsrcHome.createResource();
+		  String strResrcKeyValue = resourceKey.getValue().toString();
+		  m_resourceKeyMap.put(strResrcKeyValue, resourceKey);
+		  m_resrcKeyHomeNameMap.put(strResrcKeyValue, caGeneFilter_homename);
+		  
+		  // Call HelperService to store this resource info also:
+		  org.bioconductor.packages.helper.common.ResourceStorage resrcStorage = org.bioconductor.packages.helper.common.ResourceStorage.getResourceStorageInstance();
+		  System.out.println("CaGeneFilter calling HelperService to store resource: " + strResrcKeyValue);
+		  resrcStorage.storeResourceInfo(strResrcKeyValue, resourceKey, caGeneFilter_homename);
+		  
+		  org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier = 
+			                                              new org.bioconductor.cagrid.statefulservices.SessionIdentifier();
+		  sessionIdentifier.setIdentifier(strResrcKeyValue);
+		  sessionIdentifier.setServiceUrl((String)msgCxt.getProperty(org.apache.axis.MessageContext.TRANS_URL));
+		  
+		  return sessionIdentifier;
+	  }
+	  catch(Exception ew) {
+		  throw new RemoteException(ew.getMessage());
+	  }
+  }
+  
+  public void invokeSpotQualityRecode(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier,org.bioconductor.cagrid.cagenefilter.SpotQualityRecode spotQualityRecode) throws RemoteException {
+	  String strResrcKey = sessionIdentifier.getIdentifier();
+	  
+	  try {
+		  CaGeneFilterServiceContextResource caGeneFilterResrc = this.lookupCaGeneFilterResource(strResrcKey);
+		  
+		  if(caGeneFilterResrc == null) {
+			  throw new RemoteException("CaGeneFilterImpl::lookupContextResource() returning null");
+		  }
+		  		  
+		  org.bioconductor.cagrid.data.TwoChannelExpressionDataCollection retTwoChannelExpDataColl = caGeneFilterResrc.fileRecode(spotQualityRecode, m_caGeneFilter);
+		  caGeneFilterResrc.setExpresionDataCollection(retTwoChannelExpDataColl);
+		  		  
+	  }
+	  catch(Exception ew) {
+		  throw new RemoteException("Exception from fileRecode(SessionEndpoint, SpotQualityRecode): " + ew.getMessage());
+	  }
   }
 
   public org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection recode(org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection dataCollection,org.bioconductor.cagrid.cagenefilter.Recode recode) throws RemoteException {  
@@ -159,90 +213,25 @@ public class CaGeneFilterServiceImpl extends CaGeneFilterServiceImplBase {
 		  
 		  // convert to singleChannelExpressionDataCollection to RJNumericMatrix
 		  org.bioconductor.cagrid.data.ExpressionData[] expressionDataArr = singleChannelExpressionDataCollection.getExpressionDataCollection();
+		  String[] reporterNames = singleChannelExpressionDataCollection.getReporterNames();
+		  // avoid null returned reporterNames from R:
+		  if(reporterNames == null) reporterNames = new String[0];
+		  
+		  
 		  org.bioconductor.packages.rservices.RJNumericMatrix rjNumericMatrix = CaGeneFilterHelper.convertToRJNumericMatrix(expressionDataArr, 
-				                                                                                              singleChannelExpressionDataCollection.getReporterNames());
+				                                                                                              reporterNames);
+		  
 		  org.bioconductor.packages.rservices.RJNumericMatrix retRJNumericMatrix = m_caGeneFilter.caGeneFilter(rjNumericMatrix, biocFilter);
 		  
 		  return CaGeneFilterHelper.convertToSingleChannelExpressionDataCollection(retRJNumericMatrix);
 	  }
 	  catch(Exception ew) {
+		  ew.printStackTrace();
 		  throw new RemoteException(ew.getMessage());
 	  }  
   }
 
-  public org.bioconductor.cagrid.statefulservices.SessionEndpoint createFileRecodeSession() throws RemoteException {
-	  try {
-		  org.apache.axis.MessageContext msgCxt = org.apache.axis.MessageContext.getCurrentContext();
-		  String servicePath = msgCxt.getTargetService();
-		  String caGeneFilter_homename = org.globus.wsrf.Constants.JNDI_SERVICES_BASE_NAME + servicePath + "/" + "caGeneFilterServiceContextHome";
-		  javax.naming.Context initialContext = new javax.naming.InitialContext();
-		  CaGeneFilterServiceContextResourceHome caGeneFilter_cxtRsrcHome = (CaGeneFilterServiceContextResourceHome)initialContext.lookup(caGeneFilter_homename);
-		  org.globus.wsrf.ResourceKey resourceKey = caGeneFilter_cxtRsrcHome.createResource();
-		  String strResrcKeyValue = resourceKey.getValue().toString();
-		  m_resourceKeyMap.put(strResrcKeyValue, resourceKey);
-		  m_resrcKeyHomeNameMap.put(strResrcKeyValue, caGeneFilter_homename);
-		  
-		  
-		  return new org.bioconductor.cagrid.statefulservices.SessionEndpoint(strResrcKeyValue);
-	  }
-	  catch(Exception ew) {
-		  throw new RemoteException(ew.getMessage());
-	  }
-  }
-
-  public org.bioconductor.cagrid.data.ManufacturerFileReferences getUploadManufacturerFileReferences(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint,org.bioconductor.cagrid.rservices.FileReferences fileReferences) throws RemoteException {
-	  	// mapping cagrid FileReferences to RWebServices FileReferences:
-		org.bioconductor.cagrid.rservices.FileReference[] cagridFileRefArr = fileReferences.getFileReferenceCollection();
-		int fileRefLength = cagridFileRefArr.length;
-		if(fileRefLength == 0) {
-			return new org.bioconductor.cagrid.data.ManufacturerFileReferences();
-		}
-		
-		org.bioconductor.packages.rservices.FileReference[] rwsFileReferenceArr = new org.bioconductor.packages.rservices.FileReference[fileRefLength];
-		for(int i = 0; i < fileRefLength; i++) {
-			// mapping this FileReference to RWebService FileReference:
-			rwsFileReferenceArr[i] = new org.bioconductor.packages.rservices.FileReference(cagridFileRefArr[i].getUrl(), cagridFileRefArr[i].getLocalName(), 
-					                                                                       cagridFileRefArr[i].getType());
-		}
-		
-		String strResrcKey = sessionEndpoint.getIdentifier();
-		  
-		try {
-			CaGeneFilterServiceContextResource caGeneFilterResrc = this.lookupCaGeneFilterResource(strResrcKey);
-			  
-			if(caGeneFilterResrc == null) {
-				throw new RemoteException("CaGeneFilterImple::lookupContextResource() returning null.");
-			}
-		 
-			org.bioconductor.packages.rservices.FileReferences rwsFileReferences = 
-				                        new org.bioconductor.packages.rservices.FileReferences(rwsFileReferenceArr);
-			
-			return caGeneFilterResrc.setDataFilesInput(rwsFileReferences);
-		}
-		catch(Exception ew) {
-			throw new RemoteException("Exception from getFileUploadTransferReferences: " + ew.getMessage());
-		}
-  }
-
-  public org.bioconductor.cagrid.data.TwoChannelExpressionDataCollection fileRecode(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint,org.bioconductor.cagrid.cagenefilter.SpotQualityRecode spotQualityRecode) throws RemoteException {
-	  String strResrcKey = sessionEndpoint.getIdentifier();
-	  
-	  try {
-		  CaGeneFilterServiceContextResource caGeneFilterResrc = this.lookupCaGeneFilterResource(strResrcKey);
-		  
-		  if(caGeneFilterResrc == null) {
-			  throw new RemoteException("CaGeneFilterImpl::lookupContextResource() returning null");
-		  }
-		  
-		  System.out.println("CaGeneFilterImpl::fileRecode calls fileRecode in CaGeneFilterServiceContextResource...");
-		  
-		  return caGeneFilterResrc.fileRecode(spotQualityRecode, m_caGeneFilter);
-	  }
-	  catch(Exception ew) {
-		  ew.printStackTrace();
-		  throw new RemoteException("Exception from CaGeneFilterImpl::fileRecode(): " + ew.getMessage());
-	  }
-  }
+ 
 
   public java.lang.String getRpackageSessionInfo() throws RemoteException {
     try {
@@ -262,6 +251,70 @@ public class CaGeneFilterServiceImpl extends CaGeneFilterServiceImplBase {
 		  throw new RemoteException(ex.getMessage());
 	  }
   }
+
+  public void invokeFilter(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier,org.bioconductor.cagrid.cagenefilter.Filter filter) throws RemoteException {
+	  String strResrcKey = sessionIdentifier.getIdentifier();
+	  
+	  try {
+		  CaGeneFilterServiceContextResource caGeneFilterResrc = this.lookupCaGeneFilterResource(strResrcKey);
+		  
+		  if(caGeneFilterResrc == null) {
+			  throw new RemoteException("CaGeneFilterImpl::lookupContextResource() returning null");
+		  }
+		  
+		  org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection singleChannelExpData = caGeneFilterResrc.getSingleChannelExpressionDataCollection();
+		  
+		  if(singleChannelExpData == null) throw new Exception("Null SingleChannelExpressionDataCollection object.");
+		  
+		  org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection retSingleChannelExpData = this.filter(singleChannelExpData, filter);
+		  // set this return in the context resource for client to pull it later
+//		  caGeneFilterResrc.setSingleChannelExpresionDataCollection(retSingleChannelExpData);
+		  caGeneFilterResrc.setExpresionDataCollection(retSingleChannelExpData);
+		  
+	  }
+	  catch(Exception ew) {
+		  ew.printStackTrace();
+		  throw new RemoteException("Exception from invokeFilter(SessionEndpoint, Filter): " + ew.getMessage());
+	  }
+  }
+
+  public void invokeRecode(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier,org.bioconductor.cagrid.cagenefilter.Recode recode) throws RemoteException {
+	  String strResrcKey = sessionIdentifier.getIdentifier();
+	  
+	  try {
+		  CaGeneFilterServiceContextResource caGeneFilterResrc = this.lookupCaGeneFilterResource(strResrcKey);
+		  
+		  if(caGeneFilterResrc == null) {
+			  throw new RemoteException("CaGeneFilterImpl::lookupContextResource() returning null");
+		  }
+		  
+		  org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection singleChannelExpData = caGeneFilterResrc.getSingleChannelExpressionDataCollection();
+		  
+		  if(singleChannelExpData == null) throw new Exception("Null SingleChannelExpressionDataCollection object.");
+		  
+		  org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection retSingleChannelExpData = this.recode(singleChannelExpData, recode);
+		  // set this return in the context resource for client to pull it later
+//		  caGeneFilterResrc.setSingleChannelExpresionDataCollection(retSingleChannelExpData);
+		  caGeneFilterResrc.setExpresionDataCollection(retSingleChannelExpData);
+	  }
+	  catch(Exception ew) {
+		throw new RemoteException(ew.getMessage());  
+	  }
+  }
+
+  public org.bioconductor.cagrid.statefulservices.Status getStatus(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException {
+	  String strResrcKey = sessionIdentifier.getIdentifier();
+	  try {
+		  CaGeneFilterServiceContextResource caGeneFilterResrc = this.lookupCaGeneFilterResource(strResrcKey);
+		  
+		  return caGeneFilterResrc.getStatus();
+	  }
+	  catch(Exception ew) {
+		  throw new RemoteException(ew.getMessage());
+	  }
+  }
+
+ 
 
 }
 
