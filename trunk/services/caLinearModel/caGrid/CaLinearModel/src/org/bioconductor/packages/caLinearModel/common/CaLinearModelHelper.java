@@ -53,6 +53,10 @@ public class CaLinearModelHelper {
 			twoChanExpDataColl.setRedExpressionDataCollection(firstChannelExpData);
 			twoChanExpDataColl.setGreenExpressionDataCollection(secondChannelExpData);
 			
+			String[] reporterNames = (String[])twoChannelExpData.getChannelOne().getExpressionMatrix().getDimnames()[0];
+			System.out.println("Reportername length: " + reporterNames.length);
+			twoChanExpDataColl.setReporterNames(reporterNames);
+			
 			return twoChanExpDataColl;
 			
 		}
@@ -68,7 +72,9 @@ public class CaLinearModelHelper {
 		}
 	}
 	
-	
+	private static String[] getDataAsStringArray(Object dataArr) {		
+		return dataArr instanceof org.bioconductor.packages.rservices.RJFactor ? ((org.bioconductor.packages.rservices.RJFactor)dataArr).asData() : (String[])dataArr;
+	}
 	
 	public static org.bioconductor.cagrid.calinearmodel.TTest deserializeToTTest(final String pathToRSampleAnnoCollFile) throws Exception
 	{
@@ -77,14 +83,16 @@ public class CaLinearModelHelper {
 			// convert this SampleAnnotationCollection into TTest:
 			
 			org.bioconductor.packages.rservices.RJDataFrame rJDataFrame = rSampleAnnoColl.getSampleAnnotationCollection();
-			String[] sampleIdens = (String[])(rJDataFrame.getData()[0]);
+			
+			String[] sampleIdens = getDataAsStringArray(rJDataFrame.getData()[0]);
+			
 			// for TTest, third element of RJDataFrame data array will be factorValue:
-			String[] factorValueData = (String[])(rJDataFrame.getData()[2]);			
-									
+			String[] factorValueData = (String[])(rJDataFrame.getData()[2]);						
+			
 			org.bioconductor.cagrid.calinearmodel.TTestAnnotation[] tTestAnnoArr = new org.bioconductor.cagrid.calinearmodel.TTestAnnotation[factorValueData.length];
 			for(int i = 0; i < factorValueData.length; i++) {
 				tTestAnnoArr[i] = new org.bioconductor.cagrid.calinearmodel.TTestAnnotation();				
-				tTestAnnoArr[i].setSampleIdentifier(sampleIdens[i]);				
+				tTestAnnoArr[i].setSampleName(sampleIdens[i]);				
 				gov.nih.nci.caarray.domain.project.FactorValue oFactorValue = new gov.nih.nci.caarray.domain.project.FactorValue(null, null, (String)factorValueData[i]);
 				tTestAnnoArr[i].setFactorLevel(oFactorValue);
 			}
@@ -112,7 +120,7 @@ public class CaLinearModelHelper {
 			org.bioconductor.cagrid.calinearmodel.PairedTTestAnnotation[] pairedTTestAnnoArr = new org.bioconductor.cagrid.calinearmodel.PairedTTestAnnotation[factorValueData.length];
 			for(int i = 0; i < factorValueData.length; i++) {
 				pairedTTestAnnoArr[i] = new org.bioconductor.cagrid.calinearmodel.PairedTTestAnnotation();				
-				pairedTTestAnnoArr[i].setSampleIdentifier(sampleIdens[i]);
+				pairedTTestAnnoArr[i].setSampleName(sampleIdens[i]);
 				
 				gov.nih.nci.caarray.domain.project.FactorValue oFactorValue = new gov.nih.nci.caarray.domain.project.FactorValue(null, null, (String)factorValueData[i]);
 				pairedTTestAnnoArr[i].setFactorLevel(oFactorValue);			
@@ -141,7 +149,7 @@ public class CaLinearModelHelper {
 			org.bioconductor.cagrid.calinearmodel.OneFactorANOVAAnnotation[] oneWayAnnoArr = new org.bioconductor.cagrid.calinearmodel.OneFactorANOVAAnnotation[factorValueData.length];
 			for(int i = 0; i < factorValueData.length; i++) {
 				oneWayAnnoArr[i] = new org.bioconductor.cagrid.calinearmodel.OneFactorANOVAAnnotation();				
-				oneWayAnnoArr[i].setSampleIdentifier(sampleIdens[i]);
+				oneWayAnnoArr[i].setSampleName(sampleIdens[i]);
 				
 				gov.nih.nci.caarray.domain.project.FactorValue oFactorValue = new gov.nih.nci.caarray.domain.project.FactorValue(null, null, (String)factorValueData[i]);
 				oneWayAnnoArr[i].setFactorLevel(oFactorValue);							
@@ -155,6 +163,9 @@ public class CaLinearModelHelper {
 		}
 	}
 
+/*
+ *  TwoFactorANOVA is deprecated.
+ *  	
 	public static org.bioconductor.cagrid.calinearmodel.TwoFactorANOVA deserializeToTwoFactorANOVA(final String pathToRSampleAnnoCollFile) throws Exception
 	{
 		try {
@@ -186,6 +197,7 @@ public class CaLinearModelHelper {
 			throw ew;
 		}
 	}
+*/
 	
 	public static org.bioconductor.cagrid.calinearmodel.DyeSwapTTest deserializeToDySwapTTest(final String pathToRSampleAnnoCollFile) throws Exception
 	{
@@ -203,7 +215,7 @@ public class CaLinearModelHelper {
 			org.bioconductor.cagrid.calinearmodel.DyeSwapTTestAnnotation[] dyeSwapTTestAnnoArr = new org.bioconductor.cagrid.calinearmodel.DyeSwapTTestAnnotation[factorValueData.length];
 			for(int i = 0; i < factorValueData.length; i++) {
 				dyeSwapTTestAnnoArr[i] = new org.bioconductor.cagrid.calinearmodel.DyeSwapTTestAnnotation();				
-				dyeSwapTTestAnnoArr[i].setSampleIdentifier(sampleIdens[i]);
+				dyeSwapTTestAnnoArr[i].setSampleName(sampleIdens[i]);
 				dyeSwapTTestAnnoArr[i].setChannelIdentifier(channelIdens[i]);
 				
 				gov.nih.nci.caarray.domain.project.FactorValue oFactorValue = new gov.nih.nci.caarray.domain.project.FactorValue(null, null, (String)factorValueData[i]);				
@@ -228,16 +240,22 @@ public class CaLinearModelHelper {
 			// convert this SampleAnnotationCollection into PairedTTest:
 			
 			org.bioconductor.packages.rservices.RJDataFrame rJDataFrame = rSampleAnnoColl.getSampleAnnotationCollection();
-			String[] sampleIdens = (String[])(rJDataFrame.getData()[0]);
-			String[] channelIdens = (String[])(rJDataFrame.getData()[1]);
 			
+			String[] sampleIdens;
+			sampleIdens = rJDataFrame.getData()[0] instanceof org.bioconductor.packages.rservices.RJFactor ? ((org.bioconductor.packages.rservices.RJFactor)(rJDataFrame.getData()[0])).asData() :
+				                                                                                               (String[])(rJDataFrame.getData()[0]);
+			String[] channelIdens;
+			channelIdens = rJDataFrame.getData()[1] instanceof org.bioconductor.packages.rservices.RJFactor? ((org.bioconductor.packages.rservices.RJFactor)(rJDataFrame.getData()[1])).asData() :
+					                                                                                           (String[])(rJDataFrame.getData()[1]);
 			// for CommonReferenceANOVA, fourth element of RJDataFrame data array (phenotype) will be factorValue
-			String[] factorValueData = (String[])(rJDataFrame.getData()[3]);
-						
+			String[] factorValueData;
+			factorValueData = rJDataFrame.getData()[3] instanceof org.bioconductor.packages.rservices.RJFactor? ((org.bioconductor.packages.rservices.RJFactor)(rJDataFrame.getData()[3])).asData() :
+				                                                                                                  (String[])(rJDataFrame.getData()[3]);
+			
 			org.bioconductor.cagrid.calinearmodel.CommonReferenceANOVAAnnotation[] commonRefANOVAAnnoArr = new org.bioconductor.cagrid.calinearmodel.CommonReferenceANOVAAnnotation[factorValueData.length];
 			for(int i = 0; i < factorValueData.length; i++) {
 				commonRefANOVAAnnoArr[i] = new org.bioconductor.cagrid.calinearmodel.CommonReferenceANOVAAnnotation();				
-				commonRefANOVAAnnoArr[i].setSampleIdentifier(sampleIdens[i]);
+				commonRefANOVAAnnoArr[i].setSampleName(sampleIdens[i]);
 				commonRefANOVAAnnoArr[i].setChannelIdentifier(channelIdens[i]);
 				
 				gov.nih.nci.caarray.domain.project.FactorValue oFactorValue = new gov.nih.nci.caarray.domain.project.FactorValue(null, null, (String)factorValueData[i]);				
@@ -255,7 +273,7 @@ public class CaLinearModelHelper {
 	}
 	
 	
-	private static org.bioconductor.packages.caCommonClasses.SampleAnnotationCollection deserializeToSampleAnnotationCollection(final String pathToRSampleAnnoCollFile) throws Exception
+	public static org.bioconductor.packages.caCommonClasses.SampleAnnotationCollection deserializeToSampleAnnotationCollection(final String pathToRSampleAnnoCollFile) throws Exception
 	{
 		java.io.InputStream fileInStream = null;
 		java.io.ObjectInputStream objInStream = null;

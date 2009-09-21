@@ -1,5 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jndiConfig xmlns="http://wsrf.globus.org/jndi/config">
+  <service name="SERVICE-INSTANCE-PREFIX/CaLinearModelContext">
+    <resource name="configuration" type="org.bioconductor.packages.caLinearModel.context.service.globus.resource.CaLinearModelContextResourceConfiguration">
+      <resourceParams>
+        <parameter>
+          <name>factory</name>
+          <value>org.globus.wsrf.jndi.BeanFactory</value>
+        </parameter>
+        <parameter>
+          <name>performRegistration</name>
+          <!-- Set this to false to skip ServiceGroup registration -->
+          <value>PERFORM_REGISTRATION</value>
+        </parameter>
+        <parameter>
+          <name>registrationTemplateFile</name>
+          <!-- Set this to the relative path (from the container root, e.g GLOBUS_LOCATION for globus container) of the registration parameters template file (ignored if performRegistration is false) -->
+          <value>ETC-PATH/CaLinearModelContext_registration.xml</value>
+        </parameter>
+      </resourceParams>
+    </resource>
+    <resource name="home" type="org.bioconductor.packages.caLinearModel.context.service.globus.resource.CaLinearModelContextResourceHome">
+      <resourceParams>
+        <parameter>
+          <name>factory</name>
+          <value>org.globus.wsrf.jndi.BeanFactory</value>
+        </parameter>
+        <parameter>
+          <name>resourceClass</name>
+          <value>org.bioconductor.packages.caLinearModel.context.service.globus.resource.CaLinearModelContextResource</value>
+        </parameter>
+        <parameter>
+          <name>resourceKeyName</name>
+          <value>{http://caLinearModel.packages.bioconductor.org/CaLinearModel/Context}CaLinearModelContextResultsKey</value>
+        </parameter>
+        <parameter>
+          <name>resourceKeyType</name>
+          <value>java.lang.String</value>
+        </parameter>
+      </resourceParams>
+    </resource>
+    <resourceLink name="serviceconfiguration" target="java:comp/env/services/SERVICE-INSTANCE-PREFIX/CaLinearModel/serviceconfiguration" />
+    <resourceLink name="caLinearModelHome" target="java:comp/env/services/SERVICE-INSTANCE-PREFIX/CaLinearModel/home" />
+  </service>
   <service name="SERVICE-INSTANCE-PREFIX/CaLinearModel">
     <resource name="configuration" type="org.bioconductor.packages.caLinearModel.service.globus.resource.CaLinearModelResourceConfiguration">
       <resourceParams>
@@ -44,6 +86,7 @@
         </parameter>
       </resourceParams>
     </resource>
+    <resourceLink name="caLinearModelContextHome" target="java:comp/env/services/SERVICE-INSTANCE-PREFIX/CaLinearModelContext/home" />
   </service>
 </jndiConfig>
 

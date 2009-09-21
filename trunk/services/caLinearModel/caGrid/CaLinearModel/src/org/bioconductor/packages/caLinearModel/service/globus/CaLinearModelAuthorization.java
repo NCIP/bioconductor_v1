@@ -87,6 +87,31 @@ public class CaLinearModelAuthorization implements PDP {
 		
 		
 	}
+					
+	public static void authorizeGetRpackageSessionInfo() throws RemoteException {
+		
+		
+	}
+					
+	public static void authorizeCreateCaLinearModelSession() throws RemoteException {
+		
+		
+	}
+					
+	public static void authorizeInvokeFit() throws RemoteException {
+		
+		
+	}
+					
+	public static void authorizeInvokeTwoChannelFit() throws RemoteException {
+		
+		
+	}
+					
+	public static void authorizeGetStatus() throws RemoteException {
+		
+		
+	}
 	
 	
 	public boolean isPermitted(Subject peerSubject, MessageContext context, QName operation)
@@ -138,6 +163,46 @@ public class CaLinearModelAuthorization implements PDP {
 		} else if(operation.getLocalPart().equals("twoChannelFit")){
 			try{
 				authorizeTwoChannelFit();
+				return true;
+			} catch (Exception e){
+				e.printStackTrace();
+				return false;
+			}
+		} else if(operation.getLocalPart().equals("getRpackageSessionInfo")){
+			try{
+				authorizeGetRpackageSessionInfo();
+				return true;
+			} catch (Exception e){
+				e.printStackTrace();
+				return false;
+			}
+		} else if(operation.getLocalPart().equals("createCaLinearModelSession")){
+			try{
+				authorizeCreateCaLinearModelSession();
+				return true;
+			} catch (Exception e){
+				e.printStackTrace();
+				return false;
+			}
+		} else if(operation.getLocalPart().equals("invokeFit")){
+			try{
+				authorizeInvokeFit();
+				return true;
+			} catch (Exception e){
+				e.printStackTrace();
+				return false;
+			}
+		} else if(operation.getLocalPart().equals("invokeTwoChannelFit")){
+			try{
+				authorizeInvokeTwoChannelFit();
+				return true;
+			} catch (Exception e){
+				e.printStackTrace();
+				return false;
+			}
+		} else if(operation.getLocalPart().equals("getStatus")){
+			try{
+				authorizeGetStatus();
 				return true;
 			} catch (Exception e){
 				e.printStackTrace();

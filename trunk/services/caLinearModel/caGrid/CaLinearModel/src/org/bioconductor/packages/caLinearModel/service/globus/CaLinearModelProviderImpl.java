@@ -38,4 +38,34 @@ public class CaLinearModelProviderImpl{
     return boxedResult;
   }
 
+    public org.bioconductor.packages.caLinearModel.stubs.GetRpackageSessionInfoResponse getRpackageSessionInfo(org.bioconductor.packages.caLinearModel.stubs.GetRpackageSessionInfoRequest params) throws RemoteException {
+    org.bioconductor.packages.caLinearModel.stubs.GetRpackageSessionInfoResponse boxedResult = new org.bioconductor.packages.caLinearModel.stubs.GetRpackageSessionInfoResponse();
+    boxedResult.setResponse(impl.getRpackageSessionInfo());
+    return boxedResult;
+  }
+
+    public org.bioconductor.packages.caLinearModel.stubs.CreateCaLinearModelSessionResponse createCaLinearModelSession(org.bioconductor.packages.caLinearModel.stubs.CreateCaLinearModelSessionRequest params) throws RemoteException {
+    org.bioconductor.packages.caLinearModel.stubs.CreateCaLinearModelSessionResponse boxedResult = new org.bioconductor.packages.caLinearModel.stubs.CreateCaLinearModelSessionResponse();
+    boxedResult.setSessionIdentifier(impl.createCaLinearModelSession());
+    return boxedResult;
+  }
+
+    public org.bioconductor.packages.caLinearModel.stubs.InvokeFitResponse invokeFit(org.bioconductor.packages.caLinearModel.stubs.InvokeFitRequest params) throws RemoteException {
+    org.bioconductor.packages.caLinearModel.stubs.InvokeFitResponse boxedResult = new org.bioconductor.packages.caLinearModel.stubs.InvokeFitResponse();
+    impl.invokeFit(params.getSessionIdentifier().getSessionIdentifier(),params.getOneChannelModel().getOneChannelModel());
+    return boxedResult;
+  }
+
+    public org.bioconductor.packages.caLinearModel.stubs.InvokeTwoChannelFitResponse invokeTwoChannelFit(org.bioconductor.packages.caLinearModel.stubs.InvokeTwoChannelFitRequest params) throws RemoteException {
+    org.bioconductor.packages.caLinearModel.stubs.InvokeTwoChannelFitResponse boxedResult = new org.bioconductor.packages.caLinearModel.stubs.InvokeTwoChannelFitResponse();
+    impl.invokeTwoChannelFit(params.getSessionIdentifier().getSessionIdentifier(),params.getTwoChannelModel().getTwoChannelModel());
+    return boxedResult;
+  }
+
+    public org.bioconductor.packages.caLinearModel.stubs.GetStatusResponse getStatus(org.bioconductor.packages.caLinearModel.stubs.GetStatusRequest params) throws RemoteException {
+    org.bioconductor.packages.caLinearModel.stubs.GetStatusResponse boxedResult = new org.bioconductor.packages.caLinearModel.stubs.GetStatusResponse();
+    boxedResult.setStatus(impl.getStatus(params.getSessionIdentifier().getSessionIdentifier()));
+    return boxedResult;
+  }
+
 }

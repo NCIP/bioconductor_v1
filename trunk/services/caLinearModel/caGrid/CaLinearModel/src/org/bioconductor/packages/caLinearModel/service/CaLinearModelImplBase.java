@@ -45,6 +45,11 @@ public abstract class CaLinearModelImplBase {
 	
 	
 	
+	public org.bioconductor.packages.caLinearModel.context.service.globus.resource.CaLinearModelContextResourceHome getCaLinearModelContextResourceHome() throws Exception {
+		ResourceHome resource = getResourceHome("caLinearModelContextHome");
+		return (org.bioconductor.packages.caLinearModel.context.service.globus.resource.CaLinearModelContextResourceHome)resource;
+	}
+	
 	
 	protected ResourceHome getResourceHome(String resourceKey) throws Exception {
 		MessageContext ctx = MessageContext.getCurrentContext();

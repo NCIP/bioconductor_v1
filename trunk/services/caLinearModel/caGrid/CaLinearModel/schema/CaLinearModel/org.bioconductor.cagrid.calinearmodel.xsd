@@ -2,20 +2,33 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.calinearmodel"
 		   xmlns:gov.nih.nci.caarray.domain.project="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.project"
+		   xmlns:org.bioconductor.cagrid.data="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"
 		   targetNamespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.calinearmodel">
 		   
 	<xs:import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.project" 
 	           schemaLocation="../NIH_NCI_Types/gov.nih.nci.caarray.domain.project.xsd" />
+	<xs:import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"
+			   schemaLocation="../Data/org.bioconductor.cagrid.data.xsd"/>
 		   
 	<xs:element name="Model" type="Model"/>
 	<xs:complexType name="Model">
+		<xs:annotation>
+			<xs:documentation>Parameter values specifying how a linear model will be performed</xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="numberOfTopReporters" type="xs:int"/>
+			<xs:element name="numberOfTopReporters" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>The number of differentially expressed microarray reporters to summarize for differential expression</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	
 	<xs:element name="TTest" type="TTest"/>
 	<xs:complexType name="TTest">
+		<xs:annotation>
+			<xs:documentation>Parameter value specifying how a linear model comparing one channel log expression values will be compared in a t-test experimental design</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="OneChannelModel">
 				<xs:sequence>
@@ -27,6 +40,9 @@
 	
 	<xs:element name="OneChannelModel" type="OneChannelModel"/>
 	<xs:complexType name="OneChannelModel">
+		<xs:annotation>
+			<xs:documentation>Parameter value of a statistical linear model</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="Model">
 				<xs:sequence/>
@@ -36,10 +52,14 @@
 	
 	<xs:element name="TwoChannelModel" type="TwoChannelModel"/>
 	<xs:complexType name="TwoChannelModel">
+		<xs:annotation>
+			<xs:documentation>Parameter value specifying how a linear model involving two channel log-fold expression values will be performed</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="Model">
 				<xs:sequence>
-					<xs:element name="referenceChannelIdentifier" type="xs:string" />
+					<!-- referenceChannelIdentifier element is omited by R -->
+					<!-- <xs:element name="referenceChannelIdentifier" type="xs:string" /> -->
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -47,6 +67,9 @@
 	
 	<xs:element name="OneFactorANOVA" type="OneFactorANOVA"/>
 	<xs:complexType name="OneFactorANOVA">
+		<xs:annotation>
+			<xs:documentation>Parameter value specifying how a linear model comparing one channel log expression values will be compared in one factor analysis of variance experimental design</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="OneChannelModel">
 				<xs:sequence>
@@ -58,6 +81,9 @@
 	
 	<xs:element name="DyeSwapTTest" type="DyeSwapTTest"/>
 	<xs:complexType name="DyeSwapTTest">
+		<xs:annotation>
+			<xs:documentation>Parameter value of a dye-swap t-test</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="TwoChannelModel">
 				<xs:sequence>
@@ -70,6 +96,9 @@
 	
 	<xs:element name="CommonReferenceANOVA" type="CommonReferenceANOVA"/>
 	<xs:complexType name="CommonReferenceANOVA">
+		<xs:annotation>
+			<xs:documentation>Parameter value to annotate two channel expression values</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="TwoChannelModel">
 				<xs:sequence>
@@ -82,6 +111,9 @@
 	
 	<xs:element name="PairedTTest" type="PairedTTest"/>
 	<xs:complexType name="PairedTTest">
+		<xs:annotation>
+			<xs:documentation>Parameter value of a one factor analysis of variance annotation</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="OneChannelModel">
 				<xs:sequence>
@@ -91,6 +123,7 @@
 		</xs:complexContent>
 	</xs:complexType>
 	
+<!--	
 	<xs:element name="TwoFactorANOVA" type="TwoFactorANOVA"/>
 	<xs:complexType name="TwoFactorANOVA">
 		<xs:complexContent>
@@ -101,9 +134,13 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+-->
 	
 	<xs:element name="TTestAnnotation" type="TTestAnnotation"/>
 	<xs:complexType name="TTestAnnotation">
+		<xs:annotation>
+			<xs:documentation>Parameter value of a t-test annotation</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="OneChannelSampleAnnotation">
 				<xs:sequence>
@@ -115,25 +152,35 @@
 	
 	<xs:element name="PairedTTestAnnotation" type="PairedTTestAnnotation"/>
 	<xs:complexType name="PairedTTestAnnotation">
+		<xs:annotation>
+			<xs:documentation>Parameter value of a paired t-test</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="OneChannelSampleAnnotation">
 				<xs:sequence>
 					<xs:element name="factorLevel" type="gov.nih.nci.caarray.domain.project:FactorValue"/>
-					<xs:element name="pairIdentifier" type="xs:string"/>
+					<xs:element name="pairIdentifier" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>An identifier to indicate which pair the sample belonged to</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	
+<!--	
 	<xs:element name="SampleAnnotation" type="SampleAnnotation"/>
 	<xs:complexType name="SampleAnnotation">
 		<xs:sequence>
 			<xs:element name="sampleIdentifier" type="xs:string"/>
 		</xs:sequence>
 	</xs:complexType>
-	
+-->	
 	<xs:element name="OneFactorANOVAAnnotation" type="OneFactorANOVAAnnotation"/>
 	<xs:complexType name="OneFactorANOVAAnnotation">
+		<xs:annotation>
+			<xs:documentation>Parameter value to annotate a one channel sample of log expression values used in a one factor analysis of variance experimental design</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="OneChannelSampleAnnotation">
 				<xs:sequence>
@@ -142,7 +189,8 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	
+
+<!--	
 	<xs:element name="TwoFactorANOVAAnnotation" type="TwoFactorANOVAAnnotation"/>
 	<xs:complexType name="TwoFactorANOVAAnnotation">
 		<xs:complexContent>
@@ -154,9 +202,13 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+-->
 	
 	<xs:element name="DyeSwapTTestAnnotation" type="DyeSwapTTestAnnotation"/>
 	<xs:complexType name="DyeSwapTTestAnnotation">
+		<xs:annotation>
+			<xs:documentation>Parameter value of a dye-swap t-test annotation</xs:documentation>
+		</xs:annotation>	
 		<xs:complexContent>
 			<xs:extension base="TwoChannelSampleAnnotation">
 				<xs:sequence>
@@ -168,6 +220,9 @@
 	
 	<xs:element name="CommonReferenceANOVAAnnotation" type="CommonReferenceANOVAAnnotation"/>
 	<xs:complexType name="CommonReferenceANOVAAnnotation">
+		<xs:annotation>
+			<xs:documentation>Parameter value of a common reference analysis of variance</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="TwoChannelSampleAnnotation">
 				<xs:sequence>
@@ -179,8 +234,11 @@
 	
 	<xs:element name="OneChannelSampleAnnotation" type="OneChannelSampleAnnotation"/>
 	<xs:complexType name="OneChannelSampleAnnotation">
+		<xs:annotation>
+			<xs:documentation>Parameter value to annotate a single channel sample of expression values used in a linear model</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="SampleAnnotation">
+			<xs:extension base="org.bioconductor.cagrid.data:SampleAnnotation">
 				<xs:sequence/>
 			</xs:extension>
 		</xs:complexContent>
@@ -188,10 +246,17 @@
 	
 	<xs:element name="TwoChannelSampleAnnotation" type="TwoChannelSampleAnnotation"/>
 	<xs:complexType name="TwoChannelSampleAnnotation">
+		<xs:annotation>
+			<xs:documentation>Parameter value to annotate single channel expression values</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="SampleAnnotation">
+			<xs:extension base="org.bioconductor.cagrid.data:SampleAnnotation">
 				<xs:sequence>
-					<xs:element name="channelIdentifier" type="xs:string"/>
+					<xs:element name="channelIdentifier" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>An identifier to indicate which of two microarray channels the sample was assayed on</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
