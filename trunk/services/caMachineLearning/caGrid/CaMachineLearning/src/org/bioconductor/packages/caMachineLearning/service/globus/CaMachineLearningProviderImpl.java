@@ -26,12 +26,6 @@ public class CaMachineLearningProviderImpl{
 	}
 	
 
-    public org.bioconductor.packages.caMachineLearning.stubs.GetRpackageSessionInfoResponse getRpackageSessionInfo(org.bioconductor.packages.caMachineLearning.stubs.GetRpackageSessionInfoRequest params) throws RemoteException {
-    org.bioconductor.packages.caMachineLearning.stubs.GetRpackageSessionInfoResponse boxedResult = new org.bioconductor.packages.caMachineLearning.stubs.GetRpackageSessionInfoResponse();
-    boxedResult.setResponse(impl.getRpackageSessionInfo());
-    return boxedResult;
-  }
-
     public org.bioconductor.packages.caMachineLearning.stubs.LearnResponse learn(org.bioconductor.packages.caMachineLearning.stubs.LearnRequest params) throws RemoteException {
     org.bioconductor.packages.caMachineLearning.stubs.LearnResponse boxedResult = new org.bioconductor.packages.caMachineLearning.stubs.LearnResponse();
     boxedResult.setMachineLearningResultCollection(impl.learn(params.getSingleChannelExpressionDataCollection().getSingleChannelExpressionDataCollection(),params.getCagridMachineLearningParameters().getMachineLearningParameters()));
@@ -40,19 +34,25 @@ public class CaMachineLearningProviderImpl{
 
     public org.bioconductor.packages.caMachineLearning.stubs.CreateCaMachineLearningSessionResponse createCaMachineLearningSession(org.bioconductor.packages.caMachineLearning.stubs.CreateCaMachineLearningSessionRequest params) throws RemoteException {
     org.bioconductor.packages.caMachineLearning.stubs.CreateCaMachineLearningSessionResponse boxedResult = new org.bioconductor.packages.caMachineLearning.stubs.CreateCaMachineLearningSessionResponse();
-    boxedResult.setSessionEndpoint(impl.createCaMachineLearningSession());
+    boxedResult.setSessionIdentifier(impl.createCaMachineLearningSession());
     return boxedResult;
   }
 
     public org.bioconductor.packages.caMachineLearning.stubs.InvokeLearnResponse invokeLearn(org.bioconductor.packages.caMachineLearning.stubs.InvokeLearnRequest params) throws RemoteException {
     org.bioconductor.packages.caMachineLearning.stubs.InvokeLearnResponse boxedResult = new org.bioconductor.packages.caMachineLearning.stubs.InvokeLearnResponse();
-    impl.invokeLearn(params.getSessionEndpoint().getSessionEndpoint(),params.getCagridMachineLearningParameters().getMachineLearningParameters());
+    impl.invokeLearn(params.getSessionIdentifier().getSessionIdentifier(),params.getCagridMachineLearningParameters().getMachineLearningParameters());
     return boxedResult;
   }
 
     public org.bioconductor.packages.caMachineLearning.stubs.GetStatusResponse getStatus(org.bioconductor.packages.caMachineLearning.stubs.GetStatusRequest params) throws RemoteException {
     org.bioconductor.packages.caMachineLearning.stubs.GetStatusResponse boxedResult = new org.bioconductor.packages.caMachineLearning.stubs.GetStatusResponse();
-    boxedResult.setStatus(impl.getStatus(params.getSessionEndpoint().getSessionEndpoint()));
+    boxedResult.setStatus(impl.getStatus(params.getSessionIdentifier().getSessionIdentifier()));
+    return boxedResult;
+  }
+
+    public org.bioconductor.packages.caMachineLearning.stubs.GetRpackageSessionInfoResponse getRpackageSessionInfo(org.bioconductor.packages.caMachineLearning.stubs.GetRpackageSessionInfoRequest params) throws RemoteException {
+    org.bioconductor.packages.caMachineLearning.stubs.GetRpackageSessionInfoResponse boxedResult = new org.bioconductor.packages.caMachineLearning.stubs.GetRpackageSessionInfoResponse();
+    boxedResult.setResponse(impl.getRpackageSessionInfo());
     return boxedResult;
   }
 

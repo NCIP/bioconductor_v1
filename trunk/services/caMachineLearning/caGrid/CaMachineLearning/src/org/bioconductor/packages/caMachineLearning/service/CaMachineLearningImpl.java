@@ -35,23 +35,23 @@ public class CaMachineLearningImpl extends CaMachineLearningImplBase {
 						
 			if(cagridMachineLearningParameters instanceof org.bioconductor.cagrid.camachinelearning.UnsupervisedMachineLearningParameters) {
 								
-				org.bioconductor.packages.caMachineLearning.UnsupervisedLearningParameters rUnsupervisedLearningParameters = 
+				org.bioconductor.packages.caMachineLearning.UnsupervisedMachineLearningParameters rUnsupervisedLearningParameters = 
 					               this.mapCagridUnsupervisedParamToRUnsupervisedParam((
 					            		 org.bioconductor.cagrid.camachinelearning.UnsupervisedMachineLearningParameters)cagridMachineLearningParameters);
 				
 				// calling unsupervised from R:				
-				org.bioconductor.packages.caMachineLearning.UnsupervisedLearningOutput rUnsupervisedOutput = m_caMachineLearning.unsupervised(rOneChannelExpressionData, rUnsupervisedLearningParameters);
+				org.bioconductor.packages.caMachineLearning.UnsupervisedMachineLearningResult rUnsupervisedOutput = m_caMachineLearning.unsupervised(rOneChannelExpressionData, rUnsupervisedLearningParameters);
 				
 				return convertROutputToCagridResult(rUnsupervisedOutput);
 			}
 			else if(cagridMachineLearningParameters instanceof org.bioconductor.cagrid.camachinelearning.SupervisedMachineLearningParameters) {
 				
-				org.bioconductor.packages.caMachineLearning.SupervisedLearningParameters rSupervisedLearningParameters = 
+				org.bioconductor.packages.caMachineLearning.SupervisedMachineLearningParameters rSupervisedLearningParameters = 
 					             this.mapCagridSupervisedParamToRSupervisedParam(
 					            		  (org.bioconductor.cagrid.camachinelearning.SupervisedMachineLearningParameters)cagridMachineLearningParameters);
 												
 				// calling supervised in R:
-				org.bioconductor.packages.caMachineLearning.SupervisedLearningOutput rSupervisedOutput = m_caMachineLearning.supervised(rOneChannelExpressionData, rSupervisedLearningParameters);
+				org.bioconductor.packages.caMachineLearning.SupervisedMachineLearningResult rSupervisedOutput = m_caMachineLearning.supervised(rOneChannelExpressionData, rSupervisedLearningParameters);
 				return this.convertROutputToCagridResult(rSupervisedOutput);
 			}
 			else {				
@@ -79,28 +79,28 @@ public class CaMachineLearningImpl extends CaMachineLearningImplBase {
 	  
 	}
 	
-	private org.bioconductor.packages.caMachineLearning.UnsupervisedLearningParameters mapCagridUnsupervisedParamToRUnsupervisedParam(
+	private org.bioconductor.packages.caMachineLearning.UnsupervisedMachineLearningParameters mapCagridUnsupervisedParamToRUnsupervisedParam(
 			                                org.bioconductor.cagrid.camachinelearning.UnsupervisedMachineLearningParameters cagridMachineLearningParameters) throws Exception
 	{
-		org.bioconductor.packages.caMachineLearning.UnsupervisedLearningParameters rUnsupervisedLearningParameters = null;
+		org.bioconductor.packages.caMachineLearning.UnsupervisedMachineLearningParameters rUnsupervisedLearningParameters = null;
 		
 		if(cagridMachineLearningParameters instanceof org.bioconductor.cagrid.camachinelearning.HierarchicalClusteringMachineLearningParameters) {
 			org.bioconductor.cagrid.camachinelearning.HierarchicalClusteringMachineLearningParameters cagridHierarchicalClusterParam = 
 				(org.bioconductor.cagrid.camachinelearning.HierarchicalClusteringMachineLearningParameters)cagridMachineLearningParameters;
-			rUnsupervisedLearningParameters = new org.bioconductor.packages.caMachineLearning.HierarchicalClusteringParameters();
-			((org.bioconductor.packages.caMachineLearning.HierarchicalClusteringParameters)rUnsupervisedLearningParameters).setClusteringMethod(
-					                                                     new String[]{cagridHierarchicalClusterParam.getAlgorithm()});
-			((org.bioconductor.packages.caMachineLearning.HierarchicalClusteringParameters)rUnsupervisedLearningParameters).setDistanceMetric(
+			rUnsupervisedLearningParameters = new org.bioconductor.packages.caMachineLearning.HierarchicalClusteringMachineLearningParameters();
+			((org.bioconductor.packages.caMachineLearning.HierarchicalClusteringMachineLearningParameters)rUnsupervisedLearningParameters).setLinkage(
+					                                                     new String[]{cagridHierarchicalClusterParam.getLinkage()});
+			((org.bioconductor.packages.caMachineLearning.HierarchicalClusteringMachineLearningParameters)rUnsupervisedLearningParameters).setDistanceMetric(
 					                                                     new String[]{cagridHierarchicalClusterParam.getDistanceMetric()});
-			((org.bioconductor.packages.caMachineLearning.HierarchicalClusteringParameters)rUnsupervisedLearningParameters).setNumberOfClusters(
+			((org.bioconductor.packages.caMachineLearning.HierarchicalClusteringMachineLearningParameters)rUnsupervisedLearningParameters).setNumberOfClusters(
 					                                                     new int[]{cagridHierarchicalClusterParam.getNumberOfClusters()});
 		}
 		else if(cagridMachineLearningParameters instanceof org.bioconductor.cagrid.camachinelearning.KMeansMachineLearningParameters) {
 			org.bioconductor.cagrid.camachinelearning.KMeansMachineLearningParameters cagridKMeansParam = 
 				(org.bioconductor.cagrid.camachinelearning.KMeansMachineLearningParameters)cagridMachineLearningParameters;
-			rUnsupervisedLearningParameters = new org.bioconductor.packages.caMachineLearning.KMeansParameters();
-			((org.bioconductor.packages.caMachineLearning.KMeansParameters)rUnsupervisedLearningParameters).setAlgorithm(new String[]{cagridKMeansParam.getAlgorithm()});
-			((org.bioconductor.packages.caMachineLearning.KMeansParameters)rUnsupervisedLearningParameters).setNumberOfClusters(new int[]{cagridKMeansParam.getNumberOfClusters()});
+			rUnsupervisedLearningParameters = new org.bioconductor.packages.caMachineLearning.KMeansMachineLearningParameters();
+			((org.bioconductor.packages.caMachineLearning.KMeansMachineLearningParameters)rUnsupervisedLearningParameters).setAlgorithm(new String[]{cagridKMeansParam.getAlgorithm()});
+			((org.bioconductor.packages.caMachineLearning.KMeansMachineLearningParameters)rUnsupervisedLearningParameters).setNumberOfClusters(new int[]{cagridKMeansParam.getNumberOfClusters()});
 		}
 		else {
 			throw new RemoteException("Unknown unsupervised machine learning type: " + cagridMachineLearningParameters.getClass().getName());
@@ -109,7 +109,7 @@ public class CaMachineLearningImpl extends CaMachineLearningImplBase {
 		return rUnsupervisedLearningParameters;
 	}
   
-	private org.bioconductor.packages.caMachineLearning.SupervisedLearningParameters mapCagridSupervisedParamToRSupervisedParam(
+	private org.bioconductor.packages.caMachineLearning.SupervisedMachineLearningParameters mapCagridSupervisedParamToRSupervisedParam(
 			                               org.bioconductor.cagrid.camachinelearning.SupervisedMachineLearningParameters cagridMachineLearningParameters) throws Exception
     {
 		// setup SupervisedLearningParameters attribute fields:
@@ -117,46 +117,50 @@ public class CaMachineLearningImpl extends CaMachineLearningImplBase {
 					((org.bioconductor.cagrid.camachinelearning.SupervisedMachineLearningParameters)cagridMachineLearningParameters).getSupervisedMachineLearningAnnotation();
 		int length = supervisedSampleAnnoArr.length;
 		String[] rSampleNameArr = new String[length];
-		boolean[] rIsTrainingIndividualArr = new boolean[length];
+		boolean[] rIsTrainingSampleArr = new boolean[length];
 		String[] factorValuesArr = new String[length];
 		for(int i = 0; i < length; i++) {
 			rSampleNameArr[i] = supervisedSampleAnnoArr[i].getSampleName();
-			rIsTrainingIndividualArr[i] = supervisedSampleAnnoArr[i].isIsTrainingSample();
+			rIsTrainingSampleArr[i] = supervisedSampleAnnoArr[i].isIsTrainingSample();
 			factorValuesArr[i] = supervisedSampleAnnoArr[i].getObservedClassification().getValue();
 		}
 		org.bioconductor.packages.rservices.RJFactor rjFactor = this.convertFactorValueToRJFactor(factorValuesArr);
 		 
-		org.bioconductor.packages.caMachineLearning.SupervisedLearningParameters rSupervisedLearningParameters = null;
+		org.bioconductor.packages.caMachineLearning.SupervisedMachineLearningParameters rSupervisedLearningParameters = null;
 		
 		if(cagridMachineLearningParameters instanceof org.bioconductor.cagrid.camachinelearning.SupportVectorMachineMachineLearningParameters) {
-			rSupervisedLearningParameters = new org.bioconductor.packages.caMachineLearning.SupportVectorMachinesParameters();
+			rSupervisedLearningParameters = new org.bioconductor.packages.caMachineLearning.SupportVectorMachineMachineLearningParameters();
 		}
 		else if(cagridMachineLearningParameters instanceof org.bioconductor.cagrid.camachinelearning.LinearDiscriminantAnalysisMachineLearningParameters) {
-			rSupervisedLearningParameters = new org.bioconductor.packages.caMachineLearning.LinearDiscriminantAnalysisParameters();
+			rSupervisedLearningParameters = new org.bioconductor.packages.caMachineLearning.LinearDiscriminantAnalysisMachineLearningParameters();
 		}
 		else if(cagridMachineLearningParameters instanceof org.bioconductor.cagrid.camachinelearning.KNearestNeighborMachineLearningParameters) {
 			org.bioconductor.cagrid.camachinelearning.KNearestNeighborMachineLearningParameters cagridKNearestNeighborParam = 
 					(org.bioconductor.cagrid.camachinelearning.KNearestNeighborMachineLearningParameters)cagridMachineLearningParameters;
-			rSupervisedLearningParameters = new org.bioconductor.packages.caMachineLearning.KNearestNeighborsParameters();
-			((org.bioconductor.packages.caMachineLearning.KNearestNeighborsParameters)rSupervisedLearningParameters).setMinimumVote(new int[]{cagridKNearestNeighborParam.getMinimumVote()});
-			((org.bioconductor.packages.caMachineLearning.KNearestNeighborsParameters)rSupervisedLearningParameters).setNumberOfNeighbors(new int[]{cagridKNearestNeighborParam.getNumberOfNeighbors()});					
+			rSupervisedLearningParameters = new org.bioconductor.packages.caMachineLearning.KNearestNeighborsMachineLearningParameters();
+			((org.bioconductor.packages.caMachineLearning.KNearestNeighborsMachineLearningParameters)rSupervisedLearningParameters).setMinimumVote(
+					                                                                             new int[]{cagridKNearestNeighborParam.getMinimumVote()});
+			((org.bioconductor.packages.caMachineLearning.KNearestNeighborsMachineLearningParameters)rSupervisedLearningParameters).setNumberOfNeighbors(
+					                                                                             new int[]{cagridKNearestNeighborParam.getNumberOfNeighbors()});					
 		}
+/*		
 		else if(cagridMachineLearningParameters instanceof org.bioconductor.cagrid.camachinelearning.QuadraticDscriminantAnalysisMachineLearningParameters) {
-			rSupervisedLearningParameters = new org.bioconductor.packages.caMachineLearning.QuadraticDiscriminantAnalysisParameters();
+			rSupervisedLearningParameters = new org.bioconductor.packages.caMachineLearning.QuadraticDiscriminantAnalysisMachineLearningParameters();
 		}
+*/
 		else if(cagridMachineLearningParameters instanceof org.bioconductor.cagrid.camachinelearning.DiagonalLinearDiscriminantAnalysisMachineLearningParameters) {
-			rSupervisedLearningParameters = new org.bioconductor.packages.caMachineLearning.DiagonalLinearDiscriminantAnalysisParameters();
+			rSupervisedLearningParameters = new org.bioconductor.packages.caMachineLearning.DiagonalLinearDiscriminantAnalysisMachineLearningParameters();
 		}
 		else if(cagridMachineLearningParameters instanceof org.bioconductor.cagrid.camachinelearning.NaiveBayesMachineLearningParameters) {
-			rSupervisedLearningParameters = new org.bioconductor.packages.caMachineLearning.NaiveBayesParameters();
+			rSupervisedLearningParameters = new org.bioconductor.packages.caMachineLearning.NaiveBayesMachineLearningParameters();
 		}
 		else {
 			throw new RemoteException("Unknown supervised machine learning type: " + cagridMachineLearningParameters.getClass().getName());
 		}
 		
-		((org.bioconductor.packages.caMachineLearning.SupervisedLearningParameters)rSupervisedLearningParameters).setSampleName(rSampleNameArr);
-		((org.bioconductor.packages.caMachineLearning.SupervisedLearningParameters)rSupervisedLearningParameters).setIsTrainingIndividual(rIsTrainingIndividualArr);
-		((org.bioconductor.packages.caMachineLearning.SupervisedLearningParameters)rSupervisedLearningParameters).setType(rjFactor);
+		((org.bioconductor.packages.caMachineLearning.SupervisedMachineLearningParameters)rSupervisedLearningParameters).setSampleName(rSampleNameArr);
+		((org.bioconductor.packages.caMachineLearning.SupervisedMachineLearningParameters)rSupervisedLearningParameters).setIsTrainingSample(rIsTrainingSampleArr);
+		((org.bioconductor.packages.caMachineLearning.SupervisedMachineLearningParameters)rSupervisedLearningParameters).setType(rjFactor);
 		
 		return rSupervisedLearningParameters;
     }
@@ -225,20 +229,22 @@ public class CaMachineLearningImpl extends CaMachineLearningImplBase {
 		return rjFactor;
 	}
 	
-	private org.bioconductor.cagrid.camachinelearning.MachineLearningResultCollection convertROutputToCagridResult(org.bioconductor.packages.caMachineLearning.LearningOutput rOutput) throws Exception
+	private org.bioconductor.cagrid.camachinelearning.MachineLearningResultCollection convertROutputToCagridResult(
+			                                org.bioconductor.packages.caMachineLearning.MachineLearningResult rOutput) throws Exception
 	{
-		if(rOutput instanceof org.bioconductor.packages.caMachineLearning.UnsupervisedLearningOutput) {
-			org.bioconductor.packages.caMachineLearning.UnsupervisedLearningOutput rUnsupervisedOutput = (org.bioconductor.packages.caMachineLearning.UnsupervisedLearningOutput)rOutput;
-			int length = rUnsupervisedOutput.getNeighbor().length;
+		if(rOutput instanceof org.bioconductor.packages.caMachineLearning.UnsupervisedMachineLearningResult) {
+			org.bioconductor.packages.caMachineLearning.UnsupervisedMachineLearningResult rUnsupervisedOutput = 
+				                                     (org.bioconductor.packages.caMachineLearning.UnsupervisedMachineLearningResult)rOutput;
+			int length = rUnsupervisedOutput.getNeighboringPartition().length;
 			
 			org.bioconductor.cagrid.camachinelearning.UnsupervisedMachineLearningResult cagridUnsupervisedResult[] = new 
 			                                    org.bioconductor.cagrid.camachinelearning.UnsupervisedMachineLearningResult[length];
 			for(int i = 0; i < length; i++) {
 				cagridUnsupervisedResult[i] = new org.bioconductor.cagrid.camachinelearning.UnsupervisedMachineLearningResult();
-				cagridUnsupervisedResult[i].setNeighboringPartition(String.valueOf(rUnsupervisedOutput.getNeighbor()[i]));
-				cagridUnsupervisedResult[i].setPredictedPartition(String.valueOf(rUnsupervisedOutput.getPartition()[i]));
+				cagridUnsupervisedResult[i].setNeighboringPartition(String.valueOf(rUnsupervisedOutput.getNeighboringPartition()[i]));
+				cagridUnsupervisedResult[i].setPredictedPartition(String.valueOf(rUnsupervisedOutput.getPredictedPartition()[i]));
 				cagridUnsupervisedResult[i].setSilhouetteWidth(rUnsupervisedOutput.getSilhouetteWidth()[i]);
-				cagridUnsupervisedResult[i].setSampleName("");  // empty string for now until Tom add sample name in.
+				cagridUnsupervisedResult[i].setSampleName(rUnsupervisedOutput.getSampleName()[i]);
 			}
 			
 			org.bioconductor.cagrid.camachinelearning.UnsupervisedMachineLearningResultCollection cagridUnsupervisedResultCollection = new
@@ -247,8 +253,9 @@ public class CaMachineLearningImpl extends CaMachineLearningImplBase {
 			
 			return cagridUnsupervisedResultCollection; 
 		}
-		else if(rOutput instanceof org.bioconductor.packages.caMachineLearning.SupervisedLearningOutput) {
-			org.bioconductor.packages.caMachineLearning.SupervisedLearningOutput rSupervisedOutput = (org.bioconductor.packages.caMachineLearning.SupervisedLearningOutput)rOutput;
+		else if(rOutput instanceof org.bioconductor.packages.caMachineLearning.SupervisedMachineLearningResult) {
+			org.bioconductor.packages.caMachineLearning.SupervisedMachineLearningResult rSupervisedOutput = 
+				                            (org.bioconductor.packages.caMachineLearning.SupervisedMachineLearningResult)rOutput;
 						 
 			String[] rObservedClassification = rSupervisedOutput.getObservedClassification().asData();
 			String[] rPredictedClassification = rSupervisedOutput.getPredictedClassification().asData();
@@ -259,7 +266,7 @@ public class CaMachineLearningImpl extends CaMachineLearningImplBase {
 			                                     org.bioconductor.cagrid.camachinelearning.SupervisedMachineLearningResult[length];			
 			for(int i = 0; i < length; i++) {
 				cagridSupervisedResult[i] = new org.bioconductor.cagrid.camachinelearning.SupervisedMachineLearningResult();
-				cagridSupervisedResult[i].setIsTrainingSample(rSupervisedOutput.getIsTrainingIndividual()[i]);
+				cagridSupervisedResult[i].setIsTrainingSample(rSupervisedOutput.getIsTrainingSample()[i]);
 				cagridSupervisedResult[i].setSampleName(rSupervisedOutput.getSampleName()[i]);
 				cagridSupervisedResult[i].setObservedClassification(new gov.nih.nci.caarray.domain.project.FactorValue(null, null,rObservedClassification[i]));
 				cagridSupervisedResult[i].setPredictedClassification(new gov.nih.nci.caarray.domain.project.FactorValue(null, null, rPredictedClassification[i]));
@@ -344,7 +351,7 @@ public class CaMachineLearningImpl extends CaMachineLearningImplBase {
 		return ref;
   }
 
-  public org.bioconductor.cagrid.statefulservices.SessionEndpoint createCaMachineLearningSession() throws RemoteException {
+  public org.bioconductor.cagrid.statefulservices.SessionIdentifier createCaMachineLearningSession() throws RemoteException {
 	  try {
 		org.apache.axis.MessageContext msgCxt = org.apache.axis.MessageContext.getCurrentContext();
 		String servicePath = msgCxt.getTargetService();
@@ -360,15 +367,19 @@ public class CaMachineLearningImpl extends CaMachineLearningImplBase {
 		org.bioconductor.packages.helper.common.ResourceStorage resrcStorage = org.bioconductor.packages.helper.common.ResourceStorage.getResourceStorageInstance();
 		resrcStorage.storeResourceInfo(strResrcKeyValue, resourceKey, caMachineLearning_homename);
 		
-		return new org.bioconductor.cagrid.statefulservices.SessionEndpoint(strResrcKeyValue);
+		org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier = new org.bioconductor.cagrid.statefulservices.SessionIdentifier();
+		sessionIdentifier.setIdentifier(strResrcKeyValue);
+		sessionIdentifier.setServiceUrl((String)msgCxt.getProperty(org.apache.axis.MessageContext.TRANS_URL));
+		
+		return sessionIdentifier;
 	  }
 	  catch(Exception ew) {
 		  throw new RemoteException(ew.getMessage());
 	  }
   }
 
-  public void invokeLearn(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint,org.bioconductor.cagrid.camachinelearning.MachineLearningParameters cagridMachineLearningParameters) throws RemoteException {
-	  String strResrcKey = sessionEndpoint.getIdentifier();
+  public void invokeLearn(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier,org.bioconductor.cagrid.camachinelearning.MachineLearningParameters cagridMachineLearningParameters) throws RemoteException {
+	  String strResrcKey = sessionIdentifier.getIdentifier();
 	  
 	  try {		  
 		  CaMachineLearningContextResource caMachineLearningCxtResrc = this.lookupCaMachineLearningResource(strResrcKey);
@@ -384,21 +395,21 @@ public class CaMachineLearningImpl extends CaMachineLearningImplBase {
 			                                      this.cagridSingleChanExpDataToROneChanExpData(cagridSingleChannelDataCollection);
 		  // mapping the parameter to R-compatible type:		  
 		  if(cagridMachineLearningParameters instanceof org.bioconductor.cagrid.camachinelearning.UnsupervisedMachineLearningParameters) {
-			  org.bioconductor.packages.caMachineLearning.UnsupervisedLearningParameters rUnsupervisedParam = 
+			  org.bioconductor.packages.caMachineLearning.UnsupervisedMachineLearningParameters rUnsupervisedParam = 
 				           this.mapCagridUnsupervisedParamToRUnsupervisedParam(
 				        		   (org.bioconductor.cagrid.camachinelearning.UnsupervisedMachineLearningParameters)cagridMachineLearningParameters);
 			  
 			  // calling R:
-			  org.bioconductor.packages.caMachineLearning.UnsupervisedLearningOutput rOutput = m_caMachineLearning.unsupervised(rOneChannelExpressionData, rUnsupervisedParam);
+			  org.bioconductor.packages.caMachineLearning.UnsupervisedMachineLearningResult rOutput = m_caMachineLearning.unsupervised(rOneChannelExpressionData, rUnsupervisedParam);
 			  cagridLearningResultCollection = this.convertROutputToCagridResult(rOutput);
 		  }
 		  else if(cagridMachineLearningParameters instanceof org.bioconductor.cagrid.camachinelearning.SupervisedMachineLearningParameters) {
-			  org.bioconductor.packages.caMachineLearning.SupervisedLearningParameters rSupervisedParam = 
+			  org.bioconductor.packages.caMachineLearning.SupervisedMachineLearningParameters rSupervisedParam = 
 				           this.mapCagridSupervisedParamToRSupervisedParam(
 				        		   (org.bioconductor.cagrid.camachinelearning.SupervisedMachineLearningParameters)cagridMachineLearningParameters);
 			  
 			  // calling R:
-			  org.bioconductor.packages.caMachineLearning.SupervisedLearningOutput rOutput = m_caMachineLearning.supervised(rOneChannelExpressionData, rSupervisedParam);
+			  org.bioconductor.packages.caMachineLearning.SupervisedMachineLearningResult rOutput = m_caMachineLearning.supervised(rOneChannelExpressionData, rSupervisedParam);
 			  cagridLearningResultCollection = this.convertROutputToCagridResult(rOutput);
 		  }
 		  else {
@@ -417,8 +428,8 @@ public class CaMachineLearningImpl extends CaMachineLearningImplBase {
 	  }
   }
 
-  public org.bioconductor.cagrid.statefulservices.Status getStatus(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint) throws RemoteException {
-	  String strResrcKey = sessionEndpoint.getIdentifier();
+  public org.bioconductor.cagrid.statefulservices.Status getStatus(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException {
+	  String strResrcKey = sessionIdentifier.getIdentifier();
 	  
 	  try {
 		  CaMachineLearningContextResource caMachineLearningCxtResrc = this.lookupCaMachineLearningResource(strResrcKey);

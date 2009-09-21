@@ -12,10 +12,17 @@
 			
 	<xs:element name="SupervisedMachineLearningSampleAnnotation" type="SupervisedMachineLearningSampleAnnotation"/>
 	<xs:complexType name="SupervisedMachineLearningSampleAnnotation">
+		<xs:annotation>
+			<xs:documentation>Parameter value to annotate a sample of values</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="org.bioconductor.cagrid.data:SampleAnnotation">
 				<xs:sequence>
-					<xs:element name="isTrainingSample" type="xs:boolean"/>
+					<xs:element name="isTrainingSample" type="xs:boolean">
+						<xs:annotation>
+							<xs:documentation>A value indicating that the sample is to be used during training of machine learning algorithms</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="observedClassification" type="gov.nih.nci.caarray.domain.project:FactorValue"/>
 				</xs:sequence>
 			</xs:extension>
@@ -23,10 +30,16 @@
 	</xs:complexType>
 	<xs:element name="MachineLearningResultCollection" type="MachineLearningResultCollection"/>
 	<xs:complexType name="MachineLearningResultCollection">
+		<xs:annotation>
+			<xs:documentation>A collection of machine learning results</xs:documentation>
+		</xs:annotation>
 		<xs:sequence/>
 	</xs:complexType>
 	<xs:element name="SupervisedMachineLearningParameters" type="SupervisedMachineLearningParameters"/>
 	<xs:complexType name="SupervisedMachineLearningParameters">
+		<xs:annotation>
+			<xs:documentation>Parameter values of supervised machine learning</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="MachineLearningParameters">
 				<xs:sequence>
@@ -37,6 +50,9 @@
 	</xs:complexType>
 	<xs:element name="UnsupervisedMachineLearningParameters" type="UnsupervisedMachineLearningParameters"/>
 	<xs:complexType name="UnsupervisedMachineLearningParameters">
+		<xs:annotation>
+			<xs:documentation>Parameter values of unsupervised machine learning</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="MachineLearningParameters">
 				<xs:sequence>
@@ -51,6 +67,9 @@
 	</xs:complexType>
 	<xs:element name="UnsupervisedMachineLearningResultCollection" type="UnsupervisedMachineLearningResultCollection"/>
 	<xs:complexType name="UnsupervisedMachineLearningResultCollection">
+		<xs:annotation>
+			<xs:documentation>A collection of unsupervised machine learning results</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="MachineLearningResultCollection">
 				<xs:sequence>
@@ -61,6 +80,9 @@
 	</xs:complexType>
 	<xs:element name="KNearestNeighborMachineLearningParameters" type="KNearestNeighborMachineLearningParameters"/>
 	<xs:complexType name="KNearestNeighborMachineLearningParameters">
+		<xs:annotation>
+			<xs:documentation>Parameter values of k nearest neighbor machine learning</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="SupervisedMachineLearningParameters">
 				<xs:sequence>
@@ -80,10 +102,13 @@
 	</xs:complexType>
 	<xs:element name="HierarchicalClusteringMachineLearningParameters" type="HierarchicalClusteringMachineLearningParameters"/>
 	<xs:complexType name="HierarchicalClusteringMachineLearningParameters">
+		<xs:annotation>
+			<xs:documentation>Parameter values of hierarchical clustering machine learning</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="UnsupervisedMachineLearningParameters">
 				<xs:sequence>
-					<xs:element name="algorithm" type="xs:string">
+					<xs:element name="linkage" type="xs:string">
 						<xs:annotation>
 							<xs:documentation>The name of the method to be used to perform hierarchical clustering</xs:documentation>
 						</xs:annotation>
@@ -99,10 +124,16 @@
 	</xs:complexType>
 	<xs:element name="MachineLearningParameters" type="MachineLearningParameters"/>
 	<xs:complexType name="MachineLearningParameters">
+		<xs:annotation>
+			<xs:documentation>Parameter values of machine learning</xs:documentation>
+		</xs:annotation>
 		<xs:sequence/>
 	</xs:complexType>
 	<xs:element name="SupportVectorMachineMachineLearningParameters" type="SupportVectorMachineMachineLearningParameters"/>
 	<xs:complexType name="SupportVectorMachineMachineLearningParameters">
+		<xs:annotation>
+			<xs:documentation>Parameter values of support vector machine machine learning</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="SupervisedMachineLearningParameters">
 				<xs:sequence/>
@@ -111,6 +142,9 @@
 	</xs:complexType>
 	<xs:element name="SupervisedMachineLearningResultCollection" type="SupervisedMachineLearningResultCollection"/>
 	<xs:complexType name="SupervisedMachineLearningResultCollection">
+		<xs:annotation>
+			<xs:documentation>A collection of supervised machine learning results</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="MachineLearningResultCollection">
 				<xs:sequence>
@@ -121,6 +155,9 @@
 	</xs:complexType>
 	<xs:element name="KMeansMachineLearningParameters" type="KMeansMachineLearningParameters"/>
 	<xs:complexType name="KMeansMachineLearningParameters">
+		<xs:annotation>
+			<xs:documentation>Parameter values of k-means machine learning</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="UnsupervisedMachineLearningParameters">
 				<xs:sequence>
@@ -135,6 +172,9 @@
 	</xs:complexType>
 	<xs:element name="LinearDiscriminantAnalysisMachineLearningParameters" type="LinearDiscriminantAnalysisMachineLearningParameters"/>
 	<xs:complexType name="LinearDiscriminantAnalysisMachineLearningParameters">
+		<xs:annotation>
+			<xs:documentation>Parameter values describing how 'linear discriminant analysis' machine learning will be performed</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="SupervisedMachineLearningParameters">
 				<xs:sequence/>
@@ -143,12 +183,18 @@
 	</xs:complexType>
 	<xs:element name="DiagonalLinearDiscriminantAnalysisMachineLearningParameters" type="DiagonalLinearDiscriminantAnalysisMachineLearningParameters"/>
 	<xs:complexType name="DiagonalLinearDiscriminantAnalysisMachineLearningParameters">
+		<xs:annotation>
+			<xs:documentation>Parameter values of diagonal linear discriminant analysis machine learning</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="SupervisedMachineLearningParameters">
 				<xs:sequence/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+<!--
+	deprecated 
+	
 	<xs:element name="QuadraticDscriminantAnalysisMachineLearningParameters" type="QuadraticDscriminantAnalysisMachineLearningParameters"/>
 	<xs:complexType name="QuadraticDscriminantAnalysisMachineLearningParameters">
 		<xs:complexContent>
@@ -157,10 +203,14 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+-->
 	<xs:element name="NaiveBayesMachineLearningParameters" type="NaiveBayesMachineLearningParameters"/>
 	<xs:complexType name="NaiveBayesMachineLearningParameters">
 		<xs:complexContent>
 			<xs:extension base="SupervisedMachineLearningParameters">
+				<xs:annotation>
+					<xs:documentation>Parameter values of naive Bayes analysis machine learning</xs:documentation>
+				</xs:annotation>
 				<xs:sequence/>
 			</xs:extension>
 		</xs:complexContent>
@@ -168,6 +218,9 @@
 	<xs:element name="SupervisedMachineLearningResult" type="SupervisedMachineLearningResult"/>
 	<xs:complexType name="SupervisedMachineLearningResult">
 		<xs:complexContent>
+			<xs:annotation>
+				<xs:documentation>A supervised machine learning result</xs:documentation>
+			</xs:annotation>
 			<xs:extension base="SupervisedMachineLearningSampleAnnotation">
 				<xs:sequence>
 					<xs:element name="predictedClassification" type="gov.nih.nci.caarray.domain.project:FactorValue"/>
@@ -177,12 +230,27 @@
 	</xs:complexType>
 	<xs:element name="UnsupervisedMachineLearningResult" type="UnsupervisedMachineLearningResult"/>
 	<xs:complexType name="UnsupervisedMachineLearningResult">
+		<xs:annotation>
+			<xs:documentation>An unsupervised machine learning result</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="org.bioconductor.cagrid.data:SampleAnnotation">
 				<xs:sequence>
-					<xs:element name="neighboringPartition" type="xs:string"/>
-					<xs:element name="predictedPartition" type="xs:string"/>
-					<xs:element name="silhouetteWidth" type="xs:double"/>
+					<xs:element name="neighboringPartition" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>The identity of the nearest neighboring partition predicted by statistical analysis</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="predictedPartition" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>The identity of a partition predicted by statistical analysis</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="silhouetteWidth" type="xs:double">
+						<xs:annotation>
+							<xs:documentation>A measure of the assignment of a sample to a partition defined by statistical machine learning</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>

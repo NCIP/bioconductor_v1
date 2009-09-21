@@ -157,8 +157,14 @@ public class CaMachineLearningContextResource extends CaMachineLearningContextRe
 	/**
 	 * This method is to create a reference to upload file(s) to the service.  Not applicable for this service.
 	 */
-	public org.bioconductor.cagrid.statefulservices.CaGridFileReferences createUploadFileReferences(org.bioconductor.cagrid.rservices.FileReferences fileRefs) throws RemoteException
+	public org.bioconductor.cagrid.statefulservices.CaGridFileReferenceCollection createUploadFileReferences(
+			                                               org.bioconductor.cagrid.rservices.FileReferenceCollection fileRefs) throws RemoteException
 	{
 		throw new RemoteException("createUploadFileReferences not applicable for CaMachineLearning.  Not implemented");
+	}
+	
+	public org.bioconductor.cagrid.rservices.FileReferenceCollection getFileReferenceCollection() throws RemoteException
+	{
+		throw new RemoteException("getFileReferenceCollection not used for CaMachineLearning. Not implemented");
 	}
 }

@@ -12,8 +12,6 @@ import java.rmi.RemoteException;
  */
 public interface CaMachineLearningI {
 
-  public java.lang.String getRpackageSessionInfo() throws RemoteException ;
-
   public org.oasis.wsrf.properties.GetMultipleResourcePropertiesResponse getMultipleResourceProperties(org.oasis.wsrf.properties.GetMultipleResourceProperties_Element params) throws RemoteException ;
 
   public org.oasis.wsrf.properties.GetResourcePropertyResponse getResourceProperty(javax.xml.namespace.QName params) throws RemoteException ;
@@ -22,11 +20,13 @@ public interface CaMachineLearningI {
 
   public org.bioconductor.cagrid.camachinelearning.MachineLearningResultCollection learn(org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection singleChannelExpressionDataCollection,org.bioconductor.cagrid.camachinelearning.MachineLearningParameters cagridMachineLearningParameters) throws RemoteException ;
 
-  public org.bioconductor.cagrid.statefulservices.SessionEndpoint createCaMachineLearningSession() throws RemoteException ;
+  public org.bioconductor.cagrid.statefulservices.SessionIdentifier createCaMachineLearningSession() throws RemoteException ;
 
-  public void invokeLearn(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint,org.bioconductor.cagrid.camachinelearning.MachineLearningParameters cagridMachineLearningParameters) throws RemoteException ;
+  public void invokeLearn(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier,org.bioconductor.cagrid.camachinelearning.MachineLearningParameters cagridMachineLearningParameters) throws RemoteException ;
 
-  public org.bioconductor.cagrid.statefulservices.Status getStatus(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint) throws RemoteException ;
+  public org.bioconductor.cagrid.statefulservices.Status getStatus(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException ;
+
+  public java.lang.String getRpackageSessionInfo() throws RemoteException ;
 
 }
 

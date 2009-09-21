@@ -9,21 +9,42 @@
 
 	<xs:element name="AbstractExpressionDataCollection" type="AbstractExpressionDataCollection"/>
 	<xs:complexType name="AbstractExpressionDataCollection" abstract="true">
+		<xs:annotation>
+			<xs:documentation>A collection of microarray gene expression values</xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="reporterNames" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="reporterNames" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The names by which reporters in each sample are refered</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	
 	<xs:element name="ExpressionData" type="ExpressionData"/>
 	<xs:complexType name="ExpressionData">
+		<xs:annotation>
+			<xs:documentation>Microarray gene expression data</xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="reporterValues" type="gov.nih.nci.caarray.domain.data:DoubleColumn"/>
-			<xs:element name="sampleName" type="xs:string"/>
+			<xs:element name="reporterValues" type="gov.nih.nci.caarray.domain.data:DoubleColumn">
+				<xs:annotation>
+					<xs:documentation>The expression values associated with this sample</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sampleName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The name by which the sample will be refered</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 
 	<xs:element name="SingleChannelExpressionDataCollection" type="SingleChannelExpressionDataCollection"/>
 	<xs:complexType name="SingleChannelExpressionDataCollection">
+		<xs:annotation>
+			<xs:documentation>References to a collection of SingleChannelExressionData entitites</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="AbstractExpressionDataCollection">
 				<xs:sequence>
@@ -35,6 +56,9 @@
 
 	<xs:element name="TwoChannelExpressionDataCollection" type="TwoChannelExpressionDataCollection"/>
 	<xs:complexType name="TwoChannelExpressionDataCollection">
+		<xs:annotation>
+			<xs:documentation>A collection of two channel expression values</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="AbstractExpressionDataCollection">
 				<xs:sequence>
@@ -47,14 +71,24 @@
 	
 	<xs:element name="PhenotypeData" type="PhenotypeData"/>
 	<xs:complexType name="PhenotypeData">
+		<xs:annotation>
+			<xs:documentation>Data describing any aspect of phenotype</xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="phenotypeData" type="xs:string"/>
+			<xs:element name="phenotypeData" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>A unique identifier by which the sample can be referenced</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	
 	
 	<xs:element name="PhenotypeDataCollection" type="PhenotypeDataCollection" />
 	<xs:complexType name="PhenotypeDataCollection">
+		<xs:annotation>
+			<xs:documentation>A collection of phenotype data</xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="phonetypeDataCollection" type="PhenotypeData" minOccurs="0" maxOccurs="unbounded" />
 		</xs:sequence>
@@ -62,36 +96,85 @@
 
 	<xs:element name="TopTableCollection" type="TopTableCollection"/>
 	<xs:complexType name="TopTableCollection">
+		<xs:annotation>
+			<xs:documentation>A collection of tables summarizing statistical analysis of differential expression</xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="modelSpecification" type="xs:string"/>
+			<xs:element name="modelSpecification" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>A textural summary of the statistical model used to create the table of differentially expressed genes</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="topTable" type="TopTable" maxOccurs="unbounded"/>
+			
 		</xs:sequence>
 	</xs:complexType>
 	
 	<xs:element name="TopTable" type="TopTable"/>
 	<xs:complexType name="TopTable">
+		<xs:annotation>
+			<xs:documentation>A table summarizing statistical analysis of differential expression</xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="contrastSpecification" type="xs:string"/>
+			<xs:element name="contrastSpecification" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>A textural summary of the statistical contrast summarized by the table</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 			<xs:element name="topTableEntry" type="TopTableEntry" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	
 	<xs:element name="TopTableEntry" type="TopTableEntry"/>
 	<xs:complexType name="TopTableEntry">
+		<xs:annotation>
+			<xs:documentation>An entry in a table summarizing statistical analysis of differential expression</xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="adjustedPValue" type="xs:double"/>
-			<xs:element name="logFoldChange" type="xs:double"/>
-			<xs:element name="logOddsScore" type="xs:double"/>
-			<xs:element name="pValue" type="xs:double"/>
-			<xs:element name="reporterName" type="xs:string"/>
-			<xs:element name="tCoefficient" type="xs:double"/>
+			<xs:element name="adjustedPValue" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>The statistical significance of the computed differential expression between groups, adjusted for the number of statistical tests performed using the Benjamini-Hochberg method to control the false discovery rate</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="logFoldChange" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>The log-fold change in expression between groups summarized by this entry</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="logOddsScore" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>The logarithm of the odds ratio of differential expression</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pValue" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>The statistical significance of the computed differential expression between groups</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="reporterName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The name of the reporter for which this entry summarized differential expression</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="tCoefficient" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>The statistical coefficient summarizing differential expression</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	
 	<xs:element name="SampleAnnotation" type="SampleAnnotation"/>
 	<xs:complexType name="SampleAnnotation">
+		<xs:annotation>
+			<xs:documentation>A parameter to annotate a sample of values</xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="sampleName" type="xs:string"/>
+			<xs:element name="sampleName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>A unique identifier for each sample to be included in the linear model</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 	

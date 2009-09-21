@@ -10,20 +10,45 @@
 	<xs:import namespace="http://schemas.xmlsoap.org/ws/2004/03/addressing" 
 	           schemaLocation="../ws/addressing/WS-Addressing.xsd"/>
 	
-			   
-	<xs:element name="SessionEndpoint" type="statefulservices:SessionEndpoint"/>
-	<xs:complexType name="SessionEndpoint">
+	<xs:element name="SessionIdentifier" type="statefulservices:SessionIdentifier"/>
+	<xs:complexType name="SessionIdentifier">
+		<xs:annotation>
+			<xs:documentation>An identifier used to query stateful operations </xs:documentation>
+		</xs:annotation>
+		
 		<xs:sequence>
-			<xs:element name="identifier" type="xs:string"/>
+			<xs:element name="identifier" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>An identifier used by the service to coordinate requests across service invocations</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="serviceUrl" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The uniform resource locator for this service</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	
 	<xs:element name="Status" type="statefulservices:Status"/>
+		
 	<xs:complexType name="Status">
+		<xs:annotation>
+			<xs:documentation>A message reporting the status of a stateful operation</xs:documentation>
+		</xs:annotation>
+		
 		<xs:sequence>
-			<xs:element name="description" type="xs:string"/>
+			<xs:element name="description" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>A textual description of the status of the stateful operation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 		
 		<xs:attribute name="State">
+			<xs:annotation>
+					<xs:documentation>The condition in which the stateful service currently resides</xs:documentation>
+			</xs:annotation>
 			<xs:simpleType>
 			  <xs:restriction base="xs:string">
 				<xs:enumeration value="SESSION_INITIATED" />
@@ -43,7 +68,8 @@
 			</xs:simpleType>
 		</xs:attribute>		
 	</xs:complexType>
-	
+
+<!-- 	Deprecated 	
 	<xs:element name="ErrorStatus" type="statefulservices:ErrorStatus"/>
 	<xs:complexType name="ErrorStatus">
 		<xs:complexContent>
@@ -54,20 +80,33 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+-->
 	
-	<xs:element name="CaGridFileReferences" type="statefulservices:CaGridFileReferences"/>
-	<xs:complexType name="CaGridFileReferences">
+	<xs:element name="CaGridFileReferenceCollection" type="statefulservices:CaGridFileReferenceCollection"/>
+	<xs:complexType name="CaGridFileReferenceCollection">
+		<xs:annotation>
+			<xs:documentation>A collection of file references that are to be imported into or exported from an application using caGrid Transfer mechanisms implemented as stateful operations</xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
 			<xs:element name="cagridFileReferenceCollection" type="statefulservices:CaGridFileReference" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	
 	<xs:element name="CaGridFileReference" type="statefulservices:CaGridFileReference"/>
+		
 	<xs:complexType name="CaGridFileReference">
+		<xs:annotation>
+			<xs:documentation>A file reference to be imported into or exported from the application using caGrid Transfer mechanisms implemented as stateful operations</xs:documentation>
+		</xs:annotation>
+		
 		<xs:complexContent>
 			<xs:extension base="rservices:FileReference">
 				<xs:sequence>
-					<xs:element name="endpointReference" type="wsa:EndpointReferenceType"/>
+					<xs:element name="endpointReference" type="wsa:EndpointReferenceType">
+						<xs:annotation>
+							<xs:documentation>The caGrid ContextReference to be used for file import or export</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -75,8 +114,16 @@
 	
 	<xs:element name="CaGridObjectReference" type="statefulservices:CaGridObjectReference"/>
 	<xs:complexType name="CaGridObjectReference">
+		<xs:annotation>
+			<xs:documentation>A object reference to be imported into or exported from the application using caGrid Transfer mechanisms implemented as stateful operations</xs:documentation>
+		</xs:annotation>
+		
 		<xs:sequence>
-			<xs:element name="endpointReference" type="wsa:EndpointReferenceType" />
+			<xs:element name="endpointReference" type="wsa:EndpointReferenceType">
+				<xs:annotation>
+					<xs:documentation>The caGrid ContextReference to be used for object import or export</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
 </xs:schema>

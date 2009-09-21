@@ -34,19 +34,19 @@
       </ns2:Operation>
       <ns2:Operation description="" name="createCaMachineLearningSession">
        <ns2:inputParameterCollection/>
-       <ns2:Output qName="ns8:SessionEndpoint" dimensionality="1" isArray="false" xmlns:ns8="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
+       <ns2:Output qName="ns8:SessionIdentifier" dimensionality="1" isArray="false" xmlns:ns8="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
        <ns2:faultCollection/>
       </ns2:Operation>
       <ns2:Operation description="" name="invokeLearn">
        <ns2:inputParameterCollection>
-        <ns2:InputParameter qName="ns9:SessionEndpoint" dimensionality="1" index="0" isArray="false" isRequired="false" name="sessionEndpoint" xmlns:ns9="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
+        <ns2:InputParameter qName="ns9:SessionIdentifier" dimensionality="1" index="0" isArray="false" isRequired="false" name="sessionIdentifier" xmlns:ns9="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
         <ns2:InputParameter qName="ns10:MachineLearningParameters" dimensionality="1" index="1" isArray="false" isRequired="false" name="cagridMachineLearningParameters" xmlns:ns10="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.camachinelearning"/>
        </ns2:inputParameterCollection>
        <ns2:faultCollection/>
       </ns2:Operation>
       <ns2:Operation description="" name="getStatus">
        <ns2:inputParameterCollection>
-        <ns2:InputParameter qName="ns11:SessionEndpoint" dimensionality="1" index="0" isArray="false" isRequired="false" name="sessionEndpoint" xmlns:ns11="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
+        <ns2:InputParameter qName="ns11:SessionIdentifier" dimensionality="1" index="0" isArray="false" isRequired="false" name="sessionIdentifier" xmlns:ns11="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
        </ns2:inputParameterCollection>
        <ns2:Output qName="ns12:Status" dimensionality="1" isArray="false" xmlns:ns12="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
        <ns2:faultCollection/>

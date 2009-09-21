@@ -66,30 +66,87 @@ public class CaMachineLearningClient extends CaMachineLearningClientBase impleme
 			  // test....
 			  String filePath = "/home/mtra2/CaGridProj/CaMachineLearning/Data/OneChannelExpressionData.rda_java.Data";
 			  org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection singleExpDataColl = CaMachineLearningHelper.deserializeToSingleChannelExpDataCollection(filePath);
-/*			  
-			  org.bioconductor.cagrid.camachinelearning.HierarchicalClusteringMachineLearningParameters param = new
+
+			  String txtFilePath = "/home/mtra2/TestData/CaMachineLearning_test.txt";
+			  org.bioconductor.cagrid.data.SingleChannelExpressionDataCollection singleExpDataCollFromTxt = CaMachineLearningHelper.readTxt(txtFilePath);
+			  System.out.println("NNNNNNNnn: " + singleExpDataCollFromTxt.getExpressionDataCollection().length);
+			  for(int i = 0; i < singleExpDataCollFromTxt.getExpressionDataCollection().length; i++){
+				  System.out.println("NNNNNNN sampleName: " + singleExpDataCollFromTxt.getExpressionDataCollection(i).getSampleName());
+			  }
+			  			  
+			  
+			  org.bioconductor.cagrid.camachinelearning.SupervisedMachineLearningSampleAnnotation[] supervisedAnnotation = 
+				  						new org.bioconductor.cagrid.camachinelearning.SupervisedMachineLearningSampleAnnotation[4];
+              org.bioconductor.cagrid.camachinelearning.SupervisedMachineLearningSampleAnnotation sAE = 
+            	  						new org.bioconductor.cagrid.camachinelearning.SupervisedMachineLearningSampleAnnotation();
+              System.out.println("Size of supervisedAnnotation[]: " + supervisedAnnotation.length);
+              sAE.setSampleName("CMHI.1");
+              gov.nih.nci.caarray.domain.project.FactorValue fV = new gov.nih.nci.caarray.domain.project.FactorValue();
+              fV.setValue("control");
+              sAE.setObservedClassification(fV);
+              sAE.setIsTrainingSample(true);
+              System.out.println("This is SampleName: " + sAE.getSampleName());
+              System.out.println("This is ObservedClassifcation (factor): " + sAE.getObservedClassification().toString());
+              supervisedAnnotation[0] = sAE;
+              System.out.println("SampleName[0]: " + supervisedAnnotation[0].getSampleName());
+              
+              sAE = new org.bioconductor.cagrid.camachinelearning.SupervisedMachineLearningSampleAnnotation();
+              sAE.setSampleName("CMHI.2");
+              fV = new gov.nih.nci.caarray.domain.project.FactorValue();
+              fV.setValue("control");
+              sAE.setObservedClassification(fV);
+              sAE.setIsTrainingSample(true);
+              supervisedAnnotation[1] = sAE;
+              System.out.println("SampleName[1]: " + supervisedAnnotation[1].getSampleName());
+
+              sAE = new org.bioconductor.cagrid.camachinelearning.SupervisedMachineLearningSampleAnnotation();
+              sAE.setSampleName("CMHI.3");
+              fV = new gov.nih.nci.caarray.domain.project.FactorValue();
+              fV.setValue("control1");
+              sAE.setObservedClassification(fV);
+              sAE.setIsTrainingSample(false);
+              supervisedAnnotation[2] = sAE;
+              System.out.println("SampleName[2]: " + supervisedAnnotation[2].getSampleName());
+
+              sAE = new org.bioconductor.cagrid.camachinelearning.SupervisedMachineLearningSampleAnnotation();
+              sAE.setSampleName("CMHI.4");
+              fV = new gov.nih.nci.caarray.domain.project.FactorValue();
+              fV.setValue("control1");
+              sAE.setObservedClassification(fV);
+              sAE.setIsTrainingSample(false);
+              supervisedAnnotation[3] = sAE;
+              System.out.println("SampleName[3]: " + supervisedAnnotation[3].getSampleName()); 
+              
+              org.bioconductor.cagrid.camachinelearning.DiagonalLinearDiscriminantAnalysisMachineLearningParameters param = new
+                                                           org.bioconductor.cagrid.camachinelearning.DiagonalLinearDiscriminantAnalysisMachineLearningParameters();
+              param.setSupervisedMachineLearningAnnotation(supervisedAnnotation);
+              
+              
+			  
+			  org.bioconductor.cagrid.camachinelearning.HierarchicalClusteringMachineLearningParameters param2 = new
 			                    org.bioconductor.cagrid.camachinelearning.HierarchicalClusteringMachineLearningParameters();
-			  param.setAlgorithm("ward");
-			  param.setDistanceMetric("euclidean");
-			  param.setNumberOfClusters(2);
-*/
-/*			  
+			  param2.setLinkage("ward");
+			  param2.setDistanceMetric("euclidean");
+			  param2.setNumberOfClusters(2);
+
+/*	  
 			  org.bioconductor.cagrid.camachinelearning.KMeansMachineLearningParameters param = new
               														org.bioconductor.cagrid.camachinelearning.KMeansMachineLearningParameters();
 			  param.setAlgorithm("Forgy");
 			  param.setNumberOfClusters(10);
 */	
-
+/*
 			  String supervisedParamFilePath = "/home/mtra2/CaGridProj/CaMachineLearning/Data/LinearDiscriminantAnalysisParameters.rda_java.Data";
 			  org.bioconductor.cagrid.camachinelearning.SupervisedMachineLearningParameters param = 
 				  		CaMachineLearningHelper.deserializeToCagridSupervisedMachineLearningParameters(supervisedParamFilePath);
-/*					  
-			  org.bioconductor.cagrid.camachinelearning.MachineLearningResultCollection result = client.learn(singleExpDataColl, param);
+*/					  
+
+              org.bioconductor.cagrid.camachinelearning.MachineLearningResultCollection result = client.learn(singleExpDataCollFromTxt, param);
 			  if(result != null) {
 				  System.out.println("I got something back from the service.");
 				  client.printOutputLearningResult(result);
 			  }
-*/			  
+			  
 /*			  
 			  org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEP = client.createCaMachineLearningSession();
 			  org.bioconductor.packages.helper.common.HelperService helperService = new org.bioconductor.packages.helper.common.HelperService();
@@ -100,7 +157,7 @@ public class CaMachineLearningClient extends CaMachineLearningClientBase impleme
 				                     (org.bioconductor.cagrid.camachinelearning.MachineLearningResultCollection)returnResultObj;
 			  client.printOutputLearningResult(resultCollection);
 */
-			  System.out.println(client.getRpackageSessionInfo());
+//			  System.out.println(client.getRpackageSessionInfo());
 			  
 			} else {
 				usage();
@@ -144,15 +201,6 @@ public class CaMachineLearningClient extends CaMachineLearningClientBase impleme
 		}
 	}
 
-  public java.lang.String getRpackageSessionInfo() throws RemoteException {
-    synchronized(portTypeMutex){
-      configureStubSecurity((Stub)portType,"getRpackageSessionInfo");
-    org.bioconductor.packages.caMachineLearning.stubs.GetRpackageSessionInfoRequest params = new org.bioconductor.packages.caMachineLearning.stubs.GetRpackageSessionInfoRequest();
-    org.bioconductor.packages.caMachineLearning.stubs.GetRpackageSessionInfoResponse boxedResult = portType.getRpackageSessionInfo(params);
-    return boxedResult.getResponse();
-    }
-  }
-
   public org.oasis.wsrf.properties.GetMultipleResourcePropertiesResponse getMultipleResourceProperties(org.oasis.wsrf.properties.GetMultipleResourceProperties_Element params) throws RemoteException {
     synchronized(portTypeMutex){
       configureStubSecurity((Stub)portType,"getMultipleResourceProperties");
@@ -189,22 +237,22 @@ public class CaMachineLearningClient extends CaMachineLearningClientBase impleme
     }
   }
 
-  public org.bioconductor.cagrid.statefulservices.SessionEndpoint createCaMachineLearningSession() throws RemoteException {
+  public org.bioconductor.cagrid.statefulservices.SessionIdentifier createCaMachineLearningSession() throws RemoteException {
     synchronized(portTypeMutex){
       configureStubSecurity((Stub)portType,"createCaMachineLearningSession");
     org.bioconductor.packages.caMachineLearning.stubs.CreateCaMachineLearningSessionRequest params = new org.bioconductor.packages.caMachineLearning.stubs.CreateCaMachineLearningSessionRequest();
     org.bioconductor.packages.caMachineLearning.stubs.CreateCaMachineLearningSessionResponse boxedResult = portType.createCaMachineLearningSession(params);
-    return boxedResult.getSessionEndpoint();
+    return boxedResult.getSessionIdentifier();
     }
   }
 
-  public void invokeLearn(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint,org.bioconductor.cagrid.camachinelearning.MachineLearningParameters cagridMachineLearningParameters) throws RemoteException {
+  public void invokeLearn(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier,org.bioconductor.cagrid.camachinelearning.MachineLearningParameters cagridMachineLearningParameters) throws RemoteException {
     synchronized(portTypeMutex){
       configureStubSecurity((Stub)portType,"invokeLearn");
     org.bioconductor.packages.caMachineLearning.stubs.InvokeLearnRequest params = new org.bioconductor.packages.caMachineLearning.stubs.InvokeLearnRequest();
-    org.bioconductor.packages.caMachineLearning.stubs.InvokeLearnRequestSessionEndpoint sessionEndpointContainer = new org.bioconductor.packages.caMachineLearning.stubs.InvokeLearnRequestSessionEndpoint();
-    sessionEndpointContainer.setSessionEndpoint(sessionEndpoint);
-    params.setSessionEndpoint(sessionEndpointContainer);
+    org.bioconductor.packages.caMachineLearning.stubs.InvokeLearnRequestSessionIdentifier sessionIdentifierContainer = new org.bioconductor.packages.caMachineLearning.stubs.InvokeLearnRequestSessionIdentifier();
+    sessionIdentifierContainer.setSessionIdentifier(sessionIdentifier);
+    params.setSessionIdentifier(sessionIdentifierContainer);
     org.bioconductor.packages.caMachineLearning.stubs.InvokeLearnRequestCagridMachineLearningParameters cagridMachineLearningParametersContainer = new org.bioconductor.packages.caMachineLearning.stubs.InvokeLearnRequestCagridMachineLearningParameters();
     cagridMachineLearningParametersContainer.setMachineLearningParameters(cagridMachineLearningParameters);
     params.setCagridMachineLearningParameters(cagridMachineLearningParametersContainer);
@@ -212,15 +260,24 @@ public class CaMachineLearningClient extends CaMachineLearningClientBase impleme
     }
   }
 
-  public org.bioconductor.cagrid.statefulservices.Status getStatus(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint) throws RemoteException {
+  public org.bioconductor.cagrid.statefulservices.Status getStatus(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException {
     synchronized(portTypeMutex){
       configureStubSecurity((Stub)portType,"getStatus");
     org.bioconductor.packages.caMachineLearning.stubs.GetStatusRequest params = new org.bioconductor.packages.caMachineLearning.stubs.GetStatusRequest();
-    org.bioconductor.packages.caMachineLearning.stubs.GetStatusRequestSessionEndpoint sessionEndpointContainer = new org.bioconductor.packages.caMachineLearning.stubs.GetStatusRequestSessionEndpoint();
-    sessionEndpointContainer.setSessionEndpoint(sessionEndpoint);
-    params.setSessionEndpoint(sessionEndpointContainer);
+    org.bioconductor.packages.caMachineLearning.stubs.GetStatusRequestSessionIdentifier sessionIdentifierContainer = new org.bioconductor.packages.caMachineLearning.stubs.GetStatusRequestSessionIdentifier();
+    sessionIdentifierContainer.setSessionIdentifier(sessionIdentifier);
+    params.setSessionIdentifier(sessionIdentifierContainer);
     org.bioconductor.packages.caMachineLearning.stubs.GetStatusResponse boxedResult = portType.getStatus(params);
     return boxedResult.getStatus();
+    }
+  }
+
+  public java.lang.String getRpackageSessionInfo() throws RemoteException {
+    synchronized(portTypeMutex){
+      configureStubSecurity((Stub)portType,"getRpackageSessionInfo");
+    org.bioconductor.packages.caMachineLearning.stubs.GetRpackageSessionInfoRequest params = new org.bioconductor.packages.caMachineLearning.stubs.GetRpackageSessionInfoRequest();
+    org.bioconductor.packages.caMachineLearning.stubs.GetRpackageSessionInfoResponse boxedResult = portType.getRpackageSessionInfo(params);
+    return boxedResult.getResponse();
     }
   }
 

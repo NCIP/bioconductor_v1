@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://caMachineLearning.packages.bioconductor.org/CaMachineLearning" xmlns:wsrp="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd" xmlns:wsrlw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl" xmlns:wsdlpp="http://www.globus.org/namespaces/2004/10/WSDLPreprocessor" xmlns:gtwsdl1="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ServiceGroup-1.2-draft-01.wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/03/addressing" xmlns:wsntw="http://docs.oasis-open.org/wsn/2004/06/wsn-WS-BaseNotification-1.2-draft-01.wsdl" xmlns:wsrbfw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.wsdl" xmlns:wsrpw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" xmlns:wns0="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" xmlns:wns1="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity" xmlns:ns13="gme://caArray.caBIG/2.1/edu.georgetown.pir" xmlns:ns22="http://transfer.cagrid.org/Transfer" xmlns:ns1="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices" xmlns:ns5="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.hybridization" xmlns:ns9="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.data" xmlns:ns2="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices" xmlns:ns23="http://caMachineLearning.packages.bioconductor.org/CaMachineLearning/Context/types" xmlns:ns15="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data" xmlns:ns6="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.project" xmlns:ns3="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.protocol" xmlns:ns21="http://transfer.cagrid.org/TransferService/Context/types" xmlns:ns7="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.sample" xmlns:ns11="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain" xmlns:ns20="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata" xmlns:ns19="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security" xmlns:ns14="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.array" xmlns:ns12="gme://caArray.caBIG/2.1/gov.nih.nci.cabio.domain" xmlns:ns16="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.contact" xmlns:ns4="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.file" xmlns:ns17="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.camachinelearning" xmlns:ns18="http://caMachineLearning.packages.bioconductor.org/CaMachineLearning/types" xmlns:ns10="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.publication" xmlns:ns8="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.vocabulary" xmlns:ns0="http://schemas.xmlsoap.org/ws/2004/03/addressing" xmlns:ns24="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd" name="CaMachineLearning" targetNamespace="http://caMachineLearning.packages.bioconductor.org/CaMachineLearning">
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://caMachineLearning.packages.bioconductor.org/CaMachineLearning" xmlns:wsrp="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd" xmlns:wsrlw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl" xmlns:wsdlpp="http://www.globus.org/namespaces/2004/10/WSDLPreprocessor" xmlns:gtwsdl1="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ServiceGroup-1.2-draft-01.wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/03/addressing" xmlns:wsntw="http://docs.oasis-open.org/wsn/2004/06/wsn-WS-BaseNotification-1.2-draft-01.wsdl" xmlns:wsrbfw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.wsdl" xmlns:wsrpw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" xmlns:wns0="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" xmlns:wns1="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity" xmlns:ns10="gme://caArray.caBIG/2.1/edu.georgetown.pir" xmlns:ns22="http://transfer.cagrid.org/Transfer" xmlns:ns17="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices" xmlns:ns2="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.hybridization" xmlns:ns6="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.data" xmlns:ns15="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices" xmlns:ns23="http://caMachineLearning.packages.bioconductor.org/CaMachineLearning/Context/types" xmlns:ns12="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data" xmlns:ns3="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.project" xmlns:ns0="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.protocol" xmlns:ns21="http://transfer.cagrid.org/TransferService/Context/types" xmlns:ns4="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.sample" xmlns:ns8="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain" xmlns:ns20="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata" xmlns:ns19="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security" xmlns:ns11="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.array" xmlns:ns9="gme://caArray.caBIG/2.1/gov.nih.nci.cabio.domain" xmlns:ns13="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.contact" xmlns:ns1="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.file" xmlns:ns14="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.camachinelearning" xmlns:ns18="http://caMachineLearning.packages.bioconductor.org/CaMachineLearning/types" xmlns:ns7="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.publication" xmlns:ns5="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.vocabulary" xmlns:ns16="http://schemas.xmlsoap.org/ws/2004/03/addressing" xmlns:ns24="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd" name="CaMachineLearning" targetNamespace="http://caMachineLearning.packages.bioconductor.org/CaMachineLearning">
   <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" location="../wsrf/properties/WS-ResourceProperties.wsdl" />
   <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.wsdl" location="../wsrf/faults/WS-BaseFaults.wsdl" />
   <import namespace="http://docs.oasis-open.org/wsn/2004/06/wsn-WS-BaseNotification-1.2-draft-01.wsdl" location="../wsrf/notification/WS-BaseN.wsdl" />
@@ -18,7 +18,7 @@
       <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices" schemaLocation="./org.bioconductor.cagrid.statefulservices.xsd" />
       <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.hybridization" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.hybridization.xsd" />
       <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.data" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.data.xsd" />
-      <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices" schemaLocation="./../RServices/org.bioconductor.cagrid.rservices.xsd" />
+      <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices" schemaLocation="./org.bioconductor.cagrid.rservices.xsd" />
       <import namespace="http://caMachineLearning.packages.bioconductor.org/CaMachineLearning/Context/types" schemaLocation="./CaMachineLearningContextTypes.xsd" />
       <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data" schemaLocation="./../Data/org.bioconductor.cagrid.data.xsd" />
       <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.project" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.project.xsd" />
@@ -44,14 +44,14 @@
             <element name="singleChannelExpressionDataCollection">
               <complexType>
                 <sequence>
-                  <element ref="ns15:SingleChannelExpressionDataCollection" minOccurs="1" maxOccurs="1" />
+                  <element ref="ns12:SingleChannelExpressionDataCollection" minOccurs="1" maxOccurs="1" />
                 </sequence>
               </complexType>
             </element>
             <element name="cagridMachineLearningParameters">
               <complexType>
                 <sequence>
-                  <element ref="ns17:MachineLearningParameters" minOccurs="1" maxOccurs="1" />
+                  <element ref="ns14:MachineLearningParameters" minOccurs="1" maxOccurs="1" />
                 </sequence>
               </complexType>
             </element>
@@ -61,7 +61,7 @@
       <element name="LearnResponse">
         <complexType>
           <sequence>
-            <element ref="ns17:MachineLearningResultCollection" minOccurs="1" maxOccurs="1" />
+            <element ref="ns14:MachineLearningResultCollection" minOccurs="1" maxOccurs="1" />
           </sequence>
         </complexType>
       </element>
@@ -73,24 +73,24 @@
       <element name="CreateCaMachineLearningSessionResponse">
         <complexType>
           <sequence>
-            <element ref="ns1:SessionEndpoint" minOccurs="1" maxOccurs="1" />
+            <element ref="ns17:SessionIdentifier" minOccurs="1" maxOccurs="1" />
           </sequence>
         </complexType>
       </element>
       <element name="InvokeLearnRequest">
         <complexType>
           <sequence>
-            <element name="sessionEndpoint">
+            <element name="sessionIdentifier">
               <complexType>
                 <sequence>
-                  <element ref="ns1:SessionEndpoint" minOccurs="1" maxOccurs="1" />
+                  <element ref="ns17:SessionIdentifier" minOccurs="1" maxOccurs="1" />
                 </sequence>
               </complexType>
             </element>
             <element name="cagridMachineLearningParameters">
               <complexType>
                 <sequence>
-                  <element ref="ns17:MachineLearningParameters" minOccurs="1" maxOccurs="1" />
+                  <element ref="ns14:MachineLearningParameters" minOccurs="1" maxOccurs="1" />
                 </sequence>
               </complexType>
             </element>
@@ -105,10 +105,10 @@
       <element name="GetStatusRequest">
         <complexType>
           <sequence>
-            <element name="sessionEndpoint">
+            <element name="sessionIdentifier">
               <complexType>
                 <sequence>
-                  <element ref="ns1:SessionEndpoint" minOccurs="1" maxOccurs="1" />
+                  <element ref="ns17:SessionIdentifier" minOccurs="1" maxOccurs="1" />
                 </sequence>
               </complexType>
             </element>
@@ -118,7 +118,7 @@
       <element name="GetStatusResponse">
         <complexType>
           <sequence>
-            <element ref="ns1:Status" minOccurs="1" maxOccurs="1" />
+            <element ref="ns17:Status" minOccurs="1" maxOccurs="1" />
           </sequence>
         </complexType>
       </element>
