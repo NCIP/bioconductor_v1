@@ -45,6 +45,7 @@ public class CaAQMOperationsHelper {
 		}
 	}
 	
+/*	
 	public static void uploadFiles(final org.bioconductor.cagrid.data.QualityReportFileReferences reportFileRefs) throws Exception
 	{
 		synchronized(m_mutexObj) {
@@ -74,6 +75,7 @@ public class CaAQMOperationsHelper {
 			}
 		}
 	}
+*/
 
 	/**
 	 * Download files using cagrid transfer reference.
@@ -81,6 +83,7 @@ public class CaAQMOperationsHelper {
 	 * @return String[]  - array of urls where files are downloaded. 
 	 * @throws Exception
 	 */
+/*	
 	public static org.bioconductor.cagrid.rservices.FileReferences dowloadFiles(final org.bioconductor.cagrid.data.QualityReportFileReferences resultFileRefs, 
 			                                                                     final String downloadTo) throws Exception
 	{
@@ -146,7 +149,7 @@ public class CaAQMOperationsHelper {
 
 
 	}
-
+*/
 
 	/**
 	 * Unzip the zip file, then open a web browser display the report page.

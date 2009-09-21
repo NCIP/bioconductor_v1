@@ -63,25 +63,32 @@ public class CaArrayQualityMetricsClient extends CaArrayQualityMetricsClientBase
 			if(args[0].equals("-url")){
 				CaArrayQualityMetricsClient client = new CaArrayQualityMetricsClient(args[1]);
 				
-				String sessionInfo = client.getRpackageSessionInfo();
-				System.out.println("Session info: " + sessionInfo);
+				System.out.println("Calling get report session...");
+				org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIden = client.createQualityReportSession();
+				
+				System.out.println("Session identifier key: " + sessionIden.getIdentifier());
+				System.out.println("Session service url: " + sessionIden.getServiceUrl());
+				
+//				String sessionInfo = client.getRpackageSessionInfo();
+//				System.out.println("Session info: " + sessionInfo);
 				
 				// place client calls here if you want to use this main as a
 				// test....
-			  	final org.bioconductor.cagrid.statefulservices.SessionEndpoint caAQM_SessionEP = client.createReportSession();
+//			  	final org.bioconductor.cagrid.statefulservices.SessionEndpoint caAQM_SessionEP = client.createReportSession();
 			  	
-			  	System.out.println("SessionEnpoint key: " + caAQM_SessionEP.getIdentifier());
+//			  	System.out.println("SessionEnpoint key: " + caAQM_SessionEP.getIdentifier());
+
 			  	
 			  	String strBaseDir = "/home/mtra2/TestData/";  
 				
 				 int size = 2;
 				 
 				 String[] strFileLocArr = new String[size];
-/*
-				 strFileLocArr[0] = strBaseDir + "0034_1f.CEL";
-				 strFileLocArr[1] = strBaseDir + "0034_2f.CEL";
-				 strFileLocArr[2] = strBaseDir + "0034_3f.CEL";
-*/	
+
+//				 strFileLocArr[0] = strBaseDir + "0034_1f.CEL";
+//				 strFileLocArr[1] = strBaseDir + "0034_2f.CEL";
+//				 strFileLocArr[2] = strBaseDir + "0034_3f.CEL";
+	
 				 
 				 strFileLocArr[0] = strBaseDir + "GPR/251316214319_auto_479-628.gpr";
 				 strFileLocArr[1] = strBaseDir + "GPR/251316214320_auto_478-629.gpr";
@@ -104,53 +111,57 @@ public class CaArrayQualityMetricsClient extends CaArrayQualityMetricsClientBase
 				  fileRefArr[1].setLocalName("251316214320_auto_478-629");
 				  fileRefArr[1].setType("GPR");
 				  fileRefArr[1].setUrl(strFileLocArr[1]);
+				  
 //				  fileRefArr[2] = new org.bioconductor.cagrid.rservices.FileReference(strFileLocArr[2], "251316214321_auto_410-592", "GPR");
 				  
 				  
-				  org.bioconductor.cagrid.rservices.FileReferences fileReferences = new org.bioconductor.cagrid.rservices.FileReferences(fileRefArr);
+				  org.bioconductor.cagrid.rservices.FileReferenceCollection fileRefCollection = new org.bioconductor.cagrid.rservices.FileReferenceCollection(fileRefArr);
 				  				  				  
 //				  org.bioconductor.cagrid.data.QualityReportFileReferences reportFileRefs = client.getUploadQualityReportFileReferences(caAQM_SessionEP, fileReferences);
 				  
 //				  System.out.println("Start uploading files for caArrayQualityMetrics...");
 //				  CaAQMOperationsHelper.uploadFiles(reportFileRefs);
-				  
-				// create a helper for invoking:
-				org.bioconductor.packages.helper.common.HelperServiceInvoker helpInvoker = new org.bioconductor.packages.helper.common.HelperServiceInvoker();
-			      // now, use helper invoker to upload files:				  
-				   org.bioconductor.cagrid.statefulservices.Status status =  helpInvoker.uploadFiles(args[1], caAQM_SessionEP, fileReferences);
-					
-					// for now, set parameters to an empty array
-					 org.bioconductor.cagrid.caarrayqualitymetrics.CaArrayQualityMetricsParameters caAQM_Parameters = 
-						  	                     new org.bioconductor.cagrid.caarrayqualitymetrics.CaArrayQualityMetricsParameters(new double[]{1}, new double[]{1});
-					  
-					status = client.runCaArrayQualityMetrics(caAQM_SessionEP, caAQM_Parameters);
-					// next is just a loop to check when caFlowQ finishes its job and service successully receive a result from caFlowQ
-					// Note if this loop doesn't break, that means something going bad at the service
-					System.out.println("Status: " + status.getState().toString());
-					while(!(status.getState().equals(org.bioconductor.cagrid.statefulservices.StatusState.RESULT_AVAILABLE))) {
-						 System.out.println("Status now is: " + status.getState());
-						 System.out.println("Result is not ready... Sleep for 6 seconds");
-						 try {
-							Thread.sleep(6000);
-							status = client.getStatus(caAQM_SessionEP);
-						 }
-						 catch(Exception ew){}
-					 }
-	
-					System.out.println("Result is ready");
-					// calling the service to get the result
-					org.bioconductor.cagrid.data.QualityReportFileReferences qualityResultFileRefs = client.getQualityReportResult(caAQM_SessionEP);
-					System.out.println("Got the report result");
-					// the result is CaFlowQUrl containing url where to get the report.
-					// call helper invoker to get it:
-					org.bioconductor.cagrid.rservices.FileReference[] resultFileRefArr = (org.bioconductor.cagrid.rservices.FileReference[])qualityResultFileRefs.getCagridFileReferenceCollection();
-					org.bioconductor.cagrid.rservices.FileReferences reportFileRefs = helpInvoker.dowloadResultFiles(new org.bioconductor.cagrid.rservices.FileReferences(resultFileRefArr), "/home/mtra2/JunkTest");
 
-				  
-				  String reportFileLoc = reportFileRefs.getFileReferenceCollection()[0].getUrl();
-				  System.out.println("display report for: " + reportFileLoc);
-				  
-				  CaAQMOperationsHelper.displayReport(reportFileLoc, "QMreport.html");
+			  	
+				// create a helper for invoking:
+				org.bioconductor.packages.helper.common.HelperService helperService = new org.bioconductor.packages.helper.common.HelperService();
+			    // now, use helper invoker to upload files:				  
+				org.bioconductor.cagrid.statefulservices.Status status =  helperService.uploadFileReferenceCollection(sessionIden, fileRefCollection);
+										  
+				status = client.runCaArrayQualityMetrics(sessionIden);
+				// next is just a loop to check when caFlowQ finishes its job and service successully receive a result from caFlowQ
+				// Note if this loop doesn't break, that means something going bad at the service
+				System.out.println("Status: " + status.getState().toString());
+				while(!(status.getState().equals(org.bioconductor.cagrid.statefulservices.StatusState.RESULT_AVAILABLE))) {
+					 System.out.println("Status now is: " + status.getState());
+					 System.out.println("Result is not ready... Sleep for 6 seconds");
+					 try {
+						Thread.sleep(6000);
+						status = client.getStatus(sessionIden);
+					 }
+					 catch(Exception ew){}
+				 }
+
+				System.out.println("Result is ready");
+				// calling the service to get the result
+//				org.bioconductor.cagrid.caarrayqualitymetrics.QualityReportFileReferenceCollection qualityResultFileRefs = 
+//								(org.bioconductor.cagrid.caarrayqualitymetrics.QualityReportFileReferenceCollection)helperService.getFileReferenceCollection(sessionIden);
+				org.bioconductor.cagrid.rservices.FileReferenceCollection qualityResultFileRefs = helperService.getFileReferenceCollection(sessionIden);
+				System.out.println("Result file type: " + qualityResultFileRefs.toString());
+					             
+				System.out.println("Got the report result");
+				// the result is CaFlowQUrl containing url where to get the report.
+				// call helper invoker to get it:
+//				org.bioconductor.cagrid.rservices.FileReference[] resultFileRefArr = (org.bioconductor.cagrid.rservices.FileReference[])qualityResultFileRefs.getFileReferenceCollection();
+//				org.bioconductor.cagrid.rservices.FileReferenceCollection reportFileRefs = helperService.dowloadResultFiles(
+//						                        new org.bioconductor.cagrid.rservices.FileReferenceCollection(resultFileRefArr), "/home/mtra2/JunkTest");
+				org.bioconductor.cagrid.rservices.FileReferenceCollection reportFileRefs = helperService.dowloadResultFiles(qualityResultFileRefs, "/home/mtra2/JunkTest");				                                                                         
+
+			  
+			  String reportFileLoc = reportFileRefs.getFileReferenceCollection()[0].getUrl();
+			  System.out.println("display report for: " + reportFileLoc);
+			  
+			  CaAQMOperationsHelper.displayReport(reportFileLoc, "QMreport.html");
 				  
 			} else {
 				usage();
@@ -167,18 +178,6 @@ public class CaArrayQualityMetricsClient extends CaArrayQualityMetricsClientBase
 	}
 
   
-
-  public org.bioconductor.cagrid.data.QualityReportFileReferences getQualityReportResult(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint) throws RemoteException {
-    synchronized(portTypeMutex){
-      configureStubSecurity((Stub)portType,"getQualityReportResult");
-    org.bioconductor.packages.caArrayQualityMetrics.stubs.GetQualityReportResultRequest params = new org.bioconductor.packages.caArrayQualityMetrics.stubs.GetQualityReportResultRequest();
-    org.bioconductor.packages.caArrayQualityMetrics.stubs.GetQualityReportResultRequestSessionEndpoint sessionEndpointContainer = new org.bioconductor.packages.caArrayQualityMetrics.stubs.GetQualityReportResultRequestSessionEndpoint();
-    sessionEndpointContainer.setSessionEndpoint(sessionEndpoint);
-    params.setSessionEndpoint(sessionEndpointContainer);
-    org.bioconductor.packages.caArrayQualityMetrics.stubs.GetQualityReportResultResponse boxedResult = portType.getQualityReportResult(params);
-    return boxedResult.getQualityReportFileReferences();
-    }
-  }
 
   public org.oasis.wsrf.properties.GetMultipleResourcePropertiesResponse getMultipleResourceProperties(org.oasis.wsrf.properties.GetMultipleResourceProperties_Element params) throws RemoteException {
     synchronized(portTypeMutex){
@@ -201,25 +200,13 @@ public class CaArrayQualityMetricsClient extends CaArrayQualityMetricsClientBase
     }
   }
 
-  public org.bioconductor.cagrid.statefulservices.SessionEndpoint createReportSession() throws RemoteException {
-    synchronized(portTypeMutex){
-      configureStubSecurity((Stub)portType,"createReportSession");
-    org.bioconductor.packages.caArrayQualityMetrics.stubs.CreateReportSessionRequest params = new org.bioconductor.packages.caArrayQualityMetrics.stubs.CreateReportSessionRequest();
-    org.bioconductor.packages.caArrayQualityMetrics.stubs.CreateReportSessionResponse boxedResult = portType.createReportSession(params);
-    return boxedResult.getSessionEndpoint();
-    }
-  }
-
-  public org.bioconductor.cagrid.statefulservices.Status runCaArrayQualityMetrics(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint,org.bioconductor.cagrid.caarrayqualitymetrics.CaArrayQualityMetricsParameters caArrayQualityMetricsParameters) throws RemoteException {
+  public org.bioconductor.cagrid.statefulservices.Status runCaArrayQualityMetrics(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException {
     synchronized(portTypeMutex){
       configureStubSecurity((Stub)portType,"runCaArrayQualityMetrics");
     org.bioconductor.packages.caArrayQualityMetrics.stubs.RunCaArrayQualityMetricsRequest params = new org.bioconductor.packages.caArrayQualityMetrics.stubs.RunCaArrayQualityMetricsRequest();
-    org.bioconductor.packages.caArrayQualityMetrics.stubs.RunCaArrayQualityMetricsRequestSessionEndpoint sessionEndpointContainer = new org.bioconductor.packages.caArrayQualityMetrics.stubs.RunCaArrayQualityMetricsRequestSessionEndpoint();
-    sessionEndpointContainer.setSessionEndpoint(sessionEndpoint);
-    params.setSessionEndpoint(sessionEndpointContainer);
-    org.bioconductor.packages.caArrayQualityMetrics.stubs.RunCaArrayQualityMetricsRequestCaArrayQualityMetricsParameters caArrayQualityMetricsParametersContainer = new org.bioconductor.packages.caArrayQualityMetrics.stubs.RunCaArrayQualityMetricsRequestCaArrayQualityMetricsParameters();
-    caArrayQualityMetricsParametersContainer.setCaArrayQualityMetricsParameters(caArrayQualityMetricsParameters);
-    params.setCaArrayQualityMetricsParameters(caArrayQualityMetricsParametersContainer);
+    org.bioconductor.packages.caArrayQualityMetrics.stubs.RunCaArrayQualityMetricsRequestSessionIdentifier sessionIdentifierContainer = new org.bioconductor.packages.caArrayQualityMetrics.stubs.RunCaArrayQualityMetricsRequestSessionIdentifier();
+    sessionIdentifierContainer.setSessionIdentifier(sessionIdentifier);
+    params.setSessionIdentifier(sessionIdentifierContainer);
     org.bioconductor.packages.caArrayQualityMetrics.stubs.RunCaArrayQualityMetricsResponse boxedResult = portType.runCaArrayQualityMetrics(params);
     return boxedResult.getStatus();
     }
@@ -234,15 +221,24 @@ public class CaArrayQualityMetricsClient extends CaArrayQualityMetricsClientBase
     }
   }
 
-  public org.bioconductor.cagrid.statefulservices.Status getStatus(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint) throws RemoteException {
+  public org.bioconductor.cagrid.statefulservices.Status getStatus(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException {
     synchronized(portTypeMutex){
       configureStubSecurity((Stub)portType,"getStatus");
     org.bioconductor.packages.caArrayQualityMetrics.stubs.GetStatusRequest params = new org.bioconductor.packages.caArrayQualityMetrics.stubs.GetStatusRequest();
-    org.bioconductor.packages.caArrayQualityMetrics.stubs.GetStatusRequestSessionEndpoint sessionEndpointContainer = new org.bioconductor.packages.caArrayQualityMetrics.stubs.GetStatusRequestSessionEndpoint();
-    sessionEndpointContainer.setSessionEndpoint(sessionEndpoint);
-    params.setSessionEndpoint(sessionEndpointContainer);
+    org.bioconductor.packages.caArrayQualityMetrics.stubs.GetStatusRequestSessionIdentifier sessionIdentifierContainer = new org.bioconductor.packages.caArrayQualityMetrics.stubs.GetStatusRequestSessionIdentifier();
+    sessionIdentifierContainer.setSessionIdentifier(sessionIdentifier);
+    params.setSessionIdentifier(sessionIdentifierContainer);
     org.bioconductor.packages.caArrayQualityMetrics.stubs.GetStatusResponse boxedResult = portType.getStatus(params);
     return boxedResult.getStatus();
+    }
+  }
+
+  public org.bioconductor.cagrid.statefulservices.SessionIdentifier createQualityReportSession() throws RemoteException {
+    synchronized(portTypeMutex){
+      configureStubSecurity((Stub)portType,"createQualityReportSession");
+    org.bioconductor.packages.caArrayQualityMetrics.stubs.CreateQualityReportSessionRequest params = new org.bioconductor.packages.caArrayQualityMetrics.stubs.CreateQualityReportSessionRequest();
+    org.bioconductor.packages.caArrayQualityMetrics.stubs.CreateQualityReportSessionResponse boxedResult = portType.createQualityReportSession(params);
+    return boxedResult.getSessionIdentifier();
     }
   }
 

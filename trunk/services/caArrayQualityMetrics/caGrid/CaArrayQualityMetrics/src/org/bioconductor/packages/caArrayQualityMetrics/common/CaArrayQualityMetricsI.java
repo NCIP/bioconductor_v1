@@ -12,21 +12,19 @@ import java.rmi.RemoteException;
  */
 public interface CaArrayQualityMetricsI {
 
-  public org.bioconductor.cagrid.data.QualityReportFileReferences getQualityReportResult(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint) throws RemoteException ;
-
   public org.oasis.wsrf.properties.GetMultipleResourcePropertiesResponse getMultipleResourceProperties(org.oasis.wsrf.properties.GetMultipleResourceProperties_Element params) throws RemoteException ;
 
   public org.oasis.wsrf.properties.GetResourcePropertyResponse getResourceProperty(javax.xml.namespace.QName params) throws RemoteException ;
 
   public org.oasis.wsrf.properties.QueryResourcePropertiesResponse queryResourceProperties(org.oasis.wsrf.properties.QueryResourceProperties_Element params) throws RemoteException ;
 
-  public org.bioconductor.cagrid.statefulservices.SessionEndpoint createReportSession() throws RemoteException ;
-
-  public org.bioconductor.cagrid.statefulservices.Status runCaArrayQualityMetrics(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint,org.bioconductor.cagrid.caarrayqualitymetrics.CaArrayQualityMetricsParameters caArrayQualityMetricsParameters) throws RemoteException ;
+  public org.bioconductor.cagrid.statefulservices.Status runCaArrayQualityMetrics(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException ;
 
   public java.lang.String getRpackageSessionInfo() throws RemoteException ;
 
-  public org.bioconductor.cagrid.statefulservices.Status getStatus(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint) throws RemoteException ;
+  public org.bioconductor.cagrid.statefulservices.Status getStatus(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException ;
+
+  public org.bioconductor.cagrid.statefulservices.SessionIdentifier createQualityReportSession() throws RemoteException ;
 
 }
 

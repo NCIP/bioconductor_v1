@@ -1,7 +1,12 @@
 <ns1:ServiceDescription introduceVersion="1.2" xmlns:ns1="gme://gov.nih.nci.cagrid/1/Introduce">
  <ns2:Namespaces xsi:type="ns2:NamespacesType" xmlns:ns2="gme://gov.nih.nci.cagrid.introduce/1/Namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ns2:Namespace location="./org.bioconductor.cagrid.caaqm.xsd" namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.caarrayqualitymetrics" packageName="org.bioconductor.cagrid.caarrayqualitymetrics" xsi:type="ns2:NamespaceType">
-   <ns2:SchemaElement type="CaArrayQualityMetricsParameters" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="QualityReportFileReferenceCollection" xsi:type="ns2:SchemaElementType"/>
+  </ns2:Namespace>
+  <ns2:Namespace location="./../RServices/org.bioconductor.cagrid.rservices.xsd" namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices" packageName="org.bioconductor.cagrid.rservices" xsi:type="ns2:NamespaceType">
+   <ns2:SchemaElement type="FileReference" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="FileReferenceCollection" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="Parameters" xsi:type="ns2:SchemaElementType"/>
   </ns2:Namespace>
   <ns2:Namespace location="./../ws/addressing/WS-Addressing.xsd" namespace="http://schemas.xmlsoap.org/ws/2004/03/addressing" packageName="addressing" xsi:type="ns2:NamespaceType">
    <ns2:SchemaElement type="Action" xsi:type="ns2:SchemaElementType"/>
@@ -14,19 +19,12 @@
    <ns2:SchemaElement type="ReplyTo" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="To" xsi:type="ns2:SchemaElementType"/>
   </ns2:Namespace>
-  <ns2:Namespace location="./../StatefulServices/org.bioconductor.cagrid.statefulservices.xsd" namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices" packageName="org.bioconductor.cagrid.statefulservices" xsi:type="ns2:NamespaceType">
+  <ns2:Namespace location="./org.bioconductor.cagrid.statefulservices.xsd" namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices" packageName="org.bioconductor.cagrid.statefulservices" xsi:type="ns2:NamespaceType">
    <ns2:SchemaElement type="CaGridFileReference" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="CaGridFileReferences" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="ErrorStatus" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="SessionEndpoint" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="CaGridFileReferenceCollection" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="CaGridObjectReference" xsi:type="ns2:SchemaElementType"/>
+   <ns2:SchemaElement type="SessionIdentifier" xsi:type="ns2:SchemaElementType"/>
    <ns2:SchemaElement type="Status" xsi:type="ns2:SchemaElementType"/>
-  </ns2:Namespace>
-  <ns2:Namespace location="./../RServices/org.bioconductor.cagrid.rservices.xsd" namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices" packageName="org.bioconductor.cagrid.rservices" xsi:type="ns2:NamespaceType">
-   <ns2:SchemaElement type="FileReference" xsi:type="ns2:SchemaElementType"/>
-   <ns2:SchemaElement type="FileReferences" xsi:type="ns2:SchemaElementType"/>
-  </ns2:Namespace>
-  <ns2:Namespace location="./org.bioconductor.cagrid.data.xsd" namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data" packageName="org.bioconductor.cagrid.data" xsi:type="ns2:NamespaceType">
-   <ns2:SchemaElement type="QualityReportFileReferences" xsi:type="ns2:SchemaElementType"/>
   </ns2:Namespace>
   <ns2:Namespace namespace="http://www.w3.org/2001/XMLSchema" xsi:type="ns2:NamespaceType">
    <ns2:SchemaElement type="anySimpleType" xsi:type="ns2:SchemaElementType"/>
@@ -139,24 +137,11 @@
      <ns4:ImportInformation namespace="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity" packageName="gov.nih.nci.cagrid.introduce.security.stubs" portTypeName="ServiceSecurityPortType" wsdlFile="ServiceSecurity.wsdl"/>
      <ns4:ProviderInformation providerClass="gov.nih.nci.cagrid.introduce.security.service.globus.ServiceSecurityProviderImpl"/>
     </ns4:Method>
-    <ns4:Method description="" isImported="false" isProvided="false" name="createReportSession" xsi:type="ns4:MethodType">
-     <ns4:Inputs/>
-     <ns4:Output qName="ns10:SessionEndpoint" description="" isArray="false" xmlns:ns10="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
-     <ns4:Exceptions/>
-    </ns4:Method>
     <ns4:Method description="" isImported="false" isProvided="false" name="runCaArrayQualityMetrics" xsi:type="ns4:MethodType">
      <ns4:Inputs>
-      <ns4:Input qName="ns11:SessionEndpoint" description="" isArray="false" name="sessionEndpoint" xmlns:ns11="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
-      <ns4:Input qName="ns12:CaArrayQualityMetricsParameters" description="" isArray="false" name="caArrayQualityMetricsParameters" xmlns:ns12="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.caarrayqualitymetrics"/>
+      <ns4:Input qName="ns10:SessionIdentifier" description="" isArray="false" name="sessionIdentifier" xmlns:ns10="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
      </ns4:Inputs>
-     <ns4:Output qName="ns13:Status" description="" isArray="false" xmlns:ns13="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
-     <ns4:Exceptions/>
-    </ns4:Method>
-    <ns4:Method description="" isImported="false" isProvided="false" name="getQualityReportResult" xsi:type="ns4:MethodType">
-     <ns4:Inputs>
-      <ns4:Input qName="ns14:SessionEndpoint" description="" isArray="false" name="sessionEndpoint" xmlns:ns14="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
-     </ns4:Inputs>
-     <ns4:Output qName="ns15:QualityReportFileReferences" description="" isArray="false" xmlns:ns15="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"/>
+     <ns4:Output qName="ns11:Status" description="" isArray="false" xmlns:ns11="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
      <ns4:Exceptions/>
     </ns4:Method>
     <ns4:Method description="" isImported="false" isProvided="false" name="getRpackageSessionInfo" xsi:type="ns4:MethodType">
@@ -166,15 +151,20 @@
     </ns4:Method>
     <ns4:Method description="" isImported="false" isProvided="false" name="getStatus" xsi:type="ns4:MethodType">
      <ns4:Inputs>
-      <ns4:Input qName="ns16:SessionEndpoint" description="" isArray="false" name="sessionEndpoint" xmlns:ns16="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
+      <ns4:Input qName="ns12:SessionIdentifier" description="" isArray="false" name="sessionIdentifier" xmlns:ns12="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
      </ns4:Inputs>
-     <ns4:Output qName="ns17:Status" description="" isArray="false" xmlns:ns17="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
+     <ns4:Output qName="ns13:Status" description="" isArray="false" xmlns:ns13="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
+     <ns4:Exceptions/>
+    </ns4:Method>
+    <ns4:Method description="" isImported="false" isProvided="false" name="createQualityReportSession" xsi:type="ns4:MethodType">
+     <ns4:Inputs/>
+     <ns4:Output qName="ns14:SessionIdentifier" description="" isArray="false" xmlns:ns14="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
      <ns4:Exceptions/>
     </ns4:Method>
    </ns4:Methods>
-   <ns18:ResourcePropertiesList xsi:type="ns18:ResourcePropertiesListType" xmlns:ns18="gme://gov.nih.nci.cagrid.introduce/1/Resources">
-    <ns18:ResourceProperty qName="ns19:ServiceMetadata" fileLocation="serviceMetadata.xml" populateFromFile="true" register="true" xsi:type="ns18:ResourcePropertyType" xmlns:ns19="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata"/>
-   </ns18:ResourcePropertiesList>
+   <ns15:ResourcePropertiesList xsi:type="ns15:ResourcePropertiesListType" xmlns:ns15="gme://gov.nih.nci.cagrid.introduce/1/Resources">
+    <ns15:ResourceProperty qName="ns16:ServiceMetadata" fileLocation="serviceMetadata.xml" populateFromFile="true" register="true" xsi:type="ns15:ResourcePropertyType" xmlns:ns16="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata"/>
+   </ns15:ResourcePropertiesList>
    <ns3:ResourceFrameworkOptions xsi:type="ns3:ResourceFrameworkOptions">
     <ns3:Main xsi:type="ns3:Main"/>
     <ns3:Singleton xsi:type="ns3:Singleton"/>
@@ -183,33 +173,33 @@
    </ns3:ResourceFrameworkOptions>
   </ns3:Service>
   <ns3:Service name="CaArrayQualityMetricsContext" namespace="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/Context" packageName="org.bioconductor.packages.caArrayQualityMetrics.context" xsi:type="ns3:ServiceType">
-   <ns20:Methods xsi:type="ns20:MethodsType" xmlns:ns20="gme://gov.nih.nci.cagrid.introduce/1/Methods">
-    <ns20:Method isImported="true" isProvided="true" name="getServiceSecurityMetadata" xsi:type="ns20:MethodType">
-     <ns20:Output qName="ns21:ServiceSecurityMetadata" isArray="false" isClientHandle="false" xmlns:ns21="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security"/>
-     <ns22:MethodSecurity xsi:type="ns22:MethodSecurity" xmlns:ns22="gme://gov.nih.nci.cagrid.introduce/1/Security">
-      <ns22:SecuritySetting xsi:type="ns22:SecuritySetting">None</ns22:SecuritySetting>
-      <ns22:MethodAuthorization xsi:type="ns22:MethodAuthorization">
-       <ns22:NoAuthorization xsi:type="ns22:NoAuthorization"/>
-      </ns22:MethodAuthorization>
-     </ns22:MethodSecurity>
-     <ns20:ImportInformation namespace="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity" packageName="gov.nih.nci.cagrid.introduce.security.stubs" portTypeName="ServiceSecurityPortType" wsdlFile="ServiceSecurity.wsdl"/>
-     <ns20:ProviderInformation providerClass="gov.nih.nci.cagrid.introduce.security.service.globus.ServiceSecurityProviderImpl"/>
-    </ns20:Method>
-    <ns20:Method isImported="true" isProvided="true" name="Destroy" xsi:type="ns20:MethodType">
-     <ns20:Output qName="void" isArray="false"/>
-     <ns20:ImportInformation fromIntroduce="false" inputMessage="ns23:DestroyRequest" namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl" outputMessage="ns23:DestroyResponse" packageName="org.oasis.wsrf.lifetime" portTypeName="ImmediateResourceTermination" wsdlFile="../wsrf/lifetime/WS-ResourceLifetime.wsdl" xmlns:ns23="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl"/>
-     <ns20:ProviderInformation providerClass="DestroyProvider"/>
-    </ns20:Method>
-    <ns20:Method isImported="true" isProvided="true" name="SetTerminationTime" xsi:type="ns20:MethodType">
-     <ns20:Output qName="void" isArray="false"/>
-     <ns20:ImportInformation fromIntroduce="false" inputMessage="ns24:SetTerminationTimeRequest" namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl" outputMessage="ns24:SetTerminationTimeResponse" packageName="org.oasis.wsrf.lifetime" portTypeName="ScheduledResourceTermination" wsdlFile="../wsrf/lifetime/WS-ResourceLifetime.wsdl" xmlns:ns24="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl"/>
-     <ns20:ProviderInformation providerClass="SetTerminationTimeProvider"/>
-    </ns20:Method>
-   </ns20:Methods>
-   <ns25:ResourcePropertiesList xsi:type="ns25:ResourcePropertiesListType" xmlns:ns25="gme://gov.nih.nci.cagrid.introduce/1/Resources">
-    <ns25:ResourceProperty qName="ns26:CurrentTime" populateFromFile="false" register="false" xsi:type="ns25:ResourcePropertyType" xmlns:ns26="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd"/>
-    <ns25:ResourceProperty qName="ns27:TerminationTime" populateFromFile="false" register="false" xsi:type="ns25:ResourcePropertyType" xmlns:ns27="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd"/>
-   </ns25:ResourcePropertiesList>
+   <ns17:Methods xsi:type="ns17:MethodsType" xmlns:ns17="gme://gov.nih.nci.cagrid.introduce/1/Methods">
+    <ns17:Method isImported="true" isProvided="true" name="getServiceSecurityMetadata" xsi:type="ns17:MethodType">
+     <ns17:Output qName="ns18:ServiceSecurityMetadata" isArray="false" isClientHandle="false" xmlns:ns18="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security"/>
+     <ns19:MethodSecurity xsi:type="ns19:MethodSecurity" xmlns:ns19="gme://gov.nih.nci.cagrid.introduce/1/Security">
+      <ns19:SecuritySetting xsi:type="ns19:SecuritySetting">None</ns19:SecuritySetting>
+      <ns19:MethodAuthorization xsi:type="ns19:MethodAuthorization">
+       <ns19:NoAuthorization xsi:type="ns19:NoAuthorization"/>
+      </ns19:MethodAuthorization>
+     </ns19:MethodSecurity>
+     <ns17:ImportInformation namespace="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity" packageName="gov.nih.nci.cagrid.introduce.security.stubs" portTypeName="ServiceSecurityPortType" wsdlFile="ServiceSecurity.wsdl"/>
+     <ns17:ProviderInformation providerClass="gov.nih.nci.cagrid.introduce.security.service.globus.ServiceSecurityProviderImpl"/>
+    </ns17:Method>
+    <ns17:Method isImported="true" isProvided="true" name="Destroy" xsi:type="ns17:MethodType">
+     <ns17:Output qName="void" isArray="false"/>
+     <ns17:ImportInformation fromIntroduce="false" inputMessage="ns20:DestroyRequest" namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl" outputMessage="ns20:DestroyResponse" packageName="org.oasis.wsrf.lifetime" portTypeName="ImmediateResourceTermination" wsdlFile="../wsrf/lifetime/WS-ResourceLifetime.wsdl" xmlns:ns20="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl"/>
+     <ns17:ProviderInformation providerClass="DestroyProvider"/>
+    </ns17:Method>
+    <ns17:Method isImported="true" isProvided="true" name="SetTerminationTime" xsi:type="ns17:MethodType">
+     <ns17:Output qName="void" isArray="false"/>
+     <ns17:ImportInformation fromIntroduce="false" inputMessage="ns21:SetTerminationTimeRequest" namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl" outputMessage="ns21:SetTerminationTimeResponse" packageName="org.oasis.wsrf.lifetime" portTypeName="ScheduledResourceTermination" wsdlFile="../wsrf/lifetime/WS-ResourceLifetime.wsdl" xmlns:ns21="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl"/>
+     <ns17:ProviderInformation providerClass="SetTerminationTimeProvider"/>
+    </ns17:Method>
+   </ns17:Methods>
+   <ns22:ResourcePropertiesList xsi:type="ns22:ResourcePropertiesListType" xmlns:ns22="gme://gov.nih.nci.cagrid.introduce/1/Resources">
+    <ns22:ResourceProperty qName="ns23:CurrentTime" populateFromFile="false" register="false" xsi:type="ns22:ResourcePropertyType" xmlns:ns23="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd"/>
+    <ns22:ResourceProperty qName="ns24:TerminationTime" populateFromFile="false" register="false" xsi:type="ns22:ResourcePropertyType" xmlns:ns24="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd"/>
+   </ns22:ResourcePropertiesList>
    <ns3:description xsi:type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"></ns3:description>
    <ns3:ResourceFrameworkOptions xsi:type="ns3:ResourceFrameworkOptions">
     <ns3:Lifetime xsi:type="ns3:Lifetime"/>
@@ -217,8 +207,8 @@
    </ns3:ResourceFrameworkOptions>
   </ns3:Service>
  </ns3:Services>
- <ns28:Extensions xsi:type="ns28:ExtensionsType" xmlns:ns28="gme://gov.nih.nci.cagrid.introduce/1/Extension" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <ns28:Extension name="cagrid_metadata" version="1.2" xsi:type="ns28:ExtensionType"/>
-  <ns28:Extension name="caGrid_Transfer" version="1.2" xsi:type="ns28:ExtensionType"/>
- </ns28:Extensions>
+ <ns25:Extensions xsi:type="ns25:ExtensionsType" xmlns:ns25="gme://gov.nih.nci.cagrid.introduce/1/Extension" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ns25:Extension name="cagrid_metadata" version="1.2" xsi:type="ns25:ExtensionType"/>
+  <ns25:Extension name="caGrid_Transfer" version="1.2" xsi:type="ns25:ExtensionType"/>
+ </ns25:Extensions>
 </ns1:ServiceDescription>

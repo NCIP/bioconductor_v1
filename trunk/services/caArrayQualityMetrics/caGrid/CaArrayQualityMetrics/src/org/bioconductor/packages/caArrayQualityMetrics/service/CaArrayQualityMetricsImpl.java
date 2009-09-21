@@ -47,9 +47,6 @@ public class CaArrayQualityMetricsImpl extends CaArrayQualityMetricsImplBase {
   }
 
   
-
-  
-
   public org.bioconductor.packages.caArrayQualityMetrics.context.stubs.types.CaArrayQualityMetricsContextReference createAQMContextReference() throws RemoteException {
 		org.apache.axis.message.addressing.EndpointReferenceType epr = new org.apache.axis.message.addressing.EndpointReferenceType();
 		org.bioconductor.packages.caArrayQualityMetrics.context.service.globus.resource.CaArrayQualityMetricsContextResourceHome home = null;
@@ -114,32 +111,42 @@ public class CaArrayQualityMetricsImpl extends CaArrayQualityMetricsImplBase {
 	  }
   }
 
-  public org.bioconductor.cagrid.statefulservices.SessionEndpoint createReportSession() throws RemoteException {    
-    org.apache.axis.MessageContext ctx = org.apache.axis.MessageContext.getCurrentContext();
-	String servicePath = ctx.getTargetService();
-	String caAQM_homeName = org.globus.wsrf.Constants.JNDI_SERVICES_BASE_NAME + servicePath + "/" + "caArrayQualityMetricsContextHome";
-	
-	try {
-		javax.naming.Context initialContext = new javax.naming.InitialContext();
-		CaArrayQualityMetricsContextResourceHome caAQM_cxtResrcHome = (CaArrayQualityMetricsContextResourceHome) initialContext.lookup(caAQM_homeName);
-		org.globus.wsrf.ResourceKey resourceKey = caAQM_cxtResrcHome.createResource();
-		
-		String strResrcKeyValue = resourceKey.getValue().toString();
-		m_resourceKeyMap.put(strResrcKeyValue, resourceKey);
-		m_resrcKeyHomeNameMap.put(strResrcKeyValue, caAQM_homeName);
-		
-		// call HelperService ResourceStorage to store this:
-		org.bioconductor.packages.helper.common.ResourceStorage rsrcStorageInstance = org.bioconductor.packages.helper.common.ResourceStorage.getResourceStorageInstance();
-		rsrcStorageInstance.storeResourceInfo(strResrcKeyValue, resourceKey, caAQM_homeName);
-		
-		return new org.bioconductor.cagrid.statefulservices.SessionEndpoint(strResrcKeyValue);
-		
-	} catch (Exception e) {
-		throw new RemoteException("Error looking up CaArrayQualityMetricsContext home:" + e.getMessage(), e);
+  public org.bioconductor.cagrid.statefulservices.SessionIdentifier createQualityReportSession() throws RemoteException {
+    
+	try {  
+		org.apache.axis.MessageContext currentMsgCxt = org.apache.axis.MessageContext.getCurrentContext();
+	    String servicePath = currentMsgCxt.getTargetService();
+	    String caAQM_homeName = org.globus.wsrf.Constants.JNDI_SERVICES_BASE_NAME + servicePath + "/" + "caArrayQualityMetricsContextHome";
+	    
+	    javax.naming.Context initialContext = new javax.naming.InitialContext();
+	    CaArrayQualityMetricsContextResourceHome caAQMCxtResrcHome = (CaArrayQualityMetricsContextResourceHome)initialContext.lookup(caAQM_homeName);
+	    org.globus.wsrf.ResourceKey resourceKey = caAQMCxtResrcHome.createResource();
+	    
+	    String strResrcKeyValue = resourceKey.getValue().toString();
+	    
+	    m_resourceKeyMap.put(strResrcKeyValue, resourceKey);
+	    m_resrcKeyHomeNameMap.put(strResrcKeyValue, caAQM_homeName);
+	    
+	    String transportUrl = (String)currentMsgCxt.getProperty(org.apache.axis.MessageContext.TRANS_URL);
+	    org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier = new org.bioconductor.cagrid.statefulservices.SessionIdentifier();
+	    sessionIdentifier.setIdentifier(strResrcKeyValue);
+	    sessionIdentifier.setServiceUrl(transportUrl);
+	    
+	    // Call HelperService to store this resource info also:
+		org.bioconductor.packages.helper.common.ResourceStorage resrcStorage = org.bioconductor.packages.helper.common.ResourceStorage.getResourceStorageInstance();
+		System.out.println("CaArrayQualityMetrics calling HelperService to store resource: " + strResrcKeyValue);
+		resrcStorage.storeResourceInfo(strResrcKeyValue, resourceKey, caAQM_homeName);
+	    
+	    return sessionIdentifier;
 	}
+	catch(Exception ew) {
+		throw new RemoteException("Exception in createQualityReportSession: " + ew.getMessage());
+	}
+    
   }
-
-  private org.bioconductor.cagrid.statefulservices.CaGridFileReferences getUploadQualityReportFileReferences(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint,org.bioconductor.cagrid.rservices.FileReferences fileReferences) throws RemoteException {
+  
+/*
+  private org.bioconductor.cagrid.statefulservices.CaGridFileReferences getUploadQualityReportFileReferences(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint,org.bioconductor.cagrid.rservices.FileReferenceCollection fileReferenceCollection) throws RemoteException {
     
 	String strResrcKey = sessionEndpoint.getIdentifier();
 	  
@@ -151,16 +158,17 @@ public class CaArrayQualityMetricsImpl extends CaArrayQualityMetricsImplBase {
 		}
 	 
 		
-		return caAQMResrc.createUploadFileReferences(fileReferences);
+		return caAQMResrc.createUploadFileReferences(fileReferenceCollection);
 	}
 	catch(Exception ew) {
 		throw new RemoteException("Exception from getUploadQualityReportFileReferences: " + ew.getMessage());
 	}
   }
-
-  public org.bioconductor.cagrid.statefulservices.Status runCaArrayQualityMetrics(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint,org.bioconductor.cagrid.caarrayqualitymetrics.CaArrayQualityMetricsParameters caArrayQualityMetricsParameters) throws RemoteException {
+*/
+  
+  public org.bioconductor.cagrid.statefulservices.Status runCaArrayQualityMetrics(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException {
    
-      String strResrcKey = sessionEndpoint.getIdentifier();
+      String strResrcKey = sessionIdentifier.getIdentifier();
 	  
 	  try {
 		  CaArrayQualityMetricsContextResource caAQMResrc = this.lookupCaAQMResource(strResrcKey);
@@ -168,23 +176,18 @@ public class CaArrayQualityMetricsImpl extends CaArrayQualityMetricsImplBase {
 		  if(caAQMResrc == null) {
 			  throw new RemoteException("CaArrayQualityMetricsImpl::lookupContextResource() returning null for CaArrayQualityMetricsResource.");
 		  }
+		  		  
 		  
-		  // mapping cagrid caAQM parameters to bioc caAQM parameters
-		  org.bioconductor.packages.caArrayQualityMetrics.CaArrayQualityMetricsParameters rCaAQM_Param = 
-			  						new org.bioconductor.packages.caArrayQualityMetrics.CaArrayQualityMetricsParameters();
-		  rCaAQM_Param.setFake1(caArrayQualityMetricsParameters.getFake1());
-		  rCaAQM_Param.setFake2(caArrayQualityMetricsParameters.getFake2());
-		  
-		  return caAQMResrc.makeReport(rCaAQM_Param);
+		  return caAQMResrc.makeReport();
 	  }
 	  catch(Exception ew) {
 		  throw new RemoteException("CaArrayQualityMetricsImpl::runCaArrayQualityMetrics() - exception: " + ew);
 	  }
   }
 
-  public org.bioconductor.cagrid.statefulservices.Status getStatus(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint) throws RemoteException {
+  public org.bioconductor.cagrid.statefulservices.Status getStatus(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException {
    
-      String strResrcKey = sessionEndpoint.getIdentifier();
+      String strResrcKey = sessionIdentifier.getIdentifier();
 	  
 	  try {
 		  CaArrayQualityMetricsContextResource caAQMResrc = this.lookupCaAQMResource(strResrcKey);
@@ -201,24 +204,8 @@ public class CaArrayQualityMetricsImpl extends CaArrayQualityMetricsImplBase {
   }
 
   
-  public org.bioconductor.cagrid.data.QualityReportFileReferences getQualityReportResult(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint) throws RemoteException {
-   
-	  String strResrcKey = sessionEndpoint.getIdentifier();
-	  
-	  try {
-		  CaArrayQualityMetricsContextResource caAQMResrc = this.lookupCaAQMResource(strResrcKey);
-		  
-		  if(caAQMResrc == null) {
-			  throw new RemoteException("CaArrayQualityMetricsImpl::lookupContextResource() returning null for CaArrayQualityMetricsResource.");
-		  }
-		  
-		  
-		  return caAQMResrc.getReportResult();
-	  }
-	  catch(Exception ew) {
-		  throw new RemoteException("Exception from getResultFileTransferReferences: " + ew.getMessage());
-	  }
-  }
+
+  
 
 }
 

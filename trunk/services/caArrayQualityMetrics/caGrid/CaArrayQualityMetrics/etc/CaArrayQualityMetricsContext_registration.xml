@@ -13,19 +13,18 @@
   <Content xsi:type="agg:AggregatorContent" xmlns:agg="http://mds.globus.org/aggregator/types">
     <agg:AggregatorConfig xsi:type="agg:AggregatorConfig">
       <agg:GetMultipleResourcePropertiesPollType
-			xmlns:ns7="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata"
-			xmlns:ns9="http://transfer.cagrid.org/Transfer"
-			xmlns:ns2="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"
-			xmlns:xs="http://www.w3.org/2001/XMLSchema"
-			xmlns:ns3="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices"
-			xmlns:ns10="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/Context/types"
-			xmlns:ns6="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security"
-			xmlns:ns4="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"
 			xmlns:ns0="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.caarrayqualitymetrics"
-			xmlns:ns8="http://transfer.cagrid.org/TransferService/Context/types"
-			xmlns:ns5="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/types"
-			xmlns:ns1="http://schemas.xmlsoap.org/ws/2004/03/addressing"
-			xmlns:ns11="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd">
+			xmlns:ns8="http://transfer.cagrid.org/Transfer"
+			xmlns:ns7="http://transfer.cagrid.org/TransferService/Context/types"
+			xmlns:ns6="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata"
+			xmlns:ns3="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"
+			xmlns:ns4="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/types"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:ns9="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/Context/types"
+			xmlns:ns1="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices"
+			xmlns:ns5="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security"
+			xmlns:ns2="http://schemas.xmlsoap.org/ws/2004/03/addressing"
+			xmlns:ns10="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd">
         <!-- Specifies that the index should refresh information
             every 300000 milliseconds (once every 5 minutes) -->
         <agg:PollIntervalMillis>INDEX_REFRESH</agg:PollIntervalMillis>

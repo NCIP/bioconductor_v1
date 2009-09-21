@@ -92,5 +92,8 @@
 	<classpathentry kind="lib" path="lib/caArrayQualityMetrics.jar"/>
 	<classpathentry kind="lib" path="/RcaDNAcopy/lib/RJava.jar"/>
 	<classpathentry kind="src" path="/HelperServiceProject"/>
+	<classpathentry kind="lib" path="/home/mtra2/CaGridProj/CaArrayQualityMetrics/lib/HelperService-client.jar"/>
+	<classpathentry kind="lib" path="/home/mtra2/CaGridProj/CaArrayQualityMetrics/lib/HelperService-common.jar"/>
+	<classpathentry kind="lib" path="/home/mtra2/CaGridProj/CaArrayQualityMetrics/lib/HelperService-stubs.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -26,21 +26,9 @@ public class CaArrayQualityMetricsProviderImpl{
 	}
 	
 
-    public org.bioconductor.packages.caArrayQualityMetrics.stubs.GetQualityReportResultResponse getQualityReportResult(org.bioconductor.packages.caArrayQualityMetrics.stubs.GetQualityReportResultRequest params) throws RemoteException {
-    org.bioconductor.packages.caArrayQualityMetrics.stubs.GetQualityReportResultResponse boxedResult = new org.bioconductor.packages.caArrayQualityMetrics.stubs.GetQualityReportResultResponse();
-    boxedResult.setQualityReportFileReferences(impl.getQualityReportResult(params.getSessionEndpoint().getSessionEndpoint()));
-    return boxedResult;
-  }
-
-    public org.bioconductor.packages.caArrayQualityMetrics.stubs.CreateReportSessionResponse createReportSession(org.bioconductor.packages.caArrayQualityMetrics.stubs.CreateReportSessionRequest params) throws RemoteException {
-    org.bioconductor.packages.caArrayQualityMetrics.stubs.CreateReportSessionResponse boxedResult = new org.bioconductor.packages.caArrayQualityMetrics.stubs.CreateReportSessionResponse();
-    boxedResult.setSessionEndpoint(impl.createReportSession());
-    return boxedResult;
-  }
-
     public org.bioconductor.packages.caArrayQualityMetrics.stubs.RunCaArrayQualityMetricsResponse runCaArrayQualityMetrics(org.bioconductor.packages.caArrayQualityMetrics.stubs.RunCaArrayQualityMetricsRequest params) throws RemoteException {
     org.bioconductor.packages.caArrayQualityMetrics.stubs.RunCaArrayQualityMetricsResponse boxedResult = new org.bioconductor.packages.caArrayQualityMetrics.stubs.RunCaArrayQualityMetricsResponse();
-    boxedResult.setStatus(impl.runCaArrayQualityMetrics(params.getSessionEndpoint().getSessionEndpoint(),params.getCaArrayQualityMetricsParameters().getCaArrayQualityMetricsParameters()));
+    boxedResult.setStatus(impl.runCaArrayQualityMetrics(params.getSessionIdentifier().getSessionIdentifier()));
     return boxedResult;
   }
 
@@ -52,7 +40,13 @@ public class CaArrayQualityMetricsProviderImpl{
 
     public org.bioconductor.packages.caArrayQualityMetrics.stubs.GetStatusResponse getStatus(org.bioconductor.packages.caArrayQualityMetrics.stubs.GetStatusRequest params) throws RemoteException {
     org.bioconductor.packages.caArrayQualityMetrics.stubs.GetStatusResponse boxedResult = new org.bioconductor.packages.caArrayQualityMetrics.stubs.GetStatusResponse();
-    boxedResult.setStatus(impl.getStatus(params.getSessionEndpoint().getSessionEndpoint()));
+    boxedResult.setStatus(impl.getStatus(params.getSessionIdentifier().getSessionIdentifier()));
+    return boxedResult;
+  }
+
+    public org.bioconductor.packages.caArrayQualityMetrics.stubs.CreateQualityReportSessionResponse createQualityReportSession(org.bioconductor.packages.caArrayQualityMetrics.stubs.CreateQualityReportSessionRequest params) throws RemoteException {
+    org.bioconductor.packages.caArrayQualityMetrics.stubs.CreateQualityReportSessionResponse boxedResult = new org.bioconductor.packages.caArrayQualityMetrics.stubs.CreateQualityReportSessionResponse();
+    boxedResult.setSessionIdentifier(impl.createQualityReportSession());
     return boxedResult;
   }
 

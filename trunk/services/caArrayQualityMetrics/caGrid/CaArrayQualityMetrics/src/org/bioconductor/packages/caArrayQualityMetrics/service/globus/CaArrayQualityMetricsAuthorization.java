@@ -78,17 +78,7 @@ public class CaArrayQualityMetricsAuthorization implements PDP {
 		
 	}
 					
-	public static void authorizeCreateReportSession() throws RemoteException {
-		
-		
-	}
-					
 	public static void authorizeRunCaArrayQualityMetrics() throws RemoteException {
-		
-		
-	}
-					
-	public static void authorizeGetQualityReportResult() throws RemoteException {
 		
 		
 	}
@@ -99,6 +89,11 @@ public class CaArrayQualityMetricsAuthorization implements PDP {
 	}
 					
 	public static void authorizeGetStatus() throws RemoteException {
+		
+		
+	}
+					
+	public static void authorizeCreateQualityReportSession() throws RemoteException {
 		
 		
 	}
@@ -142,25 +137,9 @@ public class CaArrayQualityMetricsAuthorization implements PDP {
 				e.printStackTrace();
 				return false;
 			}
-		} else if(operation.getLocalPart().equals("createReportSession")){
-			try{
-				authorizeCreateReportSession();
-				return true;
-			} catch (Exception e){
-				e.printStackTrace();
-				return false;
-			}
 		} else if(operation.getLocalPart().equals("runCaArrayQualityMetrics")){
 			try{
 				authorizeRunCaArrayQualityMetrics();
-				return true;
-			} catch (Exception e){
-				e.printStackTrace();
-				return false;
-			}
-		} else if(operation.getLocalPart().equals("getQualityReportResult")){
-			try{
-				authorizeGetQualityReportResult();
 				return true;
 			} catch (Exception e){
 				e.printStackTrace();
@@ -177,6 +156,14 @@ public class CaArrayQualityMetricsAuthorization implements PDP {
 		} else if(operation.getLocalPart().equals("getStatus")){
 			try{
 				authorizeGetStatus();
+				return true;
+			} catch (Exception e){
+				e.printStackTrace();
+				return false;
+			}
+		} else if(operation.getLocalPart().equals("createQualityReportSession")){
+			try{
+				authorizeCreateQualityReportSession();
 				return true;
 			} catch (Exception e){
 				e.printStackTrace();

@@ -39,11 +39,11 @@ public class CaArrayQualityMetricsContextResource extends CaArrayQualityMetricsC
 	
 	private Object m_mutexObj = new Object();
 	
-	private java.util.ArrayList<FileReference> m_fileRefsFromClientList = new java.util.ArrayList<FileReference>();
+	private java.util.ArrayList<org.bioconductor.packages.rservices.FileReference> m_fileRefsFromClientList = 
+		                                                      new java.util.ArrayList<org.bioconductor.packages.rservices.FileReference>();
 	private java.util.List<org.bioconductor.cagrid.statefulservices.CaGridFileReference> m_fileRefsFromWorkerList = 
 		                              new java.util.ArrayList<org.bioconductor.cagrid.statefulservices.CaGridFileReference>();
 	
-	private org.bioconductor.packages.caArrayQualityMetrics.CaArrayQualityMetricsParameters m_caAQM_Parameter = null;
 	private RJFileReferences m_returnedRJFileRef = null;
 	private org.bioconductor.rserviceJms.services.caArrayQualityMetrics.caArrayQualityMetrics m_caAQM_RService = null;
 	
@@ -76,7 +76,7 @@ public class CaArrayQualityMetricsContextResource extends CaArrayQualityMetricsC
 	}
 
 	
-	public org.bioconductor.cagrid.statefulservices.CaGridFileReferences createUploadFileReferences(org.bioconductor.cagrid.rservices.FileReferences fileRefs) throws RemoteException
+	public org.bioconductor.cagrid.statefulservices.CaGridFileReferenceCollection createUploadFileReferences(org.bioconductor.cagrid.rservices.FileReferenceCollection fileRefCollection) throws RemoteException
 	{
 		
 		// new set, clear the old one:
@@ -86,10 +86,10 @@ public class CaArrayQualityMetricsContextResource extends CaArrayQualityMetricsC
 
 		
 		 // mapping cagrid FileReferences to RWebServices FileReferences:
-		org.bioconductor.cagrid.rservices.FileReference[] fileRefArr = fileRefs.getFileReferenceCollection();
+		org.bioconductor.cagrid.rservices.FileReference[] fileRefArr = fileRefCollection.getFileReferenceCollection();
 		int fileRefLength = fileRefArr.length;
 		if(fileRefLength == 0) {
-			return new org.bioconductor.cagrid.statefulservices.CaGridFileReferences();
+			return new org.bioconductor.cagrid.statefulservices.CaGridFileReferenceCollection();
 		}
 		
 		m_totalTransferingFiles = fileRefLength;
@@ -165,10 +165,11 @@ public class CaArrayQualityMetricsContextResource extends CaArrayQualityMetricsC
 			  cagridFileRefArr[i].setUrl(fileRef.getUrl());
 		  }
 
-		  org.bioconductor.cagrid.data.QualityReportFileReferences reportFileRefs = new org.bioconductor.cagrid.data.QualityReportFileReferences();
-		  reportFileRefs.setCagridFileReferenceCollection(cagridFileRefArr);
+		  org.bioconductor.cagrid.statefulservices.CaGridFileReferenceCollection reportFileRefCollection = 
+			  												new org.bioconductor.cagrid.statefulservices.CaGridFileReferenceCollection();
+		  reportFileRefCollection.setCagridFileReferenceCollection(cagridFileRefArr);
 		  
-		  return reportFileRefs;
+		  return reportFileRefCollection;
 
 	  }
 	  catch(Exception ew) {
@@ -179,19 +180,71 @@ public class CaArrayQualityMetricsContextResource extends CaArrayQualityMetricsC
 	  }
 	}
 	
+	public org.bioconductor.cagrid.caarrayqualitymetrics.QualityReportFileReferenceCollection getFileReferenceCollection() throws RemoteException
+	{
+		// if the file location is not ready yet, i.e, worker hasn't finished uploading file, sleep for 3 secs and check on status again:
+		int waiting_time = 0;
+	  	int sleep_time = 3000;
+
+		while(!(m_srvCxtStatus.getState().equals(StatusState.RESULT_AVAILABLE))) {
+			try {
+				System.out.println("CaArrayQualityMetricsContextResource: report is not ready, please wait for 3 seconds...");
+				Thread.currentThread().sleep(sleep_time);
+				waiting_time += sleep_time;
+	  			if(waiting_time > WAITING_TIME_OUT) {  // tired of waiting, get out
+	  				this.setContextStatus("Waiting too long for a report.", StatusState.ERROR);					
+	  				throw new RemoteException("Waiting too long for a report");
+	  			}
+			}
+			catch(Exception ew) {
+				throw new RemoteException(ew.getMessage(), ew);
+			}
+		}
+		
+//		org.bioconductor.cagrid.statefulservices.CaGridFileReference[] cagridFileRefArr = new 
+//										org.bioconductor.cagrid.statefulservices.CaGridFileReference[m_fileRefsFromWorkerList.size()];
+		org.bioconductor.cagrid.rservices.FileReference[] fileRefArr = new 
+									    org.bioconductor.cagrid.rservices.FileReference[m_fileRefsFromWorkerList.size()];
+		System.out.println("CaArrayQualityMetricsContextResource::getFileReferenceCollection() is called");
+		for(int i = 0; i < m_fileRefsFromWorkerList.size(); i++) {
+			fileRefArr[i] = new org.bioconductor.cagrid.rservices.FileReference();
+			fileRefArr[i].setLocalName(m_fileRefsFromWorkerList.get(i).getLocalName());
+			fileRefArr[i].setUrl(m_fileRefsFromWorkerList.get(i).getUrl());
+			fileRefArr[i].setType(m_fileRefsFromWorkerList.get(i).getType());
+//			cagridFileRefArr[i] = m_fileRefsFromWorkerList.get(i);
+//			System.out.println("Localname: " + cagridFileRefArr[i].getLocalName() + " Url: " + cagridFileRefArr[i].getUrl());
+		}
+//		org.bioconductor.cagrid.data.QualityReportFileReferences reportFileRef = new org.bioconductor.cagrid.data.QualityReportFileReferences();
+		org.bioconductor.cagrid.caarrayqualitymetrics.QualityReportFileReferenceCollection reportFileReferenceCollection = 
+                                                new org.bioconductor.cagrid.caarrayqualitymetrics.QualityReportFileReferenceCollection();
+		reportFileReferenceCollection.setFileReferenceCollection(fileRefArr);		
+		
+		return reportFileReferenceCollection;
+	}
+	
+	public org.bioconductor.cagrid.statefulservices.CaGridObjectReference createUploadObjectReference() throws RemoteException 
+	{
+		throw new RemoteException("createUploadObjectReference is not applicable for CaArrayQualityMetrics.  Not Implemented.");
+	}
+	
+	public org.bioconductor.cagrid.statefulservices.CaGridObjectReference createDownloadObjectReference() throws RemoteException
+	{
+		throw new RemoteException("createDownloadObjectReference is not applicable for CaArrayQualityMetrics.  Not Implemented.");
+	}
+	
+	
 	/*****************************************************************
 	 * End of implemenation part of HelperService interface
 	 *****************************************************************/
 	
 	
 	
-	public org.bioconductor.cagrid.statefulservices.Status makeReport(final org.bioconductor.packages.caArrayQualityMetrics.CaArrayQualityMetricsParameters caAQM_Parameters) throws Exception
+	public org.bioconductor.cagrid.statefulservices.Status makeReport() throws Exception
 	{
 		this.setContextStatus("Calling R packages to compute data and make a report.", StatusState.OPERATION_IN_PROGRESS);
 		
 		try {	
-			m_caAQM_Parameter = caAQM_Parameters;
-
+	
 			this.invoke();
 			
 			return m_srvCxtStatus;
@@ -237,12 +290,7 @@ public class CaArrayQualityMetricsContextResource extends CaArrayQualityMetricsC
 			  this.setContextStatus("No data files found to compute.", StatusState.IDLE);			  
 			  return;
 		  }
-	
-		  if(m_caAQM_Parameter == null) {
-			  this.setContextStatus("Null CaArrayQualityMetricsParameters.", StatusState.ERROR);			  
-			  throw new RemoteException("Null CaArrayQualityMetricsParameteres");
-		  }
-	
+		
 		  this.callRServiceCaArrayQualityMetrics();
 	
 		  this.requestWorkerUploadFile();
@@ -272,7 +320,7 @@ public class CaArrayQualityMetricsContextResource extends CaArrayQualityMetricsC
 					RJFileReferences rJFileReferences = new RJFileReferences(fileReferences);
 
 					// expecting RJFileReferences returned; else, something not right
-					Object returnedObj = m_caAQM_RService.caArrayQualityMetrics(rJFileReferences, m_caAQM_Parameter);
+					Object returnedObj = m_caAQM_RService.caArrayQualityMetrics(rJFileReferences);
 					if(!(returnedObj instanceof RJFileReferences)) {
 						setContextStatus("Un-matched object type returned from RWorker.  Expected: RJFileReference.  Received: " + returnedObj.getClass().getName(), StatusState.ERROR);						
 						throw new Exception("Expected: RJFileReference.  Receieved: " + returnedObj.getClass().getName());
@@ -424,40 +472,7 @@ public class CaArrayQualityMetricsContextResource extends CaArrayQualityMetricsC
 	}
 
 	
-	public org.bioconductor.cagrid.data.QualityReportFileReferences getReportResult() throws RemoteException
-	{
-
-		// if the file location is not ready yet, i.e, worker hasn't finished uploading file, sleep for 3 secs and check on status again:
-		int waiting_time = 0;
-	  	int sleep_time = 3000;
-
-		while(!(m_srvCxtStatus.getState().equals(StatusState.RESULT_AVAILABLE))) {
-			try {
-				System.out.println("CaArrayQualityMetricsContextResource: report is not ready, please wait for 3 seconds...");
-				Thread.currentThread().sleep(sleep_time);
-				waiting_time += sleep_time;
-	  			if(waiting_time > WAITING_TIME_OUT) {  // tired of waiting, get out
-	  				this.setContextStatus("Waiting too long for a report.", StatusState.ERROR);					
-	  				throw new RemoteException("Waiting too long for a report");
-	  			}
-			}
-			catch(Exception ew) {
-				throw new RemoteException(ew.getMessage(), ew);
-			}
-		}
-		
-		org.bioconductor.cagrid.statefulservices.CaGridFileReference[] cagridFileRefArr = new 
-										org.bioconductor.cagrid.statefulservices.CaGridFileReference[m_fileRefsFromWorkerList.size()];
-		System.out.println("CaArrayQualityMetricsContextResource::getReportResult() is called");
-		for(int i = 0; i < m_fileRefsFromWorkerList.size(); i++) {
-			cagridFileRefArr[i] = m_fileRefsFromWorkerList.get(i);
-			System.out.println("Localname: " + cagridFileRefArr[i].getLocalName() + " Url: " + cagridFileRefArr[i].getUrl());
-		}
-		org.bioconductor.cagrid.data.QualityReportFileReferences reportFileRef = new org.bioconductor.cagrid.data.QualityReportFileReferences();
-		reportFileRef.setCagridFileReferenceCollection(cagridFileRefArr);
-		
-		return reportFileRef;
-	}
+	
 	
 	
 	public void setContextStatus(String description, StatusState state) {

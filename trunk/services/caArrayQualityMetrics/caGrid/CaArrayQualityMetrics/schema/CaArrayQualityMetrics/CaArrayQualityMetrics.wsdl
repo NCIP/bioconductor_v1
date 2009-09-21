@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics" xmlns:wsrp="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd" xmlns:wsrlw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl" xmlns:wsdlpp="http://www.globus.org/namespaces/2004/10/WSDLPreprocessor" xmlns:gtwsdl1="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ServiceGroup-1.2-draft-01.wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/03/addressing" xmlns:wsntw="http://docs.oasis-open.org/wsn/2004/06/wsn-WS-BaseNotification-1.2-draft-01.wsdl" xmlns:wsrbfw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.wsdl" xmlns:wsrpw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" xmlns:wns0="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" xmlns:wns1="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity" xmlns:ns7="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata" xmlns:ns9="http://transfer.cagrid.org/Transfer" xmlns:ns2="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices" xmlns:ns3="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices" xmlns:ns10="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/Context/types" xmlns:ns6="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security" xmlns:ns4="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data" xmlns:ns0="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.caarrayqualitymetrics" xmlns:ns8="http://transfer.cagrid.org/TransferService/Context/types" xmlns:ns5="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/types" xmlns:ns1="http://schemas.xmlsoap.org/ws/2004/03/addressing" xmlns:ns11="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd" name="CaArrayQualityMetrics" targetNamespace="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics">
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics" xmlns:wsrp="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd" xmlns:wsrlw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl" xmlns:wsdlpp="http://www.globus.org/namespaces/2004/10/WSDLPreprocessor" xmlns:gtwsdl1="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ServiceGroup-1.2-draft-01.wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/03/addressing" xmlns:wsntw="http://docs.oasis-open.org/wsn/2004/06/wsn-WS-BaseNotification-1.2-draft-01.wsdl" xmlns:wsrbfw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.wsdl" xmlns:wsrpw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" xmlns:wns0="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" xmlns:wns1="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity" xmlns:ns0="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.caarrayqualitymetrics" xmlns:ns8="http://transfer.cagrid.org/Transfer" xmlns:ns7="http://transfer.cagrid.org/TransferService/Context/types" xmlns:ns6="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata" xmlns:ns3="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices" xmlns:ns4="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/types" xmlns:ns9="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/Context/types" xmlns:ns1="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices" xmlns:ns5="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security" xmlns:ns2="http://schemas.xmlsoap.org/ws/2004/03/addressing" xmlns:ns10="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd" name="CaArrayQualityMetrics" targetNamespace="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics">
   <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" location="../wsrf/properties/WS-ResourceProperties.wsdl" />
   <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.wsdl" location="../wsrf/faults/WS-BaseFaults.wsdl" />
   <import namespace="http://docs.oasis-open.org/wsn/2004/06/wsn-WS-BaseNotification-1.2-draft-01.wsdl" location="../wsrf/notification/WS-BaseN.wsdl" />
@@ -13,44 +13,24 @@
   <types>
     <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsrbf="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.xsd" targetNamespace="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics" elementFormDefault="qualified" attributeFormDefault="unqualified">
       <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.xsd" schemaLocation="../wsrf/faults/WS-BaseFaults.xsd" />
-      <import namespace="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata" schemaLocation="./xsd/cagrid/types/caGridMetadata.xsd" />
-      <import namespace="http://transfer.cagrid.org/Transfer" schemaLocation="./caGrid_Transfer.xsd" />
-      <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices" schemaLocation="./../StatefulServices/org.bioconductor.cagrid.statefulservices.xsd" />
-      <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices" schemaLocation="./../RServices/org.bioconductor.cagrid.rservices.xsd" />
-      <import namespace="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/Context/types" schemaLocation="./CaArrayQualityMetricsContextTypes.xsd" />
-      <import namespace="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security" schemaLocation="./xsd/cagrid/types/security/security.xsd" />
-      <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data" schemaLocation="./org.bioconductor.cagrid.data.xsd" />
       <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.caarrayqualitymetrics" schemaLocation="./org.bioconductor.cagrid.caaqm.xsd" />
+      <import namespace="http://transfer.cagrid.org/Transfer" schemaLocation="./caGrid_Transfer.xsd" />
       <import namespace="http://transfer.cagrid.org/TransferService/Context/types" schemaLocation="./TransferServiceContextTypes.xsd" />
+      <import namespace="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata" schemaLocation="./xsd/cagrid/types/caGridMetadata.xsd" />
+      <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices" schemaLocation="./org.bioconductor.cagrid.statefulservices.xsd" />
       <import namespace="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/types" schemaLocation="./CaArrayQualityMetricsTypes.xsd" />
+      <import namespace="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/Context/types" schemaLocation="./CaArrayQualityMetricsContextTypes.xsd" />
+      <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices" schemaLocation="./../RServices/org.bioconductor.cagrid.rservices.xsd" />
+      <import namespace="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security" schemaLocation="./xsd/cagrid/types/security/security.xsd" />
       <import namespace="http://schemas.xmlsoap.org/ws/2004/03/addressing" schemaLocation="./../ws/addressing/WS-Addressing.xsd" />
       <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd" schemaLocation="../wsrf/lifetime/WS-ResourceLifetime.xsd" />
-      <element name="CreateReportSessionRequest">
-        <complexType>
-          <sequence />
-        </complexType>
-      </element>
-      <element name="CreateReportSessionResponse">
-        <complexType>
-          <sequence>
-            <element ref="ns2:SessionEndpoint" minOccurs="1" maxOccurs="1" />
-          </sequence>
-        </complexType>
-      </element>
       <element name="RunCaArrayQualityMetricsRequest">
         <complexType>
           <sequence>
-            <element name="sessionEndpoint">
+            <element name="sessionIdentifier">
               <complexType>
                 <sequence>
-                  <element ref="ns2:SessionEndpoint" minOccurs="1" maxOccurs="1" />
-                </sequence>
-              </complexType>
-            </element>
-            <element name="caArrayQualityMetricsParameters">
-              <complexType>
-                <sequence>
-                  <element ref="ns0:CaArrayQualityMetricsParameters" minOccurs="1" maxOccurs="1" />
+                  <element ref="ns3:SessionIdentifier" minOccurs="1" maxOccurs="1" />
                 </sequence>
               </complexType>
             </element>
@@ -60,27 +40,7 @@
       <element name="RunCaArrayQualityMetricsResponse">
         <complexType>
           <sequence>
-            <element ref="ns2:Status" minOccurs="1" maxOccurs="1" />
-          </sequence>
-        </complexType>
-      </element>
-      <element name="GetQualityReportResultRequest">
-        <complexType>
-          <sequence>
-            <element name="sessionEndpoint">
-              <complexType>
-                <sequence>
-                  <element ref="ns2:SessionEndpoint" minOccurs="1" maxOccurs="1" />
-                </sequence>
-              </complexType>
-            </element>
-          </sequence>
-        </complexType>
-      </element>
-      <element name="GetQualityReportResultResponse">
-        <complexType>
-          <sequence>
-            <element ref="ns4:QualityReportFileReferences" minOccurs="1" maxOccurs="1" />
+            <element ref="ns3:Status" minOccurs="1" maxOccurs="1" />
           </sequence>
         </complexType>
       </element>
@@ -99,10 +59,10 @@
       <element name="GetStatusRequest">
         <complexType>
           <sequence>
-            <element name="sessionEndpoint">
+            <element name="sessionIdentifier">
               <complexType>
                 <sequence>
-                  <element ref="ns2:SessionEndpoint" minOccurs="1" maxOccurs="1" />
+                  <element ref="ns3:SessionIdentifier" minOccurs="1" maxOccurs="1" />
                 </sequence>
               </complexType>
             </element>
@@ -112,37 +72,37 @@
       <element name="GetStatusResponse">
         <complexType>
           <sequence>
-            <element ref="ns2:Status" minOccurs="1" maxOccurs="1" />
+            <element ref="ns3:Status" minOccurs="1" maxOccurs="1" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateQualityReportSessionRequest">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CreateQualityReportSessionResponse">
+        <complexType>
+          <sequence>
+            <element ref="ns3:SessionIdentifier" minOccurs="1" maxOccurs="1" />
           </sequence>
         </complexType>
       </element>
       <element name="CaArrayQualityMetricsResourceProperties">
         <complexType>
           <sequence>
-            <element ref="ns7:ServiceMetadata" />
+            <element ref="ns6:ServiceMetadata" />
           </sequence>
         </complexType>
       </element>
     </schema>
   </types>
   <!--  place service messages here -->
-  <message name="CreateReportSessionRequest">
-    <part name="parameters" element="tns:CreateReportSessionRequest" />
-  </message>
-  <message name="CreateReportSessionResponse">
-    <part name="parameters" element="tns:CreateReportSessionResponse" />
-  </message>
   <message name="RunCaArrayQualityMetricsRequest">
     <part name="parameters" element="tns:RunCaArrayQualityMetricsRequest" />
   </message>
   <message name="RunCaArrayQualityMetricsResponse">
     <part name="parameters" element="tns:RunCaArrayQualityMetricsResponse" />
-  </message>
-  <message name="GetQualityReportResultRequest">
-    <part name="parameters" element="tns:GetQualityReportResultRequest" />
-  </message>
-  <message name="GetQualityReportResultResponse">
-    <part name="parameters" element="tns:GetQualityReportResultResponse" />
   </message>
   <message name="GetRpackageSessionInfoRequest">
     <part name="parameters" element="tns:GetRpackageSessionInfoRequest" />
@@ -156,23 +116,21 @@
   <message name="GetStatusResponse">
     <part name="parameters" element="tns:GetStatusResponse" />
   </message>
+  <message name="CreateQualityReportSessionRequest">
+    <part name="parameters" element="tns:CreateQualityReportSessionRequest" />
+  </message>
+  <message name="CreateQualityReportSessionResponse">
+    <part name="parameters" element="tns:CreateQualityReportSessionResponse" />
+  </message>
   <!--============================================================
 
                        P O R T T Y P E
                       
   ============================================================-->
   <portType name="CaArrayQualityMetricsPortType" wsrp:ResourceProperties="tns:CaArrayQualityMetricsResourceProperties">
-    <operation name="createReportSession">
-      <input message="tns:CreateReportSessionRequest" wsa:Action="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/CreateReportSessionRequest" />
-      <output message="tns:CreateReportSessionResponse" wsa:Action="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/CreateReportSessionResponse" />
-    </operation>
     <operation name="runCaArrayQualityMetrics">
       <input message="tns:RunCaArrayQualityMetricsRequest" wsa:Action="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/RunCaArrayQualityMetricsRequest" />
       <output message="tns:RunCaArrayQualityMetricsResponse" wsa:Action="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/RunCaArrayQualityMetricsResponse" />
-    </operation>
-    <operation name="getQualityReportResult">
-      <input message="tns:GetQualityReportResultRequest" wsa:Action="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/GetQualityReportResultRequest" />
-      <output message="tns:GetQualityReportResultResponse" wsa:Action="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/GetQualityReportResultResponse" />
     </operation>
     <operation name="getRpackageSessionInfo">
       <input message="tns:GetRpackageSessionInfoRequest" wsa:Action="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/GetRpackageSessionInfoRequest" />
@@ -181,6 +139,10 @@
     <operation name="getStatus">
       <input message="tns:GetStatusRequest" wsa:Action="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/GetStatusRequest" />
       <output message="tns:GetStatusResponse" wsa:Action="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/GetStatusResponse" />
+    </operation>
+    <operation name="createQualityReportSession">
+      <input message="tns:CreateQualityReportSessionRequest" wsa:Action="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/CreateQualityReportSessionRequest" />
+      <output message="tns:CreateQualityReportSessionResponse" wsa:Action="http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/CreateQualityReportSessionResponse" />
     </operation>
     <wsdl:operation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="GetMultipleResourceProperties">
       <wsdl:input name="GetMultipleResourcePropertiesRequest" message="wsrpw:GetMultipleResourcePropertiesRequest" wsa:Action="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties/GetMultipleResourceProperties" />

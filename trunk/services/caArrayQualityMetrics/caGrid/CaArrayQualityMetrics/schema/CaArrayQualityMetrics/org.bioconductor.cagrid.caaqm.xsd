@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.caarrayqualitymetrics"
+		   xmlns:org.bioconductor.cagrid.rservices="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices"
            targetNamespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.caarrayqualitymetrics">
 	
+	<xs:import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices"
+	        schemaLocation="../RServices/org.bioconductor.cagrid.rservices.xsd"/>
+			
 	<!-- Types for caArrayQualityMetrics -->
+<!--
+	deprecated 
+	
 	<xs:element name="CaArrayQualityMetricsParameters" type="CaArrayQualityMetricsParameters"/>
 	<xs:complexType name="CaArrayQualityMetricsParameters">
 		<xs:sequence>
@@ -11,6 +18,18 @@
 			<xs:element name="fake2" type="xs:double" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>		
     </xs:complexType>
+-->
 	
+	<xs:element name="QualityReportFileReferenceCollection" type="QualityReportFileReferenceCollection"/>
+	<xs:complexType name="QualityReportFileReferenceCollection">
+		<xs:annotation>
+			<xs:documentation>A reference to a file of microarray quality metrics</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="org.bioconductor.cagrid.rservices:FileReferenceCollection">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
 </xs:schema>
 
