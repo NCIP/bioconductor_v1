@@ -24,49 +24,50 @@ public class CaGeneSetAnalysisTestHelper {
 		
 	}
 	
-	public static org.bioconductor.cagrid.cagenesetanalysis.GeneSetParameters convertToCaGridGeneSetParameters(org.bioconductor.packages.caGeneSetAnalysis.GeneSetParameters rGeneSetParams)
+	public static org.bioconductor.cagrid.cagenesetanalysis.GeneSetAnalysisParameters convertToCaGridGeneSetParameters(
+			                                                          org.bioconductor.packages.caGeneSetAnalysis.GeneSetAnalysisParameters rGeneSetParams)
 	{
-		org.bioconductor.cagrid.cagenesetanalysis.GeneSetParameters cagridGeneSetParams = new org.bioconductor.cagrid.cagenesetanalysis.GeneSetParameters();		
+		org.bioconductor.cagrid.cagenesetanalysis.GeneSetAnalysisParameters cagridGeneSetParams = new org.bioconductor.cagrid.cagenesetanalysis.GeneSetAnalysisParameters();		
 		
-		if(rGeneSetParams instanceof org.bioconductor.packages.caGeneSetAnalysis.DiscreteParameters) {			
-			if(rGeneSetParams instanceof org.bioconductor.packages.caGeneSetAnalysis.GeneOntologyDiscreteParameters) {
-				cagridGeneSetParams = new org.bioconductor.cagrid.cagenesetanalysis.GeneOntologyDiscreteParameters();
-				((org.bioconductor.cagrid.cagenesetanalysis.GeneOntologyDiscreteParameters)cagridGeneSetParams).setOntology(
-						((org.bioconductor.packages.caGeneSetAnalysis.GeneOntologyDiscreteParameters) rGeneSetParams).getOntology()[0]);
+		if(rGeneSetParams instanceof org.bioconductor.packages.caGeneSetAnalysis.DiscreteGeneSetAnalysisParameters) {			
+			if(rGeneSetParams instanceof org.bioconductor.packages.caGeneSetAnalysis.GeneOntologyDiscreteGeneSetAnalysisParameters) {
+				cagridGeneSetParams = new org.bioconductor.cagrid.cagenesetanalysis.GeneOntologyDiscreteGeneSetAnalysisParameters();
+				((org.bioconductor.cagrid.cagenesetanalysis.GeneOntologyDiscreteGeneSetAnalysisParameters)cagridGeneSetParams).setOntology(
+						((org.bioconductor.packages.caGeneSetAnalysis.GeneOntologyDiscreteGeneSetAnalysisParameters) rGeneSetParams).getOntology()[0]);
 			}
-			else if(rGeneSetParams instanceof org.bioconductor.packages.caGeneSetAnalysis.PFAMDiscreteParameters) {
-				cagridGeneSetParams = new org.bioconductor.cagrid.cagenesetanalysis.PfamDiscreteParameters();
+			else if(rGeneSetParams instanceof org.bioconductor.packages.caGeneSetAnalysis.PFAMDiscreteGeneSetAnalysisParameters) {
+				cagridGeneSetParams = new org.bioconductor.cagrid.cagenesetanalysis.PfamDiscreteGeneSetAnalysisParameters();
 			}
-			else if(rGeneSetParams instanceof org.bioconductor.packages.caGeneSetAnalysis.KEGGDiscreteParameters) {
-				cagridGeneSetParams = new org.bioconductor.cagrid.cagenesetanalysis.KEGGDiscreteParameters();
+			else if(rGeneSetParams instanceof org.bioconductor.packages.caGeneSetAnalysis.KEGGDiscreteGeneSetAnalysisParameters) {
+				cagridGeneSetParams = new org.bioconductor.cagrid.cagenesetanalysis.KEGGDiscreteGeneSetAnalysisParameters();
 			}
 			else return null;
 			
 			cagridGeneSetParams.setAnnotation(rGeneSetParams.getAnnotation()[0]);
-			((org.bioconductor.cagrid.cagenesetanalysis.DiscreteParameters)cagridGeneSetParams).setDiscretePValue(
-					((org.bioconductor.packages.caGeneSetAnalysis.DiscreteParameters) rGeneSetParams).getCategoryPValue()[0]);
-			((org.bioconductor.cagrid.cagenesetanalysis.DiscreteParameters)cagridGeneSetParams).setTestDirection(
-					((org.bioconductor.packages.caGeneSetAnalysis.DiscreteParameters) rGeneSetParams).getTestDirection()[0]);
+			((org.bioconductor.cagrid.cagenesetanalysis.DiscreteGeneSetAnalysisParameters)cagridGeneSetParams).setDiscretePValue(
+					((org.bioconductor.packages.caGeneSetAnalysis.DiscreteGeneSetAnalysisParameters) rGeneSetParams).getDiscretePValue()[0]);
+			((org.bioconductor.cagrid.cagenesetanalysis.DiscreteGeneSetAnalysisParameters)cagridGeneSetParams).setTestDirection(
+					((org.bioconductor.packages.caGeneSetAnalysis.DiscreteGeneSetAnalysisParameters) rGeneSetParams).getTestDirection()[0]);
 			
 			return cagridGeneSetParams;
 		}
-		else if(rGeneSetParams instanceof org.bioconductor.packages.caGeneSetAnalysis.ContinuousParameters) {
-			if(rGeneSetParams instanceof org.bioconductor.packages.caGeneSetAnalysis.GeneOntologyContinuousParameters) {
-				cagridGeneSetParams = new org.bioconductor.cagrid.cagenesetanalysis.GeneOntologyContinuousParameters();
-				((org.bioconductor.cagrid.cagenesetanalysis.GeneOntologyContinuousParameters)cagridGeneSetParams).setOntology(
-						((org.bioconductor.packages.caGeneSetAnalysis.GeneOntologyContinuousParameters) rGeneSetParams).getOntology()[0]);
+		else if(rGeneSetParams instanceof org.bioconductor.packages.caGeneSetAnalysis.ContinuousGeneSetAnalysisParameters) {
+			if(rGeneSetParams instanceof org.bioconductor.packages.caGeneSetAnalysis.GeneOntologyContinuousGeneSetAnalysisParameters) {
+				cagridGeneSetParams = new org.bioconductor.cagrid.cagenesetanalysis.GeneOntologyContinuousGeneSetAnalysisParameters();
+				((org.bioconductor.cagrid.cagenesetanalysis.GeneOntologyContinuousGeneSetAnalysisParameters)cagridGeneSetParams).setOntology(
+						((org.bioconductor.packages.caGeneSetAnalysis.GeneOntologyContinuousGeneSetAnalysisParameters) rGeneSetParams).getOntology()[0]);
 			}
-			else if(rGeneSetParams instanceof org.bioconductor.packages.caGeneSetAnalysis.PFAMContinuousParameters) {
-				cagridGeneSetParams = new org.bioconductor.cagrid.cagenesetanalysis.PfamContinuousParameters();
+			else if(rGeneSetParams instanceof org.bioconductor.packages.caGeneSetAnalysis.PFAMContinuousGeneSetAnalysisParameters) {
+				cagridGeneSetParams = new org.bioconductor.cagrid.cagenesetanalysis.PfamContinuousGeneSetAnalysisParameters();
 			}
-			else if(rGeneSetParams instanceof org.bioconductor.packages.caGeneSetAnalysis.KEGGContinuousParameters) {
-				cagridGeneSetParams = new org.bioconductor.cagrid.cagenesetanalysis.KEGGContinuousParameters();
+			else if(rGeneSetParams instanceof org.bioconductor.packages.caGeneSetAnalysis.KEGGContinuousGeneSetAnalysisParameters) {
+				cagridGeneSetParams = new org.bioconductor.cagrid.cagenesetanalysis.KEGGContinuousGeneSetAnalysisParameters();
 			}
 			else return null;
 			
 			cagridGeneSetParams.setAnnotation(rGeneSetParams.getAnnotation()[0]);
-			((org.bioconductor.cagrid.cagenesetanalysis.ContinuousParameters)cagridGeneSetParams).setMinimumGenesPerGeneSet(
-					((org.bioconductor.packages.caGeneSetAnalysis.ContinuousParameters) rGeneSetParams).getMinimumGenesPerGeneSet()[0]);
+			((org.bioconductor.cagrid.cagenesetanalysis.ContinuousGeneSetAnalysisParameters)cagridGeneSetParams).setMinimumGenesPerGeneSet(
+					((org.bioconductor.packages.caGeneSetAnalysis.ContinuousGeneSetAnalysisParameters) rGeneSetParams).getMinimumGenesPerGeneSet()[0]);
 			
 			return cagridGeneSetParams;
 		}
@@ -74,8 +75,8 @@ public class CaGeneSetAnalysisTestHelper {
 			
 	}
 	
-	public static org.bioconductor.cagrid.cagenesetanalysis.GeneSetParameters deserializeToCaGridGeneSetParam(String filePath) throws Exception {
-		org.bioconductor.packages.caGeneSetAnalysis.GeneSetParameters rGeneSetParams = deserializeGeneSetParams(filePath);
+	public static org.bioconductor.cagrid.cagenesetanalysis.GeneSetAnalysisParameters deserializeToCaGridGeneSetParam(String filePath) throws Exception {
+		org.bioconductor.packages.caGeneSetAnalysis.GeneSetAnalysisParameters rGeneSetParams = deserializeGeneSetParams(filePath);
 		return convertToCaGridGeneSetParameters(rGeneSetParams);
 	}
 	
@@ -85,7 +86,7 @@ public class CaGeneSetAnalysisTestHelper {
 	}
 	
 	
-	private static org.bioconductor.packages.caGeneSetAnalysis.GeneSetParameters deserializeGeneSetParams(String filePath) throws java.io.IOException, Exception
+	private static org.bioconductor.packages.caGeneSetAnalysis.GeneSetAnalysisParameters deserializeGeneSetParams(String filePath) throws java.io.IOException, Exception
 	{
 		java.io.FileInputStream fis = null;
 		java.io.ObjectInputStream ois = null;
@@ -96,7 +97,7 @@ public class CaGeneSetAnalysisTestHelper {
 			System.out.println("Deserialize file at: " + filePath + " to an object");
 			Object deserObj = ois.readObject();
 			System.out.println("Done deserialize data to object.  Its type: " + deserObj.getClass().getName());
-			return (org.bioconductor.packages.caGeneSetAnalysis.GeneSetParameters) deserObj;
+			return (org.bioconductor.packages.caGeneSetAnalysis.GeneSetAnalysisParameters) deserObj;
 		}
 		catch(java.io.IOException ew) {
 			throw ew;

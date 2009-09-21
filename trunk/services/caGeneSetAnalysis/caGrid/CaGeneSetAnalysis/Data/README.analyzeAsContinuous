@@ -6,6 +6,7 @@
     library("genefilter")
     library("DBI")
     library("GSEABase")
+    library("hgu95av2.db")
     library("caCommonClasses")
     library("caGeneSetAnalysis")
 
@@ -40,40 +41,40 @@
     adjustedPValue = numeric(len)
     logOddsScore   = numeric(len)
 
-    topTableForContinuousAnalysis = new("TopTable",
-                                        contrastSpecification=contrastSpecification,
-                                        reporterName=reporterName,
-                                        logFoldChange=logFoldChange,
-                                        tCoefficient=tCoefficient,
-                                        pValue=pValue,
-                                        adjustedPValue=adjustedPValue,
-                                        logOddsScore=logOddsScore)
+    topTableForContinuousGeneSetAnalysis = new("TopTable",
+                                               contrastSpecification=contrastSpecification,
+                                               reporterName=reporterName,
+                                               logFoldChange=logFoldChange,
+                                               tCoefficient=tCoefficient,
+                                               pValue=pValue,
+                                               adjustedPValue=adjustedPValue,
+                                               logOddsScore=logOddsScore)
 
-    # Define a GeneOntologyContinuousParameters object.
+    # Define a GeneOntologyContinuousGeneSetAnalysisParameters object.
 
-    geneOntologyContinuousParameters = new("GeneOntologyContinuousParameters",
-                                            ontology="BP",
-                                            annotation="hgu95av2",
-                                            minimumGenesPerGeneSet=10L
-                                          )
+    geneOntologyContinuousGeneSetAnalysisParameters = new("GeneOntologyContinuousGeneSetAnalysisParameters",
+                                                          ontology="BP",
+                                                          annotation="hgu95av2",
+                                                          minimumGenesPerGeneSet=10L
+                                                         )
 
-    # Define a KEGGContinuousParameters object.
+    # Define a KEGGContinuousGeneSetAnalysisParameters object.
 
-    keggContinuousParameters = new("KEGGContinuousParameters",
-                                    annotation="hgu95av2",
-                                    minimumGenesPerGeneSet=10L
-                                  )
+    keggContinuousGeneSetAnalysisParameters = new("KEGGContinuousGeneSetAnalysisParameters",
+                                                  annotation="hgu95av2",
+                                                  minimumGenesPerGeneSet=10L
+                                                 )
 
-    # Define a PFAMContinuousParameters object.
+    # Define a PFAMContinuousGeneSetAnalysisParameters object.
 
-    pfamContinuousParameters = new("PFAMContinuousParameters",
-                                    annotation="hgu95av2",
-                                    minimumGenesPerGeneSet=10L
-                                  )
+    pfamContinuousGeneSetAnalysisParameters = new("PFAMContinuousGeneSetAnalysisParameters",
+                                                  annotation="hgu95av2",
+                                                  minimumGenesPerGeneSet=10L
+                                                 )
 
     #
 
-    save(topTableForContinuousAnalysis,    file="TopTableForContinuousAnalysis.rda")
-    save(geneOntologyContinuousParameters, file="GeneOntologyContinuousParameters.rda")
-    save(keggContinuousParameters,         file="KEGGContinuousParameters.rda")
-    save(pfamContinuousParameters,         file="PFAMContinuousParameters.rda")
+    save(topTableForContinuousGeneSetAnalysis,    file="TopTableForContinuousGeneSetAnalysis.rda")
+    save(geneOntologyContinuousGeneSetAnalysisParameters, file="GeneOntologyContinuousGeneSetAnalysisParameters.rda")
+    save(keggContinuousGeneSetAnalysisParameters,         file="KEGGContinuousGeneSetAnalysisParameters.rda")
+    save(pfamContinuousGeneSetAnalysisParameters,         file="PFAMContinuousGeneSetAnalysisParameters.rda")

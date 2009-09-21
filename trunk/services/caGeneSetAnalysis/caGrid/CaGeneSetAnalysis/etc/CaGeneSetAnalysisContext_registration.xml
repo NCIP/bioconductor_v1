@@ -15,12 +15,12 @@
       <agg:GetMultipleResourcePropertiesPollType
 			xmlns:ns15="gme://caArray.caBIG/2.1/edu.georgetown.pir"
 			xmlns:ns24="http://transfer.cagrid.org/Transfer"
-			xmlns:ns2="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"
+			xmlns:ns3="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"
 			xmlns:ns18="http://caGeneSetAnalysis.packages.bioconductor.org/CaGeneSetAnalysis/types"
 			xmlns:ns5="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.hybridization"
 			xmlns:ns7="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.data"
 			xmlns:xs="http://www.w3.org/2001/XMLSchema"
-			xmlns:ns0="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices"
+			xmlns:ns1="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices"
 			xmlns:ns14="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"
 			xmlns:ns6="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.project"
 			xmlns:ns4="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.protocol"
@@ -36,8 +36,8 @@
 			xmlns:ns21="http://caGeneSetAnalysis.packages.bioconductor.org/CaGeneSetAnalysis/Context/types"
 			xmlns:ns11="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.publication"
 			xmlns:ns9="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.vocabulary"
-			xmlns:ns1="http://schemas.xmlsoap.org/ws/2004/03/addressing"
-			xmlns:ns3="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis"
+			xmlns:ns2="http://schemas.xmlsoap.org/ws/2004/03/addressing"
+			xmlns:ns0="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis"
 			xmlns:ns22="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd">
         <!-- Specifies that the index should refresh information
             every 300000 milliseconds (once every 5 minutes) -->

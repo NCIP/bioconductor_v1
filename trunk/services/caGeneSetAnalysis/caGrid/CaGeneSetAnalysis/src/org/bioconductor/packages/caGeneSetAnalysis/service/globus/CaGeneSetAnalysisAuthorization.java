@@ -97,6 +97,11 @@ public class CaGeneSetAnalysisAuthorization implements PDP {
 		
 		
 	}
+					
+	public static void authorizeGetStatus() throws RemoteException {
+		
+		
+	}
 	
 	
 	public boolean isPermitted(Subject peerSubject, MessageContext context, QName operation)
@@ -164,6 +169,14 @@ public class CaGeneSetAnalysisAuthorization implements PDP {
 		} else if(operation.getLocalPart().equals("invokeAnalyze")){
 			try{
 				authorizeInvokeAnalyze();
+				return true;
+			} catch (Exception e){
+				e.printStackTrace();
+				return false;
+			}
+		} else if(operation.getLocalPart().equals("getStatus")){
+			try{
+				authorizeGetStatus();
 				return true;
 			} catch (Exception e){
 				e.printStackTrace();

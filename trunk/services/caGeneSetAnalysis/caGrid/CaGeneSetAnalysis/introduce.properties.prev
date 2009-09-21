@@ -1,11 +1,11 @@
 #Introduce Properties
-#Thu Jul 16 17:56:09 PDT 2009
+#Mon Sep 21 11:30:14 PDT 2009
 introduce.skeleton.services.list=CaGeneSetAnalysis,CaGeneSetAnalysisContext
 introduce.skeleton.extensions=cagrid_metadata,caGrid_Transfer
-introduce.skeleton.timestamp=1247782251550
+introduce.skeleton.timestamp=1253555870562
 introduce.skeleton.service.name=CaGeneSetAnalysis
 introduce.skeleton.resource.options=main,singleton,identifiable,resourcePropertyManagement
-introduce.skeleton.destination.dir=/home/mtra2/CaGridProj/CaGeneSetAnalysis
+introduce.skeleton.destination.dir=/mnt/cpb_home/mtra2/CaGridProj/CaGeneSetAnalysis
 introduce.skeleton.namespace.domain=http\://caGeneSetAnalysis.packages.bioconductor.org/CaGeneSetAnalysis
 introduce.soap.binding.excludes=\ 
 introduce.ns.excludes=\ -x gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.service -x http\://transfer.cagrid.org/Transfer -x http\://transfer.cagrid.org/TransferService/Context/types -x gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata -x gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security -x gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common

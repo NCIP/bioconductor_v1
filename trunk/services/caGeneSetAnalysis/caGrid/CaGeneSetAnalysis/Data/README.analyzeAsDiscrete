@@ -4,6 +4,7 @@
 
     library("ALL")
     library("genefilter")
+    library("hgu95av2.db")
     library("caCommonClasses")
     library("caGeneSetAnalysis")
 
@@ -44,43 +45,43 @@
     adjustedPValue = numeric(len)
     logOddsScore   = numeric(len)
 
-    topTableForDiscreteAnalysis = new("TopTable",
-                                    contrastSpecification=contrastSpecification,
-                                    reporterName=reporterName,
-                                    logFoldChange=logFoldChange,
-                                    tCoefficient=tCoefficient,
-                                    pValue=pValue,
-                                    adjustedPValue=adjustedPValue,
-                                    logOddsScore=logOddsScore)
+    topTableForDiscreteGeneSetAnalysis = new("TopTable",
+                                             contrastSpecification=contrastSpecification,
+                                             reporterName=reporterName,
+                                             logFoldChange=logFoldChange,
+                                             tCoefficient=tCoefficient,
+                                             pValue=pValue,
+                                             adjustedPValue=adjustedPValue,
+                                             logOddsScore=logOddsScore)
 
-    # Define a GeneOntologyDiscreteParameters object.
+    # Define a GeneOntologyDiscreteGeneSetAnalysisParameters object.
 
-    geneOntologyDiscreteParameters = new("GeneOntologyDiscreteParameters",
-                                         ontology="BP",
-                                         annotation="hgu95av2",
-                                         categoryPValue=0.05,
-                                         testDirection="over"
-                                        )
+    geneOntologyDiscreteGeneSetAnalysisParameters = new("GeneOntologyDiscreteGeneSetAnalysisParameters",
+                                                        ontology="BP",
+                                                        annotation="hgu95av2",
+                                                        discretePValue=0.05,
+                                                        testDirection="over-represented"
+                                                       )
 
-    # Define a KEGGDiscreteParameters object.
+    # Define a KEGGDiscreteGeneSetAnalysisParameters object.
 
-    keggDiscreteParameters = new("KEGGDiscreteParameters",
-                                 annotation="hgu95av2",
-                                 categoryPValue=0.05,
-                                 testDirection="over"
-                                )
+    keggDiscreteGeneSetAnalysisParameters = new("KEGGDiscreteGeneSetAnalysisParameters",
+                                                annotation="hgu95av2",
+                                                discretePValue=0.05,
+                                                testDirection="over-represented"
+                                               )
 
-    # Define a PFAMDiscreteParameters object.
+    # Define a PFAMDiscreteGeneSetAnalysisParameters object.
 
-    pfamDiscreteParameters = new("PFAMDiscreteParameters",
-                                 annotation="hgu95av2",
-                                 categoryPValue=0.05,
-                                 testDirection="over"
-                                )
+    pfamDiscreteGeneSetAnalysisParameters = new("PFAMDiscreteGeneSetAnalysisParameters",
+                                                annotation="hgu95av2",
+                                                discretePValue=0.05,
+                                                testDirection="over-represented"
+                                               )
 
     #
 
-    save(topTableForDiscreteAnalysis,    file="TopTableForDiscreteAnalysis.rda")
-    save(geneOntologyDiscreteParameters, file="GeneOntologyDiscreteParameters.rda")
-    save(keggDiscreteParameters,         file="KEGGDiscreteParameters.rda")
-    save(pfamDiscreteParameters,         file="PFAMDiscreteParameters.rda")
+    save(topTableForDiscreteGeneSetAnalysis,    file="TopTableForDiscreteGeneSetAnalysis.rda")
+    save(geneOntologyDiscreteGeneSetAnalysisParameters, file="GeneOntologyDiscreteGeneSetAnalysisParameters.rda")
+    save(keggDiscreteGeneSetAnalysisParameters,         file="KEGGDiscreteGeneSetAnalysisParameters.rda")
+    save(pfamDiscreteGeneSetAnalysisParameters,         file="PFAMDiscreteGeneSetAnalysisParameters.rda")

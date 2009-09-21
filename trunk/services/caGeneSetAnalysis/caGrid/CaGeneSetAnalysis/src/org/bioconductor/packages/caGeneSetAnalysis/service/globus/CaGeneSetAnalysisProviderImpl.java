@@ -26,15 +26,9 @@ public class CaGeneSetAnalysisProviderImpl{
 	}
 	
 
-    public org.bioconductor.packages.caGeneSetAnalysis.stubs.InvokeAnalyzeResponse invokeAnalyze(org.bioconductor.packages.caGeneSetAnalysis.stubs.InvokeAnalyzeRequest params) throws RemoteException {
-    org.bioconductor.packages.caGeneSetAnalysis.stubs.InvokeAnalyzeResponse boxedResult = new org.bioconductor.packages.caGeneSetAnalysis.stubs.InvokeAnalyzeResponse();
-    impl.invokeAnalyze(params.getSessionEndpoint().getSessionEndpoint(),params.getGeneSetParameters().getGeneSetParameters());
-    return boxedResult;
-  }
-
     public org.bioconductor.packages.caGeneSetAnalysis.stubs.AnalyzeResponse analyze(org.bioconductor.packages.caGeneSetAnalysis.stubs.AnalyzeRequest params) throws RemoteException {
     org.bioconductor.packages.caGeneSetAnalysis.stubs.AnalyzeResponse boxedResult = new org.bioconductor.packages.caGeneSetAnalysis.stubs.AnalyzeResponse();
-    boxedResult.setGeneSetCollection(impl.analyze(params.getTopTable().getTopTable(),params.getGeneSetParameters().getGeneSetParameters()));
+    boxedResult.setGeneSetAnalysisResultCollection(impl.analyze(params.getTopTable().getTopTable(),params.getGeneSetAnalysisParameters().getGeneSetAnalysisParameters()));
     return boxedResult;
   }
 
@@ -46,7 +40,19 @@ public class CaGeneSetAnalysisProviderImpl{
 
     public org.bioconductor.packages.caGeneSetAnalysis.stubs.CreateCaGeneSetAnalysisSessionResponse createCaGeneSetAnalysisSession(org.bioconductor.packages.caGeneSetAnalysis.stubs.CreateCaGeneSetAnalysisSessionRequest params) throws RemoteException {
     org.bioconductor.packages.caGeneSetAnalysis.stubs.CreateCaGeneSetAnalysisSessionResponse boxedResult = new org.bioconductor.packages.caGeneSetAnalysis.stubs.CreateCaGeneSetAnalysisSessionResponse();
-    boxedResult.setSessionEndpoint(impl.createCaGeneSetAnalysisSession());
+    boxedResult.setSessionIdentifier(impl.createCaGeneSetAnalysisSession());
+    return boxedResult;
+  }
+
+    public org.bioconductor.packages.caGeneSetAnalysis.stubs.InvokeAnalyzeResponse invokeAnalyze(org.bioconductor.packages.caGeneSetAnalysis.stubs.InvokeAnalyzeRequest params) throws RemoteException {
+    org.bioconductor.packages.caGeneSetAnalysis.stubs.InvokeAnalyzeResponse boxedResult = new org.bioconductor.packages.caGeneSetAnalysis.stubs.InvokeAnalyzeResponse();
+    impl.invokeAnalyze(params.getSessionIdentifier().getSessionIdentifier(),params.getGeneSetAnalysisParameters().getGeneSetAnalysisParameters());
+    return boxedResult;
+  }
+
+    public org.bioconductor.packages.caGeneSetAnalysis.stubs.GetStatusResponse getStatus(org.bioconductor.packages.caGeneSetAnalysis.stubs.GetStatusRequest params) throws RemoteException {
+    org.bioconductor.packages.caGeneSetAnalysis.stubs.GetStatusResponse boxedResult = new org.bioconductor.packages.caGeneSetAnalysis.stubs.GetStatusResponse();
+    boxedResult.setStatus(impl.getStatus(params.getSessionIdentifier().getSessionIdentifier()));
     return boxedResult;
   }
 

@@ -12,19 +12,21 @@ import java.rmi.RemoteException;
  */
 public interface CaGeneSetAnalysisI {
 
-  public void invokeAnalyze(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint,org.bioconductor.cagrid.cagenesetanalysis.GeneSetParameters geneSetParameters) throws RemoteException ;
-
   public org.oasis.wsrf.properties.GetMultipleResourcePropertiesResponse getMultipleResourceProperties(org.oasis.wsrf.properties.GetMultipleResourceProperties_Element params) throws RemoteException ;
 
   public org.oasis.wsrf.properties.GetResourcePropertyResponse getResourceProperty(javax.xml.namespace.QName params) throws RemoteException ;
 
   public org.oasis.wsrf.properties.QueryResourcePropertiesResponse queryResourceProperties(org.oasis.wsrf.properties.QueryResourceProperties_Element params) throws RemoteException ;
 
-  public org.bioconductor.cagrid.cagenesetanalysis.GeneSetCollection analyze(org.bioconductor.cagrid.data.TopTable topTable,org.bioconductor.cagrid.cagenesetanalysis.GeneSetParameters geneSetParameters) throws RemoteException ;
+  public org.bioconductor.cagrid.cagenesetanalysis.GeneSetAnalysisResultCollection analyze(org.bioconductor.cagrid.data.TopTable topTable,org.bioconductor.cagrid.cagenesetanalysis.GeneSetAnalysisParameters geneSetAnalysisParameters) throws RemoteException ;
 
   public java.lang.String getRpackageSessionInfo() throws RemoteException ;
 
-  public org.bioconductor.cagrid.statefulservices.SessionEndpoint createCaGeneSetAnalysisSession() throws RemoteException ;
+  public org.bioconductor.cagrid.statefulservices.SessionIdentifier createCaGeneSetAnalysisSession() throws RemoteException ;
+
+  public void invokeAnalyze(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier,org.bioconductor.cagrid.cagenesetanalysis.GeneSetAnalysisParameters geneSetAnalysisParameters) throws RemoteException ;
+
+  public org.bioconductor.cagrid.statefulservices.Status getStatus(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException ;
 
 }
 

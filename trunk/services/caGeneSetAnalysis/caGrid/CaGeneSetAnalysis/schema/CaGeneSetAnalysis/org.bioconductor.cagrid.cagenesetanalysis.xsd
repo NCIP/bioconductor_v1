@@ -3,127 +3,247 @@
            xmlns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" 
 		   targetNamespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis">
 		   
-	<xs:element name="GeneSetParameters" type="GeneSetParameters"/>
-	<xs:complexType name="GeneSetParameters">
+	<xs:element name="GeneSetAnalysisParameters" type="GeneSetAnalysisParameters"/>
+	<xs:complexType name="GeneSetAnalysisParameters">
+		<xs:annotation>
+			<xs:documentation>Parameter values of a gene set analysis</xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="annotation" type="xs:string"/>
+			<xs:element name="annotation" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The Bioconductor annotation package to be used to associated reporter information with gene set classification</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:element name="ContinuousParameters" type="ContinuousParameters"/>
-	<xs:complexType name="ContinuousParameters">
+	<xs:element name="ContinuousGeneSetAnalysisParameters" type="ContinuousGeneSetAnalysisParameters"/>
+	<xs:complexType name="ContinuousGeneSetAnalysisParameters">
+		<xs:annotation>
+			<xs:documentation>Parameter values of a continuous gene set analysis</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="GeneSetParameters">
+			<xs:extension base="GeneSetAnalysisParameters">
 				<xs:sequence>
-					<xs:element name="minimumGenesPerGeneSet" type="xs:int"/>
+					<xs:element name="minimumGenesPerGeneSet" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>A threshold value indicating the number of reporters per set below which statistical analysis will not be performed</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:element name="DiscreteParameters" type="DiscreteParameters"/>
-	<xs:complexType name="DiscreteParameters">
+	<xs:element name="DiscreteGeneSetAnalysisParameters" type="DiscreteGeneSetAnalysisParameters"/>
+	<xs:complexType name="DiscreteGeneSetAnalysisParameters">
+		<xs:annotation>
+			<xs:documentation>Parameter values of a discrete gene set analysis</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="GeneSetParameters">
+			<xs:extension base="GeneSetAnalysisParameters">
 				<xs:sequence>
-					<xs:element name="discretePValue" type="xs:double"/>
-					<xs:element name="testDirection" type="xs:string"/>
+					<xs:element name="discretePValue" type="xs:double">
+						<xs:annotation>
+							<xs:documentation>The nominal statistical significance to be used for dividing differential expression p-values into discrete groups</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="testDirection" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>The direction in which differential expression is to be evaluated, corresponding to enhanced expression, reduced expression, or either enhanced or reduced expression.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:element name="GeneSetCollection" type="GeneSetCollection"/>
-	<xs:complexType name="GeneSetCollection">
+	<xs:element name="GeneSetAnalysisResultCollection" type="GeneSetAnalysisResultCollection"/>
+	<xs:complexType name="GeneSetAnalysisResultCollection">
+		<xs:annotation>
+			<xs:documentation>A collection of statistical results of a gene set analysis</xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="description" type="xs:string"/>
+			<xs:element name="description" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>A textural description of how the collection of gene sets was constructed</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:element name="ContinuousGeneSet" type="ContinuousGeneSet"/>
-	<xs:complexType name="ContinuousGeneSet">
+	<xs:element name="ContinuousGeneSetAnalysisResultCollection" type="ContinuousGeneSetAnalysisResultCollection"/>
+	<xs:complexType name="ContinuousGeneSetAnalysisResultCollection">
+		<xs:annotation>
+			<xs:documentation>A collection of statistical results of a continuous gene set analysis</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="GeneSetCollection">
+			<xs:extension base="GeneSetAnalysisResultCollection">
 				<xs:sequence>
-					<xs:element name="continuousGeneSetEntry" type="ContinuousGeneSetEntry" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="continuousGeneSetAnalysisResult" type="ContinuousGeneSetAnalysisResult" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:element name="DiscreteGeneSet" type="DiscreteGeneSet"/>
-	<xs:complexType name="DiscreteGeneSet">
+	<xs:element name="DiscreteGeneSetAnalysisResultCollection" type="DiscreteGeneSetAnalysisResultCollection"/>
+	<xs:complexType name="DiscreteGeneSetAnalysisResultCollection">
+		<xs:annotation>
+			<xs:documentation>A collection of statistical results of a discrete gene set analysis</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="GeneSetCollection">
+			<xs:extension base="GeneSetAnalysisResultCollection">
 				<xs:sequence>
-					<xs:element name="categoricalGeneSetEntry" type="DiscreteGeneSetEntry" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="discreteGeneSetAnalysisResult" type="DiscreteGeneSetAnalysisResult" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:element name="ContinuousGeneSetEntry" type="ContinuousGeneSetEntry"/>
-	<xs:complexType name="ContinuousGeneSetEntry">
+	<xs:element name="GeneSetAnalysisResult" type="GeneSetAnalysisResult"/>
+	<xs:complexType name="GeneSetAnalysisResult">
+		<xs:annotation>
+			<xs:documentation>A result of a gene set analysis</xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="geneSetId" type="xs:string"/>
-			<xs:element name="geneSetSize" type="xs:int"/>
-			<xs:element name="pValue" type="xs:double"/>
-			<xs:element name="tAdjusted" type="xs:double"/>
+			<xs:element name="geneSetId" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The identitifer of this gene set</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="geneSetSize" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>The number of entitites assigned to this gene set</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pValue" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>The nominal statistical significance of the summary statistic</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="geneSetMembers" type="GeneSetMember" minOccurs="1" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:element name="DiscreteGeneSetEntry" type="DiscreteGeneSetEntry"/>
-	<xs:complexType name="DiscreteGeneSetEntry">
+	<xs:element name="GeneSetMember" type="GeneSetMember"/>
+	<xs:complexType name="GeneSetMember">
+		<xs:annotation>
+			<xs:documentation>A member of a gene set</xs:documentation>
+		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="expectedCount" type="xs:int"/>
-			<xs:element name="geneSetId" type="xs:string"/>
-			<xs:element name="geneSetSize" type="xs:int"/>
-			<xs:element name="pValue" type="xs:double"/>
-			<xs:element name="selectedCount" type="xs:int"/>
-			<xs:element name="categoricalGeneSet" type="DiscreteGeneSet"/>
+			<xs:element name="reporterName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>The name of the microarray reporter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:element name="GeneOntologyDiscreteParameters" type="GeneOntologyDiscreteParameters"/>
-	<xs:complexType name="GeneOntologyDiscreteParameters">
+	<xs:element name="ContinuousGeneSetAnalysisResult" type="ContinuousGeneSetAnalysisResult"/>
+	<xs:complexType name="ContinuousGeneSetAnalysisResult">
+		<xs:annotation>
+			<xs:documentation>A statistical result of a continuous gene set analysis</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="DiscreteParameters">
+			<xs:extension base="GeneSetAnalysisResult">
 				<xs:sequence>
-					<xs:element name="ontology" type="xs:string"/>
+					<xs:element name="adjustedTStatistic" type="xs:double">
+						<xs:annotation>
+							<xs:documentation>A t-statistic adjusted for multiple comparisons</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:element name="KEGGDiscreteParameters" type="KEGGDiscreteParameters"/>
-	<xs:complexType name="KEGGDiscreteParameters">
+	<xs:element name="DiscreteGeneSetAnalysisResult" type="DiscreteGeneSetAnalysisResult"/>
+	<xs:complexType name="DiscreteGeneSetAnalysisResult">
+		<xs:annotation>
+			<xs:documentation>A statistical result of a discrete gene set analysis</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="DiscreteParameters">
+			<xs:extension base="GeneSetAnalysisResult">
+				<xs:sequence>
+					<xs:element name="expectedCount" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>The number of reporters in the gene set expected to exceed the threshold level of statistical significance specified by the GeneSetParameters, under the null hypothesis of no differential expression</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="selectedCount" type="xs:int">
+						<xs:annotation>
+							<xs:documentation>The number of reporters for which differential expression exceeded the statistical significance threshold specified by the GeneSetParameters</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="GeneOntologyDiscreteGeneSetAnalysisParameters" type="GeneOntologyDiscreteGeneSetAnalysisParameters"/>
+	<xs:complexType name="GeneOntologyDiscreteGeneSetAnalysisParameters">
+		<xs:annotation>
+			<xs:documentation>Parameter values of a Gene Ontology [GO] discrete gene set analysis</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="DiscreteGeneSetAnalysisParameters">
+				<xs:sequence>
+					<xs:element name="ontology" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>The Gene Ontology (GO) ontology to be used for assigning reporters to sets</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="KEGGDiscreteGeneSetAnalysisParameters" type="KEGGDiscreteGeneSetAnalysisParameters"/>
+	<xs:complexType name="KEGGDiscreteGeneSetAnalysisParameters">
+		<xs:annotation>
+			<xs:documentation>Parameter values of a KEGG discrete gene set analysis</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="DiscreteGeneSetAnalysisParameters">
 				<xs:sequence/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:element name="PfamDiscreteParameters" type="PfamDiscreteParameters"/>
-	<xs:complexType name="PfamDiscreteParameters">
+	<xs:element name="PfamDiscreteGeneSetAnalysisParameters" type="PfamDiscreteGeneSetAnalysisParameters"/>
+	<xs:complexType name="PfamDiscreteGeneSetAnalysisParameters">
+		<xs:annotation>
+			<xs:documentation>Parameter values of a Pfam discrete gene set analysis</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="DiscreteParameters">
+			<xs:extension base="DiscreteGeneSetAnalysisParameters">
 				<xs:sequence/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:element name="GeneOntologyContinuousParameters" type="GeneOntologyContinuousParameters"/>
-	<xs:complexType name="GeneOntologyContinuousParameters">
+	<xs:element name="GeneOntologyContinuousGeneSetAnalysisParameters" type="GeneOntologyContinuousGeneSetAnalysisParameters"/>
+	<xs:complexType name="GeneOntologyContinuousGeneSetAnalysisParameters">
+		<xs:annotation>
+			<xs:documentation>Parameter values of a Gene Ontology [GO] continuous gene set analysis</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="ContinuousParameters">
+			<xs:extension base="ContinuousGeneSetAnalysisParameters">
 				<xs:sequence>
-					<xs:element name="ontology" type="xs:string"/>
+					<xs:element name="ontology" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>The Gene Ontology (GO) ontology to be used for assigning reporters to sets</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:element name="KEGGContinuousParameters" type="KEGGContinuousParameters"/>
-	<xs:complexType name="KEGGContinuousParameters">
+	<xs:element name="KEGGContinuousGeneSetAnalysisParameters" type="KEGGContinuousGeneSetAnalysisParameters"/>
+	<xs:complexType name="KEGGContinuousGeneSetAnalysisParameters">
+		<xs:annotation>
+			<xs:documentation>Parameter values of a KEGG continuous gene set analysis</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="ContinuousParameters">
+			<xs:extension base="ContinuousGeneSetAnalysisParameters">
 				<xs:sequence/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:element name="PfamContinuousParameters" type="PfamContinuousParameters"/>
-	<xs:complexType name="PfamContinuousParameters">
+	<xs:element name="PfamContinuousGeneSetAnalysisParameters" type="PfamContinuousGeneSetAnalysisParameters"/>
+	<xs:complexType name="PfamContinuousGeneSetAnalysisParameters">
+		<xs:annotation>
+			<xs:documentation>Parameter values of a Pfam continuous gene set analysis</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="ContinuousParameters">
+			<xs:extension base="ContinuousGeneSetAnalysisParameters">
 				<xs:sequence/>
 			</xs:extension>
 		</xs:complexContent>

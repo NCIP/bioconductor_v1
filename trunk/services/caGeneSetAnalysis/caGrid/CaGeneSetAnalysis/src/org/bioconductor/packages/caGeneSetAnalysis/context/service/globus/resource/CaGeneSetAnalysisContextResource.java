@@ -27,7 +27,7 @@ public class CaGeneSetAnalysisContextResource extends CaGeneSetAnalysisContextRe
 	
 	private org.bioconductor.cagrid.statefulservices.Status m_status = null;
 	private org.bioconductor.cagrid.data.TopTable m_topTable = null;
-	private org.bioconductor.cagrid.cagenesetanalysis.GeneSetCollection m_retGeneSetCollection = null;
+	private org.bioconductor.cagrid.cagenesetanalysis.GeneSetAnalysisResultCollection m_retGeneSetCollection = null;
 	
 	public CaGeneSetAnalysisContextResource() {
 		m_status = new org.bioconductor.cagrid.statefulservices.Status();
@@ -60,7 +60,7 @@ public class CaGeneSetAnalysisContextResource extends CaGeneSetAnalysisContextRe
 		return m_topTable;
 	}
 	
-	public void setGeneSetCollection(org.bioconductor.cagrid.cagenesetanalysis.GeneSetCollection geneSetColl) 
+	public void setGeneSetCollection(org.bioconductor.cagrid.cagenesetanalysis.GeneSetAnalysisResultCollection geneSetColl) 
 	{
 		m_retGeneSetCollection = geneSetColl;
 	}
@@ -141,10 +141,18 @@ public class CaGeneSetAnalysisContextResource extends CaGeneSetAnalysisContextRe
 	}
 	
 	
-	public org.bioconductor.cagrid.statefulservices.CaGridFileReferences createUploadFileReferences(org.bioconductor.cagrid.rservices.FileReferences fileRefs) throws RemoteException
+	public org.bioconductor.cagrid.statefulservices.CaGridFileReferenceCollection createUploadFileReferences(org.bioconductor.cagrid.rservices.FileReferenceCollection fileRefCollection) throws RemoteException
 	{
 		throw new RemoteException("createUploadFileReferences not applicable for CaGenSetAnalysis.  Not implemented");
 	}
 	
+	public org.bioconductor.cagrid.rservices.FileReferenceCollection getFileReferenceCollection() throws RemoteException 
+	{
+		throw new RemoteException("getFileReferenceCollection not applicable for CaGeneSetAnalysis");
+	}
 	
+	public org.bioconductor.cagrid.statefulservices.Status getStatus() 
+	{
+		return m_status;
+	}
 }
