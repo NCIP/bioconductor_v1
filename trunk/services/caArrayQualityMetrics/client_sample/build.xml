@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<project default="build" name="Build File" basedir=".">
+	<property name="src.dir" value="src" />
+	<property name="build.dir" value="build" />	
+	<property name="dir" value=""/>	
+	<property name="ext" value="" />
+	<property environment="env" />
+	
+	<target name="check_libs" depends="set_shared_jars" description="Check if SHARED_JAR_LOCATION env is set." >	
+		<condition property="shared.jars.not.found">
+			<not>
+				<isset property="shared.jars.dir" />
+			</not>
+		</condition>
+		<fail message="SHARED_JARS_LOCATION environment is not set. Please set it to shared_jars dir (can be found in svn under: https://hedgehog.fhcrc.org/compbio/cabig/caGrid/shared_jars)" if="shared.jars.not.found"/>
+		
+		<antcall target="create_lib"/>
+	</target>
+	
+	<target name="set_shared_jars" if="env.SHARED_JARS_LOCATION">
+		<property name="shared.jars.dir" value="${env.SHARED_JARS_LOCATION}"/>
+	</target>
+	
+	<target name="create_lib">
+		<mkdir dir="lib"/>
+		<copy toDir="${basedir}/lib">
+			<fileset dir="${shared.jars.dir}/common_jars">
+				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="${shared.jars.dir}/cagrid_jars">
+				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="${shared.jars.dir}/cagrid_R_webservices_jars">
+				<include name="HelperService*.jar"/>
+				<include name="CaArrayQualityMetrics*.jar"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<property name="lib.dir" value="lib" />
+	<path id="lib.path.id">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar"/>
+		</fileset>		
+	</path>
+	
+	<path id="run.path.id">
+		<path refid="lib.path.id"/>
+		<path location="${build.dir}"/>
+	</path>
+
+	<!-- Sets up the build directory structure -->
+	<target name="init">
+		<mkdir dir="${build.dir}" />
+	</target>
+		
+	<target name="clean" description="remove the build directory">
+		<delete dir="${build.dir}" failonerror="false" />
+	</target>
+		
+	<!-- Compile the implementation classes -->
+	<target name="build" depends="check_libs,init" description="build source files">
+		<javac failonerror="true" srcdir="${src.dir}" includes="**" destdir="${build.dir}" debug="${java.debug}" deprecation="${deprecation}" >
+			<classpath refid="lib.path.id" />
+		</javac>
+	</target>
+	
+	<target name="compile" description="Compiling source files">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="lib.path.id" failonerror="true"/>
+    </target>
+	
+	<target name="create-zip" depends="check_libs" description="Creating a zip file containing approriate jars, build and build.xml">
+		<echo message="creating zip for CaArrayQualityMetrics" />
+		<zip destfile="${basedir}/CaArrayQualityMetricsClient.zip" update="true">
+			<fileset dir="${basedir}" includes="${src.dir}/*"/>
+			<fileset dir="${basedir}" includes="${lib.dir}/*.jar"/>
+			<fileset dir="${basedir}" includes="${build.dir}/*"/>
+			<fileset dir="${basedir}" includes="build.xml" />
+
+		</zip>
+	</target>
+	
+	<target name="run" description="Run the sample Client">
+        <java failonerror="true" classname="CaArrayQualityMetricsClient" classpath="${build.dir}" classpathref="run.path.id" fork="yes">
+			<arg value="${dir}"/>			
+			<arg value="${ext}" />
+		</java>
+	</target>
+</project>
