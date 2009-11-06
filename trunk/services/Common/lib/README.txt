@@ -1,2 +1,2 @@
-Any jar library placed in this folder will be automaticaly included into your services
-classpath.  These files will also be deployed into the web service container.
+jar files in this folder will be included in the service classpath.
+These files will be deployed to the web service container.
