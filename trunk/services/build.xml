@@ -17,19 +17,19 @@
 	</target>
 
 	<target name="checkProjProperty">
-		<fail message="caGrid project directory '${project}' not available; see ant -p">
+		<fail message="cagridProj directory '${cagridProj}' not available; see ant -p">
 			<condition>
 				<not>
-					<available file="${basedir}/${project}"/>
+					<available file="${basedir}/${cagridProj}"/>
 				</not>
 			</condition>
 		</fail>
 	</target>
 	
-	<target name="copyLibs" depends="checkCommon,checkProjProperty" if="project"   
-            description="copy common jar files to lib directory of -Dproject=project/caGrid/Project">
-		<property  name="lib.dir" value="${basedir}/${project}/lib" />
-		<property name="tools.dir" value="${basedir}/${project}/tools" />
+	<target name="copyLibs" depends="checkCommon,checkProjProperty" if="cagridProj"   
+            description="copy common jar files to lib directory of -DcagridProj=project/caGrid/Project">
+		<property  name="lib.dir" value="${basedir}/${cagridProj}/lib" />
+		<property name="tools.dir" value="${basedir}/${cagridProj}/tools" />
 		<antcall target="copyfiles" />
 	</target>
 	
