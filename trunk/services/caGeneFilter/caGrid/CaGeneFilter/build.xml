@@ -274,6 +274,7 @@
 
 	<!-- Compile the implementation classes (service, resource, etc.) -->
 	<target name="compile" depends="compileStubs" description="Compiles the service.">
+		<copy todir="${src.dir}/org/bioconductor/packages/caGeneFilter/context/service/globus/resource" file="service.properties"/>
 		<runtarget target="preCompile" />
 		<javac srcdir="${src.dir}" classpathref="service.build.classpath" includes="**" destdir="${build.dest}" debug="${java.debug}" deprecation="${deprecation}" />
 
