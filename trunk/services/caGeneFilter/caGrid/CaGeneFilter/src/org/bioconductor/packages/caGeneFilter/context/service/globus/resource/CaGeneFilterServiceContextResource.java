@@ -35,11 +35,24 @@ public class CaGeneFilterServiceContextResource extends CaGeneFilterServiceConte
 	private org.bioconductor.cagrid.data.AbstractExpressionDataCollection m_returnedExpDataCollection = null;
 	private org.bioconductor.cagrid.statefulservices.Status m_status = null;
 
+	private String m_proxyPort = "";
+	private String m_servicePort = "";
+	
+	
 	public CaGeneFilterServiceContextResource()
 	{
 		m_status = new org.bioconductor.cagrid.statefulservices.Status();
 		m_status.setDescription("Initializing...");
 		m_status.setState(StatusState.SESSION_INITIATED);
+		
+		try {
+			java.util.Properties prop = new java.util.Properties();
+			prop.load(CaGeneFilterServiceContextResource.class.getResourceAsStream("service.properties"));
+			m_proxyPort = prop.getProperty("proxyPort");
+			m_servicePort = prop.getProperty("servicePort");
+		}catch(Exception ew) {
+			ew.printStackTrace();
+		}
 	}
 
 	private org.bioconductor.cagrid.statefulservices.CaGridFileReferenceCollection setDataFilesInput(final org.bioconductor.packages.rservices.FileReferences fileReferences) throws RemoteException
@@ -63,6 +76,11 @@ public class CaGeneFilterServiceContextResource extends CaGeneFilterServiceConte
 					 m_fileReady = false;
 
 					 try {
+						 int port = transCxtEPR.getAddress().getPort();
+						  int servicePort = Integer.parseInt(m_servicePort);
+						  if(port != servicePort) {
+							transCxtEPR.getAddress().setPort(servicePort);
+						  }
 						  TransferServiceContextClient transSrvCxtClient = new TransferServiceContextClient(transCxtEPR);
 //						  m_clientFilesStoredLocUrlList.add(transSrvCxtClient.getDataTransferDescriptor().getUrl());
 
@@ -317,6 +335,7 @@ public class CaGeneFilterServiceContextResource extends CaGeneFilterServiceConte
 			objOutStream.writeObject(m_returnedExpDataCollection);
 
 			TransferServiceContextReference transSrvCxtRef = TransferServiceHelper.createTransferContext(baOutStream.toByteArray(), dd);
+			System.out.println("Uploaded-Ojbect ip address: " + transSrvCxtRef.getEndpointReference().getAddress().toString());
 			return new org.bioconductor.cagrid.statefulservices.CaGridObjectReference(transSrvCxtRef.getEndpointReference());
 		}
 		catch(Exception ew) {
