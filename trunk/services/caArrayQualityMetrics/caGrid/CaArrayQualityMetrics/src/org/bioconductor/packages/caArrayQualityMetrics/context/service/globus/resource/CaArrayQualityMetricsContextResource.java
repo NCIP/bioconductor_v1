@@ -50,6 +50,9 @@ public class CaArrayQualityMetricsContextResource extends CaArrayQualityMetricsC
 	private int m_totalTransferingFiles = -1;
 	private int m_totalTransferingFilesFromWorker = -1;
 	
+	private String m_proxyPort = ""; 
+	private String m_servicePort = "";
+	
 	public CaArrayQualityMetricsContextResource() throws RemoteException
 	{
 		 // setting status:
@@ -57,11 +60,22 @@ public class CaArrayQualityMetricsContextResource extends CaArrayQualityMetricsC
 		
 		 System.out.println("CaArrayQualityMetricsContextResource: Creating caArrayQualityMetrics instance");
 		 try {
-			 m_caAQM_RService = new org.bioconductor.rserviceJms.services.caArrayQualityMetrics.caArrayQualityMetrics();
+			 m_caAQM_RService = new org.bioconductor.rserviceJms.services.caArrayQualityMetrics.caArrayQualityMetrics();			 
 		 }
 		 catch (Exception ex) {
 			 throw new RemoteException(ex.getMessage());
 		 }
+		 
+		 try {
+			 java.util.Properties prop = new java.util.Properties();
+			 prop.load(CaArrayQualityMetricsContextResource.class.getResourceAsStream("service.properties"));
+			 m_proxyPort = prop.getProperty("proxyPort");
+			 m_servicePort = prop.getProperty("servicePort");
+			 System.out.println("ProxyPort set for CaArrayQualityMetrics: " + m_proxyPort + "SericePort set: " + m_servicePort);
+		 }catch(Exception ew) {
+			 ew.printStackTrace();
+		 }
+		 		 		 
 		 System.out.println("CaArrayQualityMetricsContextResource: caArrayQualityMetrics is created");
 	}
 	
@@ -114,14 +128,21 @@ public class CaArrayQualityMetricsContextResource extends CaArrayQualityMetricsC
 			  public FileReference fileRef = null;
 
 			  public void dataStaged(TransferServiceContextResource transSrvCxtResr) {
- 
+				 
 				 // let's get some info out of TransferServiceContextResource:
 				 setContextStatus("Uploading files from client.", StatusState.FILE_TRANSFER_IN_PROCESS);
 				 
 				 try {
+					  System.out.println("Address endpoint: " + transCxtEPR.getAddress().toString());
+					  int port = transCxtEPR.getAddress().getPort();
+					  int servicePort = Integer.parseInt(m_servicePort);
+					  if(port != servicePort) {
+						transCxtEPR.getAddress().setPort(servicePort);
+					  }
+
 					  TransferServiceContextClient transSrvCxtClient = new TransferServiceContextClient(transCxtEPR);
 //						  m_clientFilesStoredLocUrlList.add(transSrvCxtClient.getDataTransferDescriptor().getUrl());
-
+					  
 					  System.out.println("createUploadFileReferences() - downloaded file location: " + transSrvCxtClient.getDataTransferDescriptor().getUrl());
 					  
 					  // Create a new RWebService FileReference with localname and type that matches with this downloaded file:
@@ -154,7 +175,7 @@ public class CaArrayQualityMetricsContextResource extends CaArrayQualityMetricsC
 			  
 			  EndpointReferenceType eprType = transCxtRef.getEndpointReference();
 			  callback.transCxtEPR = eprType;
-			  
+			  			  
 			  FileReference fileRef = rwsFileRefArr[i];			  
 			  callback.fileRef = fileRef;
 			  
@@ -437,12 +458,23 @@ public class CaArrayQualityMetricsContextResource extends CaArrayQualityMetricsC
 					try {
                         TransferServiceContextClient transSrvCxtClient = new TransferServiceContextClient(transCxtEPR);
 			
-                        System.out.println("CaFlowQContextResource::createUploadTransferCxtRef - file is uploaded to location: " + transSrvCxtClient.getDataTransferDescriptor().getUrl());
+                        System.out.println("CaArrayQualityMetricsContextResource::createUploadTransferCxtRef - file is uploaded to location: " + transSrvCxtClient.getDataTransferDescriptor().getUrl());
                         
 						org.bioconductor.cagrid.statefulservices.CaGridFileReference cagridFileRef = new org.bioconductor.cagrid.statefulservices.CaGridFileReference();
 						cagridFileRef.setLocalName(fileLocalName);
 						cagridFileRef.setType(fileType);
-						cagridFileRef.setUrl(transSrvCxtClient.getDataTransferDescriptor().getUrl());
+						//cagridFileRef.setUrl(transSrvCxtClient.getDataTransferDescriptor().getUrl());
+						String outputUrl = transSrvCxtClient.getDataTransferDescriptor().getUrl();						
+						if(outputUrl.contains(m_servicePort)) {
+							StringBuffer strBuffer = new StringBuffer(outputUrl);							
+							int index = strBuffer.indexOf(m_servicePort);
+							strBuffer.replace(index, index+m_servicePort.length(), m_proxyPort);
+							cagridFileRef.setUrl(strBuffer.toString());
+						}
+						else {
+							cagridFileRef.setUrl(outputUrl);
+						}
+						
 						m_fileRefsFromWorkerList.add(cagridFileRef);
 						
 						if(m_fileRefsFromWorkerList.size() == m_totalTransferingFilesFromWorker) {
@@ -461,6 +493,14 @@ public class CaArrayQualityMetricsContextResource extends CaArrayQualityMetricsC
 			callback.fileLocalName = strLocalName;
 			callback.fileType = fileType;
 			org.cagrid.transfer.context.stubs.types.TransferServiceContextReference transCxtRef = TransferServiceHelper.createTransferContext(dd, callback);
+			
+			int port = transCxtRef.getEndpointReference().getAddress().getPort();
+			int servicePort =Integer.parseInt(m_servicePort);
+			if(port != servicePort) {
+				transCxtRef.getEndpointReference().getAddress().setPort(servicePort);
+			}
+			
+			
 			callback.transCxtEPR = transCxtRef.getEndpointReference();
 			
 			return transCxtRef; 
