@@ -12,18 +12,12 @@ public class CaArrayQualityMetricsClient
 		try{
 			String strTestFileDir = "";
 			String strFileExtension = "";
-			if (args.length < 2 || args[0].equals("") || args[1].equals("")) {
+			if (args.length != 2 || args[0].equals("") || args[1].equals("")) {
 				CaArrayQualityMetricsClient.usage();
 				System.exit(1);
 			}
-			else if (args.length == 2){
-				strTestFileDir = args[0];
-				strFileExtension = args[1];
-			}
-			else {
-				CaArrayQualityMetricsClient.usage();
-				System.exit(1);
-			}
+			strTestFileDir = args[0];
+			strFileExtension = args[1];
 
 			class FileFilterExtension implements java.io.FileFilter {
 				private String m_extension = null;
@@ -48,28 +42,22 @@ public class CaArrayQualityMetricsClient
 
 			java.io.File files = new java.io.File(strTestFileDir);
 			if (false == files.exists()) {
-				System.out.println("Unknown file directory: " + strTestFileDir);
+				System.err.println("Unknown file directory: " + strTestFileDir);
 				CaArrayQualityMetricsClient.usage();
 				System.exit(1);
 			}
 
 			java.io.File[] extFilteredFiles = files.listFiles(fileFilterExtension);
 			if (0L == extFilteredFiles.length) {
-				System.out.println("No file names with extension '" + strFileExtension + "'");
+				System.err.println("No file names with extension '" + strFileExtension + "'");
 				CaArrayQualityMetricsClient.usage();
 				System.exit(1);
-			}
-
-			for(int i = 0; i < extFilteredFiles.length; i++) {
-				System.out.println("file: " + extFilteredFiles[i].toString());
-				String filename = extFilteredFiles[i].getName();
-				System.out.println("File local name: " + filename.substring(0, filename.lastIndexOf(".")));
 			}
 
 			org.bioconductor.packages.caArrayQualityMetrics.client.CaArrayQualityMetricsClient client =
 			                                                                            new org.bioconductor.packages.caArrayQualityMetrics.client.CaArrayQualityMetricsClient(SERVICE_URL);
 
-			// Create a set of FileReference to contain those files above:
+			// Create a FileReference to contain the files:
 			int size = extFilteredFiles.length;
 			org.bioconductor.cagrid.rservices.FileReference[] fileRefArr = new org.bioconductor.cagrid.rservices.FileReference[size];
 
@@ -82,35 +70,37 @@ public class CaArrayQualityMetricsClient
 				fileRefArr[i].setUrl(extFilteredFiles[i].getAbsolutePath());
 			}
 
-			System.out.println("Done adding file. Start calling the service...");
-			// a FileReferenceCollection to wrap the array of FileReference:
+			System.out.println("Preparing to transfer files...");
+			// Wrap FileReference[] in FileReferenceCollection
 			org.bioconductor.cagrid.rservices.FileReferenceCollection fileRefCollection = new org.bioconductor.cagrid.rservices.FileReferenceCollection(fileRefArr);
 
-			// create a session identifier for this invocation:
+			// Create a session identifier
 			org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIden = client.createQualityReportSession();
 
-			// create a service helper to transfer FileReferenceCollection:
+			// Create HelperService to transfer the FileReferenceCollection:
 			org.bioconductor.packages.helper.common.HelperService helperService = new org.bioconductor.packages.helper.common.HelperService();
-			// now, use helper to upload files:
+			// Use helper to upload the FileReferenceCollection
 			System.out.println("Transfering files...");
 			helperService.uploadFileReferenceCollection(sessionIden, fileRefCollection);
-			// calling the service to do report on those files:
-			System.out.println("Invoking the service...");
+
+			// Invoke the service to create a report
+			System.out.println("Invoking service...");
 			client.runCaArrayQualityMetrics(sessionIden);
 
-			System.out.println("Result is ready");
-			// use helper  to get the result
+			// Retrieve the report with the helper
+			System.out.println("Retrieving result...");
 			org.bioconductor.cagrid.rservices.FileReferenceCollection qualityResultFileRefs = helperService.getFileReferenceCollection(sessionIden);
 
 
-			System.out.println("Got the report result");
-			String strDownloadTo = System.getProperty("java.io.tmpdir");  // or specify a absolute path to where you want it to download to.
+			System.out.println("Displaying result...");
+			String strDownloadTo = System.getProperty("java.io.tmpdir");  // or specify an absolute download path
 			org.bioconductor.cagrid.rservices.FileReferenceCollection reportFileRefs = helperService.dowloadResultFiles(qualityResultFileRefs, strDownloadTo);
 
-			// If everything works correctly, the result FileReferenceCollection will contain a zip file in which
-			// report files created by the service exist.  So, calling displayReport in CaAQMOperationHelper will unzip and display the report.
+			// FileReferenceCollection contains a zip archive created
+			// by the service. Calling displayReport unzips and
+			// displays the report.
 			String reportFileLoc = reportFileRefs.getFileReferenceCollection()[0].getUrl();
-			System.out.println("display report of: " + reportFileLoc);
+			System.out.println("Displaying report: " + reportFileLoc);
 
 			org.bioconductor.packages.caArrayQualityMetrics.common.CaAQMOperationsHelper.displayReport(reportFileLoc, "QMreport.html");
 
