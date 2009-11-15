@@ -2,29 +2,26 @@ public class CaArrayQualityMetricsClient
 {
 	public static final String SERVICE_URL = "http://cabig.bioconductor.org/wsrf/services/cagrid/CaArrayQualityMetrics";
 
+	public static void usage()
+	{
+		System.out.println("Usage: ant run -Ddir=/path/to/filedir -Dext=extension");
+	}
+
 	public static void main(String[] args)
 	{
 		try{
 			String strTestFileDir = "";
 			String strFileExtension = "";
-
-			if(args.length < 2 || args[0].equals("") || args[1].equals("")) {
-				System.out.println("Missing filepath and file extension from arguments.  Usage: run from ant command: ant run -Ddir=/path/to/filedir -Dext=fileExtension");
-
-				System.out.println("From command prompt, please enter file path: ");
-				java.io.BufferedReader br = new java.io.BufferedReader(new java.io.InputStreamReader(System.in));
-
-				strTestFileDir = br.readLine();
-				System.out.println("Please enter file extension: ");
-				strFileExtension = br.readLine();
-
+			if (args.length < 2 || args[0].equals("") || args[1].equals("")) {
+				CaArrayQualityMetricsClient.usage();
+				System.exit(1);
 			}
-			else if(args.length == 2){
+			else if (args.length == 2){
 				strTestFileDir = args[0];
 				strFileExtension = args[1];
 			}
 			else {
-				System.out.println("Invalid arguments.  Usage: ant run or ant run -Ddir=/path/to/filedir -Dext=fileExtension");
+				CaArrayQualityMetricsClient.usage();
 				System.exit(1);
 			}
 
@@ -50,8 +47,18 @@ public class CaArrayQualityMetricsClient
 			FileFilterExtension fileFilterExtension = new FileFilterExtension(strFileExtension);
 
 			java.io.File files = new java.io.File(strTestFileDir);
+			if (false == files.exists()) {
+				System.out.println("Unknown file directory: " + strTestFileDir);
+				CaArrayQualityMetricsClient.usage();
+				System.exit(1);
+			}
 
 			java.io.File[] extFilteredFiles = files.listFiles(fileFilterExtension);
+			if (0L == extFilteredFiles.length) {
+				System.out.println("No file names with extension '" + strFileExtension + "'");
+				CaArrayQualityMetricsClient.usage();
+				System.exit(1);
+			}
 
 			for(int i = 0; i < extFilteredFiles.length; i++) {
 				System.out.println("file: " + extFilteredFiles[i].toString());
