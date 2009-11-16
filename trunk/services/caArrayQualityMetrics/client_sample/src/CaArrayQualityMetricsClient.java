@@ -4,7 +4,8 @@ public class CaArrayQualityMetricsClient
 
 	public static void usage()
 	{
-		System.out.println("Usage: ant run -Ddir=/path/to/filedir -Dext=extension");
+		System.out.println("Usage: java -jar CaArrayQualityMetricsClient /path/to/folder extension");
+		System.out.println("Example: java -jar CaArrayQualityMetricsClient extdata gpr");
 	}
 
 	public static void main(String[] args)
@@ -13,6 +14,7 @@ public class CaArrayQualityMetricsClient
 			String strTestFileDir = "";
 			String strFileExtension = "";
 			if (args.length != 2 || args[0].equals("") || args[1].equals("")) {
+				System.err.println("ERROR: missing argument(s)");
 				CaArrayQualityMetricsClient.usage();
 				System.exit(1);
 			}
@@ -42,14 +44,14 @@ public class CaArrayQualityMetricsClient
 
 			java.io.File files = new java.io.File(strTestFileDir);
 			if (false == files.exists()) {
-				System.err.println("Unknown file directory: " + strTestFileDir);
+				System.err.println("ERROR: Unknown file directory: " + strTestFileDir);
 				CaArrayQualityMetricsClient.usage();
 				System.exit(1);
 			}
 
 			java.io.File[] extFilteredFiles = files.listFiles(fileFilterExtension);
 			if (0L == extFilteredFiles.length) {
-				System.err.println("No file names with extension '" + strFileExtension + "'");
+				System.err.println("ERROR: No file names with extension '" + strFileExtension + "'");
 				CaArrayQualityMetricsClient.usage();
 				System.exit(1);
 			}

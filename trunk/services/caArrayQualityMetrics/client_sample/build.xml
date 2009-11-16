@@ -69,20 +69,14 @@
         <javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="lib.path.id" failonerror="true"/>
     </target>
 	
-	<target name="create-zip" depends="compile" description="Create a zip file containing approriate jars, build and build.xml">
-		<echo message="creating zip for CaArrayQualityMetrics" />
-		<zip destfile="${basedir}/CaArrayQualityMetricsClient.zip" update="true">
-		  <zipfileset dir="${basedir}" includes="${src.dir}/*" prefix="CaArrayQualityMetricsClient"/>
-		  <zipfileset dir="${basedir}" includes="${lib.dir}/*.jar" prefix="CaArrayQualityMetricsClient"/>
-		  <zipfileset dir="${basedir}" includes="${build.dir}/*" prefix="CaArrayQualityMetricsClient"/>
-		  <zipfileset dir="${basedir}" includes="client-build.xml" fullpath="CaArrayQualityMetricsClient/build.xml"/>
-		</zip>
+	<target name="create-jar" depends="compile" description="Create CaArrayQualityMetricsClient.jar" >
+		<echo message="Creating CaArrayQualityMetricsClient.jar" />
+		<jar destfile="${basedir}/CaArrayQualityMetricsClient.jar"
+			 manifest="${basedir}/Manifest.txt" >
+		  <fileset dir="${basedir}" includes="${lib.dir}/*.jar" />
+		  <fileset dir="${basedir}" includes="${src.dir}/*" />
+		  <fileset dir="${basedir}/${build.dir}" includes="*.class" />
+		</jar>
 	</target>
-	
-	<target name="run" description="Run the sample Client">
-        <java failonerror="true" classname="CaArrayQualityMetricsClient" classpath="${build.dir}" classpathref="run.path.id" fork="yes">
-			<arg value="${dir}"/>			
-			<arg value="${ext}" />
-		</java>
-	</target>
+
 </project>

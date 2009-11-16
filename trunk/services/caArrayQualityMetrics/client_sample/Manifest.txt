@@ -1,0 +1,16 @@
+Main-Class: CaArrayQualityMetricsClient
+Class-Path: lib/addressing-1.0.jar lib/commons-codec-1.3.jar
+  lib/axis.jar lib/commons-discovery.jar
+  lib/CaArrayQualityMetrics-client.jar lib/commons-httpclient-3.0.jar
+  lib/CaArrayQualityMetrics-common.jar lib/commons-logging.jar
+  lib/CaArrayQualityMetrics-stubs.jar lib/HelperService-client.jar
+  lib/caGrid-metadata-common-1.2.jar lib/HelperService-common.jar
+  lib/caGrid-metadata-security-1.2.jar lib/HelperService-stubs.jar
+  lib/caGrid-ServiceSecurityProvider-client-1.2.jar lib/jaxrpc.jar
+  lib/caGrid-ServiceSecurityProvider-common-1.2.jar
+  lib/jce-jdk13-125.jar
+  lib/caGrid-ServiceSecurityProvider-stubs-1.2.jar lib/log4j-1.2.8.jar
+  lib/caGrid-Transfer-client-1.2.jar lib/saaj.jar
+  lib/caGrid-Transfer-common-1.2.jar lib/wsdl4j.jar
+  lib/caGrid-Transfer-stubs-1.2.jar lib/wsrf_core.jar lib/cog-axis.jar
+  lib/wsrf_core_stubs.jar lib/cog-jglobus.jar lib/wss4j.jar
