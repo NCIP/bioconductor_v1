@@ -3,8 +3,8 @@ CaArrayQualityMetricsClient
 
 The CaArrayQualityMetricsClient illustrates how Bioconductor services
 can be invoked. This is a simple Java command-line application,
-requiring only that Java be installed; it is meant for illustrative
-purposes. To use this client
+requiring only that Java 1.6 be installed; it is meant for
+illustrative purposes. To use this client
 
 1. Install Java from http://www.java.com/en/download/manual.jsp
 
@@ -12,7 +12,14 @@ purposes. To use this client
 
    https://gforge.nci.nih.gov/docman/view.php/175/19873/CaArrayQualityMetricsClient.jar   
 
-3. Place microarray files to be used for quality assessment into a
+3. Unpack the jar file by running the command
+
+   jar -xf CaArrayQualityMetricsClient.jar
+
+   from a (DOS or other) shell in the directory where the file was
+   downloaded
+
+4. Place microarray files to be used for quality assessment into a
    single directory. For instance, create a directory 'extdata' and
    place microarray files inside this. The following abbreviates the
    DOS prompt as '>', without the directory path.
@@ -29,7 +36,7 @@ purposes. To use this client
    11/15/2009  02:28 PM         1,002,016 HuPr4487.gpr
                   6 File(s)      6,013,393 bytes
 
-4. Invoke the service, inidicating the location and file name
+5. Invoke the service, indicating the location and file name
    extension of the files to be submitted
 
   > java -jar CaArrayQualityMetricsClient.jar extdata gpr
