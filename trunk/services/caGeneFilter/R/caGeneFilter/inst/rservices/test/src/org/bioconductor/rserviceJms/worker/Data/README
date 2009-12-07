@@ -1,0 +1,8 @@
+
+'numericMatrixSample' created by
+
+library(Biobase)
+library(RWebServices)
+data(sample.ExpressionSet)
+numericMatrix <- new("NumericMatrix", exprs(sample.ExpressionSet))
+save(numericMatrix, file="numericMatrixSample.rda")

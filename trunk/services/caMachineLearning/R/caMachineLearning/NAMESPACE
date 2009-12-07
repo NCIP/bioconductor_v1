@@ -1,0 +1,13 @@
+import(TypeInfo)
+import(caCommonClasses)
+import(e1071)
+
+importClassesFrom(Biobase, ExpressionSet)
+importFrom(RWebServices, FileReferences, urls, localNames, types)
+importFrom(MLInterfaces, MLearn, knnI, hclustI, kmeansI, svmI, ldaI,
+           dldaI, qdaI, naiveBayesI, testPredictions,
+           trainPredictions)
+importFrom(stats, dist)
+
+exportPattern("^[^\\.].*")
+exportClassPattern("^[^\\.].*")

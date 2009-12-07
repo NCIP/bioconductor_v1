@@ -1,0 +1,113 @@
+
+    # Generates .rda files to be serialized to Java and used by
+    # the Java functional tests for this package.
+
+    library("ALL")
+    library("genefilter")
+    library("caCommonClasses")
+    library("caMachineLearning")
+    library("hgu95av2.db")
+
+    data("ALL")
+
+    # Select B-cell samples with the "NEG" or "BCR/ABL"
+    # molecular types.
+
+    bcell = grep("^B", as.character(ALL$BT))
+    moltyp = which( match(as.character(ALL$mol.biol), c("NEG", "BCR/ABL"), nomatch=0) > 0 )
+    ALL_bcrneg = ALL[,intersect(bcell, moltyp)]
+    ALL_bcrneg$mol.biol = factor(ALL_bcrneg$mol.biol)
+
+    # Select only those reporters that show sufficient variability
+    # across samples.
+
+    ALLfilt_bcrneg = nsFilter(ALL_bcrneg, var.cutoff=0.75)$eset
+
+    # Reduce the data set to focus on transcription factors.
+
+    GOTFfun = function(GOID) {
+        x = hgu95av2GO2ALLPROBES[[GOID]]
+        unique(x[ names(x) != "IEA"])
+    }
+    GOIDs = c("GO:0003700", "GO:0003702", "GO:0003709", "GO:0016563", "GO:0016564")
+    TFs   = unique(unlist(lapply(GOIDs, GOTFfun)))
+    inSel = match(TFs, featureNames(ALLfilt_bcrneg), nomatch=0)
+    es2   = ALLfilt_bcrneg[inSel,]
+
+    # Prepare data and parameters for the test.
+
+    expressionMatrix         <- ExpressionMatrix( new("NumericMatrix", exprs(es2)) )
+    oneChannelExpressionData <- OneChannelExpressionData( expressionMatrix )
+
+    sampleName <- sampleNames(es2)
+
+    # Use about half the data as training data.
+    nSamples         <- floor( dim(expressionMatrix@expressionMatrix)[2] )
+    isTrainingSample <- c( rep(TRUE, floor(nSamples/2)), rep(FALSE, ceiling(nSamples/2)) )
+
+    # Classify the samples according to their 'type'.
+    type <- as.factor(c( rep("A",20), rep("B",20), rep("C",20), rep("D", 19)) )
+
+    # Supervised parameters classes.
+
+    kNearestNeighborsMachineLearningParameters <-
+                KNearestNeighborsMachineLearningParameters( numberOfNeighbors=1L,
+                                                            minimumVote=0L,
+                                                            sampleName=sampleName,
+                                                            isTrainingSample=isTrainingSample,
+                                                            type=type
+                                                          )
+
+    supportVectorMachineMachineLearningParameters <-
+                SupportVectorMachineMachineLearningParameters( sampleName=sampleName,
+                                                               isTrainingSample=isTrainingSample,
+                                                               type=type
+                                                             )
+
+    linearDiscriminantAnalysisMachineLearningParameters <-
+                LinearDiscriminantAnalysisMachineLearningParameters( sampleName=sampleName,
+                                                                     isTrainingSample=isTrainingSample,
+                                                                     type=type
+                                                                   )
+
+    diagonalLinearDiscriminantAnalysisMachineLearningParameters <-
+                DiagonalLinearDiscriminantAnalysisMachineLearningParameters( sampleName=sampleName,
+                                                                             isTrainingSample=isTrainingSample,
+                                                                             type=type
+                                                                           )
+
+    quadraticDiscriminantAnalysisMachineLearningParameters <-
+                QuadraticDiscriminantAnalysisMachineLearningParameters( sampleName=sampleName,
+                                                                        isTrainingSample=isTrainingSample,
+                                                                        type=type
+                                                                      )
+
+    naiveBayesMachineLearningParameters <-
+                NaiveBayesMachineLearningParameters( sampleName=sampleName,
+                                                     isTrainingSample=isTrainingSample,
+                                                     type=type
+                                                   )
+
+    # Unsupervised parameters classes.
+
+    hierarchicalClusteringMachineLearningParameters <- new("HierarchicalClusteringMachineLearningParameters",
+                                                           linkage="ward",
+                                                           distanceMetric="euclidean"
+                                                          )
+
+    kMeansMachineLearningParameters <- new("KMeansMachineLearningParameters",
+                                           numberOfClusters=10L,
+                                           algorithm="Forgy"
+                                          )
+
+    # Save.
+
+    save(oneChannelExpressionData,                                    file="OneChannelExpressionData.rda")
+    save(kNearestNeighborsMachineLearningParameters,                  file="KNearestNeighborsMachineLearningParameters.rda")
+    save(supportVectorMachineMachineLearningParameters,               file="SupportVectorMachineMachineLearningParameters.rda")
+    save(linearDiscriminantAnalysisMachineLearningParameters,         file="LinearDiscriminantAnalysisMachineLearningParameters.rda")
+    save(diagonalLinearDiscriminantAnalysisMachineLearningParameters, file="DiagonalLinearDiscriminantAnalysisMachineLearningParameters.rda")
+    save(quadraticDiscriminantAnalysisMachineLearningParameters,      file="QuadraticDiscriminantAnalysisMachineLearningParameters.rda")
+    save(naiveBayesMachineLearningParameters,                         file="NaiveBayesMachineLearningParameters.rda")
+    save(hierarchicalClusteringMachineLearningParameters,             file="HierarchicalClusteringMachineLearningParameters.rda")
+    save(kMeansMachineLearningParameters,                             file="KMeansMachineLearningParameters.rda")

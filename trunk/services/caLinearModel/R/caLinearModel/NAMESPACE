@@ -1,0 +1,10 @@
+import(TypeInfo)
+import(limma)
+import(caCommonClasses)
+
+importFrom(Biobase, exprs)
+importClassesFrom(Biobase, ExpressionSet)
+importFrom(RWebServices, FileReferences, urls, localNames, types)
+
+exportPattern("^[^\\.].*")
+exportClassPattern("^[^\\.].*")

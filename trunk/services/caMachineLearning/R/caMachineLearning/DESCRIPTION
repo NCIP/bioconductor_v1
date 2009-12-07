@@ -1,0 +1,14 @@
+Package: caMachineLearning
+Type: Package
+Title: Machine learning algorithms exposed as caGrid services
+Version: 0.1.3
+Author: Tom Milac
+Maintainer: Tom Milac <tmilac@fhcrc.org>
+Description: This package is a wrapper for exposing a selection of
+	machine learning algorithms relevant to microarray analysis as
+	caGrid services
+License: file LICENSE
+LazyLoad: yes
+Imports: Biobase, TypeInfo, RWebServices, methods, caCommonClasses,
+    MLInterfaces, class, e1071
+Depends: RWebServices, lattice, latticeExtra

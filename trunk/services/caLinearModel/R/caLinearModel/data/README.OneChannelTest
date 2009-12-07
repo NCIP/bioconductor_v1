@@ -1,0 +1,57 @@
+
+# The OneChannelExpressionData is created using the expression data from
+# the ALL ExpressionSet.  The SampleAnnotationCollection is created using
+# pData(ALL) augmented with additional columns for use in testing
+# caLinearModel functions as described below.
+
+library(RWebServices)
+library(caCommonClasses)
+library(caLinearModel)
+
+library(ALL)
+data(ALL)
+
+sampleAnnotationCollection <- pData(ALL)
+
+# Add columns that are required to be present in the data.frame
+# carried by a SampleAnnotationCollection, specifically, 'array'
+# and 'channel'.  The 'channel' column is not used in one-channel
+# data analysis, so use a place-holder.
+
+numberOfArrays <- dim(sampleAnnotationCollection)[1]
+
+arrayNames <- rownames(sampleAnnotationCollection)
+sampleAnnotationCollection$array <- arrayNames
+
+sampleAnnotationCollection$channel <- "single channel"
+
+# Drop all other columns but the required ones just added of sampleAnnotationCollection.
+
+sampleAnnotationCollection <- sampleAnnotationCollection[,-c(1:21), drop=FALSE]
+
+# Add a 2-level factor to sampleAnnotationCollection for use by TTest and Factorial.
+
+handedness <- ifelse(runif(numberOfArrays) > 0.5, "R", "L")
+sampleAnnotationCollection$handedness <- handedness
+
+# Add pairing column to sampleAnnotationCollection for use by PairedTTest.
+
+pairing <- rep(1:(numberOfArrays/2), each=2)
+sampleAnnotationCollection$pairing <- pairing
+
+# Add a 4-level factor to sampleAnnotationCollection for use by OneWayANOVA
+# and Factorial.
+
+ageCohort <- c("Infant", "PreTeen", "Teen", "Adult")
+sampleAnnotationCollection$ageCohort <- ageCohort
+
+# Save the expression data as a OneChannelExpressionData and the phenotype
+# data as a SampleAnnotationCollection.
+
+channelOne <- ExpressionMatrix( expressionMatrix=new("NumericMatrix", exprs(ALL)),
+                                expressionMatrixName="channelOne" )
+OneChannelTest.oneChannelExpressionData   <- OneChannelExpressionData( channelOne=channelOne )
+OneChannelTest.sampleAnnotationCollection <- SampleAnnotationCollection(sampleAnnotationCollection=sampleAnnotationCollection)
+
+save(OneChannelTest.oneChannelExpressionData,   file="OneChannelTest.oneChannelExpressionData.rda")
+save(OneChannelTest.sampleAnnotationCollection, file="OneChannelTest.sampleAnnotationCollection.rda")

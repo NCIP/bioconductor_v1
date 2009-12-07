@@ -1,0 +1,13 @@
+Package: caGeneFilter
+Type: Package
+Title: RWebServices interface to the genefilter package.
+Version: 0.1.18
+Author: Tom Milac
+Maintainer: Tom Milac <tmilac@fhcrc.org>
+Description: Provide pre- and post-processing filters for microarray
+License: file LICENSE
+LazyLoad: yes
+Imports: Biobase, genefilter, limma, TypeInfo, RWebServices, methods,
+    annotate, AnnotationDbi
+Depends: RWebServices
+Suggests: caServicesTestData

@@ -1,0 +1,17 @@
+import(genefilter)
+import(limma)
+import(TypeInfo)
+
+importFrom(annotate, annPkgName, getAnnMap)
+importFrom(AnnotationDbi, mget)
+importFrom(Biobase, annotation, exprs, subListExtract, featureData,
+           "featureData<-", fData)
+importClassesFrom(Biobase, ExpressionSet)
+importFrom(RWebServices, FileReferences, urls, localNames, types,
+           retrieve)
+importClassesFrom(RWebServices, FileReferences)
+
+export(annotation)
+
+exportPattern("^[^\\.].*")
+exportClassPattern("^[^\\.].*")

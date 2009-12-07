@@ -1,0 +1,87 @@
+    
+    # Generates .rda files to be serialized to Java and used by
+    # the Java functional tests for analyzeAsDiscrete.
+
+    library("ALL")
+    library("genefilter")
+    library("hgu95av2.db")
+    library("caCommonClasses")
+    library("caGeneSetAnalysis")
+
+    data("ALL")
+
+    # Select samples B-cell samples with the "NEG" or "BCR/ABL"
+    # molecular types.
+
+    bcell = grep("^B", as.character(ALL$BT))
+    moltyp = which( match(as.character(ALL$mol.biol), c("NEG", "BCR/ABL"), nomatch=0) > 0 )
+    ALL_bcrneg = ALL[,intersect(bcell, moltyp)]
+    ALL_bcrneg$mol.biol = factor(ALL_bcrneg$mol.biol)
+
+    # Select only those reporters that show sufficient variability across
+    # samples.  Also, require that the probes have an EntrezGene ID and an
+    # annotation in the GO BP ontology.  Finally, filter out probes beginning
+    # with the string "AFFX".
+
+    ALLfilt_bcrneg = nsFilter(ALL_bcrneg, require.entrez=TRUE,
+                              require.GOBP=TRUE, remove.dupEntrez=TRUE,
+                              var.func=IQR, var.cutoff=0.5,
+                              feature.exclude="^AFFX")$eset
+
+    # Execute a t-test.
+
+    rtt = rowttests(ALLfilt_bcrneg, "mol.biol", tstatOnly=FALSE)
+
+    # Create a TopTable for input to analyzeAsDiscrete.
+
+    contrastSpecification = "not relevant here"
+
+    reporterName = as.character(row.names(rtt))   # affy probe id
+    pValue       = rtt$p.value
+
+    len = length(row.names(rtt))    # these TopTable data not needed for this analysis
+    tCoefficient   = numeric(len)
+    logFoldChange  = numeric(len)
+    adjustedPValue = numeric(len)
+    logOddsScore   = numeric(len)
+
+    topTableForDiscreteGeneSetAnalysis = new("TopTable",
+                                             contrastSpecification=contrastSpecification,
+                                             reporterName=reporterName,
+                                             logFoldChange=logFoldChange,
+                                             tCoefficient=tCoefficient,
+                                             pValue=pValue,
+                                             adjustedPValue=adjustedPValue,
+                                             logOddsScore=logOddsScore)
+
+    # Define a GeneOntologyDiscreteGeneSetAnalysisParameters object.
+
+    geneOntologyDiscreteGeneSetAnalysisParameters = new("GeneOntologyDiscreteGeneSetAnalysisParameters",
+                                                        ontology="BP",
+                                                        annotation="hgu95av2",
+                                                        discretePValue=0.05,
+                                                        testDirection="over-represented"
+                                                       )
+
+    # Define a KEGGDiscreteGeneSetAnalysisParameters object.
+
+    keggDiscreteGeneSetAnalysisParameters = new("KEGGDiscreteGeneSetAnalysisParameters",
+                                                annotation="hgu95av2",
+                                                discretePValue=0.05,
+                                                testDirection="over-represented"
+                                               )
+
+    # Define a PFAMDiscreteGeneSetAnalysisParameters object.
+
+    pfamDiscreteGeneSetAnalysisParameters = new("PFAMDiscreteGeneSetAnalysisParameters",
+                                                annotation="hgu95av2",
+                                                discretePValue=0.05,
+                                                testDirection="over-represented"
+                                               )
+
+    #
+
+    save(topTableForDiscreteGeneSetAnalysis,    file="TopTableForDiscreteGeneSetAnalysis.rda")
+    save(geneOntologyDiscreteGeneSetAnalysisParameters, file="GeneOntologyDiscreteGeneSetAnalysisParameters.rda")
+    save(keggDiscreteGeneSetAnalysisParameters,         file="KEGGDiscreteGeneSetAnalysisParameters.rda")
+    save(pfamDiscreteGeneSetAnalysisParameters,         file="PFAMDiscreteGeneSetAnalysisParameters.rda")

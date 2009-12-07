@@ -1,0 +1,13 @@
+Package: caLinearModel
+Type: Package
+Title: caLinearModel: Standard linear models exposed as caGrid services
+Version: 0.1.1
+Author: Tom Milac
+Maintainer: Tom Milac <tmilac@fhcrc.org>
+Description: This package is a wrapper for exposing a selection of
+	standard linear models relevant to microarray analysis as caGrid
+	services
+License: file LICENSE
+LazyLoad: yes
+Imports: Biobase, limma, TypeInfo, RWebServices, methods, caCommonClasses
+Depends: RWebServices, lattice, latticeExtra
