@@ -2,7 +2,8 @@
  <ns1:serviceDescription>
   <ns2:Service description="" name="CaGeneFilterService" version="1.2" xmlns:ns2="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.service">
    <ns2:pointOfContactCollection>
-    <ns3:PointOfContact affiliation="" email="" firstName="" lastName="" phoneNumber="" role="" xmlns:ns3="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common"/>
+    <ns3:PointOfContact affiliation="Bioconductor" email="mtmorgan@fhcrc.org " firstName="Martin" lastName="Morgan" phoneNumber="(206) 667- 2793" role="Manager" xmlns:ns3="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common"/>
+    <ns4:PointOfContact affiliation="" email="mtra2@fhcrc.org" firstName="Minhnhat " lastName="Tran" phoneNumber="(206) 667-7703" role="Developer" xmlns:ns4="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common"/>
    </ns2:pointOfContactCollection>
    <ns2:serviceContextCollection>
     <ns2:ServiceContext description="" name="CaGeneFilterService">
@@ -21,29 +22,29 @@
       </ns2:Operation>
       <ns2:Operation description="" name="getServiceSecurityMetadata">
        <ns2:inputParameterCollection/>
-       <ns2:Output qName="ns4:ServiceSecurityMetadata" dimensionality="1" isArray="false" xmlns:ns4="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security"/>
+       <ns2:Output qName="ns5:ServiceSecurityMetadata" dimensionality="1" isArray="false" xmlns:ns5="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security"/>
        <ns2:faultCollection/>
       </ns2:Operation>
       <ns2:Operation description="" name="recode">
        <ns2:inputParameterCollection>
-        <ns2:InputParameter qName="ns5:SingleChannelExpressionDataCollection" dimensionality="1" index="0" isArray="false" isRequired="false" name="dataCollection" xmlns:ns5="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"/>
-        <ns2:InputParameter qName="ns6:Recode" dimensionality="1" index="1" isArray="false" isRequired="false" name="recode" xmlns:ns6="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter"/>
+        <ns2:InputParameter qName="ns6:SingleChannelExpressionDataCollection" dimensionality="1" index="0" isArray="false" isRequired="false" name="dataCollection" xmlns:ns6="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"/>
+        <ns2:InputParameter qName="ns7:Recode" dimensionality="1" index="1" isArray="false" isRequired="false" name="recode" xmlns:ns7="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter"/>
        </ns2:inputParameterCollection>
-       <ns2:Output qName="ns7:SingleChannelExpressionDataCollection" dimensionality="1" isArray="false" xmlns:ns7="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"/>
+       <ns2:Output qName="ns8:SingleChannelExpressionDataCollection" dimensionality="1" isArray="false" xmlns:ns8="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"/>
        <ns2:faultCollection/>
       </ns2:Operation>
       <ns2:Operation description="" name="filter">
        <ns2:inputParameterCollection>
-        <ns2:InputParameter qName="ns8:SingleChannelExpressionDataCollection" dimensionality="1" index="0" isArray="false" isRequired="false" name="singleChannelExpressionDataCollection" xmlns:ns8="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"/>
-        <ns2:InputParameter qName="ns9:Filter" dimensionality="1" index="1" isArray="false" isRequired="false" name="filter" xmlns:ns9="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter"/>
+        <ns2:InputParameter qName="ns9:SingleChannelExpressionDataCollection" dimensionality="1" index="0" isArray="false" isRequired="false" name="singleChannelExpressionDataCollection" xmlns:ns9="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"/>
+        <ns2:InputParameter qName="ns10:Filter" dimensionality="1" index="1" isArray="false" isRequired="false" name="filter" xmlns:ns10="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter"/>
        </ns2:inputParameterCollection>
-       <ns2:Output qName="ns10:SingleChannelExpressionDataCollection" dimensionality="1" isArray="false" xmlns:ns10="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"/>
+       <ns2:Output qName="ns11:SingleChannelExpressionDataCollection" dimensionality="1" isArray="false" xmlns:ns11="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"/>
        <ns2:faultCollection/>
       </ns2:Operation>
       <ns2:Operation description="" name="invokeSpotQualityRecode">
        <ns2:inputParameterCollection>
-        <ns2:InputParameter qName="ns11:SessionIdentifier" dimensionality="1" index="0" isArray="false" isRequired="false" name="sessionIdentifier" xmlns:ns11="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
-        <ns2:InputParameter qName="ns12:SpotQualityRecode" dimensionality="1" index="1" isArray="false" isRequired="false" name="spotQualityRecode" xmlns:ns12="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter"/>
+        <ns2:InputParameter qName="ns12:SessionIdentifier" dimensionality="1" index="0" isArray="false" isRequired="false" name="sessionIdentifier" xmlns:ns12="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
+        <ns2:InputParameter qName="ns13:SpotQualityRecode" dimensionality="1" index="1" isArray="false" isRequired="false" name="spotQualityRecode" xmlns:ns13="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter"/>
        </ns2:inputParameterCollection>
        <ns2:faultCollection/>
       </ns2:Operation>
@@ -54,28 +55,28 @@
       </ns2:Operation>
       <ns2:Operation description="" name="invokeFilter">
        <ns2:inputParameterCollection>
-        <ns2:InputParameter qName="ns13:SessionIdentifier" dimensionality="1" index="0" isArray="false" isRequired="false" name="sessionIdentifier" xmlns:ns13="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
-        <ns2:InputParameter qName="ns14:Filter" dimensionality="1" index="1" isArray="false" isRequired="false" name="filter" xmlns:ns14="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter"/>
+        <ns2:InputParameter qName="ns14:SessionIdentifier" dimensionality="1" index="0" isArray="false" isRequired="false" name="sessionIdentifier" xmlns:ns14="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
+        <ns2:InputParameter qName="ns15:Filter" dimensionality="1" index="1" isArray="false" isRequired="false" name="filter" xmlns:ns15="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter"/>
        </ns2:inputParameterCollection>
        <ns2:faultCollection/>
       </ns2:Operation>
       <ns2:Operation description="" name="invokeRecode">
        <ns2:inputParameterCollection>
-        <ns2:InputParameter qName="ns15:SessionIdentifier" dimensionality="1" index="0" isArray="false" isRequired="false" name="sessionIdentifier" xmlns:ns15="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
-        <ns2:InputParameter qName="ns16:Recode" dimensionality="1" index="1" isArray="false" isRequired="false" name="recode" xmlns:ns16="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter"/>
+        <ns2:InputParameter qName="ns16:SessionIdentifier" dimensionality="1" index="0" isArray="false" isRequired="false" name="sessionIdentifier" xmlns:ns16="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
+        <ns2:InputParameter qName="ns17:Recode" dimensionality="1" index="1" isArray="false" isRequired="false" name="recode" xmlns:ns17="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter"/>
        </ns2:inputParameterCollection>
        <ns2:faultCollection/>
       </ns2:Operation>
       <ns2:Operation description="" name="createCaGeneFilterSession">
        <ns2:inputParameterCollection/>
-       <ns2:Output qName="ns17:SessionIdentifier" dimensionality="1" isArray="false" xmlns:ns17="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
+       <ns2:Output qName="ns18:SessionIdentifier" dimensionality="1" isArray="false" xmlns:ns18="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
        <ns2:faultCollection/>
       </ns2:Operation>
       <ns2:Operation description="" name="getStatus">
        <ns2:inputParameterCollection>
-        <ns2:InputParameter qName="ns18:SessionIdentifier" dimensionality="1" index="0" isArray="false" isRequired="false" name="sessionIdentifier" xmlns:ns18="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
+        <ns2:InputParameter qName="ns19:SessionIdentifier" dimensionality="1" index="0" isArray="false" isRequired="false" name="sessionIdentifier" xmlns:ns19="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
        </ns2:inputParameterCollection>
-       <ns2:Output qName="ns19:Status" dimensionality="1" isArray="false" xmlns:ns19="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
+       <ns2:Output qName="ns20:Status" dimensionality="1" isArray="false" xmlns:ns20="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"/>
        <ns2:faultCollection/>
       </ns2:Operation>
      </ns2:operationCollection>
@@ -87,7 +88,7 @@
      <ns2:operationCollection>
       <ns2:Operation description="" name="getServiceSecurityMetadata">
        <ns2:inputParameterCollection/>
-       <ns2:Output qName="ns20:ServiceSecurityMetadata" dimensionality="1" isArray="false" xmlns:ns20="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security"/>
+       <ns2:Output qName="ns21:ServiceSecurityMetadata" dimensionality="1" isArray="false" xmlns:ns21="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security"/>
        <ns2:faultCollection/>
       </ns2:Operation>
       <ns2:Operation description="" name="Destroy">
@@ -105,16 +106,17 @@
      </ns2:contextPropertyCollection>
     </ns2:ServiceContext>
    </ns2:serviceContextCollection>
-   <ns21:SemanticMetadata conceptCode="C63541" conceptDefinition="A service available on a system that coordinates resources that are not subject to central control, using open, general purpose protocols and interfaces to deliver nontrivial qualities of services." conceptName="Grid Service" order="0" xmlns:ns21="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common"/>
-   <ns22:SemanticMetadata conceptCode="C63543" conceptDefinition="A published API which receives data in the form of objects, performs computations based upon the input data, and returns information to a client via caGrid in the form of one or more objects." conceptName="Analytical Grid Service" order="1" xmlns:ns22="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common"/>
+   <ns22:SemanticMetadata conceptCode="C63541" conceptDefinition="A service available on a system that coordinates resources that are not subject to central control, using open, general purpose protocols and interfaces to deliver nontrivial qualities of services." conceptName="Grid Service" order="0" xmlns:ns22="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common"/>
+   <ns23:SemanticMetadata conceptCode="C63543" conceptDefinition="A published API which receives data in the form of objects, performs computations based upon the input data, and returns information to a client via caGrid in the form of one or more objects." conceptName="Analytical Grid Service" order="1" xmlns:ns23="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common"/>
   </ns2:Service>
  </ns1:serviceDescription>
  <ns1:hostingResearchCenter>
-  <ns23:ResearchCenter displayName="" shortName="" xmlns:ns23="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common">
-   <ns23:Address country="" locality="" postalCode="" stateProvince="" street1="" street2=""/>
-   <ns23:pointOfContactCollection>
-    <ns23:PointOfContact affiliation="" email="" firstName="" lastName="" phoneNumber="" role=""/>
-   </ns23:pointOfContactCollection>
-  </ns23:ResearchCenter>
+  <ns24:ResearchCenter displayName="Fred Hutchinson Cancer Research Center" shortName="FHCRC" xmlns:ns24="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common">
+   <ns24:Address country="US" locality="Seattle" postalCode="98109" stateProvince="WA" street1="1100 Fairview Ave N" street2=""/>
+   <ns24:ResearchCenterDescription description="" homepageURL="www.fhcrc.org" imageURL="" rssNewsURL=""/>
+   <ns24:pointOfContactCollection>
+    <ns24:PointOfContact affiliation="Bioconductor" email="mtmorgan@fhcrc.org" firstName="Martin" lastName="Morgan" phoneNumber="(206) 667- 2793" role="Manager"/>
+   </ns24:pointOfContactCollection>
+  </ns24:ResearchCenter>
  </ns1:hostingResearchCenter>
 </ns1:ServiceMetadata>
