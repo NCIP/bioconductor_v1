@@ -17,7 +17,7 @@
 	</target>
 
 	<target name="checkProjProperty">
-		<fail message="cagridProj directory '${cagridProj}' not available; see ant -p">
+		<fail message="cagridProj directory '${basedir}/${cagridProj}' not available; see ant -p">
 			<condition>
 				<not>
 					<available file="${basedir}/${cagridProj}"/>
