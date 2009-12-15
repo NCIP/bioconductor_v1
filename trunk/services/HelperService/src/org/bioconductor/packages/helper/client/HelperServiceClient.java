@@ -76,30 +76,6 @@ public class HelperServiceClient extends HelperServiceClientBase implements Help
 		}
 	}
 
-  public org.bioconductor.cagrid.statefulservices.CaGridObjectReference getUploadObjectReference(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint) throws RemoteException {
-    synchronized(portTypeMutex){
-      configureStubSecurity((Stub)portType,"getUploadObjectReference");
-    org.bioconductor.packages.helper.stubs.GetUploadObjectReferenceRequest params = new org.bioconductor.packages.helper.stubs.GetUploadObjectReferenceRequest();
-    org.bioconductor.packages.helper.stubs.GetUploadObjectReferenceRequestSessionEndpoint sessionEndpointContainer = new org.bioconductor.packages.helper.stubs.GetUploadObjectReferenceRequestSessionEndpoint();
-    sessionEndpointContainer.setSessionEndpoint(sessionEndpoint);
-    params.setSessionEndpoint(sessionEndpointContainer);
-    org.bioconductor.packages.helper.stubs.GetUploadObjectReferenceResponse boxedResult = portType.getUploadObjectReference(params);
-    return boxedResult.getCaGridObjectReference();
-    }
-  }
-
-  public org.bioconductor.cagrid.statefulservices.CaGridObjectReference getDownloadObjectReference(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint) throws RemoteException {
-    synchronized(portTypeMutex){
-      configureStubSecurity((Stub)portType,"getDownloadObjectReference");
-    org.bioconductor.packages.helper.stubs.GetDownloadObjectReferenceRequest params = new org.bioconductor.packages.helper.stubs.GetDownloadObjectReferenceRequest();
-    org.bioconductor.packages.helper.stubs.GetDownloadObjectReferenceRequestSessionEndpoint sessionEndpointContainer = new org.bioconductor.packages.helper.stubs.GetDownloadObjectReferenceRequestSessionEndpoint();
-    sessionEndpointContainer.setSessionEndpoint(sessionEndpoint);
-    params.setSessionEndpoint(sessionEndpointContainer);
-    org.bioconductor.packages.helper.stubs.GetDownloadObjectReferenceResponse boxedResult = portType.getDownloadObjectReference(params);
-    return boxedResult.getCaGridObjectReference();
-    }
-  }
-
   public org.oasis.wsrf.properties.GetMultipleResourcePropertiesResponse getMultipleResourceProperties(org.oasis.wsrf.properties.GetMultipleResourceProperties_Element params) throws RemoteException {
     synchronized(portTypeMutex){
       configureStubSecurity((Stub)portType,"getMultipleResourceProperties");
@@ -121,30 +97,66 @@ public class HelperServiceClient extends HelperServiceClientBase implements Help
     }
   }
 
-  public java.lang.String testContextLookup(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint) throws RemoteException {
+  public java.lang.String testContextLookup(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException {
     synchronized(portTypeMutex){
       configureStubSecurity((Stub)portType,"testContextLookup");
     org.bioconductor.packages.helper.stubs.TestContextLookupRequest params = new org.bioconductor.packages.helper.stubs.TestContextLookupRequest();
-    org.bioconductor.packages.helper.stubs.TestContextLookupRequestSessionEndpoint sessionEndpointContainer = new org.bioconductor.packages.helper.stubs.TestContextLookupRequestSessionEndpoint();
-    sessionEndpointContainer.setSessionEndpoint(sessionEndpoint);
-    params.setSessionEndpoint(sessionEndpointContainer);
+    org.bioconductor.packages.helper.stubs.TestContextLookupRequestSessionIdentifier sessionIdentifierContainer = new org.bioconductor.packages.helper.stubs.TestContextLookupRequestSessionIdentifier();
+    sessionIdentifierContainer.setSessionIdentifier(sessionIdentifier);
+    params.setSessionIdentifier(sessionIdentifierContainer);
     org.bioconductor.packages.helper.stubs.TestContextLookupResponse boxedResult = portType.testContextLookup(params);
     return boxedResult.getResponse();
     }
   }
 
-  public org.bioconductor.cagrid.statefulservices.CaGridFileReferences getUploadFileReferences(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint,org.bioconductor.cagrid.rservices.FileReferences fileReferences) throws RemoteException {
+  public org.bioconductor.cagrid.statefulservices.CaGridFileReferenceCollection getUploadFileReferences(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier,org.bioconductor.cagrid.rservices.FileReferenceCollection fileReferenceCollection) throws RemoteException {
     synchronized(portTypeMutex){
       configureStubSecurity((Stub)portType,"getUploadFileReferences");
     org.bioconductor.packages.helper.stubs.GetUploadFileReferencesRequest params = new org.bioconductor.packages.helper.stubs.GetUploadFileReferencesRequest();
-    org.bioconductor.packages.helper.stubs.GetUploadFileReferencesRequestSessionEndpoint sessionEndpointContainer = new org.bioconductor.packages.helper.stubs.GetUploadFileReferencesRequestSessionEndpoint();
-    sessionEndpointContainer.setSessionEndpoint(sessionEndpoint);
-    params.setSessionEndpoint(sessionEndpointContainer);
-    org.bioconductor.packages.helper.stubs.GetUploadFileReferencesRequestFileReferences fileReferencesContainer = new org.bioconductor.packages.helper.stubs.GetUploadFileReferencesRequestFileReferences();
-    fileReferencesContainer.setFileReferences(fileReferences);
-    params.setFileReferences(fileReferencesContainer);
+    org.bioconductor.packages.helper.stubs.GetUploadFileReferencesRequestSessionIdentifier sessionIdentifierContainer = new org.bioconductor.packages.helper.stubs.GetUploadFileReferencesRequestSessionIdentifier();
+    sessionIdentifierContainer.setSessionIdentifier(sessionIdentifier);
+    params.setSessionIdentifier(sessionIdentifierContainer);
+    org.bioconductor.packages.helper.stubs.GetUploadFileReferencesRequestFileReferenceCollection fileReferenceCollectionContainer = new org.bioconductor.packages.helper.stubs.GetUploadFileReferencesRequestFileReferenceCollection();
+    fileReferenceCollectionContainer.setFileReferenceCollection(fileReferenceCollection);
+    params.setFileReferenceCollection(fileReferenceCollectionContainer);
     org.bioconductor.packages.helper.stubs.GetUploadFileReferencesResponse boxedResult = portType.getUploadFileReferences(params);
-    return boxedResult.getCaGridFileReferences();
+    return boxedResult.getCaGridFileReferenceCollection();
+    }
+  }
+
+  public org.bioconductor.cagrid.statefulservices.CaGridObjectReference getUploadObjectReference(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException {
+    synchronized(portTypeMutex){
+      configureStubSecurity((Stub)portType,"getUploadObjectReference");
+    org.bioconductor.packages.helper.stubs.GetUploadObjectReferenceRequest params = new org.bioconductor.packages.helper.stubs.GetUploadObjectReferenceRequest();
+    org.bioconductor.packages.helper.stubs.GetUploadObjectReferenceRequestSessionIdentifier sessionIdentifierContainer = new org.bioconductor.packages.helper.stubs.GetUploadObjectReferenceRequestSessionIdentifier();
+    sessionIdentifierContainer.setSessionIdentifier(sessionIdentifier);
+    params.setSessionIdentifier(sessionIdentifierContainer);
+    org.bioconductor.packages.helper.stubs.GetUploadObjectReferenceResponse boxedResult = portType.getUploadObjectReference(params);
+    return boxedResult.getCaGridObjectReference();
+    }
+  }
+
+  public org.bioconductor.cagrid.statefulservices.CaGridObjectReference getDownloadObjectReference(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException {
+    synchronized(portTypeMutex){
+      configureStubSecurity((Stub)portType,"getDownloadObjectReference");
+    org.bioconductor.packages.helper.stubs.GetDownloadObjectReferenceRequest params = new org.bioconductor.packages.helper.stubs.GetDownloadObjectReferenceRequest();
+    org.bioconductor.packages.helper.stubs.GetDownloadObjectReferenceRequestSessionIdentifier sessionIdentifierContainer = new org.bioconductor.packages.helper.stubs.GetDownloadObjectReferenceRequestSessionIdentifier();
+    sessionIdentifierContainer.setSessionIdentifier(sessionIdentifier);
+    params.setSessionIdentifier(sessionIdentifierContainer);
+    org.bioconductor.packages.helper.stubs.GetDownloadObjectReferenceResponse boxedResult = portType.getDownloadObjectReference(params);
+    return boxedResult.getCaGridObjectReference();
+    }
+  }
+
+  public org.bioconductor.cagrid.rservices.FileReferenceCollection getFileReferenceCollection(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException {
+    synchronized(portTypeMutex){
+      configureStubSecurity((Stub)portType,"getFileReferenceCollection");
+    org.bioconductor.packages.helper.stubs.GetFileReferenceCollectionRequest params = new org.bioconductor.packages.helper.stubs.GetFileReferenceCollectionRequest();
+    org.bioconductor.packages.helper.stubs.GetFileReferenceCollectionRequestSessionIdentifier sessionIdentifierContainer = new org.bioconductor.packages.helper.stubs.GetFileReferenceCollectionRequestSessionIdentifier();
+    sessionIdentifierContainer.setSessionIdentifier(sessionIdentifier);
+    params.setSessionIdentifier(sessionIdentifierContainer);
+    org.bioconductor.packages.helper.stubs.GetFileReferenceCollectionResponse boxedResult = portType.getFileReferenceCollection(params);
+    return boxedResult.getFileReferenceCollection();
     }
   }
 

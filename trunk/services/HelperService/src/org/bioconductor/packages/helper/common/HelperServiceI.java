@@ -12,19 +12,21 @@ import java.rmi.RemoteException;
  */
 public interface HelperServiceI {
 
-  public org.bioconductor.cagrid.statefulservices.CaGridObjectReference getUploadObjectReference(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint) throws RemoteException ;
-
-  public org.bioconductor.cagrid.statefulservices.CaGridObjectReference getDownloadObjectReference(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint) throws RemoteException ;
-
   public org.oasis.wsrf.properties.GetMultipleResourcePropertiesResponse getMultipleResourceProperties(org.oasis.wsrf.properties.GetMultipleResourceProperties_Element params) throws RemoteException ;
 
   public org.oasis.wsrf.properties.GetResourcePropertyResponse getResourceProperty(javax.xml.namespace.QName params) throws RemoteException ;
 
   public org.oasis.wsrf.properties.QueryResourcePropertiesResponse queryResourceProperties(org.oasis.wsrf.properties.QueryResourceProperties_Element params) throws RemoteException ;
 
-  public java.lang.String testContextLookup(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint) throws RemoteException ;
+  public java.lang.String testContextLookup(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException ;
 
-  public org.bioconductor.cagrid.statefulservices.CaGridFileReferences getUploadFileReferences(org.bioconductor.cagrid.statefulservices.SessionEndpoint sessionEndpoint,org.bioconductor.cagrid.rservices.FileReferences fileReferences) throws RemoteException ;
+  public org.bioconductor.cagrid.statefulservices.CaGridFileReferenceCollection getUploadFileReferences(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier,org.bioconductor.cagrid.rservices.FileReferenceCollection fileReferenceCollection) throws RemoteException ;
+
+  public org.bioconductor.cagrid.statefulservices.CaGridObjectReference getUploadObjectReference(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException ;
+
+  public org.bioconductor.cagrid.statefulservices.CaGridObjectReference getDownloadObjectReference(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException ;
+
+  public org.bioconductor.cagrid.rservices.FileReferenceCollection getFileReferenceCollection(org.bioconductor.cagrid.statefulservices.SessionIdentifier sessionIdentifier) throws RemoteException ;
 
 }
 

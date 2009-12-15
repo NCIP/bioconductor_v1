@@ -2,9 +2,9 @@ package org.bioconductor.packages.helper.common;
 
 import java.io.InputStream;
 
-import org.bioconductor.cagrid.rservices.FileReferences;
-import org.bioconductor.cagrid.statefulservices.CaGridFileReferences;
-import org.bioconductor.cagrid.statefulservices.SessionEndpoint;
+import org.bioconductor.cagrid.rservices.FileReferenceCollection;
+import org.bioconductor.cagrid.statefulservices.CaGridFileReferenceCollection;
+import org.bioconductor.cagrid.statefulservices.SessionIdentifier;
 import org.bioconductor.cagrid.statefulservices.StatusState;
 import org.bioconductor.packages.helper.client.HelperServiceClient;
 import org.cagrid.transfer.context.client.TransferServiceContextClient;
@@ -22,29 +22,29 @@ public class HelperService {
 	/*
 	 * Codes work with to HelperService
 	 */
-	public String testLookupContext(String wsUrl, SessionEndpoint sessionEP) throws Exception
+	public String testLookupContext(SessionIdentifier sessionIdentifier) throws Exception
 	{		
 		try {
-			String helperSrvUrl = this.createHelperServiceURL(wsUrl);
+			String helperSrvUrl = this.createHelperServiceURL(sessionIdentifier.getServiceUrl());
 			HelperServiceClient helperServiceClient = new HelperServiceClient(helperSrvUrl);
 			
-			return helperServiceClient.testContextLookup(sessionEP);
+			return helperServiceClient.testContextLookup(sessionIdentifier);
 		}
 		catch(Exception ew) {
 			throw ew;
 		}
 	}
 	
-	public org.bioconductor.cagrid.statefulservices.Status uploadFiles(String wsUrl, SessionEndpoint sessionEP, FileReferences fileRefs) throws Exception
+	public org.bioconductor.cagrid.statefulservices.Status uploadFileReferenceCollection(SessionIdentifier sessionIdentifier, FileReferenceCollection fileRefCollection) throws Exception
 	{
 		
 		org.bioconductor.cagrid.statefulservices.Status status = new org.bioconductor.cagrid.statefulservices.Status();
 		try {
-			String helperSrvUrl = this.createHelperServiceURL(wsUrl);
+			String helperSrvUrl = this.createHelperServiceURL(sessionIdentifier.getServiceUrl());
 			HelperServiceClient helperServiceClient = new HelperServiceClient(helperSrvUrl);
 			
 			// invoke the service:
-			CaGridFileReferences cagridFileRefs = helperServiceClient.getUploadFileReferences(sessionEP, fileRefs);
+			CaGridFileReferenceCollection cagridFileRefs = helperServiceClient.getUploadFileReferences(sessionIdentifier, fileRefCollection);
 			this.uploadCagridFileReferences(cagridFileRefs);
 			
 			status.setDescription("Uploading files completed");
@@ -60,16 +60,32 @@ public class HelperService {
 		return status;
 	}
 	
-	public org.bioconductor.cagrid.statefulservices.Status uploadDataObject(String wsUrl, SessionEndpoint sessionEP, Object object) throws Exception
+	public org.bioconductor.cagrid.rservices.FileReferenceCollection getFileReferenceCollection(SessionIdentifier sessionIdentifier) throws Exception 
+	{
+		try {
+			String helperSrvUrl = this.createHelperServiceURL(sessionIdentifier.getServiceUrl());
+			HelperServiceClient helperServiceClient = new HelperServiceClient(helperSrvUrl);
+			
+			org.bioconductor.cagrid.rservices.FileReferenceCollection fileRefCollection = helperServiceClient.getFileReferenceCollection(sessionIdentifier);
+			System.out.println("HelperService::getFileReferenceCollection - returned type: "  + fileRefCollection.getClass().getName());
+			return fileRefCollection; 
+		}
+		catch(Exception ew) {
+			throw ew;
+		}
+	}
+	
+	public org.bioconductor.cagrid.statefulservices.Status uploadDataObject(SessionIdentifier sessionIdentifier, Object object) throws Exception
 	{
 		org.bioconductor.cagrid.statefulservices.Status status = new org.bioconductor.cagrid.statefulservices.Status();
 		try {
+			String wsUrl = sessionIdentifier.getServiceUrl();
 			status.setDescription("Sending object to: " + wsUrl);
 			status.setState(StatusState.OBJECT_TRANSFER_IN_PROCESS);
 			String helperSrvUrl = this.createHelperServiceURL(wsUrl);
 			HelperServiceClient helperServiceClient = new HelperServiceClient(helperSrvUrl);
 			
-			org.bioconductor.cagrid.statefulservices.CaGridObjectReference uploadObjRef = helperServiceClient.getUploadObjectReference(sessionEP);
+			org.bioconductor.cagrid.statefulservices.CaGridObjectReference uploadObjRef = helperServiceClient.getUploadObjectReference(sessionIdentifier);
 			this.uploadObject(uploadObjRef, object);
 			status.setDescription("Done sending object to: " + wsUrl);
 			status.setState(StatusState.OBJECT_TRANSFER_COMPLETE);
@@ -108,13 +124,13 @@ public class HelperService {
 	}
 	
 	
-	public Object getResultObject(String wsUrl, SessionEndpoint sessionEP) throws Exception 
+	public Object getResultObject(SessionIdentifier sessionIdentifier) throws Exception 
 	{
-		try {
-			String helperSrvUrl = this.createHelperServiceURL(wsUrl);
+		try {			
+			String helperSrvUrl = this.createHelperServiceURL(sessionIdentifier.getServiceUrl());
 			HelperServiceClient helperServiceClient = new HelperServiceClient(helperSrvUrl);
 			
-			org.bioconductor.cagrid.statefulservices.CaGridObjectReference caObjRef = helperServiceClient.getDownloadObjectReference(sessionEP);
+			org.bioconductor.cagrid.statefulservices.CaGridObjectReference caObjRef = helperServiceClient.getDownloadObjectReference(sessionIdentifier);
 			return this.downloadObject(caObjRef);
 		}
 		catch(Exception ew) {
@@ -148,20 +164,20 @@ public class HelperService {
 	
 	private String createHelperServiceURL(final String wsUrl) 
 	{
-		// This wsUrl should be the same as HelperService except the service name, which HelperService
+		// HelperService and whatever service pointed by wsUrl are running at the same place; therefore, they should have the same transport url
+		// except the service name -> replace the service name in wsUrl with HelperService
 		// Construct a url endpoint for HelperService:
 		String subUrl = wsUrl.substring(0, wsUrl.lastIndexOf(CAGRID_SERVICE_POSTFIX));
 		String helperSrvUrl = subUrl + CAGRID_SERVICE_POSTFIX + HELPER_SERVICE_EP;
-//		System.out.println("HelperService url: " + helperSrvUrl);
 		
 		return helperSrvUrl;
 		
 	}
 	
-	private synchronized void uploadCagridFileReferences(final org.bioconductor.cagrid.statefulservices.CaGridFileReferences cagridFileRefs) throws Exception
+	private synchronized void uploadCagridFileReferences(final org.bioconductor.cagrid.statefulservices.CaGridFileReferenceCollection cagridFileRefCollection) throws Exception
 	{	
 		try {
-			org.bioconductor.cagrid.statefulservices.CaGridFileReference[] cagridFileRefArr = cagridFileRefs.getCagridFileReferenceCollection();
+			org.bioconductor.cagrid.statefulservices.CaGridFileReference[] cagridFileRefArr = cagridFileRefCollection.getCagridFileReferenceCollection();
 			for(int i = 0; i < cagridFileRefArr.length; i++) {
 				
 				System.out.println("Uploading file: " + cagridFileRefArr[i].getLocalName());
@@ -172,6 +188,7 @@ public class HelperService {
 				java.io.InputStream inStream = new java.io.FileInputStream(cagridFileRefArr[i].getUrl());
 				
 				org.cagrid.transfer.descriptor.DataTransferDescriptor desc = transSrvCxtClient.getDataTransferDescriptor();
+				System.out.println("Uploading to: " + transSrvCxtClient.getDataTransferDescriptor().getUrl());
 				
 				TransferClientHelper.putData(inStream, -1, transSrvCxtClient.getDataTransferDescriptor());
 				
@@ -189,10 +206,10 @@ public class HelperService {
 	
 	}
 	
-	
-	public org.bioconductor.cagrid.statefulservices.Status dowloadFiles(final org.bioconductor.cagrid.rservices.FileReferences cagridFileRefs) throws Exception
+/*	
+	public org.bioconductor.cagrid.statefulservices.Status dowloadFiles(final org.bioconductor.cagrid.rservices.FileReferenceCollection fileRefCollection) throws Exception
 	{
-		org.bioconductor.cagrid.rservices.FileReference[] cagridFileRefArr = cagridFileRefs.getFileReferenceCollection();
+		org.bioconductor.cagrid.rservices.FileReference[] cagridFileRefArr = fileRefCollection.getFileReferenceCollection();
 		org.bioconductor.cagrid.statefulservices.Status downloadStatus = new org.bioconductor.cagrid.statefulservices.Status();
 
 		for(org.bioconductor.cagrid.rservices.FileReference fileRef : cagridFileRefArr) {
@@ -243,15 +260,16 @@ public class HelperService {
 		return downloadStatus;
 	}
 	
-	public org.bioconductor.cagrid.rservices.FileReferences dowloadResultFiles(final org.bioconductor.cagrid.rservices.FileReferences fileRefs) throws Exception
+	public org.bioconductor.cagrid.rservices.FileReferenceCollection dowloadResultFiles(final org.bioconductor.cagrid.rservices.FileReferenceCollection fileRefs) throws Exception
 	{
 		return this.dowloadResultFiles(fileRefs, "");  // download to current directory
 	}
-            
-	public org.bioconductor.cagrid.rservices.FileReferences dowloadResultFiles(final org.bioconductor.cagrid.rservices.FileReferences fileRefs, 
+*/
+	
+	public org.bioconductor.cagrid.rservices.FileReferenceCollection dowloadResultFiles(final org.bioconductor.cagrid.rservices.FileReferenceCollection fileRefCollection, 
                                                                                   final String downloadTo) throws Exception
 	{
-		org.bioconductor.cagrid.rservices.FileReference[] fileRefArr = fileRefs.getFileReferenceCollection();
+		org.bioconductor.cagrid.rservices.FileReference[] fileRefArr = fileRefCollection.getFileReferenceCollection();
 		
 		org.bioconductor.cagrid.rservices.FileReference[] downloadedFileRefArr = new org.bioconductor.cagrid.rservices.FileReference[fileRefArr.length];		
 		
@@ -275,16 +293,16 @@ public class HelperService {
 				long byteRead = 0;
 				
 				while(true) {
-				int readData = 0;
-				readData = inStream.read(readIn_buffer);
+					int readData = 0;
+					readData = inStream.read(readIn_buffer);
 				
-				if(readData == -1) {
-				break;
-				}
+					if(readData == -1) {
+						break;
+					}
 				
-				byteRead += readData;
+					byteRead += readData;
 				
-				outStream.write(readIn_buffer, 0, readData);
+					outStream.write(readIn_buffer, 0, readData);
 				}
 				
 				inStream.close();
@@ -305,12 +323,12 @@ public class HelperService {
 		
 		}
 		
-		org.bioconductor.cagrid.rservices.FileReferences downloadedFileRefs = new org.bioconductor.cagrid.rservices.FileReferences();
+		org.bioconductor.cagrid.rservices.FileReferenceCollection downloadedFileRefs = new org.bioconductor.cagrid.rservices.FileReferenceCollection();
 		downloadedFileRefs.setFileReferenceCollection(downloadedFileRefArr);
 		
 		return downloadedFileRefs;
 		
-	
 	}
 
+	
 }

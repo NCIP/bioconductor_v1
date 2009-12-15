@@ -97,6 +97,11 @@ public class HelperServiceAuthorization implements PDP {
 		
 		
 	}
+					
+	public static void authorizeGetFileReferenceCollection() throws RemoteException {
+		
+		
+	}
 	
 	
 	public boolean isPermitted(Subject peerSubject, MessageContext context, QName operation)
@@ -164,6 +169,14 @@ public class HelperServiceAuthorization implements PDP {
 		} else if(operation.getLocalPart().equals("getDownloadObjectReference")){
 			try{
 				authorizeGetDownloadObjectReference();
+				return true;
+			} catch (Exception e){
+				e.printStackTrace();
+				return false;
+			}
+		} else if(operation.getLocalPart().equals("getFileReferenceCollection")){
+			try{
+				authorizeGetFileReferenceCollection();
 				return true;
 			} catch (Exception e){
 				e.printStackTrace();

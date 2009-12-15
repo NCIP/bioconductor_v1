@@ -1,6 +1,6 @@
 package org.bioconductor.packages.helper.common;
 
-import org.bioconductor.cagrid.statefulservices.SessionEndpoint;
+import org.bioconductor.cagrid.statefulservices.SessionIdentifier;
 import org.globus.wsrf.ResourceKey;
 import org.bioconductor.packages.helper.common.HelperServiceContextResourceI;
 
@@ -31,9 +31,9 @@ public class ResourceStorage {
 		m_resrcKeyHomeNameMap.put(resrcKeyValue, serviceHomename);
 	}
 	
-	public HelperServiceContextResourceI lookupResourceContext(SessionEndpoint sessionEP) throws Exception 
+	public HelperServiceContextResourceI lookupResourceContext(SessionIdentifier sessionIdentifier) throws Exception 
 	{
-		String resrcKeyValue = sessionEP.getIdentifier();
+		String resrcKeyValue = sessionIdentifier.getIdentifier();
 		try {			
 			String resrcHomename = m_resrcKeyHomeNameMap.get(resrcKeyValue);
 			if(resrcHomename == null) {

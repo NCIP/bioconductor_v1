@@ -26,27 +26,33 @@ public class HelperServiceProviderImpl{
 	}
 	
 
-    public org.bioconductor.packages.helper.stubs.GetUploadObjectReferenceResponse getUploadObjectReference(org.bioconductor.packages.helper.stubs.GetUploadObjectReferenceRequest params) throws RemoteException {
-    org.bioconductor.packages.helper.stubs.GetUploadObjectReferenceResponse boxedResult = new org.bioconductor.packages.helper.stubs.GetUploadObjectReferenceResponse();
-    boxedResult.setCaGridObjectReference(impl.getUploadObjectReference(params.getSessionEndpoint().getSessionEndpoint()));
-    return boxedResult;
-  }
-
-    public org.bioconductor.packages.helper.stubs.GetDownloadObjectReferenceResponse getDownloadObjectReference(org.bioconductor.packages.helper.stubs.GetDownloadObjectReferenceRequest params) throws RemoteException {
-    org.bioconductor.packages.helper.stubs.GetDownloadObjectReferenceResponse boxedResult = new org.bioconductor.packages.helper.stubs.GetDownloadObjectReferenceResponse();
-    boxedResult.setCaGridObjectReference(impl.getDownloadObjectReference(params.getSessionEndpoint().getSessionEndpoint()));
-    return boxedResult;
-  }
-
     public org.bioconductor.packages.helper.stubs.TestContextLookupResponse testContextLookup(org.bioconductor.packages.helper.stubs.TestContextLookupRequest params) throws RemoteException {
     org.bioconductor.packages.helper.stubs.TestContextLookupResponse boxedResult = new org.bioconductor.packages.helper.stubs.TestContextLookupResponse();
-    boxedResult.setResponse(impl.testContextLookup(params.getSessionEndpoint().getSessionEndpoint()));
+    boxedResult.setResponse(impl.testContextLookup(params.getSessionIdentifier().getSessionIdentifier()));
     return boxedResult;
   }
 
     public org.bioconductor.packages.helper.stubs.GetUploadFileReferencesResponse getUploadFileReferences(org.bioconductor.packages.helper.stubs.GetUploadFileReferencesRequest params) throws RemoteException {
     org.bioconductor.packages.helper.stubs.GetUploadFileReferencesResponse boxedResult = new org.bioconductor.packages.helper.stubs.GetUploadFileReferencesResponse();
-    boxedResult.setCaGridFileReferences(impl.getUploadFileReferences(params.getSessionEndpoint().getSessionEndpoint(),params.getFileReferences().getFileReferences()));
+    boxedResult.setCaGridFileReferenceCollection(impl.getUploadFileReferences(params.getSessionIdentifier().getSessionIdentifier(),params.getFileReferenceCollection().getFileReferenceCollection()));
+    return boxedResult;
+  }
+
+    public org.bioconductor.packages.helper.stubs.GetUploadObjectReferenceResponse getUploadObjectReference(org.bioconductor.packages.helper.stubs.GetUploadObjectReferenceRequest params) throws RemoteException {
+    org.bioconductor.packages.helper.stubs.GetUploadObjectReferenceResponse boxedResult = new org.bioconductor.packages.helper.stubs.GetUploadObjectReferenceResponse();
+    boxedResult.setCaGridObjectReference(impl.getUploadObjectReference(params.getSessionIdentifier().getSessionIdentifier()));
+    return boxedResult;
+  }
+
+    public org.bioconductor.packages.helper.stubs.GetDownloadObjectReferenceResponse getDownloadObjectReference(org.bioconductor.packages.helper.stubs.GetDownloadObjectReferenceRequest params) throws RemoteException {
+    org.bioconductor.packages.helper.stubs.GetDownloadObjectReferenceResponse boxedResult = new org.bioconductor.packages.helper.stubs.GetDownloadObjectReferenceResponse();
+    boxedResult.setCaGridObjectReference(impl.getDownloadObjectReference(params.getSessionIdentifier().getSessionIdentifier()));
+    return boxedResult;
+  }
+
+    public org.bioconductor.packages.helper.stubs.GetFileReferenceCollectionResponse getFileReferenceCollection(org.bioconductor.packages.helper.stubs.GetFileReferenceCollectionRequest params) throws RemoteException {
+    org.bioconductor.packages.helper.stubs.GetFileReferenceCollectionResponse boxedResult = new org.bioconductor.packages.helper.stubs.GetFileReferenceCollectionResponse();
+    boxedResult.setFileReferenceCollection(impl.getFileReferenceCollection(params.getSessionIdentifier().getSessionIdentifier()));
     return boxedResult;
   }
 
