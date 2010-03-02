@@ -1,7 +1,7 @@
 Package: caGeneFilter
 Type: Package
 Title: RWebServices interface to the genefilter package.
-Version: 0.1.18
+Version: 0.1.19
 Author: Tom Milac
 Maintainer: Tom Milac <tmilac@fhcrc.org>
 Description: Provide pre- and post-processing filters for microarray
