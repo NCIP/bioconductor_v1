@@ -1,0 +1,12 @@
+c(paste("http://isalmon.fhcrc.org/labkey/files/home/SharedData/",
+"US14702406_251643612132_S01_miRNA-v1_95_May07_1_1.txt?",
+"fileSet=GBM%20miRNA%20Level%201",sep=""),
+  paste("http://isalmon.fhcrc.org/labkey/files/home/SharedData/",
+"US14702406_251643612132_S01_miRNA-v1_95_May07_1_2.txt?",
+"fileSet=GBM%20miRNA%20Level%201",sep=""),
+  paste("http://isalmon.fhcrc.org/labkey/files/home/SharedData/",
+"US14702406_251643612132_S01_miRNA-v1_95_May07",
+"_1_4.txt?fileSet=GBM%20miRNA%20Level%201",sep=""),
+  paste("http://isalmon.fhcrc.org/labkey/files/home/SharedData/",
+"US14702406_251643612132_S01_miRNA-v1_95_May07_2_1.txt?",
+"fileSet=GBM%20miRNA%20Level%201",sep=""))

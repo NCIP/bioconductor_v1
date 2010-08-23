@@ -1,0 +1,11 @@
+#Introduce Properties
+#Wed Aug 18 13:36:51 PDT 2010
+introduce.skeleton.services.list=CaGridiSalmon
+introduce.skeleton.extensions=cagrid_metadata
+introduce.skeleton.timestamp=1282163725506
+introduce.skeleton.service.name=CaGridiSalmon
+introduce.skeleton.resource.options=main,singleton,identifiable,resourcePropertyManagement
+introduce.skeleton.destination.dir=/home/mcarlson/proj/Mess_folder/CaGridiSalmon
+introduce.skeleton.namespace.domain=http\://CaGridiSalmon.cagrid.org/CaGridiSalmon
+introduce.ns.excludes=\ -x gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.service -x gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata -x gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security -x gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common
+introduce.soap.binding.excludes=\ 

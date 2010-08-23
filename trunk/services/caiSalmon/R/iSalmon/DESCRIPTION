@@ -1,0 +1,11 @@
+Package: iSalmon
+Title: Package containing functions for ISCRE scripts
+Version: 0.0.14
+Author: M.Carlson
+Description: This package contains functions to access and manipulate
+  TCGA data stored in LabKey servers
+Maintainer: Marc Carlson <mcarlson@fhcrc.org>
+Depends: RCurl, rjson (>= 0.1.3), TypeInfo, methods, Biobase
+Imports: limma, Rlabkey, ShortRead, arrayQualityMetrics
+Suggests: latticeExtra
+License: Artistic-2.0

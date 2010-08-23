@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="CaGridiSalmon" targetNamespace="http://CaGridiSalmon.cagrid.org/CaGridiSalmon/service" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:binding="http://CaGridiSalmon.cagrid.org/CaGridiSalmon/bindings" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:import namespace="http://CaGridiSalmon.cagrid.org/CaGridiSalmon/bindings" location="CaGridiSalmon_bindings.wsdl"/>
+  <wsdl:service name="CaGridiSalmonService">
+    <wsdl:port name="CaGridiSalmonPortTypePort" binding="binding:CaGridiSalmonPortTypeSOAPBinding">
+      <soap:address location="http://localhost:8080/wsrf/services/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

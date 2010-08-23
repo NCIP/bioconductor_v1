@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema
+	targetNamespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.caisalmon"
+	xmlns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.caisalmon"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="MicroRNATopTable" type="MicroRNATopTable"/>
+	<xs:complexType name="MicroRNATopTable">
+		<xs:sequence>
+			<xs:element name="AdjustedPValue" type="xs:double" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="GeneName" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="LogFoldChange" type="xs:double" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="LogOdds" type="xs:double" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ProbeName" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PValue" type="xs:double" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TStatistic" type="xs:double" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Targets" type="Targets"/>
+	<xs:complexType name="Targets">
+		<xs:sequence>
+			<xs:element name="Condition" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="FileName" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
+
