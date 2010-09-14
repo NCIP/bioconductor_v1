@@ -14,7 +14,7 @@ SangerMRNAGenerateESet()
 }
 
 
-\value{An expressionSet object generated from Sanger data sources.}
+\value{An ExpressionSet object generated from Sanger data sources.}
 
 \examples{
 \dontrun{

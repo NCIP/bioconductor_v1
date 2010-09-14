@@ -1,5 +1,5 @@
 ## One script for miRNA and one for mRNA.  Both of these make
-## expressionSet objects using affy and data that is already
+## ExpressionSet objects using affy and data that is already
 ## normalized.  The data is in this directory as well This one is
 ## miRNA and the other is mRNA.  There is no simpleLimma here for
 ## mRNA, the espression was only needed to run corr() so that the mRNA
@@ -17,7 +17,8 @@ SangerMiRNAGenerateESet <-
     header <- basicTextGatherer()
     myopts <- curlOptions(writefunction=reader$update,
                           headerfunction=header$update, httpauth=1L, netrc=1,
-                          ssl.verifyhost=FALSE, ssl.verifypeer=FALSE, followlocation=TRUE, verbose=TRUE)
+                          ssl.verifyhost=FALSE, ssl.verifypeer=FALSE,
+                          followlocation=TRUE, verbose=TRUE)
     handle <- getCurlHandle()
 
     ## phenoData
@@ -56,45 +57,48 @@ SangerMiRNAGenerateESet <-
     pe <- data.frame(df[,-(1:2)][,c(TRUE, FALSE)])
 
     names(pd) <- header[1:2]
-                                        #CHANGE: instead of Accession, read Description but "Description" makes probes collapse so keep Accession for now
+    ## CHANGE: instead of Accession, read Description but "Description" makes
+    ## probes collapse so keep Accession for now
     dimnames(pa) <- dimnames(pe) <-
         list(pd$Accession, header[-(1:2)][c(TRUE, FALSE)])
 
     ## NEW ADDED ##
     pd <- pd
     rownames(pd) <- pd$Accession
-                                        #featureData <- new("AnnotatedDataFrame", data = pd)
-                                        # This is very imp since not all samples in tbl have exp data
+    ## featureData <- new("AnnotatedDataFrame", data = pd)
+    ## This is very imp since not all samples in tbl have exp data
     tbl = tbl[rownames(tbl) %in% colnames(pe),]
-                                        #read the file with tissue, mutation data
+    ## read the file with tissue, mutation data
     con = textConnection(getURLContent(fl3, .opts=myopts, curl=handle),"")
     fb <- read.table(con, header=TRUE)
     close(con)
-                                        #add a column CellLine to existing data 
+    ## add a column CellLine to existing data 
     tbl['CellLine'] = substr(tbl$Name,6,length(tbl$Name))
     tbl['Rownames'] <- rownames(tbl)
-                                        #use only the ones for which tissues have been selected by us (read as fb)
+    ## use only the ones for which tissues have been selected by us (read as
+    ## fb)
     tbl = tbl[tbl$CellLine %in% fb$cell.line ,]
-                                        #merge these two, the new df has 'CellLine' and not "cell.line")
-    ntbl <-merge(tbl,fb,by.x = "CellLine",by.y = "cell.line", all.x = TRUE, na.rm = TRUE)
+    ## merge these two, the new df has 'CellLine' and not "cell.line")
+    ntbl <-merge(tbl,fb,by.x = "CellLine",by.y = "cell.line", all.x = TRUE,
+                 na.rm = TRUE)
     untbl <- unique(ntbl)
-                                        #lost row names in merge, add them back
+    ## lost row names in merge, add them back
     rownames(untbl) <- untbl$Rownames
     tbl <- untbl
-                                        #take average over all replicate cell lines,
-                                        #taking cell line names from tbl, make pe equal to tbl
+    ## take average over all replicate cell lines,
+    ## taking cell line names from tbl, make pe equal to tbl
 
-                                        #problem with doing avg, wastes a lot of memory
+    ## problem with doing avg, wastes a lot of memory
     cancer.cell.lines <- unique(substr(tbl$Name,6,length(tbl$Name)))
     pe_avg = list()
     tbl_avg = list()
     for (cell.line.name in cancer.cell.lines) {
-        
-        cell.line.scans <- as.vector(rownames(tbl)[substr(tbl$Name,6,length(tbl$Name)) == cell.line.name])
+        idx <- substr(tbl$Name,6,length(tbl$Name)) == cell.line.name
+        cell.line.scans <-rownames(tbl)[idx]
         cell.line.data <- subset(pe, select=cell.line.scans)
         tbl_sel <- tbl[rownames(tbl) %in% cell.line.scans,]
 
-                                        # get the mean expression for each gene/mir across scans
+        ## get the mean expression for each gene/mir across scans
         cell.line.data.avg <- apply(cell.line.data, 1, mean)
 
         pe_avg <- c(pe_avg, list(cell.line.data.avg))
@@ -108,10 +112,10 @@ SangerMiRNAGenerateESet <-
     tbl_avg <- as.data.frame(tbl_avg)
     colnames(pe_avg) <- cancer.cell.lines
     rownames(tbl_avg) <- cancer.cell.lines
-                                        # Add cp data here
+    ## Add cp data here
     pe_avg <- data.matrix(pe_avg)
 
-                                        #average over replicate probes or take the maximum variation
+    ## average over replicate probes or take the maximum variation
     gene.names <- as.vector(unique(pd$Description))
 
     pe_probes = list()
@@ -119,10 +123,10 @@ SangerMiRNAGenerateESet <-
 
         probes <- as.vector(pd$Accession[pd$Description == gene])
         rows <- subset(pe_avg, rownames(pe_avg) %in% probes)
-                                        # take the one with max expression over the row
+        ## take the one with max expression over the row
         row.avg <- apply(rows, 2, mean)
         pe_probes <- rbind(pe_probes, row.avg)
-                                        #write only one
+        ## write only one
     }
 
     pe_probes <- as.data.frame(pe_probes)
@@ -166,13 +170,15 @@ SangerMRNAGenerateESet <-
     header <- basicTextGatherer()
     myopts <- curlOptions(writefunction=reader$update,
                           headerfunction=header$update, httpauth=1L, netrc=1,
-                          ssl.verifyhost=FALSE, ssl.verifypeer=FALSE, followlocation=TRUE, verbose=TRUE)
+                          ssl.verifyhost=FALSE, ssl.verifypeer=FALSE,
+                          followlocation=TRUE, verbose=TRUE)
     handle <- getCurlHandle()
 
     ## phenoData
     con = textConnection(getURLContent(fl, .opts=myopts, curl=handle),"")
 
-    ## fl <- file.path(dir$extdata, "Sanger_affy_n798_sample_info_published.csv")
+    ## fl <- file.path(dir$extdata,
+    ##                 "Sanger_affy_n798_sample_info_published.csv")
     ## con <- file(fl, "r")
     header <- scan(con, what=character(), sep=",", n=19)
     tbl <- read.csv(con, header=FALSE)
@@ -233,7 +239,8 @@ SangerMRNAGenerateESet <-
     ##Added by kavita garg
     ##add mutational info to the phenodata
     ##tb <-tbl
-    ## This is very imp since not all samples in tbl have exp data, they only match if they are in same order
+    ## This is very imp since not all samples in tbl have exp data, they only
+    ## match if they are in same order
     tbl = tbl[colnames(exprs),]
     ##read the file with tissue, mutation data
     con = textConnection(getURLContent(fl3, .opts=myopts, curl=handle),"")
@@ -243,7 +250,8 @@ SangerMRNAGenerateESet <-
     ##use only the ones for which tissues have been selected by us (read as fb)
     tbl = tbl[tbl$SampleName %in% fb$cell.line,]
     ##merge these two, the new df has 'CellLine' and not "cell.line")
-    ntbl <-merge(tbl,fb,by.x = "SampleName",by.y = "cell.line", all.x = TRUE, na.rm = TRUE)
+    ntbl <-merge(tbl,fb,by.x = "SampleName",by.y = "cell.line", all.x = TRUE,
+                 na.rm = TRUE)
     untbl <- unique(ntbl)
     ##lost row names in merge, add them back
     rownames(untbl) <- untbl$Rownames

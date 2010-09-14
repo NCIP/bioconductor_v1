@@ -1,6 +1,6 @@
 Package: iSalmon
 Title: Package containing functions for ISCRE scripts
-Version: 0.0.14
+Version: 0.0.15
 Author: M.Carlson
 Description: This package contains functions to access and manipulate
   TCGA data stored in LabKey servers

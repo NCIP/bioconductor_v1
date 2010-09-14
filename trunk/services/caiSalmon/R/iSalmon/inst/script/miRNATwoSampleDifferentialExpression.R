@@ -29,12 +29,6 @@ table(withMeasuredOutcome[[3]])
 ## tidy -- rename for miRNATwoGroupDifferentialExpression
 names(withMeasuredOutcome)[2:3] <- c("FileName", "Condition")
 
-## ##TEMPORARY HACK till Peter can square away the permissions.
-## withMeasuredOutcome[,2] <- gsub("SharedData","RestrictedData",withMeasuredOutcome[,2])
-## withMeasuredOutcome <- withMeasuredOutcome[2:10,]
-## The hack does not work.  :(
-
-
 ## So a fresh start?:
 
 s <- getSession(baseUrl="https://isalmon.fhcrc.org/labkey",
@@ -66,20 +60,18 @@ topTable <-
 
 
 ##############################################################################
-##  Hmm, I have some bad data on the website apparently. So I will (for now)
-##  make up a fake example from scratch that I know will work.
 
 library(iSalmon)
-filenames = c("http://isalmon.fhcrc.org/labkey/files/home/SharedData/US14702406_251643612132_S01_miRNA-v1_95_May07_1_1.txt?fileSet=GBM%20miRNA%20Level%201",
-  "http://isalmon.fhcrc.org/labkey/files/home/SharedData/US14702406_251643612132_S01_miRNA-v1_95_May07_1_2.txt?fileSet=GBM%20miRNA%20Level%201",
-  "http://isalmon.fhcrc.org/labkey/files/home/SharedData/US14702406_251643612132_S01_miRNA-v1_95_May07_1_4.txt?fileSet=GBM%20miRNA%20Level%201",
-  "http://isalmon.fhcrc.org/labkey/files/home/SharedData/US14702406_251643612132_S01_miRNA-v1_95_May07_2_1.txt?fileSet=GBM%20miRNA%20Level%201")
-conds = c("A","A","B","B")
-targs <- new("Targets", FileName=as.character(filenames),
-             Condition=as.character(conds))
+base <- "http://isalmon.fhcrc.org/labkey/files/home/SharedData/"
+fls <- c("US14702406_251643612132_S01_miRNA-v1_95_May07_1_1.txt",
+         "US14702406_251643612132_S01_miRNA-v1_95_May07_1_2.txt",
+         "US14702406_251643612132_S01_miRNA-v1_95_May07_1_4.txt",
+         "US14702406_251643612132_S01_miRNA-v1_95_May07_2_1.txt")
+end <- "?fileSet=GBM%20miRNA%20Level%201"
+targets <- data.frame(FileName=paste(base, fls, end, sep=""),
+                      Condition=c("A","A","B","B"))
 topTable <-
-    miRNATwoGroupDifferentialExpression(targs)
-
+    miRNATwoGroupDifferentialExpression(targets)
 
 head(topTable)
 
