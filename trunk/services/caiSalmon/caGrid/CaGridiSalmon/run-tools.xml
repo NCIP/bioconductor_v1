@@ -1,6 +1,6 @@
 <project name="run-tools file" basedir="." default="runClient">
      <target name="runClient" depends="checkGlobus, defineClasspaths" description="Run the sample Client">
-        <property name="service.url" value="http://localhost:8080/wsrf/services/cagrid/CaGridiSalmon" />
+        <property name="service.url" value="http://cabig.bioconductor.org/wsrf/services/cagrid/CaGridiSalmon" />
         <echo message="Connecting to service: ${service.url}" />
         <java failonerror="true" classname="org.cagrid.CaGridiSalmon.client.CaGridiSalmonClient" classpathref="run.classpath" fork="yes">
             <jvmarg value="-DGLOBUS_LOCATION=${ext.globus.dir}" />
