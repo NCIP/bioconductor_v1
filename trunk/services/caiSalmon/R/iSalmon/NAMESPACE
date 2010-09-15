@@ -5,6 +5,7 @@ importFrom(arrayQualityMetrics, arrayQualityMetrics)
 importFrom(ShortRead, qa, report)
 
 export(miRNATwoGroupDifferentialExpression,
+       camiRNATwoGroupDifferentialExpression,
        SangerMiRNAGenerateESet,
        SangerMRNAGenerateESet,
        #miRNAArrayQualityReport,  
