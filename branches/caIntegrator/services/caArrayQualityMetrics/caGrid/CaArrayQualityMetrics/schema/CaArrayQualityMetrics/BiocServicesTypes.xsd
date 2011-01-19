@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:bioc="http://org.bioconductor.rservices"
+		   xmlns:rservices="http://org.bioconductor.packages.rservices"
+           targetNamespace="http://org.bioconductor.rservices">
+   
+   <xs:import namespace="http://org.bioconductor.packages.rservices" schemaLocation="./RServicesType.xsd"/>
+   
+   <xs:element name="RemoteResourceKey" type="bioc:RemoteResourceKey"/>
+    <xs:complexType name="RemoteResourceKey">
+	<xs:sequence>
+	    <xs:element name="name" type="xs:QName"/>
+	    <xs:element name="value" type="xs:anyType"/>
+	</xs:sequence>
+    </xs:complexType>
+	
+	<xs:element name="SessionEndpoint" type="bioc:SessionEndpoint"/>
+	<xs:complexType name="SessionEndpoint">
+		<xs:sequence>
+			<xs:element name="identifier" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="Status" type="bioc:Status"/>
+	<xs:complexType name="Status">
+		<xs:sequence>
+			<xs:element name="description" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:element name="ErrorStatus" type="bioc:ErrorStatus"/>
+	<xs:complexType name="ErrorStatus">
+		<xs:complexContent>
+			<xs:extension base="bioc:Status">
+				<xs:sequence>
+					<xs:element name="errorMessage" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:element name="Parameter" type="bioc:Parameter"/>
+	<xs:complexType name="Parameter" abstract="true">
+		<xs:sequence/>
+	</xs:complexType>
+	
+	<xs:element name="ResultItem" type="bioc:ResultItem"/>
+	<xs:complexType name="ResultItem" abstract="true">
+		<xs:sequence/>
+	</xs:complexType>
+	
+	
+</xs:schema>

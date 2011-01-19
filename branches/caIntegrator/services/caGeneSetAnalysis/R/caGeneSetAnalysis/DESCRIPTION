@@ -1,0 +1,13 @@
+Package: caGeneSetAnalysis
+Type: Package
+Title: RWebServices interface to the GSEABase and Category packages.
+Version: 0.1.8
+Author: Tom Milac
+Maintainer: Tom Milac <tmilac@fhcrc.org>
+Description: Provides an RWebServices interface to a part of the
+        functionality provided by the GSEABase and Category packages.
+License: file LICENSE
+LazyLoad: yes
+Imports: Biobase, TypeInfo, RWebServices, methods, Category, GSEABase,
+    annotate, AnnotationDbi, caCommonClasses, hgu95av2.db
+Depends: RWebServices, lattice, latticeExtra, GOstats

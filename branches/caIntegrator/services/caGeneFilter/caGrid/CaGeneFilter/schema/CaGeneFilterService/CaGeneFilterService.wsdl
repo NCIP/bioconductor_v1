@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService" xmlns:wsrp="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.xsd" xmlns:wsrlw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.wsdl" xmlns:wsdlpp="http://www.globus.org/namespaces/2004/10/WSDLPreprocessor" xmlns:gtwsdl1="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ServiceGroup-1.2-draft-01.wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/03/addressing" xmlns:wsntw="http://docs.oasis-open.org/wsn/2004/06/wsn-WS-BaseNotification-1.2-draft-01.wsdl" xmlns:wsrbfw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.wsdl" xmlns:wsrpw="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" xmlns:wns0="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" xmlns:wns1="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity" xmlns:ns14="gme://caArray.caBIG/2.1/edu.georgetown.pir" xmlns:ns22="http://transfer.cagrid.org/Transfer" xmlns:ns3="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices" xmlns:ns11="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.hybridization" xmlns:ns9="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.data" xmlns:ns0="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices" xmlns:ns1="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter" xmlns:ns16="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data" xmlns:ns6="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.project" xmlns:ns8="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.protocol" xmlns:ns21="http://transfer.cagrid.org/TransferService/Context/types" xmlns:ns5="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.sample" xmlns:ns18="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/types" xmlns:ns17="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain" xmlns:ns20="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata" xmlns:ns23="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/Context/types" xmlns:ns19="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security" xmlns:ns13="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.array" xmlns:ns10="gme://caArray.caBIG/2.1/gov.nih.nci.cabio.domain" xmlns:ns12="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.contact" xmlns:ns7="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.file" xmlns:ns15="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.publication" xmlns:ns4="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.vocabulary" xmlns:ns2="http://schemas.xmlsoap.org/ws/2004/03/addressing" xmlns:ns24="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd" name="CaGeneFilterService" targetNamespace="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService">
+  <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" location="../wsrf/properties/WS-ResourceProperties.wsdl" />
+  <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.wsdl" location="../wsrf/faults/WS-BaseFaults.wsdl" />
+  <import namespace="http://docs.oasis-open.org/wsn/2004/06/wsn-WS-BaseNotification-1.2-draft-01.wsdl" location="../wsrf/notification/WS-BaseN.wsdl" />
+  <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl" location="./../wsrf/properties/WS-ResourceProperties.wsdl" />
+  <import namespace="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity" location="./ServiceSecurity.wsdl" />
+  <!--============================================================
+
+                      T Y P E S
+                      
+  ============================================================-->
+  <types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsrbf="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.xsd" targetNamespace="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService" elementFormDefault="qualified" attributeFormDefault="unqualified">
+      <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-BaseFaults-1.2-draft-01.xsd" schemaLocation="../wsrf/faults/WS-BaseFaults.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/edu.georgetown.pir" schemaLocation="./../NIH_NCI_Types/edu.georgetown.pir.xsd" />
+      <import namespace="http://transfer.cagrid.org/Transfer" schemaLocation="./caGrid_Transfer.xsd" />
+      <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices" schemaLocation="./org.bioconductor.cagrid.statefulservices.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.hybridization" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.hybridization.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.data" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.data.xsd" />
+      <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.rservices" schemaLocation="./../RServices/org.bioconductor.cagrid.rservices.xsd" />
+      <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenefilter" schemaLocation="./org.bioconductor.cagrid.cagenefilter.xsd" />
+      <import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data" schemaLocation="./org.bioconductor.cagrid.data.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.project" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.project.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.protocol" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.protocol.xsd" />
+      <import namespace="http://transfer.cagrid.org/TransferService/Context/types" schemaLocation="./TransferServiceContextTypes.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.sample" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.sample.xsd" />
+      <import namespace="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/types" schemaLocation="./CaGeneFilterServiceTypes.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.xsd" />
+      <import namespace="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata" schemaLocation="./xsd/cagrid/types/caGridMetadata.xsd" />
+      <import namespace="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/Context/types" schemaLocation="./CaGeneFilterServiceContextTypes.xsd" />
+      <import namespace="gme://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security" schemaLocation="./xsd/cagrid/types/security/security.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.array" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.array.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.cabio.domain" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.cabio.domain.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.contact" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.contact.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.file" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.file.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.publication" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.publication.xsd" />
+      <import namespace="gme://caArray.caBIG/2.1/gov.nih.nci.caarray.domain.vocabulary" schemaLocation="./../NIH_NCI_Types/gov.nih.nci.caarray.domain.vocabulary.xsd" />
+      <import namespace="http://schemas.xmlsoap.org/ws/2004/03/addressing" schemaLocation="./../ws/addressing/WS-Addressing.xsd" />
+      <import namespace="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceLifetime-1.2-draft-01.xsd" schemaLocation="../wsrf/lifetime/WS-ResourceLifetime.xsd" />
+      <element name="RecodeRequest">
+        <complexType>
+          <sequence>
+            <element name="dataCollection">
+              <complexType>
+                <sequence>
+                  <element ref="ns16:SingleChannelExpressionDataCollection" minOccurs="1" maxOccurs="1" />
+                </sequence>
+              </complexType>
+            </element>
+            <element name="recode">
+              <complexType>
+                <sequence>
+                  <element ref="ns1:Recode" minOccurs="1" maxOccurs="1" />
+                </sequence>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RecodeResponse">
+        <complexType>
+          <sequence>
+            <element ref="ns16:SingleChannelExpressionDataCollection" minOccurs="1" maxOccurs="1" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="FilterRequest">
+        <complexType>
+          <sequence>
+            <element name="singleChannelExpressionDataCollection">
+              <complexType>
+                <sequence>
+                  <element ref="ns16:SingleChannelExpressionDataCollection" minOccurs="1" maxOccurs="1" />
+                </sequence>
+              </complexType>
+            </element>
+            <element name="filter">
+              <complexType>
+                <sequence>
+                  <element ref="ns1:Filter" minOccurs="1" maxOccurs="1" />
+                </sequence>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="FilterResponse">
+        <complexType>
+          <sequence>
+            <element ref="ns16:SingleChannelExpressionDataCollection" minOccurs="1" maxOccurs="1" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="InvokeSpotQualityRecodeRequest">
+        <complexType>
+          <sequence>
+            <element name="sessionIdentifier">
+              <complexType>
+                <sequence>
+                  <element ref="ns3:SessionIdentifier" minOccurs="1" maxOccurs="1" />
+                </sequence>
+              </complexType>
+            </element>
+            <element name="spotQualityRecode">
+              <complexType>
+                <sequence>
+                  <element ref="ns1:SpotQualityRecode" minOccurs="1" maxOccurs="1" />
+                </sequence>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="InvokeSpotQualityRecodeResponse">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetRpackageSessionInfoRequest">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetRpackageSessionInfoResponse">
+        <complexType>
+          <sequence>
+            <element name="response" type="xs:string" minOccurs="1" maxOccurs="1" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="InvokeFilterRequest">
+        <complexType>
+          <sequence>
+            <element name="sessionIdentifier">
+              <complexType>
+                <sequence>
+                  <element ref="ns3:SessionIdentifier" minOccurs="1" maxOccurs="1" />
+                </sequence>
+              </complexType>
+            </element>
+            <element name="filter">
+              <complexType>
+                <sequence>
+                  <element ref="ns1:Filter" minOccurs="1" maxOccurs="1" />
+                </sequence>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="InvokeFilterResponse">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="InvokeRecodeRequest">
+        <complexType>
+          <sequence>
+            <element name="sessionIdentifier">
+              <complexType>
+                <sequence>
+                  <element ref="ns3:SessionIdentifier" minOccurs="1" maxOccurs="1" />
+                </sequence>
+              </complexType>
+            </element>
+            <element name="recode">
+              <complexType>
+                <sequence>
+                  <element ref="ns1:Recode" minOccurs="1" maxOccurs="1" />
+                </sequence>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="InvokeRecodeResponse">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CreateCaGeneFilterSessionRequest">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CreateCaGeneFilterSessionResponse">
+        <complexType>
+          <sequence>
+            <element ref="ns3:SessionIdentifier" minOccurs="1" maxOccurs="1" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetStatusRequest">
+        <complexType>
+          <sequence>
+            <element name="sessionIdentifier">
+              <complexType>
+                <sequence>
+                  <element ref="ns3:SessionIdentifier" minOccurs="1" maxOccurs="1" />
+                </sequence>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetStatusResponse">
+        <complexType>
+          <sequence>
+            <element ref="ns3:Status" minOccurs="1" maxOccurs="1" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CaGeneFilterServiceResourceProperties">
+        <complexType>
+          <sequence>
+            <element ref="ns20:ServiceMetadata" />
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <!--  place service messages here -->
+  <message name="RecodeRequest">
+    <part name="parameters" element="tns:RecodeRequest" />
+  </message>
+  <message name="RecodeResponse">
+    <part name="parameters" element="tns:RecodeResponse" />
+  </message>
+  <message name="FilterRequest">
+    <part name="parameters" element="tns:FilterRequest" />
+  </message>
+  <message name="FilterResponse">
+    <part name="parameters" element="tns:FilterResponse" />
+  </message>
+  <message name="InvokeSpotQualityRecodeRequest">
+    <part name="parameters" element="tns:InvokeSpotQualityRecodeRequest" />
+  </message>
+  <message name="InvokeSpotQualityRecodeResponse">
+    <part name="parameters" element="tns:InvokeSpotQualityRecodeResponse" />
+  </message>
+  <message name="GetRpackageSessionInfoRequest">
+    <part name="parameters" element="tns:GetRpackageSessionInfoRequest" />
+  </message>
+  <message name="GetRpackageSessionInfoResponse">
+    <part name="parameters" element="tns:GetRpackageSessionInfoResponse" />
+  </message>
+  <message name="InvokeFilterRequest">
+    <part name="parameters" element="tns:InvokeFilterRequest" />
+  </message>
+  <message name="InvokeFilterResponse">
+    <part name="parameters" element="tns:InvokeFilterResponse" />
+  </message>
+  <message name="InvokeRecodeRequest">
+    <part name="parameters" element="tns:InvokeRecodeRequest" />
+  </message>
+  <message name="InvokeRecodeResponse">
+    <part name="parameters" element="tns:InvokeRecodeResponse" />
+  </message>
+  <message name="CreateCaGeneFilterSessionRequest">
+    <part name="parameters" element="tns:CreateCaGeneFilterSessionRequest" />
+  </message>
+  <message name="CreateCaGeneFilterSessionResponse">
+    <part name="parameters" element="tns:CreateCaGeneFilterSessionResponse" />
+  </message>
+  <message name="GetStatusRequest">
+    <part name="parameters" element="tns:GetStatusRequest" />
+  </message>
+  <message name="GetStatusResponse">
+    <part name="parameters" element="tns:GetStatusResponse" />
+  </message>
+  <!--============================================================
+
+                       P O R T T Y P E
+                      
+  ============================================================-->
+  <portType name="CaGeneFilterServicePortType" wsrp:ResourceProperties="tns:CaGeneFilterServiceResourceProperties">
+    <operation name="recode">
+      <input message="tns:RecodeRequest" wsa:Action="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/RecodeRequest" />
+      <output message="tns:RecodeResponse" wsa:Action="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/RecodeResponse" />
+    </operation>
+    <operation name="filter">
+      <input message="tns:FilterRequest" wsa:Action="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/FilterRequest" />
+      <output message="tns:FilterResponse" wsa:Action="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/FilterResponse" />
+    </operation>
+    <operation name="invokeSpotQualityRecode">
+      <input message="tns:InvokeSpotQualityRecodeRequest" wsa:Action="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/InvokeSpotQualityRecodeRequest" />
+      <output message="tns:InvokeSpotQualityRecodeResponse" wsa:Action="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/InvokeSpotQualityRecodeResponse" />
+    </operation>
+    <operation name="getRpackageSessionInfo">
+      <input message="tns:GetRpackageSessionInfoRequest" wsa:Action="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/GetRpackageSessionInfoRequest" />
+      <output message="tns:GetRpackageSessionInfoResponse" wsa:Action="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/GetRpackageSessionInfoResponse" />
+    </operation>
+    <operation name="invokeFilter">
+      <input message="tns:InvokeFilterRequest" wsa:Action="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/InvokeFilterRequest" />
+      <output message="tns:InvokeFilterResponse" wsa:Action="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/InvokeFilterResponse" />
+    </operation>
+    <operation name="invokeRecode">
+      <input message="tns:InvokeRecodeRequest" wsa:Action="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/InvokeRecodeRequest" />
+      <output message="tns:InvokeRecodeResponse" wsa:Action="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/InvokeRecodeResponse" />
+    </operation>
+    <operation name="createCaGeneFilterSession">
+      <input message="tns:CreateCaGeneFilterSessionRequest" wsa:Action="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/CreateCaGeneFilterSessionRequest" />
+      <output message="tns:CreateCaGeneFilterSessionResponse" wsa:Action="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/CreateCaGeneFilterSessionResponse" />
+    </operation>
+    <operation name="getStatus">
+      <input message="tns:GetStatusRequest" wsa:Action="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/GetStatusRequest" />
+      <output message="tns:GetStatusResponse" wsa:Action="http://caGeneFilter.packages.bioconductor.org/CaGeneFilterService/GetStatusResponse" />
+    </operation>
+    <wsdl:operation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="GetMultipleResourceProperties">
+      <wsdl:input name="GetMultipleResourcePropertiesRequest" message="wsrpw:GetMultipleResourcePropertiesRequest" wsa:Action="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties/GetMultipleResourceProperties" />
+      <wsdl:output name="GetMultipleResourcePropertiesResponse" message="wsrpw:GetMultipleResourcePropertiesResponse" wsa:Action="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties/GetMultipleResourcePropertiesResponse" />
+      <wsdl:fault name="ResourceUnknownFault" message="wsrpw:ResourceUnknownFault" />
+      <wsdl:fault name="InvalidResourcePropertyQNameFault" message="wsrpw:InvalidResourcePropertyQNameFault" />
+    </wsdl:operation>
+    <wsdl:operation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="GetResourceProperty">
+      <wsdl:input name="GetResourcePropertyRequest" message="wsrpw:GetResourcePropertyRequest" wsa:Action="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties/GetResourceProperty" />
+      <wsdl:output name="GetResourcePropertyResponse" message="wsrpw:GetResourcePropertyResponse" wsa:Action="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties/GetResourcePropertyResponse" />
+      <wsdl:fault name="ResourceUnknownFault" message="wsrpw:ResourceUnknownFault" />
+      <wsdl:fault name="InvalidResourcePropertyQNameFault" message="wsrpw:InvalidResourcePropertyQNameFault" />
+    </wsdl:operation>
+    <wsdl:operation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="QueryResourceProperties">
+      <wsdl:input name="QueryResourcePropertiesRequest" message="wsrpw:QueryResourcePropertiesRequest" wsa:Action="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties/QueryResourceProperties" />
+      <wsdl:output name="QueryResourcePropertiesResponse" message="wsrpw:QueryResourcePropertiesResponse" wsa:Action="http://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties/QueryResourcePropertiesResponse" />
+      <wsdl:fault name="ResourceUnknownFault" message="wsrpw:ResourceUnknownFault" />
+      <wsdl:fault name="InvalidResourcePropertyQNameFault" message="wsrpw:InvalidResourcePropertyQNameFault" />
+      <wsdl:fault name="UnknownQueryExpressionDialectFault" message="wsrpw:UnknownQueryExpressionDialectFault" />
+      <wsdl:fault name="InvalidQueryExpressionFault" message="wsrpw:InvalidQueryExpressionFault" />
+      <wsdl:fault name="QueryEvaluationErrorFault" message="wsrpw:QueryEvaluationErrorFault" />
+    </wsdl:operation>
+    <operation name="getServiceSecurityMetadata">
+      <input message="wns1:GetServiceSecurityMetadataRequest" wsa:Action="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity/GetServiceSecurityMetadataRequest" />
+      <output message="wns1:GetServiceSecurityMetadataResponse" wsa:Action="http://security.introduce.cagrid.nci.nih.gov/ServiceSecurity/GetServiceSecurityMetadataResponse" />
+    </operation>
+  </portType>
+</definitions>
+

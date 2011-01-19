@@ -1,0 +1,11 @@
+import(arrayQualityMetrics)
+import(TypeInfo)
+import(affy)
+import(limma)
+import(methods)
+
+importFrom(RWebServices, FileReferences, urls, localNames, types, retrieve)
+importClassesFrom(RWebServices, FileReferences)
+
+exportPattern("^[^\\.].*")
+exportClassPattern("^[^\\.].*")

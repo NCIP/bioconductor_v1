@@ -1,0 +1,20 @@
+import(TypeInfo)
+import(caCommonClasses)
+
+importClassesFrom(Biobase, ExpressionSet)
+importClassesFrom(Category, GOHyperGParams, KEGGHyperGParams,
+                  PFAMHyperGParams, HyperGResult)
+importClassesFrom(GSEABase, GeneSet)
+importFrom(Biobase, description)
+importFrom(RWebServices, FileReferences, urls, localNames, types)
+importFrom(Category, hyperGTest, geneCounts, expectedCounts,
+           universeCounts, pvalues )
+importFrom(GSEABase, incidence, geneIds, AnnotationIdentifier,
+           GOCollection, KEGGCollection, PfamCollection, GeneSet,
+           GeneSetCollection)
+
+importFrom(annotate, annPkgName, getAnnMap)
+importFrom(AnnotationDbi, mget, revmap, eapply, as.list)
+
+exportPattern("^[^\\.].*")
+exportClassPattern("^[^\\.].*")

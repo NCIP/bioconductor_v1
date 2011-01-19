@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data"
+		   xmlns:statefulservices="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices"
+		   targetNamespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.data">
+		  
+	<xs:import namespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.statefulservices" 
+	           schemaLocation="../StatefulServices/org.bioconductor.cagrid.statefulservices.xsd"/>
+			   
+	<xs:element name="QualityReportFileReferences" type="QualityReportFileReferences"/>
+	<xs:complexType name="QualityReportFileReferences">
+		<xs:complexContent>
+			<xs:extension base="statefulservices:CaGridFileReferences">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

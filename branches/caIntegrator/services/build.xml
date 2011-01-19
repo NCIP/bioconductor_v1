@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<project name="Introduce Common Files" default="help" basedir=".">
+
+	<!--<property name="common.dir" value="${basedir}/Common" /> -->
+	
+	<target name="checkCommon">
+		<fail message="No Common directory exists at ${basedir}/Common">
+			<condition>
+				<not>
+					<available file="${basedir}/Common"/>
+				</not>
+			</condition>
+		</fail>
+		
+		<!-- To this point, Common directory is there, set property for it -->
+		<property name="common.dir" value="${basedir}/Common" />
+	</target>
+
+	<target name="checkProjProperty">
+		<fail message="cagridProj directory '${basedir}/${cagridProj}' not available; see ant -p">
+			<condition>
+				<not>
+					<available file="${basedir}/${cagridProj}"/>
+				</not>
+			</condition>
+		</fail>
+	</target>
+	
+	<target name="copyLibs" depends="checkCommon,checkProjProperty" if="cagridProj"   
+            description="copy common jar files to lib directory of -DcagridProj=project/caGrid/Project">
+		<property  name="lib.dir" value="${basedir}/${cagridProj}/lib" />
+		<property name="tools.dir" value="${basedir}/${cagridProj}/tools" />
+		<antcall target="copyfiles" />
+	</target>
+	
+	
+	<target name="copyfiles">
+		<copy  todir="${lib.dir}" overwrite="yes">
+			<fileset dir="${common.dir}/lib">
+				<filename name="*.jar" casesensitive="yes"/>
+			</fileset>
+		</copy>
+
+		<copy  todir="${tools.dir}/lib" overwrite="on">
+			<fileset dir="${common.dir}/tools/lib">
+				<filename name="*.jar" casesensitive="yes"/>
+			</fileset>
+		</copy>
+	</target>
+		
+	<target name="help" description="Prints usage information.">
+		<echo message="USAGE:                                                            " />
+		<echo message="  Type 'ant -h' for general help with Ant                         " />
+		<echo message="  Type 'ant -p' for a description of this service's build targets." />
+	</target>
+	
+</project>

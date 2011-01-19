@@ -1,0 +1,9 @@
+import(methods, RWebServices, TypeInfo, Biobase)
+exportClasses(BioAssays,
+              MeasuredBioAssays, 
+              DerivedBioAssays, 
+              NormalizeMethodParameter, NormalizeInvariantSetParameter, NormalizeQuantilesRobustParameter,
+              ExpressoParameter,
+              QaReport, ProbeLevelLinearModel, QualityControlStatistics)
+exportMethods(coerce)
+export(caExpresso, caQAReport)

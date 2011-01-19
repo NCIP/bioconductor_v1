@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndiConfig xmlns="http://wsrf.globus.org/jndi/config">
+  <service name="SERVICE-INSTANCE-PREFIX/CaArrayQualityMetricsContext">
+    <resource name="configuration" type="org.bioconductor.packages.caArrayQualityMetrics.context.service.globus.resource.CaArrayQualityMetricsContextResourceConfiguration">
+      <resourceParams>
+        <parameter>
+          <name>factory</name>
+          <value>org.globus.wsrf.jndi.BeanFactory</value>
+        </parameter>
+        <parameter>
+          <name>performRegistration</name>
+          <!-- Set this to false to skip ServiceGroup registration -->
+          <value>PERFORM_REGISTRATION</value>
+        </parameter>
+        <parameter>
+          <name>registrationTemplateFile</name>
+          <!-- Set this to the relative path (from the container root, e.g GLOBUS_LOCATION for globus container) of the registration parameters template file (ignored if performRegistration is false) -->
+          <value>ETC-PATH/CaArrayQualityMetricsContext_registration.xml</value>
+        </parameter>
+      </resourceParams>
+    </resource>
+    <resource name="home" type="org.bioconductor.packages.caArrayQualityMetrics.context.service.globus.resource.CaArrayQualityMetricsContextResourceHome">
+      <resourceParams>
+        <parameter>
+          <name>factory</name>
+          <value>org.globus.wsrf.jndi.BeanFactory</value>
+        </parameter>
+        <parameter>
+          <name>resourceClass</name>
+          <value>org.bioconductor.packages.caArrayQualityMetrics.context.service.globus.resource.CaArrayQualityMetricsContextResource</value>
+        </parameter>
+        <parameter>
+          <name>resourceKeyName</name>
+          <value>{http://caArrayQualityMetrics.packages.bioconductor.org/CaArrayQualityMetrics/Context}CaArrayQualityMetricsContextResultsKey</value>
+        </parameter>
+        <parameter>
+          <name>resourceKeyType</name>
+          <value>java.lang.String</value>
+        </parameter>
+      </resourceParams>
+    </resource>
+    <resourceLink name="serviceconfiguration" target="java:comp/env/services/SERVICE-INSTANCE-PREFIX/CaArrayQualityMetrics/serviceconfiguration" />
+    <resourceLink name="caArrayQualityMetricsHome" target="java:comp/env/services/SERVICE-INSTANCE-PREFIX/CaArrayQualityMetrics/home" />
+  </service>
+  <service name="SERVICE-INSTANCE-PREFIX/CaArrayQualityMetrics">
+    <resource name="configuration" type="org.bioconductor.packages.caArrayQualityMetrics.service.globus.resource.CaArrayQualityMetricsResourceConfiguration">
+      <resourceParams>
+        <parameter>
+          <name>factory</name>
+          <value>org.globus.wsrf.jndi.BeanFactory</value>
+        </parameter>
+        <parameter>
+          <name>performRegistration</name>
+          <!-- Set this to false to skip ServiceGroup registration -->
+          <value>PERFORM_REGISTRATION</value>
+        </parameter>
+        <parameter>
+          <name>registrationTemplateFile</name>
+          <!-- Set this to the relative path (from the container root, e.g GLOBUS_LOCATION for globus container) of the registration parameters template file (ignored if performRegistration is false) -->
+          <value>ETC-PATH/CaArrayQualityMetrics_registration.xml</value>
+        </parameter>
+        <parameter>
+          <name>serviceMetadataFile</name>
+          <!-- Set this to the relative path (from the container root, e.g GLOBUS_LOCATION for globus container) of the serviceMetadata extract -->
+          <value>ETC-PATH/serviceMetadata.xml</value>
+        </parameter>
+      </resourceParams>
+    </resource>
+    <resource name="serviceconfiguration" type="org.bioconductor.packages.caArrayQualityMetrics.service.CaArrayQualityMetricsConfiguration">
+      <resourceParams>
+        <parameter>
+          <name>factory</name>
+          <value>org.globus.wsrf.jndi.BeanFactory</value>
+        </parameter>
+        <parameter>
+          <name>etcDirectoryPath</name>
+          <value>ETC-PATH</value>
+        </parameter>
+      </resourceParams>
+    </resource>
+    <resource name="home" type="org.bioconductor.packages.caArrayQualityMetrics.service.globus.resource.CaArrayQualityMetricsResourceHome">
+      <resourceParams>
+        <parameter>
+          <name>factory</name>
+          <value>org.globus.wsrf.jndi.BeanFactory</value>
+        </parameter>
+      </resourceParams>
+    </resource>
+    <resourceLink name="caArrayQualityMetricsContextHome" target="java:comp/env/services/SERVICE-INSTANCE-PREFIX/CaArrayQualityMetricsContext/home" />
+  </service>
+</jndiConfig>
+

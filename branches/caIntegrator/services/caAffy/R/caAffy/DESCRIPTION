@@ -1,0 +1,13 @@
+Package: caAffy
+Type: Package
+Title: Expose Bioconductor 'affy' and 'affyQCreport' package functionality as web or caGrid service
+Version: 0.1.9
+Date: 2006-08-14
+Author: Martin Morgan <mtmorgan@fhcrc.org>
+Maintainer: Biocore Team <biocpkgs@lists.fhcrc.org>
+Description: Transform probe intensities to gene expression values.
+ 	Perform quality assurance analysis on expression data 
+Depends: R (>= 2.4.0), methods, RWebServices, TypeInfo, Biobase, affy, affyQCReport
+Suggests: affydata
+Collate: MAGElike-class.R caAffy.R caQAReport.R
+License: file LICENSE 

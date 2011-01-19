@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:aggr="http://mds.globus.org/aggregator/types" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="defaultServerConfig">
+  <service name="SERVICE-INSTANCE-PREFIX/CaGeneSetAnalysisContext" provider="Handler" use="literal" style="document">
+    <parameter name="className" value="org.bioconductor.packages.caGeneSetAnalysis.context.service.globus.CaGeneSetAnalysisContextProviderImpl" />
+    <wsdlFile>share/schema/CaGeneSetAnalysis/CaGeneSetAnalysisContext_service.wsdl</wsdlFile>
+    <parameter name="securityDescriptor" value="ETC-PATH/CaGeneSetAnalysisContext-security-desc.xml" />
+    <parameter name="allowedMethods" value="*" />
+    <parameter name="handlerClass" value="org.globus.axis.providers.RPCProvider" />
+    <parameter name="scope" value="Application" />
+    <parameter name="providers" value=" gov.nih.nci.cagrid.introduce.security.service.globus.ServiceSecurityProviderImpl DestroyProvider SetTerminationTimeProvider" />
+    <parameter name="loadOnStartup" value="true" />
+    <parameter name="securityMetadata" value="ETC-PATH/CaGeneSetAnalysisContext-security-metadata.xml" />
+  </service>
+  <service name="SERVICE-INSTANCE-PREFIX/CaGeneSetAnalysis" provider="Handler" use="literal" style="document">
+    <parameter name="className" value="org.bioconductor.packages.caGeneSetAnalysis.service.globus.CaGeneSetAnalysisProviderImpl" />
+    <wsdlFile>share/schema/CaGeneSetAnalysis/CaGeneSetAnalysis_service.wsdl</wsdlFile>
+    <parameter name="securityDescriptor" value="ETC-PATH/CaGeneSetAnalysis-security-desc.xml" />
+    <parameter name="allowedMethods" value="*" />
+    <parameter name="handlerClass" value="org.globus.axis.providers.RPCProvider" />
+    <parameter name="scope" value="Application" />
+    <parameter name="providers" value=" GetMRPProvider GetRPProvider QueryRPProvider gov.nih.nci.cagrid.introduce.security.service.globus.ServiceSecurityProviderImpl" />
+    <parameter name="loadOnStartup" value="true" />
+    <parameter name="securityMetadata" value="ETC-PATH/CaGeneSetAnalysis-security-metadata.xml" />
+  </service>
+  <typeMapping name="AggregatorContent" qname="aggr:AggregatorContent" type="java:org.globus.mds.aggregator.types.AggregatorContent" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
+  <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:GeneSetAnalysisParameters" type="java:org.bioconductor.cagrid.cagenesetanalysis.GeneSetAnalysisParameters" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
+  <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:DiscreteGeneSetAnalysisParameters" type="java:org.bioconductor.cagrid.cagenesetanalysis.DiscreteGeneSetAnalysisParameters" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
+  <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:GeneOntologyDiscreteGeneSetAnalysisParameters" type="java:org.bioconductor.cagrid.cagenesetanalysis.GeneOntologyDiscreteGeneSetAnalysisParameters" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
+  <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:PfamDiscreteGeneSetAnalysisParameters" type="java:org.bioconductor.cagrid.cagenesetanalysis.PfamDiscreteGeneSetAnalysisParameters" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
+  <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:KEGGDiscreteGeneSetAnalysisParameters" type="java:org.bioconductor.cagrid.cagenesetanalysis.KEGGDiscreteGeneSetAnalysisParameters" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
+  <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:ContinuousGeneSetAnalysisParameters" type="java:org.bioconductor.cagrid.cagenesetanalysis.ContinuousGeneSetAnalysisParameters" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
+  <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:GeneOntologyContinuousGeneSetAnalysisParameters" type="java:org.bioconductor.cagrid.cagenesetanalysis.GeneOntologyContinuousGeneSetAnalysisParameters" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
+  <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:PfamContinuousGeneSetAnalysisParameters" type="java:org.bioconductor.cagrid.cagenesetanalysis.PfamContinuousGeneSetAnalysisParameters" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
+  <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:KEGGContinuousGeneSetAnalysisParameters" type="java:org.bioconductor.cagrid.cagenesetanalysis.KEGGContinuousGeneSetAnalysisParameters" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
+  <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:GeneSetAnalysisResultCollection" type="java:org.bioconductor.cagrid.cagenesetanalysis.GeneSetAnalysisResultCollection" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
+  <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:DiscreteGeneSetAnalysisResultCollection" type="java:org.bioconductor.cagrid.cagenesetanalysis.DiscreteGeneSetAnalysisResultCollection" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
+  <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:ContinuousGeneSetAnalysisResult" type="java:org.bioconductor.cagrid.cagenesetanalysis.ContinuousGeneSetAnalysisResult" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
+  <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:DiscreteGeneSetAnalysisResult" type="java:org.bioconductor.cagrid.cagenesetanalysis.DiscreteGeneSetAnalysisResult" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
+  <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:GeneSetAnalysisResult" type="java:org.bioconductor.cagrid.cagenesetanalysis.GeneSetAnalysisResult" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
+  <typeMapping xmlns:ns="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cagenesetanalysis" qname="ns:GeneSetMember" type="java:org.bioconductor.cagrid.cagenesetanalysis.GeneSetMember" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" />
+</deployment>
+

@@ -1,0 +1,15 @@
+import(limma)
+importFrom(Rlabkey, labkey.executeSql, labkey.selectRows,
+           labkey.getQueries)
+importFrom(arrayQualityMetrics, arrayQualityMetrics)
+importFrom(ShortRead, qa, report)
+
+export(miRNATwoGroupDifferentialExpression,
+       camiRNATwoGroupDifferentialExpression,
+       SangerMiRNAGenerateESet,
+       SangerMRNAGenerateESet,
+       #miRNAArrayQualityReport,  
+       #shortReadQualityReport,
+       TopTableSingleTissueSingleMutgene,
+       TCGAmiRNATwoGroupDifferentialExpression
+       )

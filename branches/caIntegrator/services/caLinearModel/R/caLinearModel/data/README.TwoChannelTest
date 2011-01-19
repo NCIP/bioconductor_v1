@@ -1,0 +1,85 @@
+
+# Creates a TwoChannelExpressionData and a SampleAnnotationCollection
+# from the gpr files in subdirectory GSE10235.
+
+library(RWebServices)
+library(limma)
+library(caCommonClasses)
+library(caLinearModel)
+
+# Read the targets file.
+targets <- readTargets(file="GSE10235_targets.txt", path="GSE10235")
+
+# Read GPR files to an RGList
+RG <- read.maimages(targets, path="GSE10235", source="genepix")
+
+# Background correction
+RG <- backgroundCorrect(RG, method="normexp", offset=50)
+
+# Build a TwoChannelExpressionData from the data in the RGList RG.
+
+gnm <- new("NumericMatrix", RG$G)
+rownames(gnm) <- RG$genes$ID
+rownames(gnm)[ is.na(rownames(gnm)) ] <- "NA replacement"
+
+rnm <- new("NumericMatrix", RG$R)
+rownames(rnm) <- RG$genes$ID
+rownames(rnm)[ is.na(rownames(rnm)) ] <- "NA replacement"
+
+gem <- ExpressionMatrix( gnm, "Cy3" )
+rem <- ExpressionMatrix( rnm, "Cy5" )
+
+twoChannelExpressionData <- TwoChannelExpressionData(gem, rem)
+
+# Build the SampleAnnotationCollection corresponding to the TwoChannelExpressionData.
+
+# Add columns to sampleAnnotationCollection that are required to be present in
+# the data.frame of a SampleAnnotationCollection, specifically, 'array' and
+# 'channel'.  Note that the data.frame includes two rows for every array,
+# corresponding to the two channels of the arrays.
+
+numberOfArrays <- length(targets$Name)
+
+arrayNames <- c( targets$Name, targets$Name )
+channels   <- c( rep("Cy3", numberOfArrays),
+                 rep("Cy5", numberOfArrays)  )
+
+sampleAnnotationCollection <- data.frame(array=arrayNames, channel=channels)
+
+# Add a 2-level factor to sampleAnnotationCollection for use by DyeSwapTTest and
+# CommonReferenceFactorial.  The handedness in one channel of an arris is opposite
+# to that in the other channel.
+
+handedness <- ifelse(runif(numberOfArrays) > 0.5, "R", "L")
+complementaryHandedness <- ifelse(handedness == "R", "L", "R")
+
+sampleAnnotationCollection$handedness <- c(handedness, complementaryHandedness)
+
+# Add a 3-level factor to sampleAnnotationCollection for use by
+# CommonReferenceTTest.
+
+cy3Phenotype <- c( "mut", "ref", "wt",  "ref", "ref", "mut", "mut", "ref", "wt",  "ref",
+                   "ref", "mut", "ref", "wt",  "wt",  "ref", "ref", "mut", "ref", "wt"   )
+cy5Phenotype <- c( "ref", "mut", "ref", "wt",  "wt",  "ref", "ref", "mut", "ref", "wt",
+                   "mut", "ref", "wt",  "ref", "ref", "mut", "mut", "ref", "wt",  "ref" )
+
+sampleAnnotationCollection$phenotype <- c(cy3Phenotype, cy5Phenotype)
+
+# Add 5-level factor to sampleAnnotationCollection for use by
+# CommonReferenceANOVA.
+
+cy3AgeCohort <- c( "Infant", "Mix",   "Mix",     "Adult", "Elderly", "Infant", "Mix",     "Mix",    "Adult", "Mix",
+                   "Mix",    "Adult", "PreTeen", "Mix",   "Mix",     "Mix",    "Elderly", "Infant", "Mix",   "PreTeen" )
+cy5AgeCohort <- c( "Mix",    "Adult", "PreTeen", "Mix",   "Mix",     "Mix",    "Elderly", "Infant", "Mix",   "PreTeen",
+                   "Infant", "Mix",   "Mix",     "Adult", "Elderly", "Infant", "Mix",     "Mix",    "Adult", "Mix"      )
+
+sampleAnnotationCollection$ageCohort <- c(cy3AgeCohort, cy5AgeCohort)
+
+# Save the expression data as a TwoChannelExpressionData and
+# the phenotype data as a SampleAnnotationCollection.
+
+TwoChannelTest.twoChannelExpressionData   <- twoChannelExpressionData
+TwoChannelTest.sampleAnnotationCollection <- SampleAnnotationCollection(sampleAnnotationCollection=sampleAnnotationCollection)
+
+save(TwoChannelTest.twoChannelExpressionData,   file="TwoChannelTest.twoChannelExpressionData.rda")
+save(TwoChannelTest.sampleAnnotationCollection, file="TwoChannelTest.sampleAnnotationCollection.rda")

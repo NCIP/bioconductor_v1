@@ -1,0 +1,4 @@
+import(methods, TypeInfo)
+exportClasses(MzSpectrum, MzAssays,
+              PROcessParameter, PeakLocation)
+export(caPROcess)

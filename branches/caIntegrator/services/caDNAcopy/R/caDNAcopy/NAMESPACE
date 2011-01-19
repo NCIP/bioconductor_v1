@@ -1,0 +1,7 @@
+import(methods, RWebServices, TypeInfo)
+
+exportClasses(DNAcopyAssays,
+              DerivedDNAcopySegment,
+              DNAcopyParameter)
+
+export(caDNAcopy, tempFunc)

@@ -1,0 +1,14 @@
+http\://caDNAcopy.packages.bioconductor.org/CaDNAcopy=org.bioconductor.packages.caDNAcopy.stubs
+http\://caDNAcopy.packages.bioconductor.org/CaDNAcopy/bindings=org.bioconductor.packages.caDNAcopy.stubs.bindings
+http\://caDNAcopy.packages.bioconductor.org/CaDNAcopy/service=org.bioconductor.packages.caDNAcopy.stubs.service
+http\://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl=org.oasis.wsrf.properties
+http\://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl=org.oasis.wsrf.properties
+http\://docs.oasis-open.org/wsrf/2004/06/wsrf-WS-ResourceProperties-1.2-draft-01.wsdl=org.oasis.wsrf.properties
+http\://security.introduce.cagrid.nci.nih.gov/ServiceSecurity=gov.nih.nci.cagrid.introduce.security.stubs
+
+gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata=gov.nih.nci.cagrid.metadata
+http\://caDNAcopy.packages.bioconductor.org/CaDNAcopy/types=org.bioconductor.packages.caDNAcopy.stubs.types
+http\://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cadnacopy=org.bioconductor.cagrid.cadnacopy
+gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.security=gov.nih.nci.cagrid.metadata.security
+gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.service=gov.nih.nci.cagrid.metadata.service
+gme\://caGrid.caBIG/1.0/gov.nih.nci.cagrid.metadata.common=gov.nih.nci.cagrid.metadata.common

@@ -1,0 +1,15 @@
+all
+clean
+compile
+copy-helper-service-jars
+createDeploymentGar
+deployGlobus
+deployJBoss
+deployTomcat
+help
+javadoc
+runClient
+test
+undeployGlobus
+undeployJBoss
+undeployTomcat

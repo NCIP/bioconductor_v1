@@ -1,0 +1,14 @@
+Package: caArrayQualityMetrics
+Type: Package
+Title: Exposes arrayQualityMetrics functionality
+Version: 0.1.4
+Author: Tom Milac
+Maintainer: Tom Milac <tmilac@fhcrc.org>
+Description: Summarize microarray quality metrics on Affymetrix and other
+   common manufacturer files
+License: file LICENSE 
+LazyLoad: yes
+Imports: arrayQualityMetrics, TypeInfo, RWebServices, affy, affyPLM, 
+    limma, methods
+Depends: RWebServices, Biobase, lattice, latticeExtra, affy, affyPLM
+Suggests: caServicesTestData
