@@ -1,0 +1,14 @@
+Package: caCGHcall
+Type: Package
+Title: Expose 'CGHcall' functionality as web service
+Version: 0.1.0
+Date: 2011-01-26
+Author: Chris Piepenbring <piepenbringc@mail.nih.gov>
+Maintainer: Chris Piepenbring <piepenbringc@mail.nih.gov>
+Description: This packages wraps core functionality of the CGHcall
+	package into a single R workflow, and provides TypeInfo for
+	the argument and return types. This facilitates use of the
+	package in RWebServices.
+Depends: RWebServices, TypeInfo, CGHcall (>= 2.2.0), methods, R (>= 2.4.0)
+License: file LICENSE
+

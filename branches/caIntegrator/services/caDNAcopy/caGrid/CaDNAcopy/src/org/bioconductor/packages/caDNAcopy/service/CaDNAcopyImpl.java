@@ -1,6 +1,9 @@
 package org.bioconductor.packages.caDNAcopy.service;
 
 import java.rmi.RemoteException;
+import java.util.*;
+import java.text.SimpleDateFormat;
+
 
 /** 
  * TODO:I am the service side implementation class.  IMPLEMENT AND DOCUMENT ME
@@ -10,6 +13,8 @@ import java.rmi.RemoteException;
  */
 public class CaDNAcopyImpl extends CaDNAcopyImplBase {
 
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
+
 	
 	public CaDNAcopyImpl() throws RemoteException {
 		super();
@@ -17,15 +22,21 @@ public class CaDNAcopyImpl extends CaDNAcopyImplBase {
 	
   public org.bioconductor.cagrid.cadnacopy.DerivedDNAcopySegment getDerivedDNAcopySegment(org.bioconductor.cagrid.cadnacopy.DNAcopyAssays dNAcopyAssays,org.bioconductor.cagrid.cadnacopy.DNAcopyParameter dNAcopyParameter) throws RemoteException {
 	  	org.bioconductor.rserviceJms.services.caDNAcopy.caDNAcopy myCaService = null;
-		
-		System.out.println("Creating caDNAcopy - myCaService"); // logs/catalina.out
+
+		// Added by CAP - get sample name for log
+		String sampleName = "[unknown]";
+		org.bioconductor.cagrid.cadnacopy.ExpressionData[] edc = dNAcopyAssays.getExpressionDataCollection();
+		if (edc.length > 0) {
+		    sampleName = edc[0].getSampleId();
+		}
+		System.out.println(formatter.format(new java.util.Date()) + " - Creating caDNAcopy for sample " + sampleName); // logs/catalina.out
 		try {			
 		    myCaService = new org.bioconductor.rserviceJms.services.caDNAcopy.caDNAcopy();
 		}
 		catch (Exception ex) {
 		    throw new RemoteException(ex.getMessage());
 		}
-		System.out.println("myCaService is created");
+		System.out.println(formatter.format(new java.util.Date()) + " - caDNAcopy created for sample " + sampleName);
 		
 		org.bioconductor.packages.caDNAcopy.DNAcopyParameter rwsParameter = new
 		    org.bioconductor.packages.caDNAcopy.DNAcopyParameter(new int[] {0},
@@ -66,6 +77,8 @@ public class CaDNAcopyImpl extends CaDNAcopyImplBase {
 		    throw(ex);
 		}
 
+		System.out.println(formatter.format(new java.util.Date()) + " - caDNAcopy completed for sample " + sampleName);
+
 		// map output type
 		org.bioconductor.cagrid.cadnacopy.DerivedDNAcopySegment caSegment = null;
 		if (null != rwsSegment) {
@@ -84,6 +97,7 @@ public class CaDNAcopyImpl extends CaDNAcopyImplBase {
 									       rwsSegment.getSampleId(),
 									       startMapPosition);
 		}
+		System.out.println(formatter.format(new java.util.Date()) + " - Returning segment for sample " + sampleName);
 		return(caSegment);
   }
 

@@ -1,0 +1,7 @@
+import(methods, RWebServices, TypeInfo)
+
+exportClasses(CGHcallAssays,
+              DerivedCGHcallSegment,
+              CGHcallParameter)
+
+export(caCGHcall, tempFunc)

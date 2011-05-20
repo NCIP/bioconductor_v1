@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	   xmlns:cacghcall="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cacghcall"
+	   targetNamespace="http://org.bioconductor.cabig/1.0/org.bioconductor.cagrid.cacghcall">
+    <xs:element name="CGHcallParameter" type="cacghcall:CGHcallParameter"/>
+    <xs:complexType name="CGHcallParameter">
+	<xs:sequence>
+	    <xs:element name="changePointSignificanceLevel" type="xs:double"/>
+	    <xs:element name="earlyStoppingCriterion" type="xs:double"/>
+	    <xs:element name="permutationReplicates" type="xs:int"/>
+	    <xs:element name="randomNumberSeed" type="xs:int"/>
+	    <xs:element name="numberLevels" type="xs:int"/>
+	</xs:sequence>
+    </xs:complexType>
+    <xs:element name="CGHcallExpressionData" type="cacghcall:CGHcallExpressionData"/>
+    <xs:complexType name="CGHcallExpressionData">
+	<xs:sequence>
+	    <xs:element name="logRatioValues" type="xs:double" minOccurs="0" maxOccurs="unbounded"/>
+	    <xs:element name="sampleId" type="xs:string"/>
+	</xs:sequence>
+    </xs:complexType>
+    <xs:element name="CGHcallAssays" type="cacghcall:CGHcallAssays"/>
+    <xs:complexType name="CGHcallAssays">
+	<xs:sequence>
+	    <xs:element name="chromsomeId" type="xs:int" minOccurs="0" maxOccurs="unbounded"/>
+	    <xs:element name="mapLocation" type="xs:long" minOccurs="0" maxOccurs="unbounded"/>
+	    <xs:element name="expressionDataCollection" type="cacghcall:CGHcallExpressionData" minOccurs="0" maxOccurs="unbounded"/>
+	</xs:sequence>
+    </xs:complexType>
+        <xs:element name="DerivedCGHcallSegment" type="cacghcall:DerivedCGHcallSegment"/>
+    <xs:complexType name="DerivedCGHcallSegment">
+    <xs:sequence>
+        <xs:element name="averageSegmentValue" type="xs:double" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="chromosomeIndex" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="endMapPosition" type="xs:long" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="markersPerSegment" type="xs:int" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="sampleId" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="startMapPosition" type="xs:long" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="calls" type="xs:int" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="probLoss" type="xs:double" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="probNorm" type="xs:double" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="probGain" type="xs:double" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="probAmp" type="xs:double" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+    </xs:complexType>
+</xs:schema>
