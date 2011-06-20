@@ -92,8 +92,17 @@ seed <- slot(cghCallParameter, "randomNumberSeed")
 if (length(seed)>0)
   set.seed(seed)
 
-# Get normalized cghRaw object from cghCallAssays
-nor <- assay2cghRaw(cghCallAssays)
+# Get un-normalized cghRaw object from cghCallAssays
+raw <- assay2cghRaw(cghCallAssays)
+
+# CAP - Preprocess and nromalize the way that Use_CGHcallPackage.R does it
+prep <- preprocess(raw, maxmiss = 30, nchrom = 23)
+rm(raw);gc();
+
+# CAP - normalize the data
+nor <-  normalize(prep,method = "median", cellularity = 1, smoothOutliers = TRUE)
+rm(prep);gc();      
+    
 
 #For noisy profiles undo.SD may be increased to enforce less segments. 
 #Advise is to consider the segment-plots before calling  
@@ -106,18 +115,11 @@ rm(nor);gc();
 # Normalization algorithm from CGHcall
 segnorm <- postsegnormalize(seg,inter=c(-0.1,0.1))
 
-# CAP - TEMPORARY WRITE TO FILE
-fname <- paste("/usr/local/bioconductor/logs/dumps/",sampleNames(segnorm)[1],"-segnorm.Rdata",sep="")
-save(segnorm, file=fname)
-
 # This is the CGHcall algorithm itself.  Returns a list rather than a
 #   cghCall object though.  The ExpandCGHcall function call makes the
 #   actual cghCall object.
 numlevels <- as.integer(slot(cghCallParameter,"numberLevels"))
 listcalls <- CGHcall(segnorm,nclass=numlevels,robustsig="yes")
-# CAP - TEMPORARY WRITE TO FILE
-fname <- paste("/usr/local/bioconductor/logs/dumps/",sampleNames(segnorm)[1],"-listcalls.Rdata",sep="")
-save(listcalls, file=fname)
 
 calls <- ExpandCGHcall(listcalls,segnorm, divide=5, memeff=FALSE)
 #IN CASE OF R MEMORY PROBLEMS USE (see also ?ExpandCGHcall); possibly increase divide.  Results can be combined using 'combine'.
